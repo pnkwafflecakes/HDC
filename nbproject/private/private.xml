@@ -9,10 +9,6 @@
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/.Helen'sDeliciousCakesCapstone/src/java/Entities/Account.java</file>
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/.Helen'sDeliciousCakesCapstone/src/java/Database/capstoneDB.sql</file>
         </group>
-        <group name="Group2">
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/Group2/.Helen'sDeliciousCakesCapstone/src/java/dataaccess/CakeJpaController.java</file>
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/Group2/.Helen'sDeliciousCakesCapstone/src/java/Database/capstoneDB.sql</file>
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/Group2/.Helen'sDeliciousCakesCapstone/src/java/dataaccess/DBUtil.java</file>
-        </group>
+        <group name="Group2"/>
     </open-files>
 </project-private>
