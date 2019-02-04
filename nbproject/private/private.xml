@@ -9,6 +9,12 @@
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/.Helen'sDeliciousCakesCapstone/src/java/Entities/Account.java</file>
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/.Helen'sDeliciousCakesCapstone/src/java/Database/capstoneDB.sql</file>
         </group>
-        <group name="Group2"/>
+        <group name="Group2">
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/Group2/HDC/HDCProject/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/Group2/HDC/HDCProject/src/java/Database/exceptions/PreexistingEntityException.java</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/Group2/HDC/HDCProject/src/java/dataaccess/OrderJpaController.java</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/Group2/HDC/HDCProject/src/java/dataaccess/AccountJpaController.java</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/Group2/HDC/HDCProject/src/java/Database/exceptions/NonexistentEntityException.java</file>
+        </group>
     </open-files>
 </project-private>
