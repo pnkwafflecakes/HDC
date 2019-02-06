@@ -10,11 +10,21 @@
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/.Helen'sDeliciousCakesCapstone/src/java/Database/capstoneDB.sql</file>
         </group>
         <group name="Group2">
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/Group2/HDC/HDCProject/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/Group2/HDC/HDCProject/src/java/Database/exceptions/PreexistingEntityException.java</file>
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/Group2/HDC/HDCProject/src/java/dataaccess/OrderJpaController.java</file>
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/Group2/HDC/HDCProject/src/java/dataaccess/AccountJpaController.java</file>
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/Group2/HDC/HDCProject/src/java/Database/exceptions/NonexistentEntityException.java</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/servlets/CakeInfoServlet.java</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/servlets/ViewOrdersServlet.java</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/servlets/RegisterServlet.java</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/orderdetails.jsp</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/servlets/OrderDetailsServlet.java</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/cakeinfo.jsp</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/cart.jsp</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/mainmenu.jsp</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/servlets/LoginServlet.java</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/vieworders.jsp</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/login.jsp</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/servlets/CartServlet.java</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/register.jsp</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/servlets/MainMenuServlet.java</file>
         </group>
     </open-files>
 </project-private>

@@ -14,7 +14,7 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import Entities.Order1;
+import Entities.Order;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -27,9 +27,10 @@ import javax.persistence.EntityManagerFactory;
  */
 public class DeliveryJpaController implements Serializable {
 
-    public DeliveryJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    public DeliveryJpaController() {
+        this.emf = DBUtil.getEmFactory();
     }
+    
     private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
@@ -38,20 +39,20 @@ public class DeliveryJpaController implements Serializable {
 
     public void create(Delivery delivery) throws PreexistingEntityException, Exception {
         if (delivery.getOrder1Collection() == null) {
-            delivery.setOrder1Collection(new ArrayList<Order1>());
+            delivery.setOrder1Collection(new ArrayList<Order>());
         }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Collection<Order1> attachedOrder1Collection = new ArrayList<Order1>();
-            for (Order1 order1CollectionOrder1ToAttach : delivery.getOrder1Collection()) {
+            Collection<Order> attachedOrder1Collection = new ArrayList<Order>();
+            for (Order order1CollectionOrder1ToAttach : delivery.getOrder1Collection()) {
                 order1CollectionOrder1ToAttach = em.getReference(order1CollectionOrder1ToAttach.getClass(), order1CollectionOrder1ToAttach.getOrderNo());
                 attachedOrder1Collection.add(order1CollectionOrder1ToAttach);
             }
             delivery.setOrder1Collection(attachedOrder1Collection);
             em.persist(delivery);
-            for (Order1 order1CollectionOrder1 : delivery.getOrder1Collection()) {
+            for (Order order1CollectionOrder1 : delivery.getOrder1Collection()) {
                 Delivery oldDeliveryNoOfOrder1CollectionOrder1 = order1CollectionOrder1.getDeliveryNo();
                 order1CollectionOrder1.setDeliveryNo(delivery);
                 order1CollectionOrder1 = em.merge(order1CollectionOrder1);
@@ -79,10 +80,10 @@ public class DeliveryJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Delivery persistentDelivery = em.find(Delivery.class, delivery.getDeliveryNo());
-            Collection<Order1> order1CollectionOld = persistentDelivery.getOrder1Collection();
-            Collection<Order1> order1CollectionNew = delivery.getOrder1Collection();
+            Collection<Order> order1CollectionOld = persistentDelivery.getOrder1Collection();
+            Collection<Order> order1CollectionNew = delivery.getOrder1Collection();
             List<String> illegalOrphanMessages = null;
-            for (Order1 order1CollectionOldOrder1 : order1CollectionOld) {
+            for (Order order1CollectionOldOrder1 : order1CollectionOld) {
                 if (!order1CollectionNew.contains(order1CollectionOldOrder1)) {
                     if (illegalOrphanMessages == null) {
                         illegalOrphanMessages = new ArrayList<String>();
@@ -93,15 +94,15 @@ public class DeliveryJpaController implements Serializable {
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
-            Collection<Order1> attachedOrder1CollectionNew = new ArrayList<Order1>();
-            for (Order1 order1CollectionNewOrder1ToAttach : order1CollectionNew) {
+            Collection<Order> attachedOrder1CollectionNew = new ArrayList<Order>();
+            for (Order order1CollectionNewOrder1ToAttach : order1CollectionNew) {
                 order1CollectionNewOrder1ToAttach = em.getReference(order1CollectionNewOrder1ToAttach.getClass(), order1CollectionNewOrder1ToAttach.getOrderNo());
                 attachedOrder1CollectionNew.add(order1CollectionNewOrder1ToAttach);
             }
             order1CollectionNew = attachedOrder1CollectionNew;
             delivery.setOrder1Collection(order1CollectionNew);
             delivery = em.merge(delivery);
-            for (Order1 order1CollectionNewOrder1 : order1CollectionNew) {
+            for (Order order1CollectionNewOrder1 : order1CollectionNew) {
                 if (!order1CollectionOld.contains(order1CollectionNewOrder1)) {
                     Delivery oldDeliveryNoOfOrder1CollectionNewOrder1 = order1CollectionNewOrder1.getDeliveryNo();
                     order1CollectionNewOrder1.setDeliveryNo(delivery);
@@ -142,8 +143,8 @@ public class DeliveryJpaController implements Serializable {
                 throw new NonexistentEntityException("The delivery with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
-            Collection<Order1> order1CollectionOrphanCheck = delivery.getOrder1Collection();
-            for (Order1 order1CollectionOrphanCheckOrder1 : order1CollectionOrphanCheck) {
+            Collection<Order> order1CollectionOrphanCheck = delivery.getOrder1Collection();
+            for (Order order1CollectionOrphanCheckOrder1 : order1CollectionOrphanCheck) {
                 if (illegalOrphanMessages == null) {
                     illegalOrphanMessages = new ArrayList<String>();
                 }

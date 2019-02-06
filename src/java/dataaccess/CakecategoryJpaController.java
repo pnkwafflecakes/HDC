@@ -27,8 +27,8 @@ import javax.persistence.EntityManagerFactory;
  */
 public class CakecategoryJpaController implements Serializable {
 
-    public CakecategoryJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    public CakecategoryJpaController() {
+        this.emf = DBUtil.getEmFactory();
     }
     private EntityManagerFactory emf = null;
 

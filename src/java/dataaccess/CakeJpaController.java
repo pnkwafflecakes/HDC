@@ -14,7 +14,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import Entities.Cakecategory;
-import Entities.Order1;
+import Entities.Order;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -27,8 +27,8 @@ import javax.persistence.EntityManagerFactory;
  */
 public class CakeJpaController implements Serializable {
 
-    public CakeJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    public CakeJpaController() {
+        this.emf = DBUtil.getEmFactory();
     }
     private EntityManagerFactory emf = DBUtil.getEmFactory();
 
@@ -38,7 +38,7 @@ public class CakeJpaController implements Serializable {
 
     public void create(Cake cake) throws PreexistingEntityException, Exception {
         if (cake.getOrder1Collection() == null) {
-            cake.setOrder1Collection(new ArrayList<Order1>());
+            cake.setOrder1Collection(new ArrayList<Order>());
         }
         EntityManager em = null;
         try {
@@ -49,8 +49,8 @@ public class CakeJpaController implements Serializable {
                 categoryId = em.getReference(categoryId.getClass(), categoryId.getCategoryId());
                 cake.setCategoryId(categoryId);
             }
-            Collection<Order1> attachedOrder1Collection = new ArrayList<Order1>();
-            for (Order1 order1CollectionOrder1ToAttach : cake.getOrder1Collection()) {
+            Collection<Order> attachedOrder1Collection = new ArrayList<Order>();
+            for (Order order1CollectionOrder1ToAttach : cake.getOrder1Collection()) {
                 order1CollectionOrder1ToAttach = em.getReference(order1CollectionOrder1ToAttach.getClass(), order1CollectionOrder1ToAttach.getOrderNo());
                 attachedOrder1Collection.add(order1CollectionOrder1ToAttach);
             }
@@ -60,7 +60,7 @@ public class CakeJpaController implements Serializable {
                 categoryId.getCakeCollection().add(cake);
                 categoryId = em.merge(categoryId);
             }
-            for (Order1 order1CollectionOrder1 : cake.getOrder1Collection()) {
+            for (Order order1CollectionOrder1 : cake.getOrder1Collection()) {
                 order1CollectionOrder1.getCakeCollection().add(cake);
                 order1CollectionOrder1 = em.merge(order1CollectionOrder1);
             }
@@ -85,14 +85,14 @@ public class CakeJpaController implements Serializable {
             Cake persistentCake = em.find(Cake.class, cake.getCakeId());
             Cakecategory categoryIdOld = persistentCake.getCategoryId();
             Cakecategory categoryIdNew = cake.getCategoryId();
-            Collection<Order1> order1CollectionOld = persistentCake.getOrder1Collection();
-            Collection<Order1> order1CollectionNew = cake.getOrder1Collection();
+            Collection<Order> order1CollectionOld = persistentCake.getOrder1Collection();
+            Collection<Order> order1CollectionNew = cake.getOrder1Collection();
             if (categoryIdNew != null) {
                 categoryIdNew = em.getReference(categoryIdNew.getClass(), categoryIdNew.getCategoryId());
                 cake.setCategoryId(categoryIdNew);
             }
-            Collection<Order1> attachedOrder1CollectionNew = new ArrayList<Order1>();
-            for (Order1 order1CollectionNewOrder1ToAttach : order1CollectionNew) {
+            Collection<Order> attachedOrder1CollectionNew = new ArrayList<Order>();
+            for (Order order1CollectionNewOrder1ToAttach : order1CollectionNew) {
                 order1CollectionNewOrder1ToAttach = em.getReference(order1CollectionNewOrder1ToAttach.getClass(), order1CollectionNewOrder1ToAttach.getOrderNo());
                 attachedOrder1CollectionNew.add(order1CollectionNewOrder1ToAttach);
             }
@@ -107,13 +107,13 @@ public class CakeJpaController implements Serializable {
                 categoryIdNew.getCakeCollection().add(cake);
                 categoryIdNew = em.merge(categoryIdNew);
             }
-            for (Order1 order1CollectionOldOrder1 : order1CollectionOld) {
+            for (Order order1CollectionOldOrder1 : order1CollectionOld) {
                 if (!order1CollectionNew.contains(order1CollectionOldOrder1)) {
                     order1CollectionOldOrder1.getCakeCollection().remove(cake);
                     order1CollectionOldOrder1 = em.merge(order1CollectionOldOrder1);
                 }
             }
-            for (Order1 order1CollectionNewOrder1 : order1CollectionNew) {
+            for (Order order1CollectionNewOrder1 : order1CollectionNew) {
                 if (!order1CollectionOld.contains(order1CollectionNewOrder1)) {
                     order1CollectionNewOrder1.getCakeCollection().add(cake);
                     order1CollectionNewOrder1 = em.merge(order1CollectionNewOrder1);
@@ -153,8 +153,8 @@ public class CakeJpaController implements Serializable {
                 categoryId.getCakeCollection().remove(cake);
                 categoryId = em.merge(categoryId);
             }
-            Collection<Order1> order1Collection = cake.getOrder1Collection();
-            for (Order1 order1CollectionOrder1 : order1Collection) {
+            Collection<Order> order1Collection = cake.getOrder1Collection();
+            for (Order order1CollectionOrder1 : order1Collection) {
                 order1CollectionOrder1.getCakeCollection().remove(cake);
                 order1CollectionOrder1 = em.merge(order1CollectionOrder1);
             }

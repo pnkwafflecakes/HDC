@@ -14,7 +14,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import Entities.Account;
-import Entities.Order1;
+import Entities.Order;
 import Entities.User;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,8 +28,8 @@ import javax.persistence.EntityManagerFactory;
  */
 public class UserJpaController implements Serializable {
 
-    public UserJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    public UserJpaController() {
+        this.emf = DBUtil.getEmFactory();
     }
     private EntityManagerFactory emf = null;
 
@@ -39,7 +39,7 @@ public class UserJpaController implements Serializable {
 
     public void create(User user) throws PreexistingEntityException, Exception {
         if (user.getOrder1Collection() == null) {
-            user.setOrder1Collection(new ArrayList<Order1>());
+            user.setOrder1Collection(new ArrayList<Order>());
         }
         EntityManager em = null;
         try {
@@ -50,8 +50,8 @@ public class UserJpaController implements Serializable {
                 accountNo = em.getReference(accountNo.getClass(), accountNo.getAccountNo());
                 user.setAccountNo(accountNo);
             }
-            Collection<Order1> attachedOrder1Collection = new ArrayList<Order1>();
-            for (Order1 order1CollectionOrder1ToAttach : user.getOrder1Collection()) {
+            Collection<Order> attachedOrder1Collection = new ArrayList<Order>();
+            for (Order order1CollectionOrder1ToAttach : user.getOrder1Collection()) {
                 order1CollectionOrder1ToAttach = em.getReference(order1CollectionOrder1ToAttach.getClass(), order1CollectionOrder1ToAttach.getOrderNo());
                 attachedOrder1Collection.add(order1CollectionOrder1ToAttach);
             }
@@ -61,7 +61,7 @@ public class UserJpaController implements Serializable {
                 accountNo.getUserCollection().add(user);
                 accountNo = em.merge(accountNo);
             }
-            for (Order1 order1CollectionOrder1 : user.getOrder1Collection()) {
+            for (Order order1CollectionOrder1 : user.getOrder1Collection()) {
                 User oldUserIdOfOrder1CollectionOrder1 = order1CollectionOrder1.getUserId();
                 order1CollectionOrder1.setUserId(user);
                 order1CollectionOrder1 = em.merge(order1CollectionOrder1);
@@ -91,10 +91,10 @@ public class UserJpaController implements Serializable {
             User persistentUser = em.find(User.class, user.getUserId());
             Account accountNoOld = persistentUser.getAccountNo();
             Account accountNoNew = user.getAccountNo();
-            Collection<Order1> order1CollectionOld = persistentUser.getOrder1Collection();
-            Collection<Order1> order1CollectionNew = user.getOrder1Collection();
+            Collection<Order> order1CollectionOld = persistentUser.getOrder1Collection();
+            Collection<Order> order1CollectionNew = user.getOrder1Collection();
             List<String> illegalOrphanMessages = null;
-            for (Order1 order1CollectionOldOrder1 : order1CollectionOld) {
+            for (Order order1CollectionOldOrder1 : order1CollectionOld) {
                 if (!order1CollectionNew.contains(order1CollectionOldOrder1)) {
                     if (illegalOrphanMessages == null) {
                         illegalOrphanMessages = new ArrayList<String>();
@@ -109,8 +109,8 @@ public class UserJpaController implements Serializable {
                 accountNoNew = em.getReference(accountNoNew.getClass(), accountNoNew.getAccountNo());
                 user.setAccountNo(accountNoNew);
             }
-            Collection<Order1> attachedOrder1CollectionNew = new ArrayList<Order1>();
-            for (Order1 order1CollectionNewOrder1ToAttach : order1CollectionNew) {
+            Collection<Order> attachedOrder1CollectionNew = new ArrayList<Order>();
+            for (Order order1CollectionNewOrder1ToAttach : order1CollectionNew) {
                 order1CollectionNewOrder1ToAttach = em.getReference(order1CollectionNewOrder1ToAttach.getClass(), order1CollectionNewOrder1ToAttach.getOrderNo());
                 attachedOrder1CollectionNew.add(order1CollectionNewOrder1ToAttach);
             }
@@ -125,7 +125,7 @@ public class UserJpaController implements Serializable {
                 accountNoNew.getUserCollection().add(user);
                 accountNoNew = em.merge(accountNoNew);
             }
-            for (Order1 order1CollectionNewOrder1 : order1CollectionNew) {
+            for (Order order1CollectionNewOrder1 : order1CollectionNew) {
                 if (!order1CollectionOld.contains(order1CollectionNewOrder1)) {
                     User oldUserIdOfOrder1CollectionNewOrder1 = order1CollectionNewOrder1.getUserId();
                     order1CollectionNewOrder1.setUserId(user);
@@ -166,8 +166,8 @@ public class UserJpaController implements Serializable {
                 throw new NonexistentEntityException("The user with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
-            Collection<Order1> order1CollectionOrphanCheck = user.getOrder1Collection();
-            for (Order1 order1CollectionOrphanCheckOrder1 : order1CollectionOrphanCheck) {
+            Collection<Order> order1CollectionOrphanCheck = user.getOrder1Collection();
+            for (Order order1CollectionOrphanCheckOrder1 : order1CollectionOrphanCheck) {
                 if (illegalOrphanMessages == null) {
                     illegalOrphanMessages = new ArrayList<String>();
                 }

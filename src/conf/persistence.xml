@@ -6,8 +6,8 @@
     <class>Entities.Cake</class>
     <class>Entities.Cakecategory</class>
     <class>Entities.Account</class>
-    <class>Entities.Order1</class>
     <class>Entities.User</class>
+    <class>Entities.Order</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/capstone?zeroDateTimeBehavior=convertToNull"/>

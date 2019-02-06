@@ -15,7 +15,7 @@ import javax.persistence.criteria.Root;
 import Entities.Delivery;
 import Entities.User;
 import Entities.Cake;
-import Entities.Order1;
+import Entities.Order;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -28,8 +28,8 @@ import javax.persistence.EntityManagerFactory;
  */
 public class OrderJpaController implements Serializable {
 
-    public OrderJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    public OrderJpaController() {
+        this.emf = DBUtil.getEmFactory();
     }
     private EntityManagerFactory emf = null;
 
@@ -37,7 +37,7 @@ public class OrderJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Order1 order1) throws PreexistingEntityException, Exception {
+    public void create(Order order1) throws PreexistingEntityException, Exception {
         if (order1.getCakeCollection() == null) {
             order1.setCakeCollection(new ArrayList<Cake>());
         }
@@ -87,12 +87,12 @@ public class OrderJpaController implements Serializable {
         }
     }
 
-    public void edit(Order1 order1) throws NonexistentEntityException, Exception {
+    public void edit(Order order1) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Order1 persistentOrder1 = em.find(Order1.class, order1.getOrderNo());
+            Order persistentOrder1 = em.find(Order.class, order1.getOrderNo());
             Delivery deliveryNoOld = persistentOrder1.getDeliveryNo();
             Delivery deliveryNoNew = order1.getDeliveryNo();
             User userIdOld = persistentOrder1.getUserId();
@@ -165,9 +165,9 @@ public class OrderJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Order1 order1;
+            Order order1;
             try {
-                order1 = em.getReference(Order1.class, id);
+                order1 = em.getReference(Order.class, id);
                 order1.getOrderNo();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The order1 with id " + id + " no longer exists.", enfe);
@@ -196,19 +196,19 @@ public class OrderJpaController implements Serializable {
         }
     }
 
-    public List<Order1> findOrder1Entities() {
+    public List<Order> findOrder1Entities() {
         return findOrder1Entities(true, -1, -1);
     }
 
-    public List<Order1> findOrder1Entities(int maxResults, int firstResult) {
+    public List<Order> findOrder1Entities(int maxResults, int firstResult) {
         return findOrder1Entities(false, maxResults, firstResult);
     }
 
-    private List<Order1> findOrder1Entities(boolean all, int maxResults, int firstResult) {
+    private List<Order> findOrder1Entities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Order1.class));
+            cq.select(cq.from(Order.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -220,10 +220,10 @@ public class OrderJpaController implements Serializable {
         }
     }
 
-    public Order1 findOrder1(Integer id) {
+    public Order findOrder1(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Order1.class, id);
+            return em.find(Order.class, id);
         } finally {
             em.close();
         }
@@ -233,7 +233,7 @@ public class OrderJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Order1> rt = cq.from(Order1.class);
+            Root<Order> rt = cq.from(Order.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

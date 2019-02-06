@@ -53,7 +53,7 @@ public class Delivery implements Serializable {
     @Column(name = "notes")
     private String notes;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "deliveryNo")
-    private Collection<Order1> order1Collection;
+    private Collection<Order> order1Collection;
 
     public Delivery() {
     }
@@ -111,11 +111,11 @@ public class Delivery implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Order1> getOrder1Collection() {
+    public Collection<Order> getOrder1Collection() {
         return order1Collection;
     }
 
-    public void setOrder1Collection(Collection<Order1> order1Collection) {
+    public void setOrder1Collection(Collection<Order> order1Collection) {
         this.order1Collection = order1Collection;
     }
 

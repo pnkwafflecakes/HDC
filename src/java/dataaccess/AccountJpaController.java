@@ -27,8 +27,8 @@ import javax.persistence.EntityManagerFactory;
  */
 public class AccountJpaController implements Serializable {
 
-    public AccountJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+    public AccountJpaController() {
+        this.emf = DBUtil.getEmFactory();
     }
     private EntityManagerFactory emf = null;
 
