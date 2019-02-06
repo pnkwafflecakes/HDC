@@ -5,9 +5,6 @@
  */
 package dataaccess;
 
-import Database.exceptions.IllegalOrphanException;
-import Database.exceptions.NonexistentEntityException;
-import Database.exceptions.PreexistingEntityException;
 import Entities.Delivery;
 import java.io.Serializable;
 import javax.persistence.Query;
@@ -15,6 +12,9 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import Entities.Order;
+import dataaccess.exceptions.IllegalOrphanException;
+import dataaccess.exceptions.NonexistentEntityException;
+import dataaccess.exceptions.PreexistingEntityException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -30,7 +30,6 @@ public class DeliveryJpaController implements Serializable {
     public DeliveryJpaController() {
         this.emf = DBUtil.getEmFactory();
     }
-    
     private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
@@ -46,19 +45,19 @@ public class DeliveryJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Collection<Order> attachedOrder1Collection = new ArrayList<Order>();
-            for (Order order1CollectionOrder1ToAttach : delivery.getOrder1Collection()) {
-                order1CollectionOrder1ToAttach = em.getReference(order1CollectionOrder1ToAttach.getClass(), order1CollectionOrder1ToAttach.getOrderNo());
-                attachedOrder1Collection.add(order1CollectionOrder1ToAttach);
+            for (Order order1CollectionOrderToAttach : delivery.getOrder1Collection()) {
+                order1CollectionOrderToAttach = em.getReference(order1CollectionOrderToAttach.getClass(), order1CollectionOrderToAttach.getOrderNo());
+                attachedOrder1Collection.add(order1CollectionOrderToAttach);
             }
             delivery.setOrder1Collection(attachedOrder1Collection);
             em.persist(delivery);
-            for (Order order1CollectionOrder1 : delivery.getOrder1Collection()) {
-                Delivery oldDeliveryNoOfOrder1CollectionOrder1 = order1CollectionOrder1.getDeliveryNo();
-                order1CollectionOrder1.setDeliveryNo(delivery);
-                order1CollectionOrder1 = em.merge(order1CollectionOrder1);
-                if (oldDeliveryNoOfOrder1CollectionOrder1 != null) {
-                    oldDeliveryNoOfOrder1CollectionOrder1.getOrder1Collection().remove(order1CollectionOrder1);
-                    oldDeliveryNoOfOrder1CollectionOrder1 = em.merge(oldDeliveryNoOfOrder1CollectionOrder1);
+            for (Order order1CollectionOrder : delivery.getOrder1Collection()) {
+                Delivery oldDeliveryNoOfOrder1CollectionOrder = order1CollectionOrder.getDeliveryNo();
+                order1CollectionOrder.setDeliveryNo(delivery);
+                order1CollectionOrder = em.merge(order1CollectionOrder);
+                if (oldDeliveryNoOfOrder1CollectionOrder != null) {
+                    oldDeliveryNoOfOrder1CollectionOrder.getOrder1Collection().remove(order1CollectionOrder);
+                    oldDeliveryNoOfOrder1CollectionOrder = em.merge(oldDeliveryNoOfOrder1CollectionOrder);
                 }
             }
             em.getTransaction().commit();
@@ -83,33 +82,33 @@ public class DeliveryJpaController implements Serializable {
             Collection<Order> order1CollectionOld = persistentDelivery.getOrder1Collection();
             Collection<Order> order1CollectionNew = delivery.getOrder1Collection();
             List<String> illegalOrphanMessages = null;
-            for (Order order1CollectionOldOrder1 : order1CollectionOld) {
-                if (!order1CollectionNew.contains(order1CollectionOldOrder1)) {
+            for (Order order1CollectionOldOrder : order1CollectionOld) {
+                if (!order1CollectionNew.contains(order1CollectionOldOrder)) {
                     if (illegalOrphanMessages == null) {
                         illegalOrphanMessages = new ArrayList<String>();
                     }
-                    illegalOrphanMessages.add("You must retain Order1 " + order1CollectionOldOrder1 + " since its deliveryNo field is not nullable.");
+                    illegalOrphanMessages.add("You must retain Order " + order1CollectionOldOrder + " since its deliveryNo field is not nullable.");
                 }
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
             Collection<Order> attachedOrder1CollectionNew = new ArrayList<Order>();
-            for (Order order1CollectionNewOrder1ToAttach : order1CollectionNew) {
-                order1CollectionNewOrder1ToAttach = em.getReference(order1CollectionNewOrder1ToAttach.getClass(), order1CollectionNewOrder1ToAttach.getOrderNo());
-                attachedOrder1CollectionNew.add(order1CollectionNewOrder1ToAttach);
+            for (Order order1CollectionNewOrderToAttach : order1CollectionNew) {
+                order1CollectionNewOrderToAttach = em.getReference(order1CollectionNewOrderToAttach.getClass(), order1CollectionNewOrderToAttach.getOrderNo());
+                attachedOrder1CollectionNew.add(order1CollectionNewOrderToAttach);
             }
             order1CollectionNew = attachedOrder1CollectionNew;
             delivery.setOrder1Collection(order1CollectionNew);
             delivery = em.merge(delivery);
-            for (Order order1CollectionNewOrder1 : order1CollectionNew) {
-                if (!order1CollectionOld.contains(order1CollectionNewOrder1)) {
-                    Delivery oldDeliveryNoOfOrder1CollectionNewOrder1 = order1CollectionNewOrder1.getDeliveryNo();
-                    order1CollectionNewOrder1.setDeliveryNo(delivery);
-                    order1CollectionNewOrder1 = em.merge(order1CollectionNewOrder1);
-                    if (oldDeliveryNoOfOrder1CollectionNewOrder1 != null && !oldDeliveryNoOfOrder1CollectionNewOrder1.equals(delivery)) {
-                        oldDeliveryNoOfOrder1CollectionNewOrder1.getOrder1Collection().remove(order1CollectionNewOrder1);
-                        oldDeliveryNoOfOrder1CollectionNewOrder1 = em.merge(oldDeliveryNoOfOrder1CollectionNewOrder1);
+            for (Order order1CollectionNewOrder : order1CollectionNew) {
+                if (!order1CollectionOld.contains(order1CollectionNewOrder)) {
+                    Delivery oldDeliveryNoOfOrder1CollectionNewOrder = order1CollectionNewOrder.getDeliveryNo();
+                    order1CollectionNewOrder.setDeliveryNo(delivery);
+                    order1CollectionNewOrder = em.merge(order1CollectionNewOrder);
+                    if (oldDeliveryNoOfOrder1CollectionNewOrder != null && !oldDeliveryNoOfOrder1CollectionNewOrder.equals(delivery)) {
+                        oldDeliveryNoOfOrder1CollectionNewOrder.getOrder1Collection().remove(order1CollectionNewOrder);
+                        oldDeliveryNoOfOrder1CollectionNewOrder = em.merge(oldDeliveryNoOfOrder1CollectionNewOrder);
                     }
                 }
             }
@@ -144,11 +143,11 @@ public class DeliveryJpaController implements Serializable {
             }
             List<String> illegalOrphanMessages = null;
             Collection<Order> order1CollectionOrphanCheck = delivery.getOrder1Collection();
-            for (Order order1CollectionOrphanCheckOrder1 : order1CollectionOrphanCheck) {
+            for (Order order1CollectionOrphanCheckOrder : order1CollectionOrphanCheck) {
                 if (illegalOrphanMessages == null) {
                     illegalOrphanMessages = new ArrayList<String>();
                 }
-                illegalOrphanMessages.add("This Delivery (" + delivery + ") cannot be destroyed since the Order1 " + order1CollectionOrphanCheckOrder1 + " in its order1Collection field has a non-nullable deliveryNo field.");
+                illegalOrphanMessages.add("This Delivery (" + delivery + ") cannot be destroyed since the Order " + order1CollectionOrphanCheckOrder + " in its order1Collection field has a non-nullable deliveryNo field.");
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
