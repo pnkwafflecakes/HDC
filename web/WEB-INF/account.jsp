@@ -1,6 +1,6 @@
 <%-- 
-    Document   : cakeinfo
-    Created on : Feb 4, 2019, 3:37:48 PM
+    Document   : account
+    Created on : Feb 8, 2019, 12:50:58 AM
     Author     : 744916
 --%>
 
@@ -9,9 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cart</title>
+        <title>Account</title>
     </head>
     <body>
-        <h1>Hello Cart!</h1>
+        <h1>Hello Account!</h1>
     </body>
 </html>

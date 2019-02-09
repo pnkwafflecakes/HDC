@@ -10,11 +10,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Adam Schlinker
  * @version 1.0
- *
- * This Java Servlet is responsible for handling the requests and responses of cakeinfo.jsp. It also
- * serves as the connection between cakeinfo.jsp and the database.
  */
-public class CakeInfoServlet extends HttpServlet
+public class AccountServlet extends HttpServlet
 {
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -28,7 +25,7 @@ public class CakeInfoServlet extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        getServletContext().getRequestDispatcher("/WEB-INF/cakeinfo.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/account.jsp").forward(request, response);
     }
 
     /**

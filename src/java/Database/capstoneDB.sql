@@ -1,8 +1,8 @@
 -- FKs should only exist on "many" side
 -- Cant delete a table with FKs in another
-DROP DATABASE if exists CapStone;
-CREATE DATABASE CapStone;
-USE CapStone;
+DROP DATABASE if exists capstonedb;
+CREATE DATABASE capstonedb;
+USE capstonedb;
 
 
 -- Proper Order
