@@ -4,11 +4,14 @@
         <servlet-name>MainMenuServlet</servlet-name>
         <servlet-class>servlets.MainMenuServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AccountServlet</servlet-name>
+        <servlet-class>servlets.AccountServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainMenuServlet</servlet-name>
         <url-pattern>/mainmenu</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>ViewOrdersServlet</servlet-name>
         <servlet-class>servlets.ViewOrdersServlet</servlet-class>
@@ -17,7 +20,6 @@
         <servlet-name>ViewOrdersServlet</servlet-name>
         <url-pattern>/vieworders</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>servlets.RegisterServlet</servlet-class>
@@ -26,7 +28,6 @@
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>servlets.LoginServlet</servlet-class>
@@ -35,7 +36,6 @@
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
-
     <servlet>
         <servlet-name>CakeInfoServlet</servlet-name>
         <servlet-class>servlets.CakeInfoServlet</servlet-class>
@@ -44,8 +44,7 @@
         <servlet-name>CakeInfoServlet</servlet-name>
         <url-pattern>/cakeinfo</url-pattern>
     </servlet-mapping>
-    
-        <servlet>
+    <servlet>
         <servlet-name>CartServlet</servlet-name>
         <servlet-class>servlets.CartServlet</servlet-class>
     </servlet>
@@ -53,7 +52,6 @@
         <servlet-name>CartServlet</servlet-name>
         <url-pattern>/cart</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>OrderDetailsServlet</servlet-name>
         <servlet-class>servlets.OrderDetailsServlet</servlet-class>
@@ -62,14 +60,24 @@
         <servlet-name>OrderDetailsServlet</servlet-name>
         <url-pattern>/orderdetails</url-pattern>
     </servlet-mapping>
-    
+    <servlet>
+        <servlet-name>ContactServlet</servlet-name>
+        <servlet-class>servlets.ContactServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ContactServlet</servlet-name>
+        <url-pattern>/contact</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AccountServlet</servlet-name>
+        <url-pattern>/account</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
     <welcome-file-list>
-        <welcome-file>mainmenu</welcome-file>
+        <welcome-file>cakeinfo</welcome-file>
     </welcome-file-list>
 </web-app>
