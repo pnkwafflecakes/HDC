@@ -11,6 +11,9 @@
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/mainmenu/mainmenu.html</file>
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/servlets/MainMenuServlet.java</file>
         </group>
-        <group/>
+        <group>
+            <file>file:/C:/Users/744916/Desktop/Capstone%20Project/HDC/web/WEB-INF/cakeinfo.jsp</file>
+            <file>file:/C:/Users/744916/Desktop/Capstone%20Project/HDC/src/java/servlets/CakeInfoServlet.java</file>
+        </group>
     </open-files>
 </project-private>
