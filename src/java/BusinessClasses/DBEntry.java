@@ -12,6 +12,7 @@ import Entities.Orders;
 import dataaccess.DeliveryJpaController;
 import dataaccess.OrdersJpaController;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -70,8 +71,11 @@ public class DBEntry {
     
     
     public Date calculateDueDate(Date orderDate) {
-        //TODO create scheduling algorithm, current trend is to limit 6 per day
-        return null;
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(orderDate);
+        cal.add(Calendar.DATE, 2); //minus number would decrement the days
+        orderDate = cal.getTime();
+        return orderDate;
     }
     
     public static List<Cake> toList(Cake[] array) {

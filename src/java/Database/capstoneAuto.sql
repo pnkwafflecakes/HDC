@@ -117,14 +117,22 @@ Create table `CakeOrder` -- To add constraints
 -- Drop table User;
 -- Drop table Account;
 
-insert into `Account` values(0000, 0, 'billyjoe', 'abc', 1);
-insert into `Account` values(0001, 1, 'argv', 'abcd', 1);
-insert into `Account` values(0002, 2, '1521', '1234', 1);
+insert into `Account` (`account_type`, `username`, `password`, `account_status`) values(0, 'billyjoe', 'abc', 1);
+insert into `Account` (`account_type`, `username`, `password`, `account_status`) values(1, 'argv', 'abcd', 1);
+insert into `Account` (`account_type`, `username`, `password`, `account_status`) values(2, '1521', '1234', 1);
 
 --Possibly just get rid of Account_id and just use user_id
-insert into `User` values(0000, 0000, 'Billy Joe', '123 Sample St', 'T2X2M2', 'email@sample.com', '123-123-1234');
-insert into `User` values(0001, 0001, 'Argis Fargis', '123 Sample Rd', 'a1a2b2', 'email@sample.ca', '123-123-1235');
-insert into `User` values(0002, 0002, 'Arbichov Gopnik', '123 Sample Av', 'T2X2M9', 'email@sample.ru', '153-123-1236');
+insert into `User` (`account_no`,`name`, `address`, `postal_code`, `email`, `phone_no`) values(0000, 'Billy Joe', '123 Sample St', 'T2X2M2', 'email@sample.com', '123-123-1234');
+insert into `User` (`account_no`,`name`, `address`, `postal_code`, `email`, `phone_no`) values(0001, 'Argis Fargis', '123 Sample Rd', 'a1a2b2', 'email@sample.ca', '123-123-1235');
+insert into `User` (`account_no`,`name`, `address`, `postal_code`, `email`, `phone_no`) values(0002, 'Arbichov Gopnik', '123 Sample Av', 'T2X2M9', 'email@sample.ru', '153-123-1236');
+
+`user_id` int(4) NOT NULL AUTO_INCREMENT,
+    `account_no` int(4) NOT NULL,
+    `name` VARCHAR(90),
+    `address` VARCHAR(99),
+    `postal_code` VARCHAR(6),
+    `email` VARCHAR(99),
+    `phone_no` VARCHAR(12),
 
 --Might need further work, to allow certain extra details based off of things like 'Drop Off'
 insert into `Delivery` values(0000, 'Drop off', '211 Sample Road', '111-111-1111', 'Say happy Birthday to son');
