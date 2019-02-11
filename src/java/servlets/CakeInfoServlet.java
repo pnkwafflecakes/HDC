@@ -34,11 +34,20 @@ public class CakeInfoServlet extends HttpServlet
         HttpSession session = request.getSession(true);
 
         int cakeId = 0;
+        
+        try {
+        cakeId = Integer.valueOf(request.getParameter("cakeid"));
+        }
+        catch (NumberFormatException e) {
+            
+        }
+        
+        
 
         CakeService service = new CakeService();
         Cake currCake = service.get(cakeId);
 
-        session.setAttribute("currCake", currCake);
+        request.setAttribute("currCake", currCake);
         getServletContext().getRequestDispatcher("/WEB-INF/cakeinfo.jsp").forward(request, response);
     }
 

@@ -6,14 +6,10 @@
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/.Helen'sDeliciousCakesCapstone/src/java/Entities/Account.java</file>
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/.Helen'sDeliciousCakesCapstone/src/java/Database/capstoneDB.sql</file>
         </group>
-        <group name="Group2">
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/businesslogic/CakeCategoryService.java</file>
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/businesslogic/CakeService.java</file>
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/businesslogic/AccountService.java</file>
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/businesslogic/UserService.java</file>
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/businesslogic/OrderService.java</file>
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/businesslogic/DeliveryService.java</file>
-        </group>
         <group/>
+        <group name="Group2">
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/servlets/CakeInfoServlet.java</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/cakeinfo.jsp</file>
+        </group>
     </open-files>
 </project-private>
