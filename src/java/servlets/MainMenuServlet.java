@@ -25,7 +25,7 @@ public class MainMenuServlet extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        getServletContext().getRequestDispatcher("/WEB-INF/mainmenu.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/mainmenu/mainmenu.jsp").forward(request, response);
         
         String action = request.getParameter("action");
         if (action != null) {
