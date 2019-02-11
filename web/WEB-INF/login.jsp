@@ -19,8 +19,8 @@
         Username: <input type="text" name="user" value="${user}"</input><br>
         Password: <input type="password" name="pass" value="${pass}"</input><br>
         <input type="submit" value="Login" name="log">
-        ..Register..
-        
+        <a href="register.jsp">    ..Register..</a>      
+        <br>
         ${errorMessage}
         </div>
     </body>

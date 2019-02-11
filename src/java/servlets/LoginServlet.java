@@ -92,6 +92,10 @@ public class LoginServlet extends HttpServlet
             session.setAttribute("userObj", user);
             getServletContext().getRequestDispatcher("/WEB-INF/mainmenu.jsp").forward(request, response);
         }
+        else {
+            request.setAttribute("errorMessage", "Invalid Values");
+            doGet(request, response);
+        }
         
     }
 
