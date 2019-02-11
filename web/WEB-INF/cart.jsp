@@ -12,6 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>eh boi</h1>
+        <h1>Cake info</h1>
+        <p>${cart}</p>
     </body>
 </html>

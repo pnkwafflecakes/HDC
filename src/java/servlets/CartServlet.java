@@ -5,12 +5,17 @@
  */
 package servlets;
 
+import Entities.Cake;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
+import java.time.Clock;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,8 +38,13 @@ public class CartServlet extends HttpServlet
             throws ServletException, IOException
     {
         getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
+        
+        //Retrieve list of cake objects from session attribute.
+        HttpSession session = request.getSession();
+        ArrayList cart = (ArrayList) session.getAttribute("cart");
+        Cake test = (Cake) cart.get(0);
+        request.setAttribute("currentCart","hey");
     }
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -47,6 +57,10 @@ public class CartServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        
+        getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
+        //Get session variable that cntains the arraylist of cakes.
+        //Set attribute on .jsp as the values for cakes using a foreach loop
+       
+        //request.setAttribute("currentCart", test.getDescription() + "hi");
     }
 }
