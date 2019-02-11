@@ -32,12 +32,13 @@ public class CakeInfoServlet extends HttpServlet
             throws ServletException, IOException
     {
         HttpSession session = request.getSession(true);
-        
-        
-        
+
+        int cakeId = 0;
+
         CakeService service = new CakeService();
         Cake currCake = service.get(cakeId);
-        
+
+        session.setAttribute("currCake", currCake);
         getServletContext().getRequestDispatcher("/WEB-INF/cakeinfo.jsp").forward(request, response);
     }
 
@@ -53,5 +54,11 @@ public class CakeInfoServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        HttpSession session = request.getSession(true);
+
+        Cake cakeToAdd = (Cake) request.getAttribute("cakeToAdd");
+
+        session.setAttribute("currCake", cakeToAdd);
+        response.sendRedirect("cart");
     }
 }

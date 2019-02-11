@@ -13,5 +13,7 @@
     </head>
     <body>
         <h1>Hello Cart!</h1>
+
+        Current Cake: ${cartCake.name}
     </body>
 </html>
