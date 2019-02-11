@@ -15,6 +15,6 @@
     <body>
         <h1>Hello Cart!</h1>
 
-        Current Cake: ${currCake}
+        Current Cake: ${currCake.name}
     </body>
 </html>

@@ -90,7 +90,7 @@ public class LoginServlet extends HttpServlet
             System.out.println(a);
             HttpSession session = request.getSession();
             session.setAttribute("userObj", user);
-            getServletContext().getRequestDispatcher("/WEB-INF/mainmenu.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/mainmenu/mainmenu.jsp").forward(request, response);
         }
         else {
             request.setAttribute("errorMessage", "Invalid Values");

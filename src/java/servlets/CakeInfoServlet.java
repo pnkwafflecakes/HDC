@@ -69,11 +69,16 @@ public class CakeInfoServlet extends HttpServlet
         {
             cakes = new ArrayList<Cake>();
         }
+        
+        CakeService cs = new CakeService();
 
-        Cake currCake = (Cake) request.getAttribute("currCake");
+        int selectedCakeId = Integer.valueOf(request.getParameter("selectedCakeId"));
+        Cake currCake = cs.get(selectedCakeId);
         cakes.add(currCake);
 
+        
         session.setAttribute("currCake", currCake);
+        System.out.println("Current Cake in curr: " + selectedCakeId);
         response.sendRedirect("cart");
     }
 }

@@ -29,7 +29,8 @@
         <p>Description: ${currCake.description}</p>
 
         <form action="cakeinfo" method="POST">
-            <input type="submit" value="Add To Cart">
+            <input type="hidden" name="selectedCakeId" value="${currCake.cakeId}">
+            <input type="submit" value="Add to Cart">
         </form>
 
         <div class="nav">
