@@ -44,7 +44,7 @@
                                                 <img class="img-responsive" src="mainmenu/cake1.jpg" alt="">
                                                 <div class="overlay">
                                                     <h2>Cake Sample 1</h2>
-                                                    <p><a href="#">Detail</a></p> 
+                                                    <p><a href="cakeinfo">Details</a></p> 
                                                 </div>
                                             </div>
                                         </div>

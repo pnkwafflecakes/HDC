@@ -20,14 +20,17 @@
         <img src="/WEB-INF/images/mangocake.jpeg" alt="Mango Cake">
 
         <ul>
-            <li>${currCake.name}Name</li>
-            <li>${currCake.price}Price</li>
-            <li>${currCake.size}Size</li>
+            <li>${currCake.name}</li>
+            <li>$${currCake.price}</li>
+            <li>${currCake.size}"</li>
         </ul>
 
-        <p>${currCake.ingredients}Ingredients go here...</p>
+        <p>Description: ${currCake.description}</p>
 
-        <button type="button">Add To Cart</button>
+        <form action="cakeinfo" method="POST" >
+            <input type="submit" value="Add To Cart">
+            <input type="hidden" name="cakeToAdd" value="${currCake}">
+        </form>
 
         <div class="nav">
             <a href="contact">phone</a>

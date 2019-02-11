@@ -6,10 +6,6 @@
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/.Helen'sDeliciousCakesCapstone/src/java/Entities/Account.java</file>
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/.Helen'sDeliciousCakesCapstone/src/java/Database/capstoneDB.sql</file>
         </group>
-        <group>
-            <file>file:/C:/Users/744916/Desktop/Capstone%20Project/HDC/web/WEB-INF/cakeinfo.jsp</file>
-            <file>file:/C:/Users/744916/Desktop/Capstone%20Project/HDC/src/java/servlets/CakeInfoServlet.java</file>
-        </group>
         <group name="Group2">
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/businesslogic/CakeCategoryService.java</file>
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/businesslogic/CakeService.java</file>
@@ -18,5 +14,6 @@
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/businesslogic/OrderService.java</file>
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/businesslogic/DeliveryService.java</file>
         </group>
+        <group/>
     </open-files>
 </project-private>
