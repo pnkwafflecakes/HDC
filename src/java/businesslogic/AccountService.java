@@ -55,7 +55,7 @@ public class AccountService {
     /**
      * Delete the account details
      */
-    public void destroy(Integer account_no) throws IllegalOrphanException, NonexistentEntityException{
+    public void destroy(Integer account_no) throws IllegalOrphanException, NonexistentEntityException, BusinessClasses.exceptions.IllegalOrphanException, BusinessClasses.exceptions.NonexistentEntityException, BusinessClasses.exceptions.NonexistentEntityException{
 
         ajc.destroy(account_no);
     }

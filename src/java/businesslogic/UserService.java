@@ -45,7 +45,7 @@ public class UserService {
     /**
      * Delete the user details
      */
-    public void destroy(Integer user_id) throws NonexistentEntityException, IllegalOrphanException{
+    public void destroy(Integer user_id) throws NonexistentEntityException, IllegalOrphanException, BusinessClasses.exceptions.IllegalOrphanException, BusinessClasses.exceptions.NonexistentEntityException{
             ujc.destroy(user_id);
         
     }

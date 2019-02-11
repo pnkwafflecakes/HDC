@@ -5,6 +5,9 @@
  */
 package dataaccess;
 
+import BusinessClasses.exceptions.IllegalOrphanException;
+import BusinessClasses.exceptions.NonexistentEntityException;
+import BusinessClasses.exceptions.PreexistingEntityException;
 import Entities.Account;
 import java.io.Serializable;
 import javax.persistence.Query;
@@ -12,14 +15,12 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import Entities.User;
-import dataaccess.exceptions.IllegalOrphanException;
-import dataaccess.exceptions.NonexistentEntityException;
-import dataaccess.exceptions.PreexistingEntityException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 
 /**
  *
@@ -27,23 +28,14 @@ import javax.persistence.EntityManagerFactory;
  */
 public class AccountJpaController implements Serializable {
 
-    public AccountJpaController() {
-        this.emf = DBUtil.getEmFactory();
-    }
-    private EntityManagerFactory emf = null;
-
-    public EntityManager getEntityManager() {
-        return emf.createEntityManager();
-    }
-
     public void create(Account account) throws PreexistingEntityException, Exception {
         if (account.getUserCollection() == null) {
             account.setUserCollection(new ArrayList<User>());
         }
-        EntityManager em = null;
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
         try {
-            em = getEntityManager();
-            em.getTransaction().begin();
             Collection<User> attachedUserCollection = new ArrayList<User>();
             for (User userCollectionUserToAttach : account.getUserCollection()) {
                 userCollectionUserToAttach = em.getReference(userCollectionUserToAttach.getClass(), userCollectionUserToAttach.getUserId());
@@ -60,7 +52,7 @@ public class AccountJpaController implements Serializable {
                     oldAccountNoOfUserCollectionUser = em.merge(oldAccountNoOfUserCollectionUser);
                 }
             }
-            em.getTransaction().commit();
+            trans.commit();
         } catch (Exception ex) {
             if (findAccount(account.getAccountNo()) != null) {
                 throw new PreexistingEntityException("Account " + account + " already exists.", ex);
@@ -74,10 +66,10 @@ public class AccountJpaController implements Serializable {
     }
 
     public void edit(Account account) throws IllegalOrphanException, NonexistentEntityException, Exception {
-        EntityManager em = null;
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
         try {
-            em = getEntityManager();
-            em.getTransaction().begin();
             Account persistentAccount = em.find(Account.class, account.getAccountNo());
             Collection<User> userCollectionOld = persistentAccount.getUserCollection();
             Collection<User> userCollectionNew = account.getUserCollection();
@@ -112,7 +104,7 @@ public class AccountJpaController implements Serializable {
                     }
                 }
             }
-            em.getTransaction().commit();
+            trans.commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
@@ -130,10 +122,10 @@ public class AccountJpaController implements Serializable {
     }
 
     public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException {
-        EntityManager em = null;
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
         try {
-            em = getEntityManager();
-            em.getTransaction().begin();
             Account account;
             try {
                 account = em.getReference(Account.class, id);
@@ -153,7 +145,7 @@ public class AccountJpaController implements Serializable {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
             em.remove(account);
-            em.getTransaction().commit();
+            trans.commit();
         } finally {
             if (em != null) {
                 em.close();
@@ -170,7 +162,7 @@ public class AccountJpaController implements Serializable {
     }
 
     private List<Account> findAccountEntities(boolean all, int maxResults, int firstResult) {
-        EntityManager em = getEntityManager();
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
             cq.select(cq.from(Account.class));
@@ -186,7 +178,7 @@ public class AccountJpaController implements Serializable {
     }
 
     public Account findAccount(Integer id) {
-        EntityManager em = getEntityManager();
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             return em.find(Account.class, id);
         } finally {
@@ -195,7 +187,7 @@ public class AccountJpaController implements Serializable {
     }
 
     public int getAccountCount() {
-        EntityManager em = getEntityManager();
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
             Root<Account> rt = cq.from(Account.class);

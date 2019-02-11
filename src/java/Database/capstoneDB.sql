@@ -53,7 +53,7 @@ Create table `Delivery`
     PRIMARY KEY (`delivery_no`)
 );
 
-Create table `Order`
+Create table `Orders`
 (
     `order_no` int(4) NOT NULL,
     `user_id` int(4) NOT NULL, -- user_id instead of customer_id
@@ -104,7 +104,7 @@ Create table `CakeOrder` -- To add constraints
     PRIMARY KEY (`order_no`, `cake_id`),
     -- Forign Key
     KEY `FK_CAKEORDER_ORDER_NO` (`order_no`), 
-    CONSTRAINT `FK_CAKEORDER_ORDER_NO` FOREIGN KEY (`order_no`) REFERENCES `Order` (`order_no`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+    CONSTRAINT `FK_CAKEORDER_ORDER_NO` FOREIGN KEY (`order_no`) REFERENCES `Orders` (`order_no`) ON DELETE RESTRICT ON UPDATE RESTRICT,
     KEY `FK_CAKEORDER_CAKE_ID` (`cake_id`), 
     CONSTRAINT `FK_CAKEORDER_CAKE_ID` FOREIGN KEY (`cake_id`) REFERENCES `Cake` (`cake_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 );
@@ -129,7 +129,7 @@ insert into `User` values(0002, 0002, 'Arbichov Gopnik', '123 Sample Av', 'T2X2M
 --Might need further work, to allow certain extra details based off of things like 'Drop Off'
 insert into `Delivery` values(0000, 'Drop off', '211 Sample Road', '111-111-1111', 'Say happy Birthday to son');
 
-insert into `Order` values(0000, 0000, NOW(), NOW(), 'Awesome Cake', 60.00, 0000);
+insert into `Orders` values(0000, 0000, NOW(), NOW(), 'Awesome Cake', 60.00, 0000);
 
 insert into `CakeCategory` values(0000, 'Cool Cakes', 'Cakes thats are cool');
 

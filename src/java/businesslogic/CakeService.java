@@ -29,7 +29,7 @@ public class CakeService
         cakeController.edit(cake);
     }
 
-    public void delete(int cakeId) throws NonexistentEntityException
+    public void delete(int cakeId) throws NonexistentEntityException, BusinessClasses.exceptions.NonexistentEntityException
     {
         cakeController.destroy(cakeId);
     }

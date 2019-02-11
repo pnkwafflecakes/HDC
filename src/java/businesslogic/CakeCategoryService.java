@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 /**
  *
  * @author Botan
@@ -44,7 +45,7 @@ public class CakeCategoryService {
     /**
      * Delete the cakeCategory details 
      */
-    public void destroy(Integer cakeCategory_no) throws IllegalOrphanException, NonexistentEntityException{
+    public void destroy(Integer cakeCategory_no) throws IllegalOrphanException, NonexistentEntityException,  BusinessClasses.exceptions.NonexistentEntityException, BusinessClasses.exceptions.IllegalOrphanException, BusinessClasses.exceptions.IllegalOrphanException{
        
         cjc.destroy(cakeCategory_no);
     } 

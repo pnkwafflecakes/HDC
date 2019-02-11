@@ -5,6 +5,8 @@
  */
 package dataaccess;
 
+import BusinessClasses.exceptions.NonexistentEntityException;
+import BusinessClasses.exceptions.PreexistingEntityException;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
@@ -13,71 +15,61 @@ import javax.persistence.criteria.Root;
 import Entities.Delivery;
 import Entities.User;
 import Entities.Cake;
-import Entities.Order;
-import dataaccess.exceptions.NonexistentEntityException;
-import dataaccess.exceptions.PreexistingEntityException;
+import Entities.Orders;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 
 /**
  *
  * @author 775224
  */
-public class OrderJpaController implements Serializable {
+public class OrdersJpaController implements Serializable {
 
-    public OrderJpaController() {
-        this.emf = DBUtil.getEmFactory();
-    }
-    private EntityManagerFactory emf = null;
-
-    public EntityManager getEntityManager() {
-        return emf.createEntityManager();
-    }
-
-    public void create(Order order) throws PreexistingEntityException, Exception {
-        if (order.getCakeCollection() == null) {
-            order.setCakeCollection(new ArrayList<Cake>());
+    public void create(Orders orders) throws PreexistingEntityException, Exception {
+        if (orders.getCakeCollection() == null) {
+            orders.setCakeCollection(new ArrayList<Cake>());
         }
-        EntityManager em = null;
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
         try {
-            em = getEntityManager();
-            em.getTransaction().begin();
-            Delivery deliveryNo = order.getDeliveryNo();
+            Delivery deliveryNo = orders.getDeliveryNo();
             if (deliveryNo != null) {
                 deliveryNo = em.getReference(deliveryNo.getClass(), deliveryNo.getDeliveryNo());
-                order.setDeliveryNo(deliveryNo);
+                orders.setDeliveryNo(deliveryNo);
             }
-            User userId = order.getUserId();
+            User userId = orders.getUserId();
             if (userId != null) {
                 userId = em.getReference(userId.getClass(), userId.getUserId());
-                order.setUserId(userId);
+                orders.setUserId(userId);
             }
             Collection<Cake> attachedCakeCollection = new ArrayList<Cake>();
-            for (Cake cakeCollectionCakeToAttach : order.getCakeCollection()) {
+            for (Cake cakeCollectionCakeToAttach : orders.getCakeCollection()) {
                 cakeCollectionCakeToAttach = em.getReference(cakeCollectionCakeToAttach.getClass(), cakeCollectionCakeToAttach.getCakeId());
                 attachedCakeCollection.add(cakeCollectionCakeToAttach);
             }
-            order.setCakeCollection(attachedCakeCollection);
-            em.persist(order);
+            orders.setCakeCollection(attachedCakeCollection);
+            em.persist(orders);
             if (deliveryNo != null) {
-                deliveryNo.getOrder1Collection().add(order);
+                deliveryNo.getOrdersCollection().add(orders);
                 deliveryNo = em.merge(deliveryNo);
             }
             if (userId != null) {
-                userId.getOrder1Collection().add(order);
+                userId.getOrdersCollection().add(orders);
                 userId = em.merge(userId);
             }
-            for (Cake cakeCollectionCake : order.getCakeCollection()) {
-                cakeCollectionCake.getOrder1Collection().add(order);
+            for (Cake cakeCollectionCake : orders.getCakeCollection()) {
+                cakeCollectionCake.getOrdersCollection().add(orders);
                 cakeCollectionCake = em.merge(cakeCollectionCake);
             }
-            em.getTransaction().commit();
+            trans.commit();
         } catch (Exception ex) {
-            if (findOrder(order.getOrderNo()) != null) {
-                throw new PreexistingEntityException("Order " + order + " already exists.", ex);
+            if (findOrders(orders.getOrderNo()) != null) {
+                throw new PreexistingEntityException("Orders " + orders + " already exists.", ex);
             }
             throw ex;
         } finally {
@@ -87,25 +79,25 @@ public class OrderJpaController implements Serializable {
         }
     }
 
-    public void edit(Order order) throws NonexistentEntityException, Exception {
-        EntityManager em = null;
+    public void edit(Orders orders) throws NonexistentEntityException, Exception {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
         try {
-            em = getEntityManager();
-            em.getTransaction().begin();
-            Order persistentOrder = em.find(Order.class, order.getOrderNo());
-            Delivery deliveryNoOld = persistentOrder.getDeliveryNo();
-            Delivery deliveryNoNew = order.getDeliveryNo();
-            User userIdOld = persistentOrder.getUserId();
-            User userIdNew = order.getUserId();
-            Collection<Cake> cakeCollectionOld = persistentOrder.getCakeCollection();
-            Collection<Cake> cakeCollectionNew = order.getCakeCollection();
+            Orders persistentOrders = em.find(Orders.class, orders.getOrderNo());
+            Delivery deliveryNoOld = persistentOrders.getDeliveryNo();
+            Delivery deliveryNoNew = orders.getDeliveryNo();
+            User userIdOld = persistentOrders.getUserId();
+            User userIdNew = orders.getUserId();
+            Collection<Cake> cakeCollectionOld = persistentOrders.getCakeCollection();
+            Collection<Cake> cakeCollectionNew = orders.getCakeCollection();
             if (deliveryNoNew != null) {
                 deliveryNoNew = em.getReference(deliveryNoNew.getClass(), deliveryNoNew.getDeliveryNo());
-                order.setDeliveryNo(deliveryNoNew);
+                orders.setDeliveryNo(deliveryNoNew);
             }
             if (userIdNew != null) {
                 userIdNew = em.getReference(userIdNew.getClass(), userIdNew.getUserId());
-                order.setUserId(userIdNew);
+                orders.setUserId(userIdNew);
             }
             Collection<Cake> attachedCakeCollectionNew = new ArrayList<Cake>();
             for (Cake cakeCollectionNewCakeToAttach : cakeCollectionNew) {
@@ -113,43 +105,43 @@ public class OrderJpaController implements Serializable {
                 attachedCakeCollectionNew.add(cakeCollectionNewCakeToAttach);
             }
             cakeCollectionNew = attachedCakeCollectionNew;
-            order.setCakeCollection(cakeCollectionNew);
-            order = em.merge(order);
+            orders.setCakeCollection(cakeCollectionNew);
+            orders = em.merge(orders);
             if (deliveryNoOld != null && !deliveryNoOld.equals(deliveryNoNew)) {
-                deliveryNoOld.getOrder1Collection().remove(order);
+                deliveryNoOld.getOrdersCollection().remove(orders);
                 deliveryNoOld = em.merge(deliveryNoOld);
             }
             if (deliveryNoNew != null && !deliveryNoNew.equals(deliveryNoOld)) {
-                deliveryNoNew.getOrder1Collection().add(order);
+                deliveryNoNew.getOrdersCollection().add(orders);
                 deliveryNoNew = em.merge(deliveryNoNew);
             }
             if (userIdOld != null && !userIdOld.equals(userIdNew)) {
-                userIdOld.getOrder1Collection().remove(order);
+                userIdOld.getOrdersCollection().remove(orders);
                 userIdOld = em.merge(userIdOld);
             }
             if (userIdNew != null && !userIdNew.equals(userIdOld)) {
-                userIdNew.getOrder1Collection().add(order);
+                userIdNew.getOrdersCollection().add(orders);
                 userIdNew = em.merge(userIdNew);
             }
             for (Cake cakeCollectionOldCake : cakeCollectionOld) {
                 if (!cakeCollectionNew.contains(cakeCollectionOldCake)) {
-                    cakeCollectionOldCake.getOrder1Collection().remove(order);
+                    cakeCollectionOldCake.getOrdersCollection().remove(orders);
                     cakeCollectionOldCake = em.merge(cakeCollectionOldCake);
                 }
             }
             for (Cake cakeCollectionNewCake : cakeCollectionNew) {
                 if (!cakeCollectionOld.contains(cakeCollectionNewCake)) {
-                    cakeCollectionNewCake.getOrder1Collection().add(order);
+                    cakeCollectionNewCake.getOrdersCollection().add(orders);
                     cakeCollectionNewCake = em.merge(cakeCollectionNewCake);
                 }
             }
-            em.getTransaction().commit();
+            trans.commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = order.getOrderNo();
-                if (findOrder(id) == null) {
-                    throw new NonexistentEntityException("The order with id " + id + " no longer exists.");
+                Integer id = orders.getOrderNo();
+                if (findOrders(id) == null) {
+                    throw new NonexistentEntityException("The orders with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -161,34 +153,34 @@ public class OrderJpaController implements Serializable {
     }
 
     public void destroy(Integer id) throws NonexistentEntityException {
-        EntityManager em = null;
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
         try {
-            em = getEntityManager();
-            em.getTransaction().begin();
-            Order order;
+            Orders orders;
             try {
-                order = em.getReference(Order.class, id);
-                order.getOrderNo();
+                orders = em.getReference(Orders.class, id);
+                orders.getOrderNo();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The order with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The orders with id " + id + " no longer exists.", enfe);
             }
-            Delivery deliveryNo = order.getDeliveryNo();
+            Delivery deliveryNo = orders.getDeliveryNo();
             if (deliveryNo != null) {
-                deliveryNo.getOrder1Collection().remove(order);
+                deliveryNo.getOrdersCollection().remove(orders);
                 deliveryNo = em.merge(deliveryNo);
             }
-            User userId = order.getUserId();
+            User userId = orders.getUserId();
             if (userId != null) {
-                userId.getOrder1Collection().remove(order);
+                userId.getOrdersCollection().remove(orders);
                 userId = em.merge(userId);
             }
-            Collection<Cake> cakeCollection = order.getCakeCollection();
+            Collection<Cake> cakeCollection = orders.getCakeCollection();
             for (Cake cakeCollectionCake : cakeCollection) {
-                cakeCollectionCake.getOrder1Collection().remove(order);
+                cakeCollectionCake.getOrdersCollection().remove(orders);
                 cakeCollectionCake = em.merge(cakeCollectionCake);
             }
-            em.remove(order);
-            em.getTransaction().commit();
+            em.remove(orders);
+            trans.commit();
         } finally {
             if (em != null) {
                 em.close();
@@ -196,19 +188,19 @@ public class OrderJpaController implements Serializable {
         }
     }
 
-    public List<Order> findOrderEntities() {
-        return findOrderEntities(true, -1, -1);
+    public List<Orders> findOrdersEntities() {
+        return findOrdersEntities(true, -1, -1);
     }
 
-    public List<Order> findOrderEntities(int maxResults, int firstResult) {
-        return findOrderEntities(false, maxResults, firstResult);
+    public List<Orders> findOrdersEntities(int maxResults, int firstResult) {
+        return findOrdersEntities(false, maxResults, firstResult);
     }
 
-    private List<Order> findOrderEntities(boolean all, int maxResults, int firstResult) {
-        EntityManager em = getEntityManager();
+    private List<Orders> findOrdersEntities(boolean all, int maxResults, int firstResult) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Order.class));
+            cq.select(cq.from(Orders.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -220,20 +212,20 @@ public class OrderJpaController implements Serializable {
         }
     }
 
-    public Order findOrder(Integer id) {
-        EntityManager em = getEntityManager();
+    public Orders findOrders(Integer id) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
-            return em.find(Order.class, id);
+            return em.find(Orders.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getOrderCount() {
-        EntityManager em = getEntityManager();
+    public int getOrdersCount() {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Order> rt = cq.from(Order.class);
+            Root<Orders> rt = cq.from(Orders.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

@@ -60,7 +60,7 @@ public class DeliveryService {
     /**
      * Delete the delivery details
      */
-    public void destroy(Integer delivery_no) throws NonexistentEntityException, IllegalOrphanException{
+    public void destroy(Integer delivery_no) throws NonexistentEntityException, IllegalOrphanException, BusinessClasses.exceptions.IllegalOrphanException, BusinessClasses.exceptions.NonexistentEntityException{
             djc.destroy(delivery_no);
         
     }

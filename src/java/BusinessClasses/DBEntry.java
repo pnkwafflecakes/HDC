@@ -8,9 +8,9 @@ package BusinessClasses;
 import Entities.Cake;
 import Entities.Delivery;
 import Entities.User;
-import Entities.Order;
+import Entities.Orders;
 import dataaccess.DeliveryJpaController;
-import dataaccess.OrderJpaController;
+import dataaccess.OrdersJpaController;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,9 +31,9 @@ public class DBEntry {
      * @return 
      */
     public boolean inserOrderDB(Cake[] cakes, User user, Delivery delivery) {
-        OrderJpaController ojc = new OrderJpaController();
+        OrdersJpaController ojc = new OrdersJpaController();
         //Create Delivery then order
-        Order order = new Order();
+        Orders order = new Orders();
         order.setDeliveryNo(delivery);
         double price = 0;
         String items = "";
@@ -88,10 +88,10 @@ public class DBEntry {
 }
     
     public int getOrderNo() {
-        OrderJpaController ojc = new OrderJpaController();
+        OrdersJpaController ojc = new OrdersJpaController();
         int num = 0;
-        List<Order> list;
-        list = ojc.findOrderEntities();
+        List<Orders> list;
+        list = ojc.findOrdersEntities();
         if (list.get(0).getOrderNo() != 0) {
             for (int i = 1; i < list.size(); i++) {
                 if (num + 1 != list.get(i).getOrderNo()) {

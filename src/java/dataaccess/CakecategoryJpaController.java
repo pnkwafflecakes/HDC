@@ -5,6 +5,9 @@
  */
 package dataaccess;
 
+import BusinessClasses.exceptions.IllegalOrphanException;
+import BusinessClasses.exceptions.NonexistentEntityException;
+import BusinessClasses.exceptions.PreexistingEntityException;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
@@ -12,14 +15,12 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import Entities.Cake;
 import Entities.Cakecategory;
-import dataaccess.exceptions.IllegalOrphanException;
-import dataaccess.exceptions.NonexistentEntityException;
-import dataaccess.exceptions.PreexistingEntityException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 
 /**
  *
@@ -27,23 +28,14 @@ import javax.persistence.EntityManagerFactory;
  */
 public class CakecategoryJpaController implements Serializable {
 
-    public CakecategoryJpaController() {
-        this.emf = DBUtil.getEmFactory();
-    }
-    private EntityManagerFactory emf = null;
-
-    public EntityManager getEntityManager() {
-        return emf.createEntityManager();
-    }
-
     public void create(Cakecategory cakecategory) throws PreexistingEntityException, Exception {
         if (cakecategory.getCakeCollection() == null) {
             cakecategory.setCakeCollection(new ArrayList<Cake>());
         }
-        EntityManager em = null;
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
         try {
-            em = getEntityManager();
-            em.getTransaction().begin();
             Collection<Cake> attachedCakeCollection = new ArrayList<Cake>();
             for (Cake cakeCollectionCakeToAttach : cakecategory.getCakeCollection()) {
                 cakeCollectionCakeToAttach = em.getReference(cakeCollectionCakeToAttach.getClass(), cakeCollectionCakeToAttach.getCakeId());
@@ -60,7 +52,7 @@ public class CakecategoryJpaController implements Serializable {
                     oldCategoryIdOfCakeCollectionCake = em.merge(oldCategoryIdOfCakeCollectionCake);
                 }
             }
-            em.getTransaction().commit();
+            trans.commit();
         } catch (Exception ex) {
             if (findCakecategory(cakecategory.getCategoryId()) != null) {
                 throw new PreexistingEntityException("Cakecategory " + cakecategory + " already exists.", ex);
@@ -74,10 +66,10 @@ public class CakecategoryJpaController implements Serializable {
     }
 
     public void edit(Cakecategory cakecategory) throws IllegalOrphanException, NonexistentEntityException, Exception {
-        EntityManager em = null;
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
         try {
-            em = getEntityManager();
-            em.getTransaction().begin();
             Cakecategory persistentCakecategory = em.find(Cakecategory.class, cakecategory.getCategoryId());
             Collection<Cake> cakeCollectionOld = persistentCakecategory.getCakeCollection();
             Collection<Cake> cakeCollectionNew = cakecategory.getCakeCollection();
@@ -112,7 +104,7 @@ public class CakecategoryJpaController implements Serializable {
                     }
                 }
             }
-            em.getTransaction().commit();
+            trans.commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
@@ -130,10 +122,10 @@ public class CakecategoryJpaController implements Serializable {
     }
 
     public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException {
-        EntityManager em = null;
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
         try {
-            em = getEntityManager();
-            em.getTransaction().begin();
             Cakecategory cakecategory;
             try {
                 cakecategory = em.getReference(Cakecategory.class, id);
@@ -153,7 +145,7 @@ public class CakecategoryJpaController implements Serializable {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
             em.remove(cakecategory);
-            em.getTransaction().commit();
+            trans.commit();
         } finally {
             if (em != null) {
                 em.close();
@@ -170,7 +162,7 @@ public class CakecategoryJpaController implements Serializable {
     }
 
     private List<Cakecategory> findCakecategoryEntities(boolean all, int maxResults, int firstResult) {
-        EntityManager em = getEntityManager();
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
             cq.select(cq.from(Cakecategory.class));
@@ -186,7 +178,7 @@ public class CakecategoryJpaController implements Serializable {
     }
 
     public Cakecategory findCakecategory(Integer id) {
-        EntityManager em = getEntityManager();
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             return em.find(Cakecategory.class, id);
         } finally {
@@ -195,7 +187,7 @@ public class CakecategoryJpaController implements Serializable {
     }
 
     public int getCakecategoryCount() {
-        EntityManager em = getEntityManager();
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
             Root<Cakecategory> rt = cq.from(Cakecategory.class);
