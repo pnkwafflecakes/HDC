@@ -3,6 +3,7 @@ package servlets;
 import Entities.Cake;
 import businesslogic.CakeService;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,21 +32,18 @@ public class CakeInfoServlet extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        HttpSession session = request.getSession(true);
-
         int cakeId = 0;
-        
-        try {
-        cakeId = Integer.valueOf(request.getParameter("cakeid"));
+
+        try
+        {
+            cakeId = Integer.valueOf(request.getParameter("cakeid"));
         }
-        catch (NumberFormatException e) {
-            
+        catch (NumberFormatException e)
+        {
         }
 
         CakeService service = new CakeService();
         Cake currCake = service.get(cakeId);
-        
-        System.out.println("Image dir: " + currCake.getImage());
 
         request.setAttribute("currCake", currCake);
         getServletContext().getRequestDispatcher("/WEB-INF/cakeinfo.jsp").forward(request, response);
@@ -65,9 +63,17 @@ public class CakeInfoServlet extends HttpServlet
     {
         HttpSession session = request.getSession(true);
 
-        Cake cakeToAdd = (Cake) request.getAttribute("cakeToAdd");
+        ArrayList<Cake> cakes = (ArrayList<Cake>) session.getAttribute("cakes");
 
-        session.setAttribute("currCake", cakeToAdd);
+        if (cakes == null)
+        {
+            cakes = new ArrayList<Cake>();
+        }
+
+        Cake currCake = (Cake) request.getAttribute("currCake");
+        cakes.add(currCake);
+
+        session.setAttribute("currCake", currCake);
         response.sendRedirect("cart");
     }
 }

@@ -12,27 +12,24 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cake Info</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="/WEB-INF/styles/styles.css">
+        <style><%@include file="/WEB-INF/styles/styles.css"%></style>
     </head>
     <body>
         <a href="mainmenu">BACK</a>
         <h1>Helen's Delicious Cakes</h1>
 
-        <img src="/WEB-INF/images/mangocake.jpeg" alt="Mango Cake">
+        <img src="<c:url value='${currCake.image}'/>" />
 
         <ul>
             <li>${currCake.name}</li>
             <li>$${currCake.price}</li>
             <li>${currCake.size}"</li>
         </ul>
-        
-        <img src="<c:url value='${currCake.image}'/>" />
 
         <p>Description: ${currCake.description}</p>
 
-        <form action="cakeinfo" method="POST" >
+        <form action="cakeinfo" method="POST">
             <input type="submit" value="Add To Cart">
-            <input type="hidden" name="cakeToAdd" value="${currCake}">
         </form>
 
         <div class="nav">

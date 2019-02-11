@@ -36,7 +36,8 @@ public class CartServlet extends HttpServlet
     {
         HttpSession session = request.getSession(true);
         Cake currCake = (Cake) session.getAttribute("currCake");
-        session.setAttribute("cartCake", currCake);
+
+        request.setAttribute("currCake", currCake);
         getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
     }
 
@@ -52,6 +53,5 @@ public class CartServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-
     }
 }
