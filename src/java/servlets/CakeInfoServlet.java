@@ -41,11 +41,11 @@ public class CakeInfoServlet extends HttpServlet
         catch (NumberFormatException e) {
             
         }
-        
-        
 
         CakeService service = new CakeService();
         Cake currCake = service.get(cakeId);
+        
+        System.out.println("Image dir: " + currCake.getImage());
 
         request.setAttribute("currCake", currCake);
         getServletContext().getRequestDispatcher("/WEB-INF/cakeinfo.jsp").forward(request, response);

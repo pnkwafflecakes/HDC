@@ -133,9 +133,9 @@ insert into `Orders` values(0000, 0000, NOW(), NOW(), 'Awesome Cake', 60.00, 000
 
 insert into `CakeCategory` values(0000, 'Cool Cakes', 'Cakes thats are cool');
 
-insert into `Cake` values(0000, 0000, 'Cake1', 11, 55.99, 'Very Awesome Cake', '/WEB-INF/images/cake1.jpg');
-insert into `Cake` values(0001, 0000, 'Cake2', 12, 57.99, 'Very Awesome Cake 2', '/WEB-INF/images/cake2.jpg');
-insert into `Cake` values(0002, 0000, 'Cake3', 13, 59.99, 'Very Awesome Cake 3', '/WEB-INF/images/cake3.jpg');
+insert into `Cake` values(0000, 0000, 'Cake1', 11, 55.99, 'Very Awesome Cake', '/images/cake1.jpg');
+insert into `Cake` values(0001, 0000, 'Cake2', 12, 57.99, 'Very Awesome Cake 2', '/images/cake2.jpg');
+insert into `Cake` values(0002, 0000, 'Cake3', 13, 59.99, 'Very Awesome Cake 3', '/images/cake3.jpg');
 
 insert into `CakeOrder` values(0000, 0000);
 

@@ -56,7 +56,7 @@
                                                 <img class="img-responsive" src="<c:url value='/images/cake1.jpg'/>" />
                                                 <div class="overlay">
                                                     <h2>Cake 1</h2>
-                                                    <p><a href="cakeinfo?cakeid=001">Detail</a></p> 
+                                                    <p><a href="cakeinfo?cakeid=0000">Detail</a></p> 
                                                 </div>
                                             </div>
                                         </div>
@@ -69,7 +69,7 @@
                                                 <img class="img-responsive" src="<c:url value='/images/cake2.jpg'/>" />
                                                 <div class="overlay">
                                                     <h2>Cake Sample 2</h2>
-                                                    <p><a href="#">Detail</a></p> 
+                                                    <p><a href="cakeinfo?cakeid=0001">Detail</a></p> 
                                                 </div>
                                             </div>
                                         </div>

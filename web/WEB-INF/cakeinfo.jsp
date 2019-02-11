@@ -4,6 +4,7 @@
     Author     : Adam Schlinker
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -24,6 +25,8 @@
             <li>$${currCake.price}</li>
             <li>${currCake.size}"</li>
         </ul>
+        
+        <img src="<c:url value='${currCake.image}'/>" />
 
         <p>Description: ${currCake.description}</p>
 
