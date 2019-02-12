@@ -12,6 +12,16 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World! 123</h1>
+        
+        <div style="text-align:center;border:3px black">
+        <h1>Login in Helen's Delicious Cakes</h1>
+        <form action="login" method="post">
+        Username: <input type="text" name="user" value="${user}"><br>
+        Password: <input type="password" name="pass" value="${pass}"><br>
+        <input type="submit" value="Login" name="log">
+        <a href="register.jsp">    ..Register..</a>      
+        <br>
+        ${errorMessage}
+        </div>
     </body>
 </html>

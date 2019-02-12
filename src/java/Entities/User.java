@@ -53,11 +53,11 @@ public class User implements Serializable {
     private String email;
     @Column(name = "phone_no")
     private String phoneNo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    private Collection<Orders> ordersCollection;
     @JoinColumn(name = "account_no", referencedColumnName = "account_no")
     @ManyToOne(optional = false)
     private Account accountNo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    private Collection<Order> order1Collection;
 
     public User() {
     }
@@ -114,21 +114,21 @@ public class User implements Serializable {
         this.phoneNo = phoneNo;
     }
 
+    @XmlTransient
+    public Collection<Orders> getOrdersCollection() {
+        return ordersCollection;
+    }
+
+    public void setOrdersCollection(Collection<Orders> ordersCollection) {
+        this.ordersCollection = ordersCollection;
+    }
+
     public Account getAccountNo() {
         return accountNo;
     }
 
     public void setAccountNo(Account accountNo) {
         this.accountNo = accountNo;
-    }
-
-    @XmlTransient
-    public Collection<Order> getOrder1Collection() {
-        return order1Collection;
-    }
-
-    public void setOrder1Collection(Collection<Order> order1Collection) {
-        this.order1Collection = order1Collection;
     }
 
     @Override

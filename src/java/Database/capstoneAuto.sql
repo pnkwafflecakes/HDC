@@ -18,7 +18,7 @@ USE capstonedb;
 
 Create table `Account` -- To add constraints
 (
-    `account_no` int(4) NOT NULL,
+    `account_no` int(4) NOT NULL AUTO_INCREMENT,
     `account_type` int(1) NOT NULL, -- Combined w/ Privileges, will add constraints, turned to int --0 is regular, 1 is admin, 2 is guest
     `username` VARCHAR(30) NOT NULL,
     `password` VARCHAR(30) NOT NULL,
@@ -29,7 +29,7 @@ Create table `Account` -- To add constraints
 
 Create table `User`
 (
-    `user_id` int(4) NOT NULL,
+    `user_id` int(4) NOT NULL AUTO_INCREMENT,
     `account_no` int(4) NOT NULL,
     `name` VARCHAR(90),
     `address` VARCHAR(99),
@@ -45,7 +45,7 @@ Create table `User`
 
 Create table `Delivery`
 (
-    `delivery_no` int(4) NOT NULL,
+    `delivery_no` int(4) NOT NULL AUTO_INCREMENT,
     `method` VARCHAR(30) NOT NULL,
     `address` VARCHAR(80) NOT NULL,
     `phone_no` VARCHAR(12) NOT NULL,
@@ -55,7 +55,7 @@ Create table `Delivery`
 
 Create table `Orders`
 (
-    `order_no` int(4) NOT NULL,
+    `order_no` int(4) NOT NULL AUTO_INCREMENT,
     `user_id` int(4) NOT NULL, -- user_id instead of customer_id
     `order_datetime` datetime NOT NULL,
     `due_datetime` datetime NOT NULL,
@@ -73,7 +73,7 @@ Create table `Orders`
 
 Create table `CakeCategory`
 (
-    `category_id` int(4) NOT NULL,
+    `category_id` int(4) NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(50) NOT NULL,
     `description` VARCHAR(99) NOT NULL,
     PRIMARY KEY (`category_id`)
@@ -81,7 +81,7 @@ Create table `CakeCategory`
 
 Create table `Cake` -- To add constraints
 (
-    `cake_id` int(4) NOT NULL,
+    `cake_id` int(4) NOT NULL AUTO_INCREMENT,
     `category_id` int(4) NOT NULL,
     `name` VARCHAR(99) NOT NULL,
     -- Category variable is redundant
@@ -117,14 +117,22 @@ Create table `CakeOrder` -- To add constraints
 -- Drop table User;
 -- Drop table Account;
 
-insert into `Account` values(0000, 0, 'billyjoe', 'abc', 1);
-insert into `Account` values(0001, 1, 'argv', 'abcd', 1);
-insert into `Account` values(0002, 2, '1521', '1234', 1);
+insert into `Account` (`account_type`, `username`, `password`, `account_status`) values(0, 'billyjoe', 'abc', 1);
+insert into `Account` (`account_type`, `username`, `password`, `account_status`) values(1, 'argv', 'abcd', 1);
+insert into `Account` (`account_type`, `username`, `password`, `account_status`) values(2, '1521', '1234', 1);
 
 --Possibly just get rid of Account_id and just use user_id
-insert into `User` values(0000, 0000, 'Billy Joe', '123 Sample St', 'T2X2M2', 'email@sample.com', '123-123-1234');
-insert into `User` values(0001, 0001, 'Argis Fargis', '123 Sample Rd', 'a1a2b2', 'email@sample.ca', '123-123-1235');
-insert into `User` values(0002, 0002, 'Arbichov Gopnik', '123 Sample Av', 'T2X2M9', 'email@sample.ru', '153-123-1236');
+insert into `User` (`account_no`,`name`, `address`, `postal_code`, `email`, `phone_no`) values(0000, 'Billy Joe', '123 Sample St', 'T2X2M2', 'email@sample.com', '123-123-1234');
+insert into `User` (`account_no`,`name`, `address`, `postal_code`, `email`, `phone_no`) values(0001, 'Argis Fargis', '123 Sample Rd', 'a1a2b2', 'email@sample.ca', '123-123-1235');
+insert into `User` (`account_no`,`name`, `address`, `postal_code`, `email`, `phone_no`) values(0002, 'Arbichov Gopnik', '123 Sample Av', 'T2X2M9', 'email@sample.ru', '153-123-1236');
+
+`user_id` int(4) NOT NULL AUTO_INCREMENT,
+    `account_no` int(4) NOT NULL,
+    `name` VARCHAR(90),
+    `address` VARCHAR(99),
+    `postal_code` VARCHAR(6),
+    `email` VARCHAR(99),
+    `phone_no` VARCHAR(12),
 
 --Might need further work, to allow certain extra details based off of things like 'Drop Off'
 insert into `Delivery` values(0000, 'Drop off', '211 Sample Road', '111-111-1111', 'Say happy Birthday to son');
@@ -133,9 +141,7 @@ insert into `Orders` values(0000, 0000, NOW(), NOW(), 'Awesome Cake', 60.00, 000
 
 insert into `CakeCategory` values(0000, 'Cool Cakes', 'Cakes thats are cool');
 
-insert into `Cake` values(0000, 0000, 'Cake1', 11, 55.99, 'Very Awesome Cake', '/images/cake1.jpg');
-insert into `Cake` values(0001, 0000, 'Cake2', 12, 57.99, 'Very Awesome Cake 2', '/images/cake2.jpg');
-insert into `Cake` values(0002, 0000, 'Cake3', 13, 59.99, 'Very Awesome Cake 3', '/images/cake3.jpg');
+insert into `Cake` values(0000, 0000, 'Awesome Cake', 11, 55.99, 'Very Awesome Cake', 'img/cake1.png');
 
 insert into `CakeOrder` values(0000, 0000);
 

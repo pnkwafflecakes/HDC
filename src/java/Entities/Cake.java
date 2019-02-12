@@ -61,7 +61,7 @@ public class Cake implements Serializable {
         @JoinColumn(name = "cake_id", referencedColumnName = "cake_id")}, inverseJoinColumns = {
         @JoinColumn(name = "order_no", referencedColumnName = "order_no")})
     @ManyToMany
-    private Collection<Order> order1Collection;
+    private Collection<Orders> ordersCollection;
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     @ManyToOne(optional = false)
     private Cakecategory categoryId;
@@ -130,12 +130,12 @@ public class Cake implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Order> getOrder1Collection() {
-        return order1Collection;
+    public Collection<Orders> getOrdersCollection() {
+        return ordersCollection;
     }
 
-    public void setOrder1Collection(Collection<Order> order1Collection) {
-        this.order1Collection = order1Collection;
+    public void setOrdersCollection(Collection<Orders> ordersCollection) {
+        this.ordersCollection = ordersCollection;
     }
 
     public Cakecategory getCategoryId() {
