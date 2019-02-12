@@ -12,13 +12,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cake Info</title>
         <meta charset="UTF-8">
-        <style><%@include file="/WEB-INF/styles/styles.css"%></style>
+        <style><%@include file="/WEB-INF/styles/cakeinfo.css"%></style>
     </head>
     <body>
         <a href="mainmenu">BACK</a>
         <h1>Helen's Delicious Cakes</h1>
 
-        <img src="<c:url value='${currCake.image}'/>" />
+        <img src="<c:url value='${currCake.image}'/>" alt="Cake Picture">
 
         <ul>
             <li>${currCake.name}</li>
@@ -32,10 +32,10 @@
             <input type="submit" value="Add To Cart">
         </form>
 
-        <div class="nav">
-            <a href="contact">phone</a>
-            <a href="account">person</a>
-            <a href="cart">cart</a>
-        </div>
+        <br>
+
+        <a href="contact">phone</a>
+        <a href="account">person</a>
+        <a href="cart">cart</a>
     </body>
 </html>
