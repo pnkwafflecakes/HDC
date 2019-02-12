@@ -17,6 +17,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         <style><%@include file="/WEB-INF/styles/sidebar.css"%></style>
+        <style><%@include file="/WEB-INF/styles/cakeinfo.css"%></style>
         <title>Cake Info</title>
     </head>
     <body>
@@ -28,29 +29,27 @@
             <a href="#contact"><i class="material-icons">help</i>  Contact</a>
         </div>
 
-        <div class="main">
-            <a href="mainmenu">BACK</a>
-            <h1>Helen's Delicious Cakes</h1>
+        <div class="content">
+            <div class="title">
+                <a href="mainmenu">BACK</a>
+                <h1>Helen's Delicious Cakes</h1>
+            </div>
 
-            <img src="<c:url value='${currCake.image}'/>" alt="Cake Picture">
+            <div class="cakeinfo">
+                <img src="<c:url value='${currCake.image}'/>" alt="Cake Picture">
 
-            <ul>
-                <li>${currCake.name}</li>
-                <li>$${currCake.price}</li>
-                <li>${currCake.size}"</li>
-            </ul>
+                <ul>
+                    <li>${currCake.name}</li>
+                    <li>$${currCake.price}</li>
+                    <li>${currCake.size}"</li>
+                </ul>
 
-            <p>Description: ${currCake.description}</p>
+                <p>Description: ${currCake.description}</p>
+            </div>
 
             <form action="cakeinfo" method="POST">
                 <input type="submit" value="Add To Cart">
             </form>
-
-            <br>
-
-            <a href="contact">phone</a>
-            <a href="account">person</a>
-            <a href="cart">cart</a>
         </div>
     </body>
 </html>
