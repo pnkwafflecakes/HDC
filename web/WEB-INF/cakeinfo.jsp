@@ -10,32 +10,47 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cake Info</title>
         <meta charset="UTF-8">
-        <style><%@include file="/WEB-INF/styles/cakeinfo.css"%></style>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <style><%@include file="/WEB-INF/styles/sidebar.css"%></style>
+        <title>Cake Info</title>
     </head>
     <body>
-        <a href="mainmenu">BACK</a>
-        <h1>Helen's Delicious Cakes</h1>
+        <div class="sidenav">
+            <a href="#home"><i class="material-icons">home</i>  Home</a>
+            <a href="#explore"><i class="material-icons">explore</i>  Explore</a>
+            <a href="#favorite"><i class="material-icons">favorite</i>  Favourite</a>
+            <a href="#cart"><i class="material-icons">shopping_cart</i><i class="material-icons" style="font-size: 0.30em;">wb_sunny</i>  Cart</a>
+            <a href="#contact"><i class="material-icons">help</i>  Contact</a>
+        </div>
 
-        <img src="<c:url value='${currCake.image}'/>" alt="Cake Picture">
+        <div class="main">
+            <a href="mainmenu">BACK</a>
+            <h1>Helen's Delicious Cakes</h1>
 
-        <ul>
-            <li>${currCake.name}</li>
-            <li>$${currCake.price}</li>
-            <li>${currCake.size}"</li>
-        </ul>
+            <img src="<c:url value='${currCake.image}'/>" alt="Cake Picture">
 
-        <p>Description: ${currCake.description}</p>
+            <ul>
+                <li>${currCake.name}</li>
+                <li>$${currCake.price}</li>
+                <li>${currCake.size}"</li>
+            </ul>
 
-        <form action="cakeinfo" method="POST">
-            <input type="submit" value="Add To Cart">
-        </form>
+            <p>Description: ${currCake.description}</p>
 
-        <br>
+            <form action="cakeinfo" method="POST">
+                <input type="submit" value="Add To Cart">
+            </form>
 
-        <a href="contact">phone</a>
-        <a href="account">person</a>
-        <a href="cart">cart</a>
+            <br>
+
+            <a href="contact">phone</a>
+            <a href="account">person</a>
+            <a href="cart">cart</a>
+        </div>
     </body>
 </html>

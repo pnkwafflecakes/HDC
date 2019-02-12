@@ -2,7 +2,6 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <%@page contentType="text/html" pageEncoding="UTF-8"%>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
         <!-- Latest compiled and minified CSS -->
@@ -15,6 +14,8 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
         <style><%@include file="/WEB-INF/styles/sidebar.css"%></style>
+
+        <%@page contentType="text/html" pageEncoding="UTF-8"%>
         <title>Navigation Frame</title>
 
     </head>
