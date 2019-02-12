@@ -1,8 +1,8 @@
 -- FKs should only exist on "many" side
 -- Cant delete a table with FKs in another
-DROP DATABASE if exists capstonedb;
-CREATE DATABASE capstonedb;
-USE capstonedb;
+DROP DATABASE if exists CapStone;
+CREATE DATABASE CapStone;
+USE CapStone;
 
 
 -- Proper Order
@@ -53,7 +53,7 @@ Create table `Delivery`
     PRIMARY KEY (`delivery_no`)
 );
 
-Create table `Orders`
+Create table `Order`
 (
     `order_no` int(4) NOT NULL,
     `user_id` int(4) NOT NULL, -- user_id instead of customer_id
@@ -104,7 +104,7 @@ Create table `CakeOrder` -- To add constraints
     PRIMARY KEY (`order_no`, `cake_id`),
     -- Forign Key
     KEY `FK_CAKEORDER_ORDER_NO` (`order_no`), 
-    CONSTRAINT `FK_CAKEORDER_ORDER_NO` FOREIGN KEY (`order_no`) REFERENCES `Orders` (`order_no`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+    CONSTRAINT `FK_CAKEORDER_ORDER_NO` FOREIGN KEY (`order_no`) REFERENCES `Order` (`order_no`) ON DELETE RESTRICT ON UPDATE RESTRICT,
     KEY `FK_CAKEORDER_CAKE_ID` (`cake_id`), 
     CONSTRAINT `FK_CAKEORDER_CAKE_ID` FOREIGN KEY (`cake_id`) REFERENCES `Cake` (`cake_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 );
@@ -129,13 +129,11 @@ insert into `User` values(0002, 0002, 'Arbichov Gopnik', '123 Sample Av', 'T2X2M
 --Might need further work, to allow certain extra details based off of things like 'Drop Off'
 insert into `Delivery` values(0000, 'Drop off', '211 Sample Road', '111-111-1111', 'Say happy Birthday to son');
 
-insert into `Orders` values(0000, 0000, NOW(), NOW(), 'Awesome Cake', 60.00, 0000);
+insert into `Order` values(0000, 0000, NOW(), NOW(), 'Awesome Cake', 60.00, 0000);
 
 insert into `CakeCategory` values(0000, 'Cool Cakes', 'Cakes thats are cool');
 
-insert into `Cake` values(0000, 0000, 'Cake1', 11, 55.99, 'Very Awesome Cake', '/images/cake1.jpg');
-insert into `Cake` values(0001, 0000, 'Cake2', 12, 57.99, 'Very Awesome Cake 2', '/images/cake2.jpg');
-insert into `Cake` values(0002, 0000, 'Cake3', 13, 59.99, 'Very Awesome Cake 3', '/images/cake3.jpg');
+insert into `Cake` values(0000, 0000, 'Awesome Cake', 11, 55.99, 'Very Awesome Cake', 'img/cake1.png');
 
 insert into `CakeOrder` values(0000, 0000);
 

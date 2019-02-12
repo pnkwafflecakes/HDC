@@ -13,10 +13,10 @@ import javax.persistence.Persistence;
  * @author 775224
  */
 public class DBUtil {
-    private static final EntityManagerFactory EMF = 
+    private static final EntityManagerFactory emf = 
             Persistence.createEntityManagerFactory("persistence");
     
     public static EntityManagerFactory getEmFactory() {
-        return EMF;
+        return emf;
     }
 }
