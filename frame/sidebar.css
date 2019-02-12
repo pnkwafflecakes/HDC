@@ -1,0 +1,57 @@
+body {
+    font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 20px;
+    left: 10px;
+    background: #ffffff;
+    overflow-x: hidden;
+    padding: 8px 0;
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #ff33ff;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #1a001a;
+}
+
+.main {
+    margin-left: 220px; /* Same width as the sidebar + left position in px */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+
+#itemCount {
+  position: absolute;
+  display: none;
+  top: -10px;
+  left: -10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+  text-align: center;
+}
+
+#cart-container {
+  float: right;
+  width: 210px;
+  position: relative;
+}
