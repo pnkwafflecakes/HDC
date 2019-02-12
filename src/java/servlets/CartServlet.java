@@ -8,6 +8,7 @@ package servlets;
 import Entities.Cake;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,9 +36,10 @@ public class CartServlet extends HttpServlet
             throws ServletException, IOException
     {
         HttpSession session = request.getSession(true);
-        Cake currCake = (Cake) session.getAttribute("currCake");
-
-        request.setAttribute("currCake", currCake);
+        ArrayList<Cake> cakes = (ArrayList<Cake>) session.getAttribute("cakes");
+        System.out.println(cakes);
+        Object[] cakeArray = cakes.toArray();
+        request.setAttribute("cakes", cakeArray);
         getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
     }
 

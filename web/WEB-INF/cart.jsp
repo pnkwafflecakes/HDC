@@ -13,8 +13,18 @@
         <title>Cart</title>
     </head>
     <body>
-        <h1>Hello Cart!</h1>
-
-        Current Cake: ${currCake}
+        <div align="center"></div>
+        <h1>Cart</h1>
+        <table cellspacing="0">
+            <c:forEach var="cake" items="${cakes}">
+                <tr>
+                    <td><img src="<c:url value='${cake.image}'/>" alt="Cake Picture" width="50%" height="50%"/></td>
+                    <td width="100">${cake.name}</td>
+                    <td width="100">${cake.cakeId}</td>
+                    <td width="100">${cake.price}</td>
+                </tr>
+            </c:forEach>
+        </table>
+        </div>
     </body>
 </html>

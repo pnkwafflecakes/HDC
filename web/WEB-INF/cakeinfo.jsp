@@ -48,6 +48,7 @@
             </div>
 
             <form action="cakeinfo" method="POST">
+                <input type="hidden" name="cakeId" value="${currCake.cakeId}"</input>
                 <input type="submit" value="Add To Cart">
             </form>
         </div>
