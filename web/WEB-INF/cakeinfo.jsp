@@ -31,26 +31,34 @@
 
         <div class="content">
             <div class="title">
-                <a href="mainmenu">BACK</a>
                 <h1>Helen's Delicious Cakes</h1>
             </div>
 
             <div class="cakeinfo">
-                <img src="<c:url value='${currCake.image}'/>" alt="Cake Picture">
+                <div class="image">
+                    <img src="<c:url value='${currCake.image}'/>" alt="Cake Picture">
+                </div>
 
-                <ul>
-                    <li>${currCake.name}</li>
-                    <li>$${currCake.price}</li>
-                    <li>${currCake.size}"</li>
-                </ul>
+                <div class="info">
+                    <ul>
+                        <li>${currCake.name}</li>
+                        <li>$${currCake.price}</li>
+                        <li>${currCake.size}"</li>
+                    </ul>
 
-                <p>Description: ${currCake.description}</p>
+                    <p>Description: ${currCake.description}</p>
+
+                    <div class="button">
+                        <form action="cakeinfo" method="POST">
+                            <input type="hidden" name="cakeId" value="${currCake.cakeId}">
+                            <input type="submit" value="Add To Cart">
+                        </form>
+                    </div>
+                </div>
             </div>
 
-            <form action="cakeinfo" method="POST">
-                <input type="hidden" name="cakeId" value="${currCake.cakeId}"</input>
-                <input type="submit" value="Add To Cart">
-            </form>
+            <div class="clearfix"></div>
+
         </div>
     </body>
 </html>

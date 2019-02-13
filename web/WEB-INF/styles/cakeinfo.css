@@ -8,7 +8,6 @@ body
     max-width: 800px;
     margin: auto;
     padding: 10px;
-    background: white;
 }
 
 .title
@@ -16,18 +15,32 @@ body
     text-align: center;
 }
 
-.title h1
-{
-    display: inline;
-    padding: 40px;
-}
-
 .cakeinfo
 {
-    text-align: center;
+    width: 60%;
+    margin: 0 auto;
 }
 
-.cakeinfo img
+.image
 {
+    width: 250px;
     float: left;
+}
+
+.info
+{
+    width: 210px;
+    float: right;
+    margin-top: 40px;
+}
+
+.clearfix
+{
+    clear:both
+}
+
+.button
+{
+    margin: auto;
+    width: 90px;
 }
