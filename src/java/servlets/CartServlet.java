@@ -21,6 +21,8 @@ import javax.servlet.http.HttpSession;
  */
 public class CartServlet extends HttpServlet
 {
+    
+    private boolean emptyCart = true;
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -37,9 +39,26 @@ public class CartServlet extends HttpServlet
     {
         HttpSession session = request.getSession(true);
         ArrayList<Cake> cakes = (ArrayList<Cake>) session.getAttribute("cakes");
-        System.out.println(cakes);
-        Object[] cakeArray = cakes.toArray();
-        request.setAttribute("cakes", cakeArray);
+        
+        if (cakes!=null && cakes.size()!=0) {
+            System.out.println("Cake was valid: " + cakes + " size: " + cakes.size());
+            Cake[] cakeArray = new Cake[cakes.size()];
+            double totalPrice = 0;
+            int[] counter = new int[cakes.size()];
+            //todo: Make add quantity
+            for (int i = 0; i < cakes.size(); i++) {
+                cakeArray[i] = cakes.get(i);
+                totalPrice = totalPrice + cakeArray[i].getPrice();
+            }
+            emptyCart = false;
+            request.setAttribute("cakes", cakeArray);
+            request.setAttribute("totalPrice", totalPrice);
+        }
+        else {
+            emptyCart = true;
+            request.setAttribute("errorMessage", "Your cart is empty");
+        }
+       
         getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
     }
 
@@ -55,5 +74,22 @@ public class CartServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        String action = request.getParameter("action");
+        if (action != null) {
+            if (action.equals("delete")) {
+                int selectedCakeId = Integer.valueOf(request.getParameter("selectedCake"));
+                HttpSession session = request.getSession(true);
+                ArrayList<Cake> cakes = (ArrayList<Cake>) session.getAttribute("cakes");
+
+                cakes.remove(selectedCakeId);
+                doGet(request, response);
+            }
+        }
+        if (emptyCart == false) {
+            response.sendRedirect("orderdetails");
+        }
+        else {
+            response.sendRedirect("cart");
+        }
     }
 }

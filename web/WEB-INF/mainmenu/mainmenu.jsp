@@ -32,10 +32,10 @@
     <body>
 
         <div class="sidenav">
-            <a href="#home"><i class="material-icons">home</i>  Home</a>
+            <a href="mainmenu"><i class="material-icons">home</i>  Home</a>
             <a href="#explore"><i class="material-icons">explore</i>  Explore</a>
             <a href="#favorite"><i class="material-icons">favorite</i>  Favourite</a>
-            <a href="#cart"><i class="material-icons">shopping_cart</i><i class="material-icons" style="font-size: 0.30em;">wb_sunny</i>  Cart</a>
+            <a href="cart"><i class="material-icons">shopping_cart</i><i class="material-icons" style="font-size: 0.30em;">wb_sunny</i>  Cart</a>
             <a href="#contact"><i class="material-icons">help</i>  Contact</a>
         </div>
 
@@ -49,32 +49,21 @@
                                 <h3>
                                     Feature Cakes 
                                 </h3>
-                                <div class="container" style="margin-top:30px;">
+                                <c:forEach var="cake" items="${cakes}">
+                                    <div class="container" style="margin-top:30px;">
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                                             <div class="hovereffect">
-                                                <img class="img-responsive" src="<c:url value='/images/cake1.jpg'/>" />
+                                                <img class="img-responsive" src="<c:url value='${cake.image}'/>" />
                                                 <div class="overlay">
-                                                    <h2>Cake 1</h2>
-                                                    <p><a href="cakeinfo?cakeid=0000">Detail</a></p> 
+                                                    <h2>${cake.name}</h2>
+                                                    <p><a href="cakeinfo?cakeid=${cake.cakeId}">Detail</a></p> 
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="container" style="margin-top:30px;">
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                            <div class="hovereffect">
-                                                <img class="img-responsive" src="<c:url value='/images/cake2.jpg'/>" />
-                                                <div class="overlay">
-                                                    <h2>Cake Sample 2</h2>
-                                                    <p><a href="cakeinfo?cakeid=0001">Detail</a></p> 
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </c:forEach>
 
                             </div>
                         </div>
