@@ -6,10 +6,15 @@
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/.Helen'sDeliciousCakesCapstone/src/java/Entities/Account.java</file>
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/.Helen'sDeliciousCakesCapstone/src/java/Database/capstoneDB.sql</file>
         </group>
-        <group name="Group2">
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/servlets/CakeInfoServlet.java</file>
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/cakeinfo.jsp</file>
-        </group>
         <group/>
+        <group name="Group2">
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/mainmenu/mainmenu.jsp</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/orderdetails.jsp</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/frame.jsp</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/servlets/CartServlet.java</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/cakeinfo.jsp</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/cart.jsp</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/servlets/MainMenuServletBackup.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -22,11 +22,11 @@
     <body>
 
         <div class="sidenav">
-            <a href="#home"><i class="material-icons">home</i>  Home</a>
+            <a href="mainmenu"><i class="material-icons">home</i>  Home</a>
             <a href="#explore"><i class="material-icons">explore</i>  Explore</a>
             <a href="#favorite"><i class="material-icons">favorite</i>  Favourite</a>
 
-            <a href="#cart"><i class="material-icons">shopping_cart</i><i class="material-icons" style="font-size: 0.30em;">wb_sunny</i>  Cart</a>
+            <a href="cart"><i class="material-icons">shopping_cart</i><i class="material-icons" style="font-size: 0.30em;">wb_sunny</i>  Cart</a>
 
             <a href="#contact"><i class="material-icons">help</i>  Contact</a>
         </div>

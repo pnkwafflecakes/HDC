@@ -5,9 +5,13 @@
  */
 package servlets;
 
+import Entities.Cake;
+import businesslogic.CakeService;
 import dataaccess.CakeJpaController;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,18 +29,19 @@ public class MainMenuServlet extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        CakeService cs = new CakeService();
+        List<Cake> cakes = cs.getAll();
+        Cake[] cakeArray = new Cake[cakes.size()];
+        
+        for (int i = 0; i < cakes.size(); i++) {
+            cakeArray[i] = cakes.get(i);
+        }
+        
+        
+        request.setAttribute("cakes", cakeArray);
         getServletContext().getRequestDispatcher("/WEB-INF/mainmenu/mainmenu.jsp").forward(request, response);
         
-        String action = request.getParameter("action");
-        if (action != null) {
-            if (action.equals("select")) {
-                HttpSession session = request.getSession();
-                //Like we did in the final, selectedCake, get the object then put it in session
-                int selectedCakeId = Integer.valueOf(request.getParameter("selectedCakeId"));
-                CakeJpaController cjc = new CakeJpaController();
-                session.setAttribute("selectedCake", cjc.findCake(selectedCakeId));
-            }
-        }
+        
         
     }
 
