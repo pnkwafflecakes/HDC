@@ -11,9 +11,12 @@ import Entities.Delivery;
 import Entities.User;
 import businesslogic.DeliveryService;
 import businesslogic.UserService;
+import dataaccess.DeliveryJpaController;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -68,11 +71,13 @@ public class OrderDetailsServlet extends HttpServlet
         
         DeliveryService ds = new DeliveryService();
  
+        System.out.println("--*-- Finding good ID");
         boolean notFound = true;
         while (notFound) {
-            if (ds.get(deliveryNo) == null) deliveryNo++;
+            if (ds.get(deliveryNo) != null) deliveryNo++;
             else notFound = false;
         }
+        System.out.println("--*-- ID found: " + deliveryNo);
         
         Delivery delivery = new Delivery();
         delivery.setAddress(address);
@@ -80,6 +85,13 @@ public class OrderDetailsServlet extends HttpServlet
         delivery.setMethod(method);
         delivery.setNotes(notes);
         delivery.setPhoneNo(phoneNo);
+        DeliveryJpaController djc = new DeliveryJpaController();
+        try {
+            djc.create(delivery);
+            System.out.println("Delivery creation successful");
+        } catch (Exception ex) {
+            System.out.println("Creation failed, error message: "+ex.getMessage());
+        }
         
         DBEntry dbEntry = new DBEntry();
         

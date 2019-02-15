@@ -50,8 +50,10 @@ public class DBEntry {
         order.setUserId(user);
         order.setCakeCollection(toList(cakes));
         order.setOrderItems(items);
-        order.setOrderNo(getOrderNo());
+       // order.setOrderNo(getOrderNo());
+       order.setOrderNo(2);
         try {
+            System.out.println("Order put in: " + order);
             ojc.create(order);
             return true;
         } catch (Exception ex) {
