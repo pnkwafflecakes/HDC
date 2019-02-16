@@ -48,7 +48,7 @@ public class OrderDetailsServlet extends HttpServlet
         
         //--*-- Simualted part
         UserService us = new UserService();
-        User user = us.get(0);
+        User user = us.get(1);
         System.out.println("User in OrderDetails: " + user);
         //--*--
         
@@ -63,11 +63,16 @@ public class OrderDetailsServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        String address = request.getAttribute("address")+"";
+        String address = request.getParameter("address")+"";
         String method = request.getParameter("method");
-        String notes = request.getAttribute("notes")+"";
-        String phoneNo = request.getAttribute("phoneNo")+"";
-        int deliveryNo = 0;
+        String notes = request.getParameter("notes")+"";
+        String phoneNo = request.getParameter("phoneNo")+"";
+        System.out.println("Gathered values:");
+        System.out.println("Address: " + address);
+        System.out.println("Method: " + method);
+        System.out.println("Notes: " + notes);
+        System.out.println("PhoneNo " + phoneNo);
+        int deliveryNo = 1;
         
         DeliveryService ds = new DeliveryService();
  
@@ -104,11 +109,11 @@ public class OrderDetailsServlet extends HttpServlet
         }
         
         UserService us = new UserService();
-        User user = us.get(0);
+        User user = us.get(1);
         String returnPage = "";
         
-        if (dbEntry.inserOrderDB(cakeArray, user, delivery)) returnPage = "mainmenu?result=fail";
-        else returnPage = "mainmenu?result=success";
+        if (dbEntry.inserOrderDB(cakeArray, user, delivery)) returnPage = "mainmenu?result=success";
+        else returnPage = "mainmenu?result=fail";
         System.out.println(returnPage);
         response.sendRedirect(returnPage);
     }
