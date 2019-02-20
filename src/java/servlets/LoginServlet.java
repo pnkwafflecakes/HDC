@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
 import Entities.Account;
@@ -52,7 +47,17 @@ public class LoginServlet extends HttpServlet
         Account account;
         String username;
         String password;
-        int type;
+
+        // sets values so the information stays after refresh
+        request.setAttribute("user", userIn);
+
+        // validation for empty fields
+        if (userIn == null || userIn.isEmpty()
+                || passIn == null || passIn.isEmpty())
+        {
+            request.setAttribute("errorMessage", "Please enter all values.");
+            getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        }
 
         AccountJpaController ajc = new AccountJpaController();
         List<Account> accounts = new ArrayList<>();
@@ -64,6 +69,7 @@ public class LoginServlet extends HttpServlet
         catch (Exception ex)
         {
             request.setAttribute("errorMessage", "Could not load account list. Please contact administration.");
+            getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         }
 
         for (int i = 0; i < accounts.size(); i++)
@@ -82,14 +88,17 @@ public class LoginServlet extends HttpServlet
 
                     User user = (User) users[0];
                     session.setAttribute("userObj", user);
-                    getServletContext().getRequestDispatcher("/WEB-INF/mainmenu.jsp").forward(request, response);
+                    getServletContext().getRequestDispatcher("/WEB-INF/mainmenu/mainmenu.jsp").forward(request, response);
+                }
+                else
+                {
+                    request.setAttribute("errorMessage", "Account not active. Please contact administrator.");
+                    getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
                 }
             }
-            else
-            {
-                request.setAttribute("errorMessage", "Invalid Username/Password");
-                getServletContext().getRequestDispatcher("/WEB-INF/mainmenu.jsp").forward(request, response);
-            }
         }
+
+        request.setAttribute("errorMessage", "Invalid Username/Password");
+        getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
     }
 }
