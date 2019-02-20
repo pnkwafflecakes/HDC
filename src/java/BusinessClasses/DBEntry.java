@@ -9,6 +9,7 @@ import Entities.Cake;
 import Entities.Delivery;
 import Entities.User;
 import Entities.Orders;
+import businesslogic.OrderService;
 import dataaccess.DeliveryJpaController;
 import dataaccess.OrdersJpaController;
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class DBEntry {
         //Create Delivery then order
         Orders order = new Orders();
         order.setDeliveryNo(delivery);
+        System.out.println("Delivery number assoc: " + order.getDeliveryNo().getDeliveryNo());
         double price = 0;
         String items = "";
         for (Cake cake : cakes) {
@@ -48,14 +50,19 @@ public class DBEntry {
         order.setOrderDatetime(currDate);
         order.setDueDatetime(calculateDueDate(currDate));
         order.setUserId(user);
+        System.out.println("User added: " + user);
+        System.out.println("User is: " + user.getUserId());
         order.setCakeCollection(toList(cakes));
         order.setOrderItems(items);
         order.setOrderNo(getOrderNo());
+        System.out.println(order.getOrderNo());
         try {
+            System.out.println("Order to put in: " + order);
             ojc.create(order);
+            System.out.println("Order successful: " + order.getOrderNo());
             return true;
         } catch (Exception ex) {
-            System.out.println("Existing Entity Exception");
+            System.out.println("Exception: " + ex.getMessage());
             return false;
         }
         /*
@@ -92,22 +99,15 @@ public class DBEntry {
 }
     
     public int getOrderNo() {
-        OrdersJpaController ojc = new OrdersJpaController();
-        int num = 0;
-        List<Orders> list;
-        list = ojc.findOrdersEntities();
-        if (list.get(0).getOrderNo() != 0) {
-            for (int i = 1; i < list.size(); i++) {
-                if (num + 1 != list.get(i).getOrderNo()) {
-                    num++;
-                    i = list.size();
-                }
-                else {
-                    num++;
-                }
-            }
+        OrderService os = new OrderService();
+        int orderNo = 1;
+        System.out.println("--*-- Finding good ID");
+        boolean notFound = true;
+        while (notFound) {
+            if (os.get(orderNo) != null) orderNo++;
+            else notFound = false;
         }
-        return num;
+        return orderNo;
     }
     
 }

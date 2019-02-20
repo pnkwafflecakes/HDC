@@ -117,25 +117,20 @@ Create table `CakeOrder` -- To add constraints
 -- Drop table User;
 -- Drop table Account;
 
-insert into `Account` values(0000, 0, 'billyjoe', 'abc', 1);
-insert into `Account` values(0001, 1, 'argv', 'abcd', 1);
-insert into `Account` values(0002, 2, '1521', '1234', 1);
+insert into `Account` values(0001, 0, 'billyjoe', 'abc', 1);
+insert into `Account` values(0002, 1, 'argv', 'abcd', 1);
+insert into `Account` values(0003, 2, '1521', '1234', 1);
 
 --Possibly just get rid of Account_id and just use user_id
-insert into `User` values(0000, 0000, 'Billy Joe', '123 Sample St', 'T2X2M2', 'email@sample.com', '123-123-1234');
-insert into `User` values(0001, 0001, 'Argis Fargis', '123 Sample Rd', 'a1a2b2', 'email@sample.ca', '123-123-1235');
-insert into `User` values(0002, 0002, 'Arbichov Gopnik', '123 Sample Av', 'T2X2M9', 'email@sample.ru', '153-123-1236');
+insert into `User` values(0001, 0001, 'Billy Joe', '123 Sample St', 'T2X2M2', 'email@sample.com', '123-123-1234');
+insert into `User` values(0002, 0002, 'Argis Fargis', '123 Sample Rd', 'a1a2b2', 'email@sample.ca', '123-123-1235');
+insert into `User` values(0003, 0003, 'Arbichov Gopnik', '123 Sample Av', 'T2X2M9', 'email@sample.ru', '153-123-1236');
 
 --Might need further work, to allow certain extra details based off of things like 'Drop Off'
-insert into `Delivery` values(0000, 'Drop off', '211 Sample Road', '111-111-1111', 'Say happy Birthday to son');
 
-insert into `Orders` values(0000, 0000, NOW(), NOW(), 'Awesome Cake', 60.00, 0000);
+insert into `CakeCategory` values(0001, 'Cool Cakes', 'Cakes thats are cool');
 
-insert into `CakeCategory` values(0000, 'Cool Cakes', 'Cakes thats are cool');
-
-insert into `Cake` values(0000, 0000, 'Cake1', 11, 55.99, 'Very Awesome Cake', '/images/cake1.jpg');
-insert into `Cake` values(0001, 0000, 'Cake2', 12, 57.99, 'Very Awesome Cake 2', '/images/cake2.jpg');
-insert into `Cake` values(0002, 0000, 'Cake3', 13, 59.99, 'Very Awesome Cake 3', '/images/cake3.jpg');
-
-insert into `CakeOrder` values(0000, 0000);
+insert into `Cake` values(0001, 0001, 'Cake1', 11, 55.99, 'Very Awesome Cake', '/images/cake1.jpg');
+insert into `Cake` values(0002, 0001, 'Cake2', 12, 57.99, 'Very Awesome Cake 2', '/images/cake2.jpg');
+insert into `Cake` values(0003, 0001, 'Cake3', 13, 59.99, 'Very Awesome Cake 3', '/images/cake3.jpg');
 

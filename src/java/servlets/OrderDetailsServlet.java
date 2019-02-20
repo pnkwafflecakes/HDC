@@ -11,9 +11,12 @@ import Entities.Delivery;
 import Entities.User;
 import businesslogic.DeliveryService;
 import businesslogic.UserService;
+import dataaccess.DeliveryJpaController;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,7 +48,7 @@ public class OrderDetailsServlet extends HttpServlet
         
         //--*-- Simualted part
         UserService us = new UserService();
-        User user = us.get(0);
+        User user = us.get(1);
         System.out.println("User in OrderDetails: " + user);
         //--*--
         
@@ -60,19 +63,26 @@ public class OrderDetailsServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        String address = request.getAttribute("address")+"";
+        String address = request.getParameter("address")+"";
         String method = request.getParameter("method");
-        String notes = request.getAttribute("notes")+"";
-        String phoneNo = request.getAttribute("phoneNo")+"";
-        int deliveryNo = 0;
+        String notes = request.getParameter("notes")+"";
+        String phoneNo = request.getParameter("phoneNo")+"";
+        System.out.println("Gathered values:");
+        System.out.println("Address: " + address);
+        System.out.println("Method: " + method);
+        System.out.println("Notes: " + notes);
+        System.out.println("PhoneNo " + phoneNo);
+        int deliveryNo = 1;
         
         DeliveryService ds = new DeliveryService();
  
+        System.out.println("--*-- Finding good ID");
         boolean notFound = true;
         while (notFound) {
-            if (ds.get(deliveryNo) == null) deliveryNo++;
+            if (ds.get(deliveryNo) != null) deliveryNo++;
             else notFound = false;
         }
+        System.out.println("--*-- ID found: " + deliveryNo);
         
         Delivery delivery = new Delivery();
         delivery.setAddress(address);
@@ -80,6 +90,13 @@ public class OrderDetailsServlet extends HttpServlet
         delivery.setMethod(method);
         delivery.setNotes(notes);
         delivery.setPhoneNo(phoneNo);
+        DeliveryJpaController djc = new DeliveryJpaController();
+        try {
+            djc.create(delivery);
+            System.out.println("Delivery creation successful");
+        } catch (Exception ex) {
+            System.out.println("Creation failed, error message: "+ex.getMessage());
+        }
         
         DBEntry dbEntry = new DBEntry();
         
@@ -92,11 +109,11 @@ public class OrderDetailsServlet extends HttpServlet
         }
         
         UserService us = new UserService();
-        User user = us.get(0);
+        User user = us.get(1);
         String returnPage = "";
         
-        if (dbEntry.inserOrderDB(cakeArray, user, delivery)) returnPage = "mainmenu?result=fail";
-        else returnPage = "mainmenu?result=success";
+        if (dbEntry.inserOrderDB(cakeArray, user, delivery)) returnPage = "mainmenu?result=success";
+        else returnPage = "mainmenu?result=fail";
         System.out.println(returnPage);
         response.sendRedirect(returnPage);
     }

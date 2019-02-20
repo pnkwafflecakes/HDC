@@ -7,14 +7,14 @@
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/.Helen'sDeliciousCakesCapstone/src/java/Database/capstoneDB.sql</file>
         </group>
         <group/>
-        <group name="Group2">
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/mainmenu/mainmenu.jsp</file>
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/orderdetails.jsp</file>
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/frame.jsp</file>
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/servlets/CartServlet.java</file>
+        <group name="Group3">
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/servlets/OrderDetailsServlet.java</file>
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/cakeinfo.jsp</file>
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/cart.jsp</file>
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/servlets/MainMenuServletBackup.java</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/BusinessClasses/DBEntry.java</file>
+        </group>
+        <group name="Group2">
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/Database/capstoneDB.sql</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/servlets/OrderDetailsServlet.java</file>
         </group>
     </open-files>
 </project-private>
