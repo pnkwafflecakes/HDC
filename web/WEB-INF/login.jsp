@@ -9,19 +9,23 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Login</title>
     </head>
     <body>
-        
+
         <div style="text-align:center;border:3px black">
-        <h1>Login in Helen's Delicious Cakes</h1>
-        <form action="login" method="post">
-        Username: <input type="text" name="user" value="${user}"><br>
-        Password: <input type="password" name="pass" value="${pass}"><br>
-        <input type="submit" value="Login" name="log">
-        <a href="register.jsp">    ..Register..</a>      
-        <br>
-        ${errorMessage}
+            <h1>Login to Helen's Delicious Cakes</h1>
+
+            <form action="login" method="post">
+                Username: <input type="text" name="user" value="${user}"><br>
+                Password: <input type="password" name="pass" value="${pass}"><br>
+
+                <input type="submit" value="Login" name="log">
+                <a href="register.jsp">    ..Register..</a>
+
+                <br>
+                ${errorMessage}
+            </form>
         </div>
     </body>
 </html>
