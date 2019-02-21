@@ -8,6 +8,10 @@
         <servlet-name>AccountServlet</servlet-name>
         <servlet-class>servlets.AccountServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminServlet</servlet-name>
+        <servlet-class>adminservlets.AdminServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainMenuServlet</servlet-name>
         <url-pattern>/mainmenu</url-pattern>
@@ -72,12 +76,16 @@
         <servlet-name>AccountServlet</servlet-name>
         <url-pattern>/account</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminServlet</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>login</welcome-file>
+        <welcome-file>admin</welcome-file>
     </welcome-file-list>
 </web-app>
