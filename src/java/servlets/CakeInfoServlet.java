@@ -32,7 +32,7 @@ public class CakeInfoServlet extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        int cakeId = 0;
+        int cakeId = 1;
 
         try
         {

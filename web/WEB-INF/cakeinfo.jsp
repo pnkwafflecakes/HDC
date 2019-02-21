@@ -36,7 +36,7 @@
 
             <div class="cakeinfo">
                 <div class="image">
-                    <img src="<c:url value='${currCake.image}'/>" alt="Cake Picture">
+                    <img src="<c:url value='${currCake.image}'/>" alt="Cake Picture" height="240" width="240">
                 </div>
 
                 <div class="info">
@@ -46,7 +46,7 @@
                         <li>${currCake.size}"</li>
                     </ul>
 
-                    <p>Description: ${currCake.description}</p>
+                    <p><strong>Description:</strong> ${currCake.description}</p>
 
                     <div class="button">
                         <form action="cakeinfo" method="POST">

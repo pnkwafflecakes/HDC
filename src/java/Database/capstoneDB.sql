@@ -87,7 +87,7 @@ Create table `Cake` -- To add constraints
     -- Category variable is redundant
     `size` int(2), -- Change from char, will be in inches THE DI
     `price` double (6,2) NOT NULL,
-    `description` VARCHAR(99) NOT NULL, -- it be here
+    `description` VARCHAR(300) NOT NULL, -- it be here
     `image` VARCHAR(99) NOT NULL,
     -- Primary Key
     PRIMARY KEY (`cake_id`),
@@ -118,8 +118,9 @@ Create table `CakeOrder` -- To add constraints
 -- Drop table Account;
 
 insert into `Account` values(0001, 0, 'billyjoe', 'abc', 1);
-insert into `Account` values(0002, 1, 'argv', 'abcd', 1);
+insert into `Account` values(0002, 1, 'argv', 'abcd', 0);
 insert into `Account` values(0003, 2, '1521', '1234', 1);
+insert into `Account` values(0004, 0, 'admin', 'password', 1);
 
 --Possibly just get rid of Account_id and just use user_id
 insert into `User` values(0001, 0001, 'Billy Joe', '123 Sample St', 'T2X2M2', 'email@sample.com', '123-123-1234');
@@ -128,9 +129,9 @@ insert into `User` values(0003, 0003, 'Arbichov Gopnik', '123 Sample Av', 'T2X2M
 
 --Might need further work, to allow certain extra details based off of things like 'Drop Off'
 
-insert into `CakeCategory` values(0001, 'Cool Cakes', 'Cakes thats are cool');
+insert into `CakeCategory` values(0001, 'Cool Cakes', 'Cakes that are cool');
 
-insert into `Cake` values(0001, 0001, 'Cake1', 11, 55.99, 'Very Awesome Cake', '/images/cake1.jpg');
-insert into `Cake` values(0002, 0001, 'Cake2', 12, 57.99, 'Very Awesome Cake 2', '/images/cake2.jpg');
-insert into `Cake` values(0003, 0001, 'Cake3', 13, 59.99, 'Very Awesome Cake 3', '/images/cake3.jpg');
+insert into `Cake` values(0001, 0001, 'Choco Cream Egg', 8, 55.99, 'Have a taste of Easter with this chocolatey delight. Made with chocolate cake batter, chocolate icing, mini eggs and full-size cream eggs!', '/images/cake1.jpg');
+insert into `Cake` values(0002, 0001, 'Oreo Dream', 12, 57.99, 'Have you ever wondered what it would be like to eat an Oreo the size of a cake? Here it is. Made with chocolate cake batter, vanilla icing, and topped with real Oreos!', '/images/cake2.jpg');
+insert into `Cake` values(0003, 0001, 'Fruity Delight', 10, 59.99, 'Is chocolate not your thing? No worries! This cake is made with real assorted berries, whipped icing, and fluffy vanilla cake!', '/images/cake3.jpg');
 
