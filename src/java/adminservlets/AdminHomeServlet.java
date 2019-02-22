@@ -11,8 +11,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author Adam Schlinker
  * @version 1.0
  *
- * This Java Servlet is responsible for handling the requests and responses of cakeinfo.jsp. It also
- * serves as the connection between cakeinfo.jsp and the database.
+ * This Java Servlet is responsible for handling the requests and responses of adminhome.jsp. It
+ * also serves as the connection between adminhome.jsp and the database. This servlet also directs a
+ * user to various other administration pages.
  */
 public class AdminHomeServlet extends HttpServlet
 {
