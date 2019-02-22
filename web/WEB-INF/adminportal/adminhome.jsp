@@ -1,5 +1,5 @@
 <%-- 
-    Document   : admin
+    Document   : adminhome
     Created on : Feb 21, 2019, 1:57:55 PM
     Author     : 744916
 --%>
@@ -15,11 +15,11 @@
     <body>
         <h1>Administration</h1>
 
-        <a href="admincakes.jsp">Manage Cakes</a><br>
-        <a href="admincustomers.jsp">Manage Customers</a><br>
-        <a href="adminfeatured.jsp">Manage Featured Cakes</a><br>
-        <a href="adminfeedback.jsp">Manage Feedback</a><br>
-        <a href="adminorders.jsp">Manage Orders</a><br>
-        <a href="adminpickups.jsp">Manage Pickup Locations</a>
+        <a href="managecakes">Manage Cakes</a><br>
+        <a href="managecustomers">Manage Customers</a><br>
+        <a href="managefeatured">Manage Featured Cakes</a><br>
+        <a href="managefeedback">Manage Feedback</a><br>
+        <a href="manageorders">Manage Orders</a><br>
+        <a href="managepickups">Manage Pickup Locations</a>
     </body>
 </html>
