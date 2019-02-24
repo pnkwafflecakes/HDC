@@ -5,37 +5,49 @@
         <servlet-class>servlets.MainMenuServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AccountServlet</servlet-name>
-        <servlet-class>servlets.AccountServlet</servlet-class>
+        <servlet-name>AdminHomeServlet</servlet-name>
+        <servlet-class>adminservlets.AdminHomeServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>MainMenuServlet</servlet-name>
-        <url-pattern>/mainmenu</url-pattern>
-    </servlet-mapping>
     <servlet>
-        <servlet-name>ViewOrdersServlet</servlet-name>
-        <servlet-class>servlets.ViewOrdersServlet</servlet-class>
+        <servlet-name>ManageCakesServlet</servlet-name>
+        <servlet-class>adminservlets.ManageCakesServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>ViewOrdersServlet</servlet-name>
-        <url-pattern>/vieworders</url-pattern>
-    </servlet-mapping>
+    <servlet>
+        <servlet-name>ManageCustomersServlet</servlet-name>
+        <servlet-class>adminservlets.ManageCustomersServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageFeaturedServlet</servlet-name>
+        <servlet-class>adminservlets.ManageFeaturedServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageFeedbackServlet</servlet-name>
+        <servlet-class>adminservlets.ManageFeedbackServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageOrdersServlet</servlet-name>
+        <servlet-class>adminservlets.ManageOrdersServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManagePickupsServlet</servlet-name>
+        <servlet-class>adminservlets.ManagePickupsServlet</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>servlets.RegisterServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>RegisterServlet</servlet-name>
-        <url-pattern>/register</url-pattern>
-    </servlet-mapping>
+    <servlet>
+        <servlet-name>CartServlet</servlet-name>
+        <servlet-class>servlets.CartServlet</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>servlets.LoginServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/login</url-pattern>
-    </servlet-mapping>
+    <servlet>
+        <servlet-name>OrderDetailsServlet</servlet-name>
+        <servlet-class>servlets.OrderDetailsServlet</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>AddCakeServlet</servlet-name>
         <servlet-class>servlets.AddCakeServlet</servlet-class>
@@ -64,43 +76,77 @@
         <servlet-name>CakeInfoServlet</servlet-name>
         <servlet-class>servlets.CakeInfoServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>CakeInfoServlet</servlet-name>
-        <url-pattern>/cakeinfo</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>CartServlet</servlet-name>
-        <servlet-class>servlets.CartServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>CartServlet</servlet-name>
-        <url-pattern>/cart</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>OrderDetailsServlet</servlet-name>
-        <servlet-class>servlets.OrderDetailsServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>OrderDetailsServlet</servlet-name>
-        <url-pattern>/orderdetails</url-pattern>
-    </servlet-mapping>
     <servlet>
         <servlet-name>ContactServlet</servlet-name>
         <servlet-class>servlets.ContactServlet</servlet-class>
     </servlet>
+    
+    
+    <servlet-mapping>
+        <servlet-name>MainMenuServlet</servlet-name>
+        <url-pattern>/mainmenu</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CakeInfoServlet</servlet-name>
+        <url-pattern>/cakeinfo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartServlet</servlet-name>
+        <url-pattern>/cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderDetailsServlet</servlet-name>
+        <url-pattern>/orderdetails</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ContactServlet</servlet-name>
         <url-pattern>/contact</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AccountServlet</servlet-name>
-        <url-pattern>/account</url-pattern>
+        <servlet-name>AdminHomeServlet</servlet-name>
+        <url-pattern>/adminhome</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageCakesServlet</servlet-name>
+        <url-pattern>/managecakes</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageCustomersServlet</servlet-name>
+        <url-pattern>/managecustomers</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageFeaturedServlet</servlet-name>
+        <url-pattern>/managefeatured</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageFeedbackServlet</servlet-name>
+        <url-pattern>/managefeedback</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageOrdersServlet</servlet-name>
+        <url-pattern>/manageorders</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagePickupsServlet</servlet-name>
+        <url-pattern>/managepickups</url-pattern>
+    </servlet-mapping>
+    
+    
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    
+    
     <welcome-file-list>
         <welcome-file>login</welcome-file>
     </welcome-file-list>

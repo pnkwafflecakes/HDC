@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package businesslogic;
 
 import Entities.User;
@@ -11,45 +6,56 @@ import dataaccess.exceptions.IllegalOrphanException;
 import dataaccess.exceptions.NonexistentEntityException;
 import java.util.List;
 
-/**
- *
- * @author Botan
- */
-public class UserService {
-
+public class UserService
+{
     private final UserJpaController ujc;
 
-    public UserService() {
+    public UserService()
+    {
         ujc = new UserJpaController();
     }
 
-    public User get(Integer user_id) {
+    public User get(Integer user_id)
+    {
         return ujc.findUser(user_id);
     }
-    
+
     /**
      * Add new user
+     *
+     * @param user
+     * @throws java.lang.Exception
      */
-    public void create(User user) throws Exception{
+    public void create(User user) throws Exception
+    {
         ujc.create(user);
-
     }
+
     /**
      * Edit the user details
-     * 
+     *
+     * @param user
+     * @throws java.lang.Exception
      */
-    public void edit(User user) throws Exception{
+    public void edit(User user) throws Exception
+    {
         ujc.edit(user);
+    }
 
-        }
     /**
      * Delete the user details
+     *
+     * @param user_id
+     * @throws dataaccess.exceptions.NonexistentEntityException
+     * @throws dataaccess.exceptions.IllegalOrphanException
+     * @throws BusinessClasses.exceptions.IllegalOrphanException
+     * @throws BusinessClasses.exceptions.NonexistentEntityException
      */
-    public void destroy(Integer user_id) throws NonexistentEntityException, IllegalOrphanException, BusinessClasses.exceptions.IllegalOrphanException, BusinessClasses.exceptions.NonexistentEntityException{
-            ujc.destroy(user_id);
-        
+    public void destroy(Integer user_id) throws NonexistentEntityException, IllegalOrphanException, BusinessClasses.exceptions.IllegalOrphanException, BusinessClasses.exceptions.NonexistentEntityException
+    {
+        ujc.destroy(user_id);
     }
-    
+
     public List<User> getAll()
     {
         return ujc.findUserEntities();
