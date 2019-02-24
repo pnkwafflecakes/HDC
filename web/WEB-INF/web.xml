@@ -49,30 +49,6 @@
         <servlet-class>servlets.OrderDetailsServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AddCakeServlet</servlet-name>
-        <servlet-class>servlets.AddCakeServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AddCakeServlet</servlet-name>
-        <url-pattern>/addcake</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>EditCakeServlet</servlet-name>
-        <servlet-class>servlets.EditCakeServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>EditCakeServlet</servlet-name>
-        <url-pattern>/editcake</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>CakeManagementServlet</servlet-name>
-        <servlet-class>servlets.CakeManagementServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>CakeManagementServlet</servlet-name>
-        <url-pattern>/cakemanagement</url-pattern>
-    </servlet-mapping>
-    <servlet>
         <servlet-name>CakeInfoServlet</servlet-name>
         <servlet-class>servlets.CakeInfoServlet</servlet-class>
     </servlet>
@@ -80,8 +56,24 @@
         <servlet-name>ContactServlet</servlet-name>
         <servlet-class>servlets.ContactServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddCakeServlet</servlet-name>
+        <servlet-class>adminservlets.AddCakeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditCakeServlet</servlet-name>
+        <servlet-class>adminservlets.EditCakeServlet</servlet-class>
+    </servlet>
     
     
+    <servlet-mapping>
+        <servlet-name>EditCakeServlet</servlet-name>
+        <url-pattern>/editcake</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddCakeServlet</servlet-name>
+        <url-pattern>/addcake</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MainMenuServlet</servlet-name>
         <url-pattern>/mainmenu</url-pattern>

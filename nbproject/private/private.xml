@@ -14,9 +14,7 @@
         </group>
         <group name="Group2">
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/Database/capstoneDB.sql</file>
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/orderdetails.jsp</file>
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/servlets/OrderDetailsServlet.java</file>
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/BusinessClasses/DBEntry.java</file>
         </group>
     </open-files>
 </project-private>

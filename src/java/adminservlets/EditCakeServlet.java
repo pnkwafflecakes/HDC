@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servlets;
+package adminservlets;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 744916
  */
-public class AddCakeServlet extends HttpServlet
+public class EditCakeServlet extends HttpServlet
 {
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -30,7 +30,7 @@ public class AddCakeServlet extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        getServletContext().getRequestDispatcher("/WEB-INF/addcake.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/adminportal/editcake.jsp").forward(request, response);
     }
 
     @Override
