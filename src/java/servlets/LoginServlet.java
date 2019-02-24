@@ -71,9 +71,10 @@ public class LoginServlet extends HttpServlet
             request.setAttribute("errorMessage", "Could not load account list. Please contact administration.");
             getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         }
-
+        boolean valid = false;
         for (int i = 0; i < accounts.size(); i++)
         {
+            
             username = accounts.get(i).getUsername();
             password = accounts.get(i).getPassword();
 
@@ -87,18 +88,20 @@ public class LoginServlet extends HttpServlet
                     Object[] users = userList.toArray();
 
                     User user = (User) users[0];
+                    valid = true;
                     session.setAttribute("userObj", user);
-                    getServletContext().getRequestDispatcher("/WEB-INF/mainmenu/mainmenu.jsp").forward(request, response);
+                    response.sendRedirect("mainmenu");
                 }
                 else
                 {
                     request.setAttribute("errorMessage", "Account not active. Please contact administrator.");
-                    getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+                    response.sendRedirect("login");
                 }
             }
         }
-
-        request.setAttribute("errorMessage", "Invalid Username/Password");
-        getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        if (valid==false) {
+            request.setAttribute("errorMessage", "Invalid Username/Password");
+            getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        }
     }
 }
