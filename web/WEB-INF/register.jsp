@@ -21,7 +21,7 @@
             Postal Code: <input type="text" name="postal"/><br>
             Email Address: <input type="email" name="email"/><br>
             Phone Number: <input type="text" name="phone"/><br>
-            <input type="submit"/></p>
+            <input type="submit" value="Submit"/></p>
         </form>
         <p style="color:red">${error}</p>
         <p style="color:green">${status}</p>
