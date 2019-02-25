@@ -19,7 +19,7 @@ USE capstonedb;
 Create table `Account` -- To add constraints
 (
     `account_no` int(4) NOT NULL,
-    `account_type` int(1) NOT NULL, -- Combined w/ Privileges, will add constraints, turned to int --0 is regular, 1 is admin, 2 is guest
+    `account_type` int(1) NOT NULL, -- Combined w/ Privileges, will add constraints, turned to int --1 is regular, 2 is admin, 3 is guest
     `username` VARCHAR(30) NOT NULL,
     `password` VARCHAR(30) NOT NULL,
     `account_status` boolean NOT NULL, -- Change to int
@@ -117,10 +117,9 @@ Create table `CakeOrder` -- To add constraints
 -- Drop table User;
 -- Drop table Account;
 
-insert into `Account` values(0001, 0, 'billyjoe', 'abc', 1);
-insert into `Account` values(0002, 1, 'argv', 'abcd', 0);
-insert into `Account` values(0003, 2, '1521', '1234', 1);
-insert into `Account` values(0004, 0, 'admin', 'password', 1);
+insert into `Account` values(0001, 1, 'billyjoe', 'abc', 1);
+insert into `Account` values(0002, 2, 'admin', 'password', 0);
+insert into `Account` values(0003, 3, '1521', '1234', 1);
 
 --Possibly just get rid of Account_id and just use user_id
 insert into `User` values(0001, 0001, 'Billy Joe', '123 Sample St', 'T2X2M2', 'email@sample.com', '123-123-1234');

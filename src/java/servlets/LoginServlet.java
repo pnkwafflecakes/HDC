@@ -77,25 +77,30 @@ public class LoginServlet extends HttpServlet
             
             username = accounts.get(i).getUsername();
             password = accounts.get(i).getPassword();
+            System.out.println("User details:");
+            System.out.println(username);
+            System.out.println(password);
 
             if (username.equals(userIn) && password.equals(passIn))
             {
                 account = accounts.get(i);
-
+                
                 if (account.getAccountStatus() == true)
                 {
                     Collection<User> userList = account.getUserCollection();
-                    Object[] users = userList.toArray();
-
-                    User user = (User) users[0];
+                    User[] ua = userList.toArray(new User[userList.size()]);
+                    System.out.println("UserList size: " + userList.size());
+                    
+                    User user = ua[0];
                     valid = true;
                     String redir = "login";
                     user.getAccountNo().getAccountType();
-                    if (user.getAccountNo().getAccountType()==1) {
+                    System.out.println("Acount type: " + user.getAccountNo().getAccountType());
+                    if (user.getAccountNo().getAccountType()==2) {
                         session.setAttribute("admin", user);
                         redir = "adminhome";
                     }
-                    else if (user.getAccountNo().getAccountType()==0) { 
+                    else if (user.getAccountNo().getAccountType()==1) { 
                         session.setAttribute("userObj", user);
                         redir = "mainmenu";
                     }
