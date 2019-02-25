@@ -120,7 +120,6 @@ Create table `CakeOrder` -- To add constraints
 insert into `Account` values(0001, 0, 'billyjoe', 'abc', 1);
 insert into `Account` values(0002, 1, 'argv', 'abcd', 0);
 insert into `Account` values(0003, 2, '1521', '1234', 1);
-insert into `Account` values(0004, 0, 'admin', 'password', 1);
 
 --Possibly just get rid of Account_id and just use user_id
 insert into `User` values(0001, 0001, 'Billy Joe', '123 Sample St', 'T2X2M2', 'email@sample.com', '123-123-1234');
