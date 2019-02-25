@@ -134,9 +134,16 @@ insert into `User` values(0003, 0003, 'Arbichov Gopnik', '123 Sample Av', 'T2X2M
 
 --Might need further work, to allow certain extra details based off of things like 'Drop Off'
 
-insert into `CakeCategory` values(0001, 'Cool Cakes', 'Cakes that are cool');
+insert into `CakeCategory` values(0000, 'General', 'Any kind of cake');
+insert into `CakeCategory` values(0001, 'Feature', 'Feature cakes in homepage');
+insert into `CakeCategory` values(0002, 'Weekly', 'Weekly cakes in homepage');
 
 insert into `Cake` values(0001, 0001, 'Choco Cream Egg', 8, 55.99, 'Have a taste of Easter with this chocolatey delight. Made with chocolate cake batter, chocolate icing, mini eggs and full-size cream eggs!', '/images/cake1.jpg');
 insert into `Cake` values(0002, 0001, 'Oreo Dream', 12, 57.99, 'Have you ever wondered what it would be like to eat an Oreo the size of a cake? Here it is. Made with chocolate cake batter, vanilla icing, and topped with real Oreos!', '/images/cake2.jpg');
 insert into `Cake` values(0003, 0001, 'Fruity Delight', 10, 59.99, 'Is chocolate not your thing? No worries! This cake is made with real assorted berries, whipped icing, and fluffy vanilla cake!', '/images/cake3.jpg');
+insert into `Cake` values(0004, 0001, 'Choco Cream Egg', 8, 55.99, 'Have a taste of Easter with this chocolatey delight. Made with chocolate cake batter, chocolate icing, mini eggs and full-size cream eggs!', '/images/cake4.jpg');
+insert into `Cake` values(0005, 0001, 'Choco Cream Egg', 8, 55.99, 'Have a taste of Easter with this chocolatey delight. Made with chocolate cake batter, chocolate icing, mini eggs and full-size cream eggs!', '/images/cake5.jpg');
+insert into `Cake` values(0006, 0001, 'Choco Cream Egg', 8, 55.99, 'Have a taste of Easter with this chocolatey delight. Made with chocolate cake batter, chocolate icing, mini eggs and full-size cream eggs!', '/images/cake6.jpg');
+insert into `Cake` values(0007, 0001, 'Choco Cream Egg', 8, 55.99, 'Have a taste of Easter with this chocolatey delight. Made with chocolate cake batter, chocolate icing, mini eggs and full-size cream eggs!', '/images/cake7.jpg');
+
 
