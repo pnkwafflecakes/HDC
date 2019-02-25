@@ -114,7 +114,7 @@ public class RegisterServlet extends HttpServlet
                 //Add user input into prepared statement.
                 ps = connection.prepareStatement(prepInsertAccount);
                 ps.setInt(1, account_no);
-                ps.setInt(2, 1);
+                ps.setInt(2, 0);
                 ps.setString(3, username);
                 ps.setString(4, password);
                 //Insert into account table.
