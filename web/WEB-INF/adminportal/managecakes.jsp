@@ -22,14 +22,14 @@
                 <td>${cakes.price}</td>
                 <td>${cakes.description}</td>
                 <td>
-                    <form action="admin" method="post" >
+                    <form action="managecakes" method="post" >
                     <input type="submit" value="Edit">
                     <input type="hidden" name="action" value="edit">
                     <input type="hidden" name="selectedCakeId" value="${cakes.cakeId}">
                      </form>
                 </td>
                 <td>
-                    <form action="admin" method="post" >
+                    <form action="managecakes" method="post" >
                     <input type="submit" value="Delete">
                     <input type="hidden" name="action" value="Delete">
                     <input type="hidden" name="selectedCakeId" value="${cakes.cakeId}">

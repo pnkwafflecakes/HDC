@@ -12,9 +12,6 @@
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/cakeinfo.jsp</file>
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/BusinessClasses/DBEntry.java</file>
         </group>
-        <group name="Group2">
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/Database/capstoneDB.sql</file>
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/servlets/OrderDetailsServlet.java</file>
-        </group>
+        <group name="Group2"/>
     </open-files>
 </project-private>
