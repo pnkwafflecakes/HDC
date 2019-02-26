@@ -23,13 +23,13 @@
         <form action="editcake" method="post">
             <table>
                 <tr>
-                    <td><img src="<c:url value='${cake.image}'/>" alt="Cake Picture" width="50%" height="50%"/></td>
-                    <td>Image: <input type="file" name="picture" accept="image/*"></input></td>
+                    <td><img src="<c:url value='${cake.image}'/>" alt="Cake Picture" width="200" height="200"/></td>
+                    <td>Image: <input type="file" name="picture" accept="image/*"></td>
                 </tr>
                 <tr>
-                    <td>Name: <input type="text" name="name" value="${cake.name}"</input></td>
-                    <td>Description: <input type="text" name="description" value="${cake.description}"</input></td>
-                    <td>Price: <input type="text" name="price" value="${cake.price}"</input></td>
+                    <td>Name: <input type="text" name="name" value="${cake.name}"></td>
+                    <td>Description: <input type="text" name="description" value="${cake.description}"></td>
+                    <td>Price: <input type="text" name="price" value="${cake.price}"></td>
                 </tr>
             </table>
                 <input type="submit" value="Add">
