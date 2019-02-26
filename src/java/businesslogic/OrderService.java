@@ -45,7 +45,7 @@ public class OrderService {
     /**
      * Delete the order details
      */
-    public void destroy(Integer order_no) throws IllegalOrphanException, NonexistentEntityException, BusinessClasses.exceptions.NonexistentEntityException{
+    public void destroy(Integer order_no) throws IllegalOrphanException, NonexistentEntityException, BusinessClasses.exceptions.NonexistentEntityException, BusinessClasses.exceptions.IllegalOrphanException{
 
         ojc.destroy(order_no);
     }

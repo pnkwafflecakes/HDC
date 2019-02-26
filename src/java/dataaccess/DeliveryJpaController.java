@@ -15,6 +15,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import Entities.Orders;
+import dataaccess.DBUtil;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -33,9 +34,9 @@ public class DeliveryJpaController implements Serializable {
             delivery.setOrdersCollection(new ArrayList<Orders>());
         }
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        EntityTransaction trans = em.getTransaction();
-        trans.begin();
         try {
+            EntityTransaction trans = em.getTransaction();
+            trans.begin();
             Collection<Orders> attachedOrdersCollection = new ArrayList<Orders>();
             for (Orders ordersCollectionOrdersToAttach : delivery.getOrdersCollection()) {
                 ordersCollectionOrdersToAttach = em.getReference(ordersCollectionOrdersToAttach.getClass(), ordersCollectionOrdersToAttach.getOrderNo());
@@ -67,9 +68,9 @@ public class DeliveryJpaController implements Serializable {
 
     public void edit(Delivery delivery) throws IllegalOrphanException, NonexistentEntityException, Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        EntityTransaction trans = em.getTransaction();
-        trans.begin();
         try {
+            EntityTransaction trans = em.getTransaction();
+            trans.begin();
             Delivery persistentDelivery = em.find(Delivery.class, delivery.getDeliveryNo());
             Collection<Orders> ordersCollectionOld = persistentDelivery.getOrdersCollection();
             Collection<Orders> ordersCollectionNew = delivery.getOrdersCollection();
@@ -123,9 +124,9 @@ public class DeliveryJpaController implements Serializable {
 
     public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        EntityTransaction trans = em.getTransaction();
-        trans.begin();
         try {
+            EntityTransaction trans = em.getTransaction();
+            trans.begin();
             Delivery delivery;
             try {
                 delivery = em.getReference(Delivery.class, id);

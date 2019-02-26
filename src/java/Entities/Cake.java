@@ -35,7 +35,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Cake.findBySize", query = "SELECT c FROM Cake c WHERE c.size = :size")
     , @NamedQuery(name = "Cake.findByPrice", query = "SELECT c FROM Cake c WHERE c.price = :price")
     , @NamedQuery(name = "Cake.findByDescription", query = "SELECT c FROM Cake c WHERE c.description = :description")
-    , @NamedQuery(name = "Cake.findByImage", query = "SELECT c FROM Cake c WHERE c.image = :image")})
+    , @NamedQuery(name = "Cake.findByImage", query = "SELECT c FROM Cake c WHERE c.image = :image")
+    , @NamedQuery(name = "Cake.findByFeatured", query = "SELECT c FROM Cake c WHERE c.featured = :featured")
+    , @NamedQuery(name = "Cake.findBySpecial", query = "SELECT c FROM Cake c WHERE c.special = :special")})
 public class Cake implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -57,6 +59,10 @@ public class Cake implements Serializable {
     @Basic(optional = false)
     @Column(name = "image")
     private String image;
+    @Column(name = "featured")
+    private Boolean featured;
+    @Column(name = "special")
+    private Boolean special;
     @JoinTable(name = "cakeorder", joinColumns = {
         @JoinColumn(name = "cake_id", referencedColumnName = "cake_id")}, inverseJoinColumns = {
         @JoinColumn(name = "order_no", referencedColumnName = "order_no")})
@@ -127,6 +133,22 @@ public class Cake implements Serializable {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Boolean getFeatured() {
+        return featured;
+    }
+
+    public void setFeatured(Boolean featured) {
+        this.featured = featured;
+    }
+
+    public Boolean getSpecial() {
+        return special;
+    }
+
+    public void setSpecial(Boolean special) {
+        this.special = special;
     }
 
     @XmlTransient

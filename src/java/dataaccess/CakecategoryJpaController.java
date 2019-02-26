@@ -15,6 +15,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import Entities.Cake;
 import Entities.Cakecategory;
+import dataaccess.DBUtil;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -33,9 +34,9 @@ public class CakecategoryJpaController implements Serializable {
             cakecategory.setCakeCollection(new ArrayList<Cake>());
         }
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        EntityTransaction trans = em.getTransaction();
-        trans.begin();
         try {
+            EntityTransaction trans = em.getTransaction();
+            trans.begin();
             Collection<Cake> attachedCakeCollection = new ArrayList<Cake>();
             for (Cake cakeCollectionCakeToAttach : cakecategory.getCakeCollection()) {
                 cakeCollectionCakeToAttach = em.getReference(cakeCollectionCakeToAttach.getClass(), cakeCollectionCakeToAttach.getCakeId());
@@ -67,9 +68,9 @@ public class CakecategoryJpaController implements Serializable {
 
     public void edit(Cakecategory cakecategory) throws IllegalOrphanException, NonexistentEntityException, Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        EntityTransaction trans = em.getTransaction();
-        trans.begin();
         try {
+            EntityTransaction trans = em.getTransaction();
+            trans.begin();
             Cakecategory persistentCakecategory = em.find(Cakecategory.class, cakecategory.getCategoryId());
             Collection<Cake> cakeCollectionOld = persistentCakecategory.getCakeCollection();
             Collection<Cake> cakeCollectionNew = cakecategory.getCakeCollection();
@@ -123,9 +124,9 @@ public class CakecategoryJpaController implements Serializable {
 
     public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        EntityTransaction trans = em.getTransaction();
-        trans.begin();
         try {
+            EntityTransaction trans = em.getTransaction();
+            trans.begin();
             Cakecategory cakecategory;
             try {
                 cakecategory = em.getReference(Cakecategory.class, id);

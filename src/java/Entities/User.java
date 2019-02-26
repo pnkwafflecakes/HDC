@@ -35,7 +35,10 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "User.findByAddress", query = "SELECT u FROM User u WHERE u.address = :address")
     , @NamedQuery(name = "User.findByPostalCode", query = "SELECT u FROM User u WHERE u.postalCode = :postalCode")
     , @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")
-    , @NamedQuery(name = "User.findByPhoneNo", query = "SELECT u FROM User u WHERE u.phoneNo = :phoneNo")})
+    , @NamedQuery(name = "User.findByPhoneNo", query = "SELECT u FROM User u WHERE u.phoneNo = :phoneNo")
+    , @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username")
+    , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")
+    , @NamedQuery(name = "User.findByAccountStatus", query = "SELECT u FROM User u WHERE u.accountStatus = :accountStatus")})
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,17 +56,33 @@ public class User implements Serializable {
     private String email;
     @Column(name = "phone_no")
     private String phoneNo;
+    @Basic(optional = false)
+    @Column(name = "username")
+    private String username;
+    @Basic(optional = false)
+    @Column(name = "password")
+    private String password;
+    @Basic(optional = false)
+    @Column(name = "account_status")
+    private boolean accountStatus;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private Collection<Orders> ordersCollection;
-    @JoinColumn(name = "account_no", referencedColumnName = "account_no")
+    @JoinColumn(name = "account_type", referencedColumnName = "account_type")
     @ManyToOne(optional = false)
-    private Account accountNo;
+    private Accounttype accountType;
 
     public User() {
     }
 
     public User(Integer userId) {
         this.userId = userId;
+    }
+
+    public User(Integer userId, String username, String password, boolean accountStatus) {
+        this.userId = userId;
+        this.username = username;
+        this.password = password;
+        this.accountStatus = accountStatus;
     }
 
     public Integer getUserId() {
@@ -114,6 +133,30 @@ public class User implements Serializable {
         this.phoneNo = phoneNo;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean getAccountStatus() {
+        return accountStatus;
+    }
+
+    public void setAccountStatus(boolean accountStatus) {
+        this.accountStatus = accountStatus;
+    }
+
     @XmlTransient
     public Collection<Orders> getOrdersCollection() {
         return ordersCollection;
@@ -123,12 +166,12 @@ public class User implements Serializable {
         this.ordersCollection = ordersCollection;
     }
 
-    public Account getAccountNo() {
-        return accountNo;
+    public Accounttype getAccountType() {
+        return accountType;
     }
 
-    public void setAccountNo(Account accountNo) {
-        this.accountNo = accountNo;
+    public void setAccountType(Accounttype accountType) {
+        this.accountType = accountType;
     }
 
     @Override

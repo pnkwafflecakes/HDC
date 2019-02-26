@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,6 +18,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -39,6 +41,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Orders.findByTotalPrice", query = "SELECT o FROM Orders o WHERE o.totalPrice = :totalPrice")})
 public class Orders implements Serializable {
 
+    @ManyToMany(mappedBy = "ordersCollection")
+    private Collection<Cake> cakeCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -58,8 +63,8 @@ public class Orders implements Serializable {
     @Basic(optional = false)
     @Column(name = "total_price")
     private double totalPrice;
-    @ManyToMany(mappedBy = "ordersCollection")
-    private Collection<Cake> cakeCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orders")
+    private Collection<Cakeorder> cakeorderCollection;
     @JoinColumn(name = "delivery_no", referencedColumnName = "delivery_no")
     @ManyToOne(optional = false)
     private Delivery deliveryNo;
@@ -123,12 +128,12 @@ public class Orders implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Cake> getCakeCollection() {
-        return cakeCollection;
+    public Collection<Cakeorder> getCakeorderCollection() {
+        return cakeorderCollection;
     }
 
-    public void setCakeCollection(Collection<Cake> cakeCollection) {
-        this.cakeCollection = cakeCollection;
+    public void setCakeorderCollection(Collection<Cakeorder> cakeorderCollection) {
+        this.cakeorderCollection = cakeorderCollection;
     }
 
     public Delivery getDeliveryNo() {
@@ -170,6 +175,15 @@ public class Orders implements Serializable {
     @Override
     public String toString() {
         return "Entities.Orders[ orderNo=" + orderNo + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Cake> getCakeCollection() {
+        return cakeCollection;
+    }
+
+    public void setCakeCollection(Collection<Cake> cakeCollection) {
+        this.cakeCollection = cakeCollection;
     }
     
 }

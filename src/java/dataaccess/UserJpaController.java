@@ -13,9 +13,10 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import Entities.Account;
+import Entities.Accounttype;
 import Entities.Orders;
 import Entities.User;
+import dataaccess.DBUtil;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -29,18 +30,20 @@ import javax.persistence.EntityTransaction;
  */
 public class UserJpaController implements Serializable {
 
+   
+
     public void create(User user) throws PreexistingEntityException, Exception {
         if (user.getOrdersCollection() == null) {
             user.setOrdersCollection(new ArrayList<Orders>());
         }
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        EntityTransaction trans = em.getTransaction();
-        trans.begin();
         try {
-            Account accountNo = user.getAccountNo();
-            if (accountNo != null) {
-                accountNo = em.getReference(accountNo.getClass(), accountNo.getAccountNo());
-                user.setAccountNo(accountNo);
+            EntityTransaction trans = em.getTransaction();
+            trans.begin();
+            Accounttype accountType = user.getAccountType();
+            if (accountType != null) {
+                accountType = em.getReference(accountType.getClass(), accountType.getAccountType());
+                user.setAccountType(accountType);
             }
             Collection<Orders> attachedOrdersCollection = new ArrayList<Orders>();
             for (Orders ordersCollectionOrdersToAttach : user.getOrdersCollection()) {
@@ -49,9 +52,9 @@ public class UserJpaController implements Serializable {
             }
             user.setOrdersCollection(attachedOrdersCollection);
             em.persist(user);
-            if (accountNo != null) {
-                accountNo.getUserCollection().add(user);
-                accountNo = em.merge(accountNo);
+            if (accountType != null) {
+                accountType.getUserCollection().add(user);
+                accountType = em.merge(accountType);
             }
             for (Orders ordersCollectionOrders : user.getOrdersCollection()) {
                 User oldUserIdOfOrdersCollectionOrders = ordersCollectionOrders.getUserId();
@@ -77,12 +80,12 @@ public class UserJpaController implements Serializable {
 
     public void edit(User user) throws IllegalOrphanException, NonexistentEntityException, Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        EntityTransaction trans = em.getTransaction();
-        trans.begin();
         try {
+            EntityTransaction trans = em.getTransaction();
+            trans.begin();
             User persistentUser = em.find(User.class, user.getUserId());
-            Account accountNoOld = persistentUser.getAccountNo();
-            Account accountNoNew = user.getAccountNo();
+            Accounttype accountTypeOld = persistentUser.getAccountType();
+            Accounttype accountTypeNew = user.getAccountType();
             Collection<Orders> ordersCollectionOld = persistentUser.getOrdersCollection();
             Collection<Orders> ordersCollectionNew = user.getOrdersCollection();
             List<String> illegalOrphanMessages = null;
@@ -97,9 +100,9 @@ public class UserJpaController implements Serializable {
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
-            if (accountNoNew != null) {
-                accountNoNew = em.getReference(accountNoNew.getClass(), accountNoNew.getAccountNo());
-                user.setAccountNo(accountNoNew);
+            if (accountTypeNew != null) {
+                accountTypeNew = em.getReference(accountTypeNew.getClass(), accountTypeNew.getAccountType());
+                user.setAccountType(accountTypeNew);
             }
             Collection<Orders> attachedOrdersCollectionNew = new ArrayList<Orders>();
             for (Orders ordersCollectionNewOrdersToAttach : ordersCollectionNew) {
@@ -109,13 +112,13 @@ public class UserJpaController implements Serializable {
             ordersCollectionNew = attachedOrdersCollectionNew;
             user.setOrdersCollection(ordersCollectionNew);
             user = em.merge(user);
-            if (accountNoOld != null && !accountNoOld.equals(accountNoNew)) {
-                accountNoOld.getUserCollection().remove(user);
-                accountNoOld = em.merge(accountNoOld);
+            if (accountTypeOld != null && !accountTypeOld.equals(accountTypeNew)) {
+                accountTypeOld.getUserCollection().remove(user);
+                accountTypeOld = em.merge(accountTypeOld);
             }
-            if (accountNoNew != null && !accountNoNew.equals(accountNoOld)) {
-                accountNoNew.getUserCollection().add(user);
-                accountNoNew = em.merge(accountNoNew);
+            if (accountTypeNew != null && !accountTypeNew.equals(accountTypeOld)) {
+                accountTypeNew.getUserCollection().add(user);
+                accountTypeNew = em.merge(accountTypeNew);
             }
             for (Orders ordersCollectionNewOrders : ordersCollectionNew) {
                 if (!ordersCollectionOld.contains(ordersCollectionNewOrders)) {
@@ -147,9 +150,9 @@ public class UserJpaController implements Serializable {
 
     public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        EntityTransaction trans = em.getTransaction();
-        trans.begin();
         try {
+            EntityTransaction trans = em.getTransaction();
+            trans.begin();
             User user;
             try {
                 user = em.getReference(User.class, id);
@@ -168,10 +171,10 @@ public class UserJpaController implements Serializable {
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
-            Account accountNo = user.getAccountNo();
-            if (accountNo != null) {
-                accountNo.getUserCollection().remove(user);
-                accountNo = em.merge(accountNo);
+            Accounttype accountType = user.getAccountType();
+            if (accountType != null) {
+                accountType.getUserCollection().remove(user);
+                accountType = em.merge(accountType);
             }
             em.remove(user);
             trans.commit();

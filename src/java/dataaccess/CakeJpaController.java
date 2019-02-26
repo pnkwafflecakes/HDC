@@ -15,6 +15,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import Entities.Cakecategory;
 import Entities.Orders;
+import dataaccess.DBUtil;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -33,9 +34,9 @@ public class CakeJpaController implements Serializable {
             cake.setOrdersCollection(new ArrayList<Orders>());
         }
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        EntityTransaction trans = em.getTransaction();
-        trans.begin();
         try {
+            EntityTransaction trans = em.getTransaction();
+            trans.begin();
             Cakecategory categoryId = cake.getCategoryId();
             if (categoryId != null) {
                 categoryId = em.getReference(categoryId.getClass(), categoryId.getCategoryId());
@@ -71,9 +72,9 @@ public class CakeJpaController implements Serializable {
 
     public void edit(Cake cake) throws NonexistentEntityException, Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        EntityTransaction trans = em.getTransaction();
-        trans.begin();
         try {
+            EntityTransaction trans = em.getTransaction();
+            trans.begin();
             Cake persistentCake = em.find(Cake.class, cake.getCakeId());
             Cakecategory categoryIdOld = persistentCake.getCategoryId();
             Cakecategory categoryIdNew = cake.getCategoryId();
@@ -130,9 +131,9 @@ public class CakeJpaController implements Serializable {
 
     public void destroy(Integer id) throws NonexistentEntityException {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        EntityTransaction trans = em.getTransaction();
-        trans.begin();
         try {
+            EntityTransaction trans = em.getTransaction();
+            trans.begin();
             Cake cake;
             try {
                 cake = em.getReference(Cake.class, id);

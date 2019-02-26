@@ -1,8 +1,9 @@
 package servlets;
 
 import Entities.Account;
+import Entities.Cake;
 import Entities.User;
-import dataaccess.AccountJpaController;
+import dataaccess.UserJpaController;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -59,12 +60,12 @@ public class LoginServlet extends HttpServlet
             getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         }
 
-        AccountJpaController ajc = new AccountJpaController();
-        List<Account> accounts = new ArrayList<>();
-
+        UserJpaController ujc = new UserJpaController();
+        List<User> userList = null;
+        
         try
         {
-            accounts = ajc.findAccountEntities();
+            userList = ujc.findUserEntities();
         }
         catch (Exception ex)
         {
@@ -72,35 +73,29 @@ public class LoginServlet extends HttpServlet
             getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         }
         boolean valid = false;
-        for (int i = 0; i < accounts.size(); i++)
+        for (int i = 0; i < userList.size(); i++)
         {
             
-            username = accounts.get(i).getUsername();
-            password = accounts.get(i).getPassword();
+            username = userList.get(i).getUsername();
+            password = userList.get(i).getPassword();
             System.out.println("User details:");
             System.out.println(username);
             System.out.println(password);
-
+            
             if (username.equals(userIn) && password.equals(passIn))
-            {
-                account = accounts.get(i);
-                
-                if (account.getAccountStatus() == true)
+            {   
+                User user = userList.get(i);
+                if (user.getAccountStatus()== true)
                 {
-                    Collection<User> userList = account.getUserCollection();
-                    User[] ua = userList.toArray(new User[userList.size()]);
-                    System.out.println("UserList size: " + userList.size());
-                    
-                    User user = ua[0];
                     valid = true;
                     String redir = "login";
-                    user.getAccountNo().getAccountType();
-                    System.out.println("Acount type: " + user.getAccountNo().getAccountType());
-                    if (user.getAccountNo().getAccountType()==2) {
+                    user.getAccountType();
+                    System.out.println("Acount type: " + user.getAccountType());
+                    if (user.getAccountType().getAccountType()==2) {
                         session.setAttribute("admin", user);
                         redir = "adminhome";
                     }
-                    else if (user.getAccountNo().getAccountType()==1) { 
+                    else if (user.getAccountType().getAccountType()==1) { 
                         session.setAttribute("userObj", user);
                         redir = "mainmenu";
                     }

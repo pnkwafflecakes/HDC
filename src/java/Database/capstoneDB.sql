@@ -16,32 +16,34 @@ USE capstonedb;
 
 -- Proper Order
 
-Create table `Account` -- To add constraints
+Create table `AccountType`
 (
-    `account_no` int(4) NOT NULL,
-    `account_type` int(1) NOT NULL, -- Combined w/ Privileges, will add constraints, turned to int --1 is regular, 2 is admin, 3 is guest
-    `username` VARCHAR(30) NOT NULL,
-    `password` VARCHAR(30) NOT NULL,
-    `account_status` boolean NOT NULL, -- Change to int
-    -- Primary Key
-    PRIMARY KEY (`account_no`)
+    `account_type` int(1) NOT NULL,
+    `name` VARCHAR(50) NOT NULL,
+    PRIMARY KEY (`account_type`)
 );
 
 Create table `User`
 (
     `user_id` int(4) NOT NULL,
-    `account_no` int(4) NOT NULL,
     `name` VARCHAR(90),
     `address` VARCHAR(99),
     `postal_code` VARCHAR(6),
     `email` VARCHAR(99),
     `phone_no` VARCHAR(12),
+    --Former account properties
+    `account_type` int(1) NOT NULL, -- Combined w/ Privileges, will add constraints, turned to int --1 is regular, 2 is admin, 3 is guest
+    `username` VARCHAR(45) NOT NULL,
+    `password` VARCHAR(45) NOT NULL,
+    `account_status` boolean NOT NULL, -- Change from int
     -- Primary Key
     PRIMARY KEY (`user_id`),
-    -- Forign Key
-    KEY `FK_User_Account_No` (`account_no`), 
-    CONSTRAINT `FK_User_Account_No` FOREIGN KEY (`account_no`) REFERENCES `Account` (`Account_no`) ON DELETE RESTRICT ON UPDATE RESTRICT
+
+    KEY `FK_USER_ACCOUNT_TYPE` (`account_type`), 
+    CONSTRAINT `FK_USER_ACCOUNT_TYPE` FOREIGN KEY (`account_type`) REFERENCES `AccountType` (`account_type`) ON DELETE RESTRICT ON UPDATE RESTRICT
 );
+
+
 
 Create table `Delivery`
 (
@@ -71,6 +73,8 @@ Create table `Orders`
     CONSTRAINT `FK_ORDER_Delivery_No` FOREIGN KEY (`delivery_no`) REFERENCES `Delivery` (`delivery_no`) ON DELETE RESTRICT ON UPDATE RESTRICT
 );
 
+
+
 Create table `CakeCategory`
 (
     `category_id` int(4) NOT NULL,
@@ -89,6 +93,8 @@ Create table `Cake` -- To add constraints
     `price` double (6,2) NOT NULL,
     `description` VARCHAR(300) NOT NULL, -- it be here
     `image` VARCHAR(99) NOT NULL,
+    `featured` boolean, --Added
+    `special` boolean, --Added
     -- Primary Key
     PRIMARY KEY (`cake_id`),
     -- Forign Key
@@ -117,26 +123,19 @@ Create table `CakeOrder` -- To add constraints
 -- Drop table User;
 -- Drop table Account;
 
-<<<<<<< HEAD
-insert into `Account` values(0001, 1, 'billyjoe', 'abc', 1);
-insert into `Account` values(0002, 2, 'admin', 'password', 0);
-insert into `Account` values(0003, 3, '1521', '1234', 1);
-=======
-insert into `Account` values(0001, 0, 'billyjoe', 'abc', 1);
-insert into `Account` values(0002, 1, 'argv', 'abcd', 0);
-insert into `Account` values(0003, 2, '1521', '1234', 1);
->>>>>>> 823a7d5617da7652a609da347cb88c0e06d17038
+insert into `AccountType` values(1, 'Regular User');
+insert into `AccountType` values(2, 'Administrator');
 
 --Possibly just get rid of Account_id and just use user_id
-insert into `User` values(0001, 0001, 'Billy Joe', '123 Sample St', 'T2X2M2', 'email@sample.com', '123-123-1234');
-insert into `User` values(0002, 0002, 'Argis Fargis', '123 Sample Rd', 'a1a2b2', 'email@sample.ca', '123-123-1235');
-insert into `User` values(0003, 0003, 'Arbichov Gopnik', '123 Sample Av', 'T2X2M9', 'email@sample.ru', '153-123-1236');
+insert into `User` values(0001, 'Billy Joe', '123 Sample St', 'T2X2M2', 'email@sample.com', '123-123-1234', 1, 'billyjoe', 'abc', 1);
+insert into `User` values(0002, 'Argis Fargis', '123 Sample Rd', 'a1a2b2', 'email@sample.ca', '123-123-1235',2, 'admin', 'password', 0);
+insert into `User` values(0003, 'Arbichov Gopnik', '123 Sample Av', 'T2X2M9', 'email@sample.ru', '153-123-1236', 2, '1521', '1234', 1);
 
 --Might need further work, to allow certain extra details based off of things like 'Drop Off'
 
 insert into `CakeCategory` values(0001, 'Cool Cakes', 'Cakes that are cool');
 
-insert into `Cake` values(0001, 0001, 'Choco Cream Egg', 8, 55.99, 'Have a taste of Easter with this chocolatey delight. Made with chocolate cake batter, chocolate icing, mini eggs and full-size cream eggs!', '/images/cake1.jpg');
-insert into `Cake` values(0002, 0001, 'Oreo Dream', 12, 57.99, 'Have you ever wondered what it would be like to eat an Oreo the size of a cake? Here it is. Made with chocolate cake batter, vanilla icing, and topped with real Oreos!', '/images/cake2.jpg');
-insert into `Cake` values(0003, 0001, 'Fruity Delight', 10, 59.99, 'Is chocolate not your thing? No worries! This cake is made with real assorted berries, whipped icing, and fluffy vanilla cake!', '/images/cake3.jpg');
+insert into `Cake` values(0001, 0001, 'Choco Cream Egg', 8, 55.99, 'Have a taste of Easter with this chocolatey delight. Made with chocolate cake batter, chocolate icing, mini eggs and full-size cream eggs!', '/images/cake1.jpg', 1, 1);
+insert into `Cake` values(0002, 0001, 'Oreo Dream', 12, 57.99, 'Have you ever wondered what it would be like to eat an Oreo the size of a cake? Here it is. Made with chocolate cake batter, vanilla icing, and topped with real Oreos!', '/images/cake2.jpg', 1, 1);
+insert into `Cake` values(0003, 0001, 'Fruity Delight', 10, 59.99, 'Is chocolate not your thing? No worries! This cake is made with real assorted berries, whipped icing, and fluffy vanilla cake!', '/images/cake3.jpg', 1, 1);
 
