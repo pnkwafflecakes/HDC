@@ -140,6 +140,6 @@
     
     
     <welcome-file-list>
-        <welcome-file>login</welcome-file>
+        <welcome-file>adminhome</welcome-file>
     </welcome-file-list>
 </web-app>
