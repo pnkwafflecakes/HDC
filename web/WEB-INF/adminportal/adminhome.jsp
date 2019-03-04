@@ -18,7 +18,7 @@
         <h1>Administration</h1>
 
         <a class="button" href="managecakes">Manage Cakes</a><br>
-        <a class="button" href="managecustomers">Manage Customers</a><br>
+        <a class="button" href="managecustomers?choiceCustomers=true">Manage Customers</a><br>
         <a class="button" href="managefeatured">Manage Featured Cakes</a><br>
         <a class="button" href="managefeedback">Manage Feedback</a><br>
         <a class="button" href="manageorders">Manage Orders</a><br>

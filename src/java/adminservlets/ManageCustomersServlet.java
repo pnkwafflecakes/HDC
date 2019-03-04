@@ -5,6 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class ManageCustomersServlet extends HttpServlet
 {
@@ -20,6 +21,17 @@ public class ManageCustomersServlet extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        HttpSession session = request.getSession(true);
+        String choice = request.getParameter("choiceCustomers");
+
+        boolean choiceCustomers = true;
+
+        if (choice.equals("false"))
+        {
+            choiceCustomers = false;
+        }
+        session.setAttribute("choiceCustomers", choiceCustomers);
+
         getServletContext().getRequestDispatcher("/WEB-INF/adminportal/managecustomers.jsp").forward(request, response);
     }
 
