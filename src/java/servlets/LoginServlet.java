@@ -84,13 +84,14 @@ public class LoginServlet extends HttpServlet
             
             if (username.equals(userIn) && password.equals(passIn))
             {   
+                System.out.println("Accepted");
                 User user = userList.get(i);
                 if (user.getAccountStatus()== true)
                 {
                     valid = true;
                     String redir = "login";
                     user.getAccountType();
-                    System.out.println("Acount type: " + user.getAccountType());
+                    System.out.println("Acount type: " + user.getAccountType().getAccountType());
                     if (user.getAccountType().getAccountType()==2) {
                         session.setAttribute("admin", user);
                         redir = "adminhome";
@@ -107,6 +108,7 @@ public class LoginServlet extends HttpServlet
                     response.sendRedirect("login");
                 }
             }
+            if (valid==true) i = userList.size();
         }
         if (valid==false) {
             request.setAttribute("errorMessage", "Invalid Username/Password");

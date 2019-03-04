@@ -50,11 +50,11 @@ public class ManageCakesServlet extends HttpServlet
         
         for (int i = 0; i < cakes.size(); i++) {
             cakeArray[i] = cakes.get(i);
+            System.out.println(cakeArray[i]);
         }
-        
-        
+
         request.setAttribute("cakes", cakeArray);
-        getServletContext().getRequestDispatcher("/WEB-INF/adminportal/cakemanagement.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/adminportal/managecakes.jsp").forward(request, response);
     }
 
     @Override
@@ -73,11 +73,14 @@ public class ManageCakesServlet extends HttpServlet
             }
             else if (action.equals("edit")) {
                 session.setAttribute("cakeId", cakeId);
-                response.sendRedirect("edit");
+                response.sendRedirect("editcake?input=edit");
+            }
+            else if (action.equals("add")) {
+                response.sendRedirect("editcake?input=add");
             }
         }
         } catch (Exception e) {
-            //getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+            response.sendRedirect("login");
         }
     }
 }

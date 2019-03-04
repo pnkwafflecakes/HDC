@@ -128,7 +128,7 @@ insert into `AccountType` values(2, 'Administrator');
 
 --Possibly just get rid of Account_id and just use user_id
 insert into `User` values(0001, 'Billy Joe', '123 Sample St', 'T2X2M2', 'email@sample.com', '123-123-1234', 1, 'billyjoe', 'abc', 1);
-insert into `User` values(0002, 'Argis Fargis', '123 Sample Rd', 'A1A2B2', 'email@sample.ca', '123-123-1235',2, 'admin', 'password', 0);
+insert into `User` values(0002, 'Argis Fargis', '123 Sample Rd', 'A1A2B2', 'email@sample.ca', '123-123-1235',2, 'admin', 'password', 1);
 insert into `User` values(0003, 'Arbichov Gopnik', '123 Sample Av', 'T2X2M9', 'email@sample.ru', '153-123-1236', 2, '1521', '1234', 1);
 
 --Might need further work, to allow certain extra details based off of things like 'Drop Off'

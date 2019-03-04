@@ -5,21 +5,23 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style><%@include file="/WEB-INF/styles/adminhome.css"%></style>
         <title>Admin Portal</title>
     </head>
     <body>
         <h1>Administration</h1>
 
-        <a href="managecakes">Manage Cakes</a><br>
-        <a href="managecustomers">Manage Customers</a><br>
-        <a href="managefeatured">Manage Featured Cakes</a><br>
-        <a href="managefeedback">Manage Feedback</a><br>
-        <a href="manageorders">Manage Orders</a><br>
-        <a href="managepickups">Manage Pickup Locations</a>
+        <a class="button" href="managecakes">Manage Cakes</a><br>
+        <a class="button" href="managecustomers?choiceCustomers=true">Manage Customers</a><br>
+        <a class="button" href="managefeatured">Manage Featured Cakes</a><br>
+        <a class="button" href="managefeedback">Manage Feedback</a><br>
+        <a class="button" href="manageorders">Manage Orders</a><br>
+        <a class="button" href="managepickups">Manage Pickup Locations</a>
     </body>
 </html>
