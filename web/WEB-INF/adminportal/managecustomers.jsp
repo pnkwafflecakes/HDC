@@ -32,22 +32,6 @@
                 color: #ba7823;
             }
         </style>
-        <script>
-            function myFunction()
-            {
-                var x = document.getElementById("mySelect").value;
-
-                if (x === "customers")
-                {
-                    document.getElementsByName("choiceCustomers")[0].setParameter("choiceCustomers", "true");
-                } else
-                {
-                    document.getElementsByName("choiceCustomers")[0].setParameter("choiceCustomers", "false");
-                }
-
-                location.reload();
-            }
-        </script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -77,7 +61,6 @@
             <h1>Manage Users</h1>
             <h3>${notification}</h3>
         </div>
-
 
         <div class="row">
             <div class="col-sm-3">
@@ -118,96 +101,56 @@
                     <input type="submit" value="Register" name="register">
                 </form>
             </div>
+
             <div class="col-sm-6">
-                <select id="mySelect" onchange="myFunction()">
-                    <option value="customers">Customers</option>
-                    <option value="staff">Staff</option>
-                </select>
+                <form action="managecustomers" method="POST">
+                    <select name="usertype" onchange="this.form.submit()">
+                        <option value="customers">Customers</option>
+                        <option value="staff">Staff</option>
+                    </select>
+                </form>
 
-                <c:if test="${choiceCustomers == true}">
-                    <h3>Manage Customers</h3>
-                    <div style="height:400px;overflow:auto;">
-                        <table width="80%">
+                <h3>Users</h3>
+                <div style="height:400px;overflow:auto;">
+                    <table width="80%">
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Operation</th>
+                        </tr>
+                        <c:forEach var="customer" items="${customers}">
                             <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone Number</th>
-                                <th>Operation</th>
+                                <td>${customer.name}</td>
+                                <td>${customer.email}</td>
+                                <td>${customer.phoneNo}</td>
+                                <td>
+                                    <form action="managecustomers" method="POST" >
+                                        <input type="submit" value="Delete">
+                                        <input type="hidden" name="action" value="delete">
+                                        <input type="hidden" name="selectedCustomer" value="${customer.userId}">
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="managecustomers" method="POST" >
+                                        <input type="submit" value="Details">
+                                        <input type="hidden" name="action" value="view">
+                                        <input type="hidden" name="selectedCustomer" value="${customer.userId}">
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="managecustomers" method="POST" >
+                                        <input type="submit" value="Edit">
+                                        <input type="hidden" name="action" value="edit">
+                                        <input type="hidden" name="selectedCustomer" value="${customer.userId}">
+                                    </form>
+                                </td>
                             </tr>
-                            <c:forEach var="customer" items="${customers}">
-                                <tr>
-                                    <td>${customer.name}</td>
-                                    <td>${customer.email}</td>
-                                    <td>${customer.phone}</td>
-                                    <td>
-                                        <form action="managecustomers" method="POST" >
-                                            <input type="submit" value="Delete">
-                                            <input type="hidden" name="action" value="delete">
-                                            <input type="hidden" name="selectedCustomer" value="${customer.id}">
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form action="managecustomers" method="POST" >
-                                            <input type="submit" value="Details">
-                                            <input type="hidden" name="action" value="view">
-                                            <input type="hidden" name="selectedCustomer" value="${customer.id}">
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form action="managecustomers" method="POST" >
-                                            <input type="submit" value="Edit">
-                                            <input type="hidden" name="action" value="edit">
-                                            <input type="hidden" name="selectedCustomer" value="${customer.id}">
-                                        </form>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                        </table>
-                    </div>
-                </c:if>
-
-                <c:if test="${choiceCustomers == false}">
-                    <h3>Manage Staff</h3>
-                    <div style="height:400px;overflow:auto;">
-                        <table width="80%">
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone Number</th>
-                                <th>Operation</th>
-                            </tr>
-                            <c:forEach var="staff" items="${staff}">
-                                <tr>
-                                    <td>${staff.name}</td>
-                                    <td>${staff.email}</td>
-                                    <td>${staff.phone}</td>
-                                    <td>
-                                        <form action="managecustomers" method="POST" >
-                                            <input type="submit" value="Delete">
-                                            <input type="hidden" name="action" value="delete">
-                                            <input type="hidden" name="selectedCustomer" value="${staff.id}">
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form action="managecustomers" method="POST" >
-                                            <input type="submit" value="Details">
-                                            <input type="hidden" name="action" value="view">
-                                            <input type="hidden" name="selectedCustomer" value="${staff.id}">
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form action="managecustomers" method="POST" >
-                                            <input type="submit" value="Edit">
-                                            <input type="hidden" name="action" value="edit">
-                                            <input type="hidden" name="selectedCustomer" value="${staff.id}">
-                                        </form>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                        </table>
-                    </div>
-                </c:if>
+                        </c:forEach>
+                    </table>
+                </div>
             </div>
+
             <div class="col-sm-3">
                 <h3>Add Staff</h3>
                 <form action="managecustomers" method="POST">
@@ -273,6 +216,5 @@
                 </form>
             </div>
         </div>
-        <br>
     </body>
 </html>

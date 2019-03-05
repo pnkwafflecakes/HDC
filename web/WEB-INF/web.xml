@@ -6,31 +6,31 @@
     </servlet>
     <servlet>
         <servlet-name>AdminHomeServlet</servlet-name>
-        <servlet-class>adminservlets.AdminHomeServlet</servlet-class>
+        <servlet-class>servlets.admin.AdminHomeServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ManageCakesServlet</servlet-name>
-        <servlet-class>adminservlets.ManageCakesServlet</servlet-class>
+        <servlet-class>servlets.admin.ManageCakesServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ManageCustomersServlet</servlet-name>
-        <servlet-class>adminservlets.ManageCustomersServlet</servlet-class>
+        <servlet-class>servlets.admin.ManageCustomersServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ManageFeaturedServlet</servlet-name>
-        <servlet-class>adminservlets.ManageFeaturedServlet</servlet-class>
+        <servlet-class>servlets.admin.ManageFeaturedServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ManageFeedbackServlet</servlet-name>
-        <servlet-class>adminservlets.ManageFeedbackServlet</servlet-class>
+        <servlet-class>servlets.admin.ManageFeedbackServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ManageOrdersServlet</servlet-name>
-        <servlet-class>adminservlets.ManageOrdersServlet</servlet-class>
+        <servlet-class>servlets.admin.ManageOrdersServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ManagePickupsServlet</servlet-name>
-        <servlet-class>adminservlets.ManagePickupsServlet</servlet-class>
+        <servlet-class>servlets.admin.ManagePickupsServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
@@ -58,11 +58,11 @@
     </servlet>
     <servlet>
         <servlet-name>AddCakeServlet</servlet-name>
-        <servlet-class>adminservlets.AddCakeServlet</servlet-class>
+        <servlet-class>servlets.admin.AddCakeServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditCakeServlet</servlet-name>
-        <servlet-class>adminservlets.EditCakeServlet</servlet-class>
+        <servlet-class>servlets.admin.EditCakeServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ViewOrders</servlet-name>
