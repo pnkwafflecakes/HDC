@@ -96,39 +96,33 @@ public class RegisterServlet extends HttpServlet
         else
         {
             try {
-                //get highest user_id from db
+                //Get highest user_id from db
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/capstonedb","root", "password");
-                String prepStatement = "Select MAX(account_no) from account;";
+                String prepStatement = "Select MAX(user_id) from user;";
                 PreparedStatement ps = connection.prepareStatement(prepStatement);
                 ResultSet rs = ps.executeQuery();
-                //Create Insert statements
-                String prepInsertAccount = "Insert Into account(account_no,account_type,username,password,account_status) Values(?,?,?,?,1);";
-                String prepInsertUser = "Insert Into User(user_id,account_no,name,address,postal_code,email,phone_no) Values(?,?,?,?,?,?,?);";
+                
+                //Create Insert statement
+                String prepInsertUser = "Insert Into User(user_id,name,address,postal_code,email,phone_no,account_type,username,password,account_status) Values(?,?,?,?,?,?,?,?,?,?);";
 
                 //Get highest account number.
                 rs.next();
-                int account_no = rs.getInt(1);
-                account_no++;
+                int user_id = rs.getInt(1);
+                user_id++;
                 
                 //Add user input into prepared statement.
-                ps = connection.prepareStatement(prepInsertAccount);
-                ps.setInt(1, account_no);
-                ps.setInt(2, 0);
-                ps.setString(3, username);
-                ps.setString(4, password);
-                //Insert into account table.
-                ps.executeUpdate();
                 ps = connection.prepareStatement(prepInsertUser);
-                
-                //Add user input into the prepared statements.
-                ps.setInt(1, account_no);
-                ps.setInt(2, account_no);
-                ps.setString(3,name);
-                ps.setString(4,address);
-                ps.setString(5, postalCode);
-                ps.setString(6, email);
-                ps.setString(7, phone);
+                ps.setInt(1, user_id);
+                ps.setString(2, name);
+                ps.setString(3, address);
+                ps.setString(4, postalCode);
+                ps.setString(5, email);
+                ps.setString(6, phone);
+                ps.setInt(7, 1);
+                ps.setString(8, username);
+                ps.setString(9, password);
+                ps.setInt(10, 1);
                 //Insert user into user table.
                 ps.executeUpdate();
                 
