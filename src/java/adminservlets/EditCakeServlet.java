@@ -40,6 +40,7 @@ public class EditCakeServlet extends HttpServlet
     {
         String inputType = request.getParameter("input");
         HttpSession session = request.getSession(true);
+        request.setAttribute("input", inputType);
         CakeCategoryService ccs = new CakeCategoryService();
         List<Cakecategory> categoryList = ccs.getAll();
         

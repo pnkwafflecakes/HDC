@@ -84,10 +84,12 @@ public class LoginServlet extends HttpServlet
             
             if (username.equals(userIn) && password.equals(passIn))
             {   
-                System.out.println("Accepted");
+                System.out.println("Accepted user: " + userIn);
                 User user = userList.get(i);
+                System.out.println("Assoc user: " + user.getUsername() + " , status: " + user.getAccountStatus());
                 if (user.getAccountStatus()== true)
                 {
+                    System.out.println("User status true");
                     valid = true;
                     String redir = "login";
                     user.getAccountType();

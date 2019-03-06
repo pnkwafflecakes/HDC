@@ -37,7 +37,7 @@
                     <td>Name: <input type="text" name="name" value="${cake.name}"></td>
                     <td>Category: 
                         <select name="categorySelect">
-                            <c:if test="${input==edit}">
+                            <c:if test="${input == 'edit'}">
                                 <option value="${selectedCategory.name}" selected="selected">${selectedCategory.name}</option>
                                 <option value="asd">asd</option>
                             </c:if>
@@ -56,7 +56,7 @@
             </table>
                 <c:if test="${input == 'edit'}">
                 <input type="submit" value="Edit">
-                <input type="hiiden" name="selectedCakeId" value=${cake.cakeId}>
+                <input type="hidden" name="selectedCakeId" value=${cake.cakeId}>
                 <input type="hidden" name="action" value="edit">
                 </c:if>
                 <c:if test="${input == 'add'}">
