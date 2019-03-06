@@ -5,6 +5,7 @@
  */
 package servlets;
 
+import Entities.Delivery;
 import Entities.Orders;
 import Entities.User;
 import java.io.IOException;
@@ -61,9 +62,10 @@ public class ViewOrders extends HttpServlet {
             
             
             User user = (User) session.getAttribute("userObj");
+            user.setAddress("211 Sample Road");
             //Use session variable to query database for users orders
             //Querying for the cake items as well is most likely necessary.
-            int id = user.getUserId();
+            int id = test.getUserId();
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/capstonedb","root", "password");
             String preparedQuery = "Select * from Orders Where user_id = ?";
@@ -91,14 +93,22 @@ public class ViewOrders extends HttpServlet {
                 order.setTotalPrice(rs.getDouble("total_price"));
                 
                 //Grab delivery object from database
-                
-                //order.setDeliveryNo(rs.getInt("delivery_no"));
+                Class.forName("com.mysql.jdbc.Driver");
+                String prepStatement = "Select * from delivery where address = ?;";
+                PreparedStatement ps2 = connection.prepareStatement(prepStatement);
+                ps2.setString(1, user.getAddress());
+                ResultSet rs2 = ps2.executeQuery();
+                Delivery del = new Delivery();
+                del.setDeliveryNo(rs2.getInt("delivery_no"));
+                del.setMethod(rs2.getString("method"));
+                del.setAddress(rs2.getString("address"));
+                del.setPhoneNo(rs2.getString("phone_no"));
+                del.setNotes(rs2.getString("notes"));
+                order.setDeliveryNo(del);
                 orderList.add(order);
                 i++;
-            }
-            
-            
-            
+            }          
+            //Push orderList to page
             getServletContext().getRequestDispatcher("/WEB-INF/orders.jsp").forward(request, response);
             //Display orders in a decent way
             
