@@ -22,27 +22,32 @@ import javax.servlet.http.HttpSession;
  *
  * @author 744916
  */
-public class MainMenuServlet extends HttpServlet
-{
+public class MainMenuServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         CakeService cs = new CakeService();
         List<Cake> cakes = cs.getAll();
-        Cake[] cakeArray = new Cake[cakes.size()];
-        
-        for (int i = 0; i < cakes.size(); i++) {
-            cakeArray[i] = cakes.get(i);
+        ArrayList<Cake> cakearray = new ArrayList<>();
+
+        Cake tmp = null;
+        for (int i = cakes.size() - 1; i >= 0 && cakearray.size() <= 6; i--) {
+            tmp = cakes.get(i);
+            if (tmp.getFeatured()) {
+                cakearray.add(tmp);
+            }
         }
-        
-        
-        request.setAttribute("cakes", cakeArray);
+
+        request.setAttribute("cake1", cakearray.get(0));
+        request.setAttribute("cake2", cakearray.get(1));
+        request.setAttribute("cake3", cakearray.get(2));
+        request.setAttribute("cake4", cakearray.get(3));
+        request.setAttribute("cake5", cakearray.get(4));
+        request.setAttribute("cake6", cakearray.get(5));
+
         getServletContext().getRequestDispatcher("/WEB-INF/mainmenu/mainmenu.jsp").forward(request, response);
-        
-        
-        
+
     }
 
     /**
@@ -55,10 +60,8 @@ public class MainMenuServlet extends HttpServlet
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
-        
-    }
+            throws ServletException, IOException {
 
+    }
 
 }
