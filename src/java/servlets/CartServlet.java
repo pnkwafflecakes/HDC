@@ -42,15 +42,33 @@ public class CartServlet extends HttpServlet
         
         if (cakes!=null && cakes.size()!=0) {
             System.out.println("Cake was valid: " + cakes + " size: " + cakes.size());
-            Cake[] cakeArray = new Cake[cakes.size()];
             double totalPrice = 0;
-            int[] counter = new int[cakes.size()];
+            int[] counter = new int[cakes.size()+1];
+            
             //todo: Make add quantity
+            
+            //For da prices
             for (int i = 0; i < cakes.size(); i++) {
-                cakeArray[i] = cakes.get(i);
-                totalPrice = totalPrice + cakeArray[i].getPrice();
+                totalPrice = totalPrice + cakes.get(i).getPrice();
             }
             emptyCart = false;
+            
+            
+            for (int i=0; i < cakes.size(); i++) {
+                System.out.println("Set: " + i);
+                Cake cake = cakes.get(i);
+                System.out.println("Cake at loc: " + cake.getName() + ", id: " + cake.getCakeId());
+                System.out.println("Counter value: "+counter[cake.getCakeId()]);
+                if (counter[cake.getCakeId()] == 0) counter[cake.getCakeId()] = 1;
+                else {
+                    System.out.println("Removing duplicate cake: " + cake.getName());
+                    counter[cake.getCakeId()]++;
+                    cakes.remove(i);
+                    i--;
+                }
+                
+            }
+            Cake[] cakeArray = cakes.toArray(new Cake[cakes.size()]);
             request.setAttribute("cakes", cakeArray);
             request.setAttribute("totalPrice", totalPrice);
         }

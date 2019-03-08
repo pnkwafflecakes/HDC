@@ -18,11 +18,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.*;
+import java.nio.file.*;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author 744916
  */
+@MultipartConfig
 public class EditCakeServlet extends HttpServlet
 {
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -71,6 +76,8 @@ public class EditCakeServlet extends HttpServlet
         Cake cake = new Cake();
         boolean featured = false;
         boolean special = false;
+        
+        boolean valid = processFile(request, response);
             
         int cakeId = Integer.valueOf(request.getParameter("cakeId"));
         String description = request.getParameter("description");
@@ -104,5 +111,14 @@ public class EditCakeServlet extends HttpServlet
         } catch(Exception e) {
             
         }
+    }
+    
+    private boolean processFile(HttpServletRequest request, HttpServletResponse response) 
+        throws ServletException, IOException
+    {
+        Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
+        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
+        System.out.println("fileName: " + fileName);
+        return false;
     }
 }

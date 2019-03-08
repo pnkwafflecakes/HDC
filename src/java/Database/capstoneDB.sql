@@ -106,6 +106,7 @@ Create table `CakeOrder` -- To add constraints
 (
     `order_no` int(4) NOT NULL,
     `cake_id` int(4) NOT NULL,
+    `quantity` int(2),
     -- Primary Key
     PRIMARY KEY (`order_no`, `cake_id`),
     -- Forign Key

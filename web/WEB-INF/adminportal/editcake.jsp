@@ -26,11 +26,11 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="editcake" method="post">
+        <form action="editcake" method="post"  enctype="multipart/form-data">
             <table>
                 <tr>
                     <td><img src="<c:url value='${cake.image}'/>" alt="Cake Picture" width="200" height="200"/></td>
-                    <td>Image: <input type="file" name="picture" accept="image/*"></td>
+                    <td>Image: <input type="file" name="file" accept="image/*"></td>
                 </tr>
                 <tr>
                     <td>Cake Id: <input type="number" name="cakeId" value="${cake.cakeId}"></td>
