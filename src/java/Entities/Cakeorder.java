@@ -31,12 +31,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Cakeorder.findByQuantity", query = "SELECT c FROM Cakeorder c WHERE c.quantity = :quantity")})
 public class Cakeorder implements Serializable {
 
+    @Column(name = "quantity")
+    private Integer quantity;
+
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected CakeorderPK cakeorderPK;
-    @Basic(optional = false)
-    @Column(name = "quantity")
-    private int quantity;
     @JoinColumn(name = "cake_id", referencedColumnName = "cake_id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Cake cake;
@@ -68,13 +68,6 @@ public class Cakeorder implements Serializable {
         this.cakeorderPK = cakeorderPK;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 
     public Cake getCake() {
         return cake;
@@ -115,6 +108,14 @@ public class Cakeorder implements Serializable {
     @Override
     public String toString() {
         return "Entities.Cakeorder[ cakeorderPK=" + cakeorderPK + " ]";
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
     
 }
