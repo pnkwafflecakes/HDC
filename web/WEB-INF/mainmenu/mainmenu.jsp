@@ -29,6 +29,7 @@
 
     </head>
     <body>
+
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="#"> H D C </a>
@@ -47,7 +48,7 @@
                             <a class="nav-link" href="#">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="cart">Cart (${fn:length(cakes)})</a>
+                            <a class="nav-link" href="cart">Cart <span class="badge">${fn:length(cakes)}</span></a>
                         </li>
 
 
@@ -66,23 +67,13 @@
                                     <a class="dropdown-item" href="#">My Profile</a>
                                     <a class="dropdown-item" href="#">My Orders</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
+                                    <a class="dropdown-item" href="login?act=logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
                                 </div>
                             </li>
                         </c:if>
                         <c:if test="${userObj == null}">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="glyphicon glyphicon-user">
-                                    </span> Guest
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item">Please login or register</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="login"><span class="glyphicon glyphicon-log-out"></span> Login Here</a>
-                                    <a class="dropdown-item" href="register"><span class="glyphicon glyphicon-log-out"></span> Register Here</a>
-
-                                </div>
+                            <li class="nav-item">
+                                <a class="nav-link" href="login"><span class="glyphicon glyphicon-user"></span>  Login/Register </a>
                             </li>
                         </c:if>
 
@@ -256,7 +247,6 @@
                 </div>
             </div>
         </footer>
-
 
     </body>
 </html> 
