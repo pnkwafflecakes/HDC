@@ -21,5 +21,12 @@
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/adminservlets/ManageCakesServlet.java</file>
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/adminservlets/EditCakeServlet.java</file>
         </group>
+        <group name="CRPG352">
+            <file>file:/C:/Users/703842/Documents/NetBeansProjects/HDC/web/WEB-INF/mainmenu/mainmenu.jsp</file>
+            <file>file:/C:/Users/703842/Documents/NetBeansProjects/HDC/src/java/servlets/CakeInfoServlet.java</file>
+            <file>file:/C:/Users/703842/Documents/NetBeansProjects/HDC/src/java/servlets/LoginServlet.java</file>
+            <file>file:/C:/Users/703842/Documents/NetBeansProjects/HDC/web/WEB-INF/frame.jsp</file>
+            <file>file:/C:/Users/703842/Documents/NetBeansProjects/HDC/src/java/Database/capstoneDB.sql</file>
+        </group>
     </open-files>
 </project-private>
