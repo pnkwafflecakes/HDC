@@ -5,6 +5,7 @@
  */
 package dataaccess;
 
+import BusinessClasses.exceptions.IllegalOrphanException;
 import BusinessClasses.exceptions.NonexistentEntityException;
 import BusinessClasses.exceptions.PreexistingEntityException;
 import Entities.Cake;
@@ -15,9 +16,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import Entities.Cakecategory;
 import Entities.Orders;
-import dataaccess.DBUtil;
 import java.util.ArrayList;
 import java.util.Collection;
+import Entities.Cakeorder;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -32,6 +33,9 @@ public class CakeJpaController implements Serializable {
     public void create(Cake cake) throws PreexistingEntityException, Exception {
         if (cake.getOrdersCollection() == null) {
             cake.setOrdersCollection(new ArrayList<Orders>());
+        }
+        if (cake.getCakeorderCollection() == null) {
+            cake.setCakeorderCollection(new ArrayList<Cakeorder>());
         }
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
@@ -48,6 +52,12 @@ public class CakeJpaController implements Serializable {
                 attachedOrdersCollection.add(ordersCollectionOrdersToAttach);
             }
             cake.setOrdersCollection(attachedOrdersCollection);
+            Collection<Cakeorder> attachedCakeorderCollection = new ArrayList<Cakeorder>();
+            for (Cakeorder cakeorderCollectionCakeorderToAttach : cake.getCakeorderCollection()) {
+                cakeorderCollectionCakeorderToAttach = em.getReference(cakeorderCollectionCakeorderToAttach.getClass(), cakeorderCollectionCakeorderToAttach.getCakeorderPK());
+                attachedCakeorderCollection.add(cakeorderCollectionCakeorderToAttach);
+            }
+            cake.setCakeorderCollection(attachedCakeorderCollection);
             em.persist(cake);
             if (categoryId != null) {
                 categoryId.getCakeCollection().add(cake);
@@ -56,6 +66,15 @@ public class CakeJpaController implements Serializable {
             for (Orders ordersCollectionOrders : cake.getOrdersCollection()) {
                 ordersCollectionOrders.getCakeCollection().add(cake);
                 ordersCollectionOrders = em.merge(ordersCollectionOrders);
+            }
+            for (Cakeorder cakeorderCollectionCakeorder : cake.getCakeorderCollection()) {
+                Cake oldCakeOfCakeorderCollectionCakeorder = cakeorderCollectionCakeorder.getCake();
+                cakeorderCollectionCakeorder.setCake(cake);
+                cakeorderCollectionCakeorder = em.merge(cakeorderCollectionCakeorder);
+                if (oldCakeOfCakeorderCollectionCakeorder != null) {
+                    oldCakeOfCakeorderCollectionCakeorder.getCakeorderCollection().remove(cakeorderCollectionCakeorder);
+                    oldCakeOfCakeorderCollectionCakeorder = em.merge(oldCakeOfCakeorderCollectionCakeorder);
+                }
             }
             trans.commit();
         } catch (Exception ex) {
@@ -70,7 +89,7 @@ public class CakeJpaController implements Serializable {
         }
     }
 
-    public void edit(Cake cake) throws NonexistentEntityException, Exception {
+    public void edit(Cake cake) throws IllegalOrphanException, NonexistentEntityException, Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             EntityTransaction trans = em.getTransaction();
@@ -80,6 +99,20 @@ public class CakeJpaController implements Serializable {
             Cakecategory categoryIdNew = cake.getCategoryId();
             Collection<Orders> ordersCollectionOld = persistentCake.getOrdersCollection();
             Collection<Orders> ordersCollectionNew = cake.getOrdersCollection();
+            Collection<Cakeorder> cakeorderCollectionOld = persistentCake.getCakeorderCollection();
+            Collection<Cakeorder> cakeorderCollectionNew = cake.getCakeorderCollection();
+            List<String> illegalOrphanMessages = null;
+            for (Cakeorder cakeorderCollectionOldCakeorder : cakeorderCollectionOld) {
+                if (!cakeorderCollectionNew.contains(cakeorderCollectionOldCakeorder)) {
+                    if (illegalOrphanMessages == null) {
+                        illegalOrphanMessages = new ArrayList<String>();
+                    }
+                    illegalOrphanMessages.add("You must retain Cakeorder " + cakeorderCollectionOldCakeorder + " since its cake field is not nullable.");
+                }
+            }
+            if (illegalOrphanMessages != null) {
+                throw new IllegalOrphanException(illegalOrphanMessages);
+            }
             if (categoryIdNew != null) {
                 categoryIdNew = em.getReference(categoryIdNew.getClass(), categoryIdNew.getCategoryId());
                 cake.setCategoryId(categoryIdNew);
@@ -91,6 +124,13 @@ public class CakeJpaController implements Serializable {
             }
             ordersCollectionNew = attachedOrdersCollectionNew;
             cake.setOrdersCollection(ordersCollectionNew);
+            Collection<Cakeorder> attachedCakeorderCollectionNew = new ArrayList<Cakeorder>();
+            for (Cakeorder cakeorderCollectionNewCakeorderToAttach : cakeorderCollectionNew) {
+                cakeorderCollectionNewCakeorderToAttach = em.getReference(cakeorderCollectionNewCakeorderToAttach.getClass(), cakeorderCollectionNewCakeorderToAttach.getCakeorderPK());
+                attachedCakeorderCollectionNew.add(cakeorderCollectionNewCakeorderToAttach);
+            }
+            cakeorderCollectionNew = attachedCakeorderCollectionNew;
+            cake.setCakeorderCollection(cakeorderCollectionNew);
             cake = em.merge(cake);
             if (categoryIdOld != null && !categoryIdOld.equals(categoryIdNew)) {
                 categoryIdOld.getCakeCollection().remove(cake);
@@ -112,6 +152,17 @@ public class CakeJpaController implements Serializable {
                     ordersCollectionNewOrders = em.merge(ordersCollectionNewOrders);
                 }
             }
+            for (Cakeorder cakeorderCollectionNewCakeorder : cakeorderCollectionNew) {
+                if (!cakeorderCollectionOld.contains(cakeorderCollectionNewCakeorder)) {
+                    Cake oldCakeOfCakeorderCollectionNewCakeorder = cakeorderCollectionNewCakeorder.getCake();
+                    cakeorderCollectionNewCakeorder.setCake(cake);
+                    cakeorderCollectionNewCakeorder = em.merge(cakeorderCollectionNewCakeorder);
+                    if (oldCakeOfCakeorderCollectionNewCakeorder != null && !oldCakeOfCakeorderCollectionNewCakeorder.equals(cake)) {
+                        oldCakeOfCakeorderCollectionNewCakeorder.getCakeorderCollection().remove(cakeorderCollectionNewCakeorder);
+                        oldCakeOfCakeorderCollectionNewCakeorder = em.merge(oldCakeOfCakeorderCollectionNewCakeorder);
+                    }
+                }
+            }
             trans.commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -129,7 +180,7 @@ public class CakeJpaController implements Serializable {
         }
     }
 
-    public void destroy(Integer id) throws NonexistentEntityException {
+    public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             EntityTransaction trans = em.getTransaction();
@@ -140,6 +191,17 @@ public class CakeJpaController implements Serializable {
                 cake.getCakeId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The cake with id " + id + " no longer exists.", enfe);
+            }
+            List<String> illegalOrphanMessages = null;
+            Collection<Cakeorder> cakeorderCollectionOrphanCheck = cake.getCakeorderCollection();
+            for (Cakeorder cakeorderCollectionOrphanCheckCakeorder : cakeorderCollectionOrphanCheck) {
+                if (illegalOrphanMessages == null) {
+                    illegalOrphanMessages = new ArrayList<String>();
+                }
+                illegalOrphanMessages.add("This Cake (" + cake + ") cannot be destroyed since the Cakeorder " + cakeorderCollectionOrphanCheckCakeorder + " in its cakeorderCollection field has a non-nullable cake field.");
+            }
+            if (illegalOrphanMessages != null) {
+                throw new IllegalOrphanException(illegalOrphanMessages);
             }
             Cakecategory categoryId = cake.getCategoryId();
             if (categoryId != null) {

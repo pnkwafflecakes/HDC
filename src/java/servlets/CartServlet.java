@@ -6,9 +6,11 @@
 package servlets;
 
 import Entities.Cake;
+import businesslogic.CakeService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -43,7 +45,9 @@ public class CartServlet extends HttpServlet
         if (cakes!=null && cakes.size()!=0) {
             System.out.println("Cake was valid: " + cakes + " size: " + cakes.size());
             double totalPrice = 0;
-            int[] counter = new int[cakes.size()+1];
+            CakeService cs = new CakeService();
+            List<Cake> allCakes = cs.getAll();
+            int[] counter = new int[allCakes.size()+1];
             
             //todo: Make add quantity
             
@@ -69,6 +73,7 @@ public class CartServlet extends HttpServlet
                 
             }
             Cake[] cakeArray = cakes.toArray(new Cake[cakes.size()]);
+            request.setAttribute("counter", counter);
             request.setAttribute("cakes", cakeArray);
             request.setAttribute("totalPrice", totalPrice);
         }

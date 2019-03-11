@@ -47,9 +47,10 @@
                     </ul>
 
                     <p><strong>Description:</strong> ${currCake.description}</p>
-
+                    
                     <div class="button">
                         <form action="cakeinfo" method="POST">
+                            <p><input type="number" name="quantity" value="1"></td></p>
                             <input type="hidden" name="cakeId" value="${currCake.cakeId}">
                             <input type="submit" value="Add To Cart">
                         </form>
