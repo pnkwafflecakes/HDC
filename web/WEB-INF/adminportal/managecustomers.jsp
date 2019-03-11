@@ -11,10 +11,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <style>
-            body
-            {
-                padding: 10px;
-            }
             table
             {
                 border-collapse: collapse;
@@ -104,8 +100,10 @@
 
             <div class="col-sm-6">
                 <form action="managecustomers" method="POST">
-                    <select name="usertype" onchange="this.form.submit()">
-                        <option value="customers">Customers</option>
+                    <select name="action" onchange="this.form.submit()">
+                        <option value="default">--choose an option--</option>
+                        <option value="allusers">All Users</option>
+                        <option value="client">Customers</option>
                         <option value="staff">Staff</option>
                     </select>
                 </form>
