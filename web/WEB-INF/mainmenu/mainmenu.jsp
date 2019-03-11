@@ -195,8 +195,22 @@
                     <div class="card">
                         <img class="card-img-top" alt="Card image cap" src="<c:url value='${cake1.image}'/>" />
                         <div class="card-body">
-                            <h5 class="card-title">${cake1.name}</h5>
-                            <p class="card-text">${cake1.description}</p>
+                            <h5 class="card-title">
+                                    <c:if test="${(language == null)||(language == 'en') }">
+                                        ${cake1.name}
+                                    </c:if>
+                                    <c:if test="${language == 'ch'}">
+                                        ${cake1.namecn}
+                                    </c:if>
+                            </h5>
+                            <p class="card-text">
+                                    <c:if test="${(language == null)||(language == 'en') }">
+                                        ${cake1.description}
+                                    </c:if>
+                                    <c:if test="${language == 'ch'}">
+                                        ${cake1.descriptioncn}
+                                    </c:if>
+                            </p>
                             <a href="cakeinfo?cakeid=${cake1.cakeId}" class="btn btn-primary">Add to Cart</a>
                         </div>
                     </div>
@@ -205,8 +219,22 @@
                     <div class="card">
                         <img class="card-img-top" alt="Card image cap" src="<c:url value='${cake2.image}'/>" />
                         <div class="card-body">
-                            <h5 class="card-title">${cake2.name}</h5>
-                            <p class="card-text">${cake2.description}</p>
+                            <h5 class="card-title">
+                                    <c:if test="${(language == null)||(language == 'en') }">
+                                        ${cake2.name}
+                                    </c:if>
+                                    <c:if test="${language == 'ch'}">
+                                        ${cake2.namecn}
+                                    </c:if>
+                            </h5>
+                            <p class="card-text">                                
+                                    <c:if test="${(language == null)||(language == 'en') }">
+                                        ${cake2.description}
+                                    </c:if>
+                                    <c:if test="${language == 'ch'}">
+                                        ${cake2.descriptioncn}
+                                    </c:if>
+                            </p>
                             <a href="cakeinfo?cakeid=${cake2.cakeId}" class="btn btn-primary">Add to Cart</a>
                         </div>
                     </div>
@@ -215,8 +243,22 @@
                     <div class="card">
                         <img class="card-img-top" alt="Card image cap" src="<c:url value='${cake3.image}'/>" />
                         <div class="card-body">
-                            <h5 class="card-title">${cake3.name}</h5>
-                            <p class="card-text">${cake3.description}</p>
+                            <h5 class="card-title">
+                                    <c:if test="${(language == null)||(language == 'en') }">
+                                        ${cake3.name}
+                                    </c:if>
+                                    <c:if test="${language == 'ch'}">
+                                        ${cake3.namecn}
+                                    </c:if>
+                            </h5>
+                            <p class="card-text">
+                                    <c:if test="${(language == null)||(language == 'en') }">
+                                        ${cake3.description}
+                                    </c:if>
+                                    <c:if test="${language == 'ch'}">
+                                        ${cake3.descriptioncn}
+                                    </c:if>
+                            </p>
                             <a href="cakeinfo?cakeid=${cake3.cakeId}" class="btn btn-primary">Add to Cart</a>
                         </div>
                     </div>
@@ -227,8 +269,22 @@
                     <div class="card">
                         <img class="card-img-top" alt="Card image cap" src="<c:url value='${cake4.image}'/>" />
                         <div class="card-body">
-                            <h5 class="card-title">${cake4.name}</h5>
-                            <p class="card-text">${cake4.description}</p>
+                            <h5 class="card-title">$
+                                    <c:if test="${(language == null)||(language == 'en') }">
+                                        ${cake4.name}
+                                    </c:if>
+                                    <c:if test="${language == 'ch'}">
+                                        ${cake4.namecn}
+                                    </c:if>
+                            </h5>
+                            <p class="card-text">
+                                    <c:if test="${(language == null)||(language == 'en') }">
+                                        ${cake4.description}
+                                    </c:if>
+                                    <c:if test="${language == 'ch'}">
+                                        ${cake4.descriptioncn}
+                                    </c:if>
+                            </p>
                             <a href="cakeinfo?cakeid=${cake4.cakeId}" class="btn btn-primary">Add to Cart</a>
                         </div>
                     </div>
@@ -237,8 +293,22 @@
                     <div class="card">
                         <img class="card-img-top" alt="Card image cap" src="<c:url value='${cake5.image}'/>" />
                         <div class="card-body">
-                            <h5 class="card-title">${cake5.name}</h5>
-                            <p class="card-text">${cake5.description}</p>
+                            <h5 class="card-title">
+                                    <c:if test="${(language == null)||(language == 'en') }">
+                                        ${cake5.name}
+                                    </c:if>
+                                    <c:if test="${language == 'ch'}">
+                                        ${cake5.namecn}
+                                    </c:if>
+                            </h5>
+                            <p class="card-text">
+                                    <c:if test="${(language == null)||(language == 'en') }">
+                                        ${cake5.description}
+                                    </c:if>
+                                    <c:if test="${language == 'ch'}">
+                                        ${cake5.descriptioncn}
+                                    </c:if>
+                            </p>
                             <a href="cakeinfo?cakeid=${cake5.cakeId}" class="btn btn-primary">Add to Cart</a>
                         </div>
                     </div>
@@ -247,8 +317,22 @@
                     <div class="card">
                         <img class="card-img-top" alt="Card image cap" src="<c:url value='${cake6.image}'/>" />
                         <div class="card-body">
-                            <h5 class="card-title">${cake6.name}</h5>
-                            <p class="card-text">${cake6.description}</p>
+                            <h5 class="card-title">
+                                 <c:if test="${(language == null)||(language == 'en') }">
+                                        ${cake6.name}
+                                    </c:if>
+                                    <c:if test="${language == 'ch'}">
+                                        ${cake6.namecn}
+                                    </c:if>
+                            </h5>
+                            <p class="card-text">
+                                    <c:if test="${(language == null)||(language == 'en') }">
+                                        ${cake6.description}
+                                    </c:if>
+                                    <c:if test="${language == 'ch'}">
+                                        ${cake6.descriptioncn}
+                                    </c:if>
+                            </p>
                             <a href="cakeinfo?cakeid=${cake6.cakeId}" class="btn btn-primary">Add to Cart</a>
                         </div>
                     </div>
