@@ -74,8 +74,11 @@ public class CakeInfoServlet extends HttpServlet
 
         CakeService cs = new CakeService();
         Cake currCake = cs.get(cakeId);
-
-        cakes.add(currCake);
+        int quantity = Integer.valueOf(request.getParameter("quantity"));
+        for (int i = 0; i <= quantity; i++) {
+            System.out.println("adding at instance: "+i);
+            cakes.add(currCake);
+        }
 
         session.setAttribute("cakes", cakes);
         response.sendRedirect("cart");

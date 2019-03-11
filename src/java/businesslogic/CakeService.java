@@ -1,5 +1,6 @@
 package businesslogic;
 
+import BusinessClasses.exceptions.IllegalOrphanException;
 import dataaccess.CakeJpaController;
 import Entities.Cake;
 import dataaccess.exceptions.NonexistentEntityException;
@@ -29,7 +30,7 @@ public class CakeService
         cakeController.edit(cake);
     }
 
-    public void delete(int cakeId) throws NonexistentEntityException, BusinessClasses.exceptions.NonexistentEntityException
+    public void delete(int cakeId) throws NonexistentEntityException, IllegalOrphanException, BusinessClasses.exceptions.NonexistentEntityException
     {
         cakeController.destroy(cakeId);
     }

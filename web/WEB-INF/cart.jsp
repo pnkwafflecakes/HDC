@@ -49,6 +49,8 @@
                     <th>Name</th>
                     <th>Description</th>
                     <th>Price</th>
+                    <th>Quantity</th>
+                    
                 </tr>
                 <c:forEach var="cake" items="${cakes}">
                     <tr>
@@ -56,6 +58,7 @@
                         <td width="100">${cake.name}</td>
                         <td width="350">${cake.description}</td>
                         <td width="100">${cake.price}</td>
+                        <td><c:out value="${counter[cake.cakeId]}"/></td>
                         <td>
                             <form action="cart" method="post" >
                                 <input type="submit" value="Delete">
