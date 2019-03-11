@@ -38,6 +38,7 @@
         <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
             <word>admin</word>
             <word>jsp</word>
+            <word>Num</word>
         </spellchecker-wordlist>
     </configuration>
 </project>

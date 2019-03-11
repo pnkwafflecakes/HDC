@@ -3,6 +3,7 @@ package servlets.admin;
 import Entities.User;
 import businesslogic.UserService;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,13 +26,29 @@ public class ManageCustomersServlet extends HttpServlet
             throws ServletException, IOException
     {
         HttpSession session = request.getSession(true);
-
         UserService us = new UserService();
-        List users = us.getAll();
 
-        session.setAttribute("customers", users);
+        if (request.getParameter("action") == null)
+        {
+            List users = us.getAll();
 
-        getServletContext().getRequestDispatcher("/WEB-INF/adminportal/managecustomers.jsp").forward(request, response);
+            session.setAttribute("customers", users);
+            getServletContext().getRequestDispatcher("/WEB-INF/adminportal/managecustomers.jsp").forward(request, response);
+        }
+        else if (request.getParameter("action").equals("save"))
+        {
+            User toEdit = (User) session.getAttribute("user");
+
+            try
+            {
+                us.edit(toEdit);
+            }
+            catch (Exception ex)
+            {
+                request.setAttribute("notification", "User not edited.");
+                getServletContext().getRequestDispatcher("/WEB-INF/adminportal/managecustomers.jsp").forward(request, response);
+            }
+        }
     }
 
     /**
@@ -47,22 +64,85 @@ public class ManageCustomersServlet extends HttpServlet
             throws ServletException, IOException
     {
         HttpSession session = request.getSession(true);
-        String action = request.getParameter("usertype");
-        List users = (List) session.getAttribute("customers");
+        String action = request.getParameter("action");
+        String selectedCustomer = request.getParameter("selectedCustomer");
+        int customerId;
 
-        List newList = null;
+        UserService us = new UserService();
+        List users = us.getAll();
+        ArrayList<User> newList = new ArrayList();
 
-        if (action.equals("customers"))
+        switch (action)
         {
-            for (int i = 0; i < users.size(); i++)
-            {
-                User user = (User) users.get(i);
-
-                if (user.getAccountType().equals(1))
+            case "client":
+                for (int i = 0; i < users.size(); i++)
                 {
+                    User user = (User) users.get(i);
+
+                    if (user.getAccountType().getAccountType() == 1)
+                    {
+                        newList.add(user);
+                    }
+                }
+                break;
+
+            case "staff":
+                for (int i = 0; i < users.size(); i++)
+                {
+                    User user = (User) users.get(i);
+
+                    if (user.getAccountType().getAccountType() == 2)
+                    {
+                        newList.add(user);
+                    }
+                }
+                break;
+
+            case "delete":
+                try
+                {
+                    customerId = Integer.parseInt(selectedCustomer);
+
+                    us.destroy(customerId);
+                    users = us.getAll();
+
+                    request.setAttribute("notification", "User deleted.");
+                    session.setAttribute("customers", users);
+                    getServletContext().getRequestDispatcher("/WEB-INF/adminportal/managecustomers.jsp").forward(request, response);
+                }
+                catch (Exception ex)
+                {
+                    request.setAttribute("notification", "User not deleted.");
+                    getServletContext().getRequestDispatcher("/WEB-INF/adminportal/managecustomers.jsp").forward(request, response);
+                }
+                break;
+
+            case "view":
+                customerId = Integer.parseInt(selectedCustomer);
+                User viewUser = us.get(customerId);
+
+                session.setAttribute("user", viewUser);
+                getServletContext().getRequestDispatcher("/WEB-INF/adminportal/viewuser.jsp").forward(request, response);
+                break;
+
+            case "edit":
+                customerId = Integer.parseInt(selectedCustomer);
+                User editUser = us.get(customerId);
+
+                session.setAttribute("user", editUser);
+                getServletContext().getRequestDispatcher("/WEB-INF/adminportal/edituser.jsp").forward(request, response);
+                break;
+
+            default:
+                for (int i = 0; i < users.size(); i++)
+                {
+                    User user = (User) users.get(i);
                     newList.add(user);
                 }
-            }
+                break;
         }
+
+        session.setAttribute("customers", newList);
+        getServletContext().getRequestDispatcher("/WEB-INF/adminportal/managecustomers.jsp").forward(request, response);
     }
 }
