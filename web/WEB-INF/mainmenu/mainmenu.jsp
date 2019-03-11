@@ -39,16 +39,44 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="mainmenu">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="mainmenu">
+                                <c:if test="${(language == null)||(language == 'en') }">
+                                    Home
+                                </c:if>
+                                <c:if test="${language == 'ch'}">
+                                    主页
+                                </c:if>
+                            <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Browse</a>
+                            <a class="nav-link" href="#">
+                             <c:if test="${(language == null)||(language == 'en') }">
+                                    Browse
+                                </c:if>
+                                <c:if test="${language == 'ch'}">
+                                    浏览
+                                </c:if>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                            <a class="nav-link" href="#">
+                                <c:if test="${(language == null)||(language == 'en') }">
+                                    Contact
+                                </c:if>
+                                <c:if test="${language == 'ch'}">
+                                    联系我们
+                                </c:if>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="cart">Cart <span class="badge">${fn:length(cakes)}</span></a>
+                            <a class="nav-link" href="cart">
+                                <c:if test="${(language == null)||(language == 'en') }">
+                                    Cart
+                                </c:if>
+                                <c:if test="${language == 'ch'}">
+                                    购物车
+                                </c:if>
+                            <span class="badge">${fn:length(cakes)}</span></a>
                         </li>
 
 
@@ -73,12 +101,33 @@
                         </c:if>
                         <c:if test="${userObj == null}">
                             <li class="nav-item">
-                                <a class="nav-link" href="login"><span class="glyphicon glyphicon-user"></span>  Login/Register </a>
+                                <a class="nav-link" href="login"><span class="glyphicon glyphicon-user"></span>
+                                    <c:if test="${(language == null)||(language == 'en') }">
+                                        Login/Register
+                                    </c:if>
+                                    <c:if test="${language == 'ch'}">
+                                        登录/注册
+                                    </c:if>
+                                </a>
                             </li>
                         </c:if>
 
+                            <!--button toggle ch/en-->
+                            <c:if test="${(language == null)||(language == 'en') }">
+                            <li class="nav-item">
+                                <a class="nav-link" href="login?act=ch">  中文 </a>
+                            </li>
+                            </c:if>
+                            <c:if test="${language == 'ch'}">
+                            <li class="nav-item">
+                                <a class="nav-link" href="login?act=en">  English </a>
+                            </li>
+                            </c:if>
                     </ul>
 
+
+                            
+     
                 </div>
             </div>
         </nav>
@@ -130,7 +179,15 @@
         </div>
         <div class="container"> </div>
         <hr>
-        <h2 class="text-center">RECOMMENDED CAKES</h2>
+        <h2 class="text-center">
+           
+            <c:if test="${(language == null)||(language == 'en') }">
+                 RECOMMENDED CAKES
+            </c:if>
+            <c:if test="${language == 'ch'}">
+                 精选蛋糕
+            </c:if>
+        </h2>
         <hr>
         <div class="container">
             <div class="row text-center">

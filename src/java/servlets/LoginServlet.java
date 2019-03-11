@@ -28,7 +28,13 @@ public class LoginServlet extends HttpServlet {
         } else if (act.equals("logout")) {
             session.setAttribute("userObj", null);
             getServletContext().getRequestDispatcher("/mainmenu").forward(request, response);
-        } else {
+        } else if (act.equals("ch")){
+            session.setAttribute("language", "ch");
+            getServletContext().getRequestDispatcher("/mainmenu").forward(request, response);
+        } else if (act.equals("en")){
+            session.setAttribute("language", "en");
+            getServletContext().getRequestDispatcher("/mainmenu").forward(request, response);
+        }else {
             getServletContext().getRequestDispatcher("/mainmenu").forward(request, response);
         }
 
