@@ -6,7 +6,6 @@
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/.Helen'sDeliciousCakesCapstone/src/java/Entities/Account.java</file>
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/.Helen'sDeliciousCakesCapstone/src/java/Database/capstoneDB.sql</file>
         </group>
-        <group/>
         <group name="Group3">
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/servlets/OrderDetailsServlet.java</file>
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/cakeinfo.jsp</file>
@@ -27,6 +26,15 @@
             <file>file:/C:/Users/703842/Documents/NetBeansProjects/HDC/src/java/servlets/LoginServlet.java</file>
             <file>file:/C:/Users/703842/Documents/NetBeansProjects/HDC/web/WEB-INF/frame.jsp</file>
             <file>file:/C:/Users/703842/Documents/NetBeansProjects/HDC/src/java/Database/capstoneDB.sql</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/651218/Documents/GitHub/HDC/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/651218/Documents/GitHub/HDC/web/WEB-INF/styles/manageorders.css</file>
+            <file>file:/C:/Users/651218/Documents/GitHub/HDC/web/WEB-INF/adminportal/adminhome.jsp</file>
+            <file>file:/C:/Users/651218/Documents/GitHub/HDC/web/WEB-INF/adminportal/manageorders.jsp</file>
+            <file>file:/C:/Users/651218/Documents/GitHub/HDC/src/java/servlets/admin/ManageOrdersServlet.java</file>
+            <file>file:/C:/Users/651218/Documents/GitHub/HDC/web/WEB-INF/styles/adminhome.css</file>
+            <file>file:/C:/Users/651218/Documents/GitHub/HDC/src/java/servlets/LoginServlet.java</file>
         </group>
     </open-files>
 </project-private>
