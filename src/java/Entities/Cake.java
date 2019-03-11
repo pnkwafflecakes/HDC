@@ -8,6 +8,7 @@ package Entities;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,6 +18,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -39,6 +41,15 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Cake.findByFeatured", query = "SELECT c FROM Cake c WHERE c.featured = :featured")
     , @NamedQuery(name = "Cake.findBySpecial", query = "SELECT c FROM Cake c WHERE c.special = :special")})
 public class Cake implements Serializable {
+
+    @Basic(optional = false)
+    @Column(name = "namecn")
+    private String namecn;
+    @Basic(optional = false)
+    @Column(name = "descriptioncn")
+    private String descriptioncn;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cake")
+    private Collection<Cakeorder> cakeorderCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -191,6 +202,31 @@ public class Cake implements Serializable {
     @Override
     public String toString() {
         return "Entities.Cake[ cakeId=" + cakeId + " ]";
+    }
+
+    public String getNamecn() {
+        return namecn;
+    }
+
+    public void setNamecn(String namecn) {
+        this.namecn = namecn;
+    }
+
+    public String getDescriptioncn() {
+        return descriptioncn;
+    }
+
+    public void setDescriptioncn(String descriptioncn) {
+        this.descriptioncn = descriptioncn;
+    }
+
+    @XmlTransient
+    public Collection<Cakeorder> getCakeorderCollection() {
+        return cakeorderCollection;
+    }
+
+    public void setCakeorderCollection(Collection<Cakeorder> cakeorderCollection) {
+        this.cakeorderCollection = cakeorderCollection;
     }
     
 }
