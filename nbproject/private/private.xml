@@ -19,13 +19,15 @@
             <file>file:/C:/Users/703842/Documents/NetBeansProjects/HDC/src/java/Database/capstoneDB.sql</file>
         </group>
         <group>
-            <file>file:/C:/Users/651218/Documents/GitHub/HDC/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/651218/Documents/GitHub/HDC/web/WEB-INF/styles/manageorders.css</file>
+            <file>file:/C:/Users/651218/Documents/GitHub/HDC/src/java/Entities/Accounttype.java</file>
             <file>file:/C:/Users/651218/Documents/GitHub/HDC/web/WEB-INF/adminportal/adminhome.jsp</file>
-            <file>file:/C:/Users/651218/Documents/GitHub/HDC/web/WEB-INF/adminportal/manageorders.jsp</file>
-            <file>file:/C:/Users/651218/Documents/GitHub/HDC/src/java/servlets/admin/ManageOrdersServlet.java</file>
+            <file>file:/C:/Users/651218/Documents/GitHub/HDC/web/WEB-INF/styles/manageorders.css</file>
+            <file>file:/C:/Users/651218/Documents/GitHub/HDC/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/651218/Documents/GitHub/HDC/src/java/Entities/Cake.java</file>
             <file>file:/C:/Users/651218/Documents/GitHub/HDC/web/WEB-INF/styles/adminhome.css</file>
-            <file>file:/C:/Users/651218/Documents/GitHub/HDC/src/java/servlets/LoginServlet.java</file>
+            <file>file:/C:/Users/651218/Documents/GitHub/HDC/src/java/servlets/MainMenuServlet.java</file>
+            <file>file:/C:/Users/651218/Documents/GitHub/HDC/src/java/Database/capstoneDB.sql</file>
+            <file>file:/C:/Users/651218/Documents/GitHub/HDC/web/WEB-INF/mainmenu/mainmenu.jsp</file>
         </group>
         <group name="Group2">
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/adminportal/editcake.jsp</file>
