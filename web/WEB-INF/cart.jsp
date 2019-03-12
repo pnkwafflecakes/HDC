@@ -134,7 +134,7 @@
             </div>
         </nav>
 
-        <div class="main">
+        <div class="container">
 
             <br>${errorMessage}
             <table class="table table-bordered table-striped table-hover">

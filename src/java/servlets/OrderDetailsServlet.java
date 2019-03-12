@@ -114,8 +114,17 @@ public class OrderDetailsServlet extends HttpServlet
         User user = us.get(1);
         String returnPage = "";
         
-        if (dbEntry.inserOrderDB(cakeArray, user, delivery)) returnPage = "mainmenu?result=success";
-        else returnPage = "mainmenu?result=fail";
+        if (dbEntry.inserOrderDB(cakeArray, user, delivery)){
+            //clear cakes 
+             
+            cakes = new ArrayList<>();
+            session.setAttribute("cakes", cakes);
+            returnPage = "mainmenu?result=success";
+        }
+        else {
+            returnPage = "mainmenu?result=fail";
+        }
+        
         System.out.println(returnPage);
         response.sendRedirect(returnPage);
     }

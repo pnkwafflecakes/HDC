@@ -6,13 +6,13 @@ USE capstonedb;
 
 
 -- Proper Order
--- Drop table CakeOrder;
--- Drop table Cake;
--- Drop table CakeCategory;
--- Drop table Order;
--- Drop table Delivery;
--- Drop table User;
--- Drop table Account;
+Drop table CakeOrder;
+Drop table Cake;
+Drop table CakeCategory;
+Drop table Order;
+Drop table Delivery;
+Drop table User;
+Drop table Account;
 
 -- Proper Order
 

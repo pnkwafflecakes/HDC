@@ -24,9 +24,9 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
+        
         <style><%@include file="/WEB-INF/mainmenu/popper.min.js"%></style>
-
+        
     </head>
     <body>
 
@@ -145,22 +145,64 @@
                                 <img class="img-responsive" src="<c:url value='${cake.image}'/>" />
                                 <img alt="First slide" width="900" height="500" class="d-block w-100" src="<c:url value='/images/home1.jpg'/>" />
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h5>Cake 1</h5>
-                                    <p>Made with chocolate cake batter, chocolate icing, mini eggs</p>
+                                    <h5>
+                                        <c:if test="${(language == null)||(language == 'en') }">
+                                            ${cake1.name}
+                                        </c:if>
+                                        <c:if test="${language == 'ch'}">
+                                            ${cake1.namecn}
+                                        </c:if>
+                                    </h5>
+                                    <p>
+                                        <c:if test="${(language == null)||(language == 'en') }">
+                                            ${cake1.description}
+                                        </c:if>
+                                        <c:if test="${language == 'ch'}">
+                                            ${cake1.descriptioncn}
+                                        </c:if>
+                                    </p>
                                 </div>
                             </div>
                             <div class="carousel-item">
                                 <img src="images/home2.jpg" alt="Second slide" width="749" height="499" class="d-block w-100">
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h5>Item 2 Heading</h5>
-                                    <p>Item 2 Description</p>
+                                    <h5>
+                                        <c:if test="${(language == null)||(language == 'en') }">
+                                            ${cake2.name}
+                                        </c:if>
+                                        <c:if test="${language == 'ch'}">
+                                            ${cake2.namecn}
+                                        </c:if>
+                                    </h5>
+                                    <p>
+                                        <c:if test="${(language == null)||(language == 'en') }">
+                                            ${cake2.description}
+                                        </c:if>
+                                        <c:if test="${language == 'ch'}">
+                                            ${cake2.descriptioncn}
+                                        </c:if>
+                                    </p>
                                 </div>
                             </div>
                             <div class="carousel-item">
                                 <img src="images/home3.jpg" alt="Third slide" width="891" height="500" class="d-block w-100">
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h5>Item 3 Heading</h5>
-                                    <p>Item 3 Description</p>
+                                    <h5>
+                                        <c:if test="${(language == null)||(language == 'en') }">
+                                            ${cake3.name}
+                                        </c:if>
+                                        <c:if test="${language == 'ch'}">
+                                            ${cake3.namecn}
+                                        </c:if>
+                                    </h5>
+                                    <p>
+                                        <c:if test="${(language == null)||(language == 'en') }">
+                                            ${cake3.description}
+                                        </c:if>
+                                        <c:if test="${language == 'ch'}">
+                                            ${cake3.descriptioncn}
+                                        </c:if>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -271,7 +313,7 @@
                         <div class="card-body">
                             <h5 class="card-title">$
                                     <c:if test="${(language == null)||(language == 'en') }">
-                                        ${cake4.name}
+                                       ${cake4.name}
                                     </c:if>
                                     <c:if test="${language == 'ch'}">
                                         ${cake4.namecn}
@@ -357,9 +399,30 @@
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-4 col-12">
                             <ul class="list-unstyled">
-                                <li class="btn-link"> <a>About us</a> </li>
-                                <li class="btn-link"> <a>Contact</a> </li>
-                                <li class="btn-link"> <a>Map</a> </li>
+                                <li class="btn-link">                                   
+                                    <c:if test="${(language == null)||(language == 'en') }">
+                                        <a>About us</a> 
+                                    </c:if>
+                                    <c:if test="${language == 'ch'}">
+                                        <a>关于我们</a> 
+                                    </c:if>
+                                </li>
+                                <li class="btn-link"> 
+                                    <c:if test="${(language == null)||(language == 'en') }">
+                                        <a>Contact</a> 
+                                    </c:if>
+                                    <c:if test="${language == 'ch'}">
+                                        <a>联系方式</a> 
+                                    </c:if>
+                                </li>
+                                <li class="btn-link"> 
+                                <c:if test="${(language == null)||(language == 'en') }">
+                                        <a>Map</a>  
+                                    </c:if>
+                                    <c:if test="${language == 'ch'}">
+                                        <a>地图</a> 
+                                    </c:if>
+                                </li>
                             </ul>
                         </div>
 
@@ -368,13 +431,13 @@
                 <div class="col-md-4 col-lg-5 col-6">
                     <address>
                         <strong>Hellen Delicious Cakes, Inc.</strong><br>
-                        Indian Treasure Link<br>
-                        Quitman, WA, 99110-0219<br>
-                        <abbr title="Phone">P:</abbr> (123) 456-7890
+                        188 Springbluff Blvd SW<br>
+                        Clagary, AB, T3H 5R6<br>
+                        <abbr title="Phone">P:</abbr> (403) 808-3860
                     </address>
                     <address>
-                        <strong>Full Name</strong><br>
-                        <a href="mailto:#">first.last@example.com</a>
+                        <strong>Email</strong><br>
+                        <a href="mailto:#">helen@gmail.com</a>
                     </address>
                 </div>
             </div>
@@ -383,7 +446,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <p>Copyright © MyWebsite. All rights reserved.</p>
+                        <p>Copyright © Helen's Delicious Cakes. All rights reserved.</p>
                     </div>
                 </div>
             </div>
