@@ -11,15 +11,6 @@
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/cakeinfo.jsp</file>
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/BusinessClasses/DBEntry.java</file>
         </group>
-        <group name="Group2">
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/adminportal/editcake.jsp</file>
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/mainmenu/mainmenu.jsp</file>
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/Database/capstoneDB.sql</file>
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/login.jsp</file>
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/adminportal/managecakes.jsp</file>
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/adminservlets/ManageCakesServlet.java</file>
-            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/adminservlets/EditCakeServlet.java</file>
-        </group>
         <group name="CRPG352">
             <file>file:/C:/Users/703842/Documents/NetBeansProjects/HDC/web/WEB-INF/mainmenu/mainmenu.jsp</file>
             <file>file:/C:/Users/703842/Documents/NetBeansProjects/HDC/src/java/servlets/CakeInfoServlet.java</file>
@@ -35,6 +26,16 @@
             <file>file:/C:/Users/651218/Documents/GitHub/HDC/src/java/servlets/admin/ManageOrdersServlet.java</file>
             <file>file:/C:/Users/651218/Documents/GitHub/HDC/web/WEB-INF/styles/adminhome.css</file>
             <file>file:/C:/Users/651218/Documents/GitHub/HDC/src/java/servlets/LoginServlet.java</file>
+        </group>
+        <group name="Group2">
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/adminportal/editcake.jsp</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/servlets/CakeInfoServlet.java</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/Database/capstoneDB.sql</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/adminportal/adminhome.jsp</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/servlets/CartServlet.java</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/src/java/servlets/OrderDetailsServlet.java</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/cakeinfo.jsp</file>
+            <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/cart.jsp</file>
         </group>
     </open-files>
 </project-private>

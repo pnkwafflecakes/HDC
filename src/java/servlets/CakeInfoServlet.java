@@ -63,21 +63,24 @@ public class CakeInfoServlet extends HttpServlet
     {
         HttpSession session = request.getSession(true);
 
-        ArrayList<Cake> cakes = (ArrayList<Cake>) session.getAttribute("cakes");
+        ArrayList<Integer> cakes = (ArrayList<Integer>) session.getAttribute("cakes");
 
         if (cakes == null)
         {
-            cakes = new ArrayList<Cake>();
+            cakes = new ArrayList<Integer>();
         }
 
         int cakeId = Integer.valueOf(request.getParameter("cakeId"));
+        
+        System.out.println("Cake contents: " + cakes.toString());
 
         CakeService cs = new CakeService();
         Cake currCake = cs.get(cakeId);
         int quantity = Integer.valueOf(request.getParameter("quantity"));
-        for (int i = 0; i <= quantity; i++) {
+        System.out.println("Quantity: "+quantity);
+        for (int i = 0; i < quantity; i++) {
             System.out.println("adding at instance: "+i);
-            cakes.add(currCake);
+            cakes.add(cakeId);
         }
 
         session.setAttribute("cakes", cakes);

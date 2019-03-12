@@ -40,7 +40,7 @@ public class CartServlet extends HttpServlet
             throws ServletException, IOException
     {
         HttpSession session = request.getSession(true);
-        ArrayList<Cake> cakes = (ArrayList<Cake>) session.getAttribute("cakes");
+        ArrayList<Integer> cakes = (ArrayList<Integer>) session.getAttribute("cakes");
         
         if (cakes!=null && cakes.size()!=0) {
             System.out.println("Cake was valid: " + cakes + " size: " + cakes.size());
@@ -53,29 +53,31 @@ public class CartServlet extends HttpServlet
             
             //For da prices
             for (int i = 0; i < cakes.size(); i++) {
-                totalPrice = totalPrice + cakes.get(i).getPrice();
+                totalPrice = totalPrice + cs.get(cakes.get(i)).getPrice();
             }
             emptyCart = false;
             
+            System.out.println("Size: " + cakes.size());
             
-            for (int i=0; i < cakes.size(); i++) {
-                System.out.println("Set: " + i);
-                Cake cake = cakes.get(i);
-                System.out.println("Cake at loc: " + cake.getName() + ", id: " + cake.getCakeId());
-                System.out.println("Counter value: "+counter[cake.getCakeId()]);
-                if (counter[cake.getCakeId()] == 0) counter[cake.getCakeId()] = 1;
-                else {
-                    System.out.println("Removing duplicate cake: " + cake.getName());
-                    counter[cake.getCakeId()]++;
-                    cakes.remove(i);
-                    i--;
+            Cake[] cakeArray = new Cake[allCakes.size()];
+            
+            for (int i =0; i < cakes.size(); i++) {
+                int a = cakes.get(i);
+                if (cakeArray[a] == null) {
+                    cakeArray[a] =cs.get(a);
+                    counter[a] = 1;
                 }
-                
+                else {
+                    counter[a]++;
+                }
             }
-            Cake[] cakeArray = cakes.toArray(new Cake[cakes.size()]);
+            
             request.setAttribute("counter", counter);
             request.setAttribute("cakes", cakeArray);
             request.setAttribute("totalPrice", totalPrice);
+            
+            ArrayList<Cake> cakes2 = (ArrayList<Cake>) session.getAttribute("cakes");
+            System.out.println("Cakes after processing: " + cakes2);
         }
         else {
             emptyCart = true;
@@ -102,9 +104,14 @@ public class CartServlet extends HttpServlet
             if (action.equals("delete")) {
                 int selectedCakeId = Integer.valueOf(request.getParameter("selectedCake"));
                 HttpSession session = request.getSession(true);
-                ArrayList<Cake> cakes = (ArrayList<Cake>) session.getAttribute("cakes");
+                ArrayList<Integer> cakes = (ArrayList<Integer>) session.getAttribute("cakes");
 
-                cakes.remove(selectedCakeId);
+                for (int i=0; i < cakes.size(); i++) {
+                    if (cakes.get(i) == selectedCakeId) {
+                        cakes.remove(i);
+                        i = cakes.size();
+                    }
+                }
                 doGet(request, response);
             }
         }

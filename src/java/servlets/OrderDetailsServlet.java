@@ -9,6 +9,7 @@ import BusinessClasses.DBEntry;
 import Entities.Cake;
 import Entities.Delivery;
 import Entities.User;
+import businesslogic.CakeService;
 import businesslogic.DeliveryService;
 import businesslogic.UserService;
 import dataaccess.DeliveryJpaController;
@@ -100,12 +101,13 @@ public class OrderDetailsServlet extends HttpServlet
         
         DBEntry dbEntry = new DBEntry();
         
+        CakeService cs = new CakeService();
         HttpSession session = request.getSession(true);
-        ArrayList<Cake> cakes = (ArrayList<Cake>) session.getAttribute("cakes");
+        ArrayList<Integer> cakes = (ArrayList<Integer>) session.getAttribute("cakes");
         System.out.println(cakes);
         Cake[] cakeArray = new Cake[cakes.size()];
         for (int i = 0; i < cakes.size(); i++) {
-            cakeArray[i] = cakes.get(i);
+            cakeArray[i] = cs.get(cakes.get(i));
         }
         
         UserService us = new UserService();

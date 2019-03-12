@@ -54,6 +54,7 @@
                 </tr>
                 <c:forEach var="cake" items="${cakes}">
                     <tr>
+                        <c:if test="${cake != null}">
                         <td><img src="<c:url value='${cake.image}'/>" alt="Cake Picture" width="50%" height="50%"/></td>
                         <td width="100">${cake.name}</td>
                         <td width="350">${cake.description}</td>
@@ -67,6 +68,7 @@
                             </form>
                         </td>
                     </tr>
+                    </c:if>
                 </c:forEach>
 
             </table>
