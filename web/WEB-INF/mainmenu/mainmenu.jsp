@@ -33,7 +33,6 @@
 
     </head>
     <body>
-
         <nav class="navbar navbar-expand-lg navbar-custom">
             <div class="container">
                 <a class="navbar-brand" href="#"> H D C </a>
@@ -105,7 +104,7 @@
                         </c:if>
                         <c:if test="${userObj == null}">
                             <li class="nav-item">
-                                <a class="nav-link" href="login"><span class="glyphicon glyphicon-user"></span>
+                                <a class="nav-link" href="login">
                                     <c:if test="${(language == null)||(language == 'en') }">
                                         Login/Register
                                     </c:if>
@@ -119,12 +118,12 @@
                         <!--button toggle ch/en-->
                         <c:if test="${(language == null)||(language == 'en') }">
                             <li class="nav-item">
-                                <a class="nav-link" href="login?act=ch&amp;page=mainmenu">  中文 </a>
+                                <a class="nav-link" href="login?act=ch">  中文 </a>
                             </li>
                         </c:if>
                         <c:if test="${language == 'ch'}">
                             <li class="nav-item">
-                                <a class="nav-link" href="login?act=en&amp;page=mainmenu">  English </a>
+                                <a class="nav-link" href="login?act=en">  English </a>
                             </li>
                         </c:if>
                     </ul>
@@ -135,6 +134,7 @@
                 </div>
             </div>
         </nav>
+
         <div class="container mt-3">
             <div class="row">
                 <div class="col-12">
@@ -384,7 +384,7 @@
             </div>
         </div>
         <hr>
-   
+
         <div class="container text-white bg-dark p-4">
             <div class="row">
                 <div class="col-6 col-md-8 col-lg-7">

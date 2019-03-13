@@ -117,12 +117,12 @@
                         <!--button toggle ch/en-->
                         <c:if test="${(language == null)||(language == 'en') }">
                             <li class="nav-item">
-                                <a class="nav-link" href="login?act=ch&amp;page=orderdetails">  中文 </a>
+                                <a class="nav-link" href="login?act=ch">  中文 </a>
                             </li>
                         </c:if>
                         <c:if test="${language == 'ch'}">
                             <li class="nav-item">
-                                <a class="nav-link" href="login?act=en&amp;page=orderdetails">  English </a>
+                                <a class="nav-link" href="login?act=en">  English </a>
                             </li>
                         </c:if>
                     </ul>
@@ -136,9 +136,10 @@
 
 
         <div class="container">
+            <br>
             <h1 class="text-center">Order Details</h1>
-
-            <form action="orderdetails" method="post">
+            <br>
+            <form action="orderdetails" method="POST">
                 <div class="form-row">
 
                     <div class="form-group col-md-6">
@@ -175,7 +176,7 @@
                     </div>
                 </div>
                 <div class="col text-center">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-outline-dark"><h3>Submit</h3></button>
                 </div>
             </form>
         </div>

@@ -1,5 +1,5 @@
 <%-- 
-    Document   : cart
+    Document   : mainmenu
     Created on : Feb 7, 2019, 2:45:09 PM
     Author     : 703842
 --%>
@@ -28,10 +28,11 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
         <style><%@include file="/WEB-INF/styles/navbar.css"%></style>
+        <style><%@include file="/WEB-INF/styles/mainmenu.css"%></style>
+
 
     </head>
     <body>
-
         <nav class="navbar navbar-expand-lg navbar-custom">
             <div class="container">
                 <a class="navbar-brand" href="#"> H D C </a>
@@ -40,7 +41,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="mainmenu">
                                 <c:if test="${(language == null)||(language == 'en') }">
                                     Home
@@ -70,7 +71,7 @@
                                 </c:if>
                             </a>
                         </li>
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" href="cart">
                                 <c:if test="${(language == null)||(language == 'en') }">
                                     Cart
@@ -134,59 +135,39 @@
             </div>
         </nav>
 
-        <div class="container">
+
+        <div class="container-fluid">
             <br>
-            <h2 class="text-center">Shopping Cart</h2>
+            <h2 class="text-center">Congratulations!</h2>
+            <h2 class="text-center">Your order is being processed</h2>
             <br>
-            ${errorMessage}
-            <table class="table table-bordered table-striped table-hover">
-                <thead>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                </thead>
-                <tbody>
-                    <!--cakesInCart is cakeArray in CartService for cart.jsp use-->
-                    <c:forEach var="cake" items="${cakesInCart}">
-                        <tr>
-                            <c:if test="${cake != null}">
-                                <td><img src="<c:url value='${cake.image}'/>" alt="Cake Picture" width="80dp" height="80dp"/></td>
-                                <td width="20%">${cake.name}</td>
-                                <td width="40%">${cake.description}</td>
-                                <td width="15%">${cake.price}</td>
-                                <td width="5%"><c:out value="${counter[cake.cakeId]}"/></td>
-                                <td width="10%">
-                                    <form action="cart" method="post" >
-                                        <input type="submit" value="Delete">
-                                        <input type="hidden" name="action" value="delete">
-                                        <input type="hidden" name="selectedCake" value="${cake.cakeId}">
-                                    </form>
-                                </td>
-                            </tr>
-                        </c:if>
-                    </c:forEach>
-                </tbody>
-            </table>
-            <br>
-            <h3 class="text-left">Subtotal <font color="red">$${totalPrice}</font></h3>
-            <br>
-            <div class="row">
-                <div class="col-md-6">
-                    <form action="cart" method="post">
-                        <button type="submit" class="btn btn-outline-dark" name="data"><h3>Checkout</h3></button>
-                        &nbsp
-                    </form>
-                </div>
-                <div class="col-md-6">
-                    <a href="mainmenu" class="btn btn-outline-dark" style=" float: right;">Continue Shopping</a>
-                </div>
+            <div class="text-center">
+                <i>You're being direct to home page in <span id="countdowntimer">5 </span> Seconds</i>
+                <br>
+                <a href="mainmenu" class="btn btn-outline-dark">Take me to home page</a>
             </div>
+
         </div>
+        <script type="text/javascript">
+            var timeleft = 5;
+            var downloadTimer = setInterval(function () {
+                timeleft--;
+                document.getElementById("countdowntimer").textContent = timeleft;
+                if (timeleft <= 0)
+                    clearInterval(downloadTimer);
+            }, 500);
+
+            function leave() {
+                window.location = "mainmenu";
+            }
+            setTimeout("leave()", 5000);
+        </script>
 
 
+        <br>
+        <br>
         <hr>
+
         <div class="container text-white bg-dark p-4">
             <div class="row">
                 <div class="col-6 col-md-8 col-lg-7">
@@ -202,9 +183,30 @@
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-4 col-12">
                             <ul class="list-unstyled">
-                                <li class="btn-link"> <a>About us</a> </li>
-                                <li class="btn-link"> <a>Contact</a> </li>
-                                <li class="btn-link"> <a>Map</a> </li>
+                                <li class="btn-link">                                   
+                                    <c:if test="${(language == null)||(language == 'en') }">
+                                        <a>About us</a> 
+                                    </c:if>
+                                    <c:if test="${language == 'ch'}">
+                                        <a>关于我们</a> 
+                                    </c:if>
+                                </li>
+                                <li class="btn-link"> 
+                                    <c:if test="${(language == null)||(language == 'en') }">
+                                        <a>Contact</a> 
+                                    </c:if>
+                                    <c:if test="${language == 'ch'}">
+                                        <a>联系方式</a> 
+                                    </c:if>
+                                </li>
+                                <li class="btn-link"> 
+                                    <c:if test="${(language == null)||(language == 'en') }">
+                                        <a>Map</a>  
+                                    </c:if>
+                                    <c:if test="${language == 'ch'}">
+                                        <a>地图</a> 
+                                    </c:if>
+                                </li>
                             </ul>
                         </div>
 
@@ -213,13 +215,13 @@
                 <div class="col-md-4 col-lg-5 col-6">
                     <address>
                         <strong>Hellen Delicious Cakes, Inc.</strong><br>
-                        Indian Treasure Link<br>
-                        Quitman, WA, 99110-0219<br>
-                        <abbr title="Phone">P:</abbr> (123) 456-7890
+                        188 Springbluff Blvd SW<br>
+                        Clagary, AB, T3H 5R6<br>
+                        <abbr title="Phone">P:</abbr> (403) 808-3860
                     </address>
                     <address>
-                        <strong>Full Name</strong><br>
-                        <a href="mailto:#">first.last@example.com</a>
+                        <strong>Email</strong><br>
+                        <a href="mailto:#">helen@gmail.com</a>
                     </address>
                 </div>
             </div>
@@ -228,7 +230,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <p>Copyright © MyWebsite. All rights reserved.</p>
+                        <p>Copyright © Helen's Delicious Cakes. All rights reserved.</p>
                     </div>
                 </div>
             </div>

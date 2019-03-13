@@ -16,13 +16,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Helen Delicious Cakes</title>
 
-       <!--bootstrap heading-->
+        <!--bootstrap heading-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        
+
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -117,12 +117,12 @@
                         <!--button toggle ch/en-->
                         <c:if test="${(language == null)||(language == 'en') }">
                             <li class="nav-item">
-                                <a class="nav-link" href="login?act=ch&amp;page=cakeinfo">  中文 </a>
+                                <a class="nav-link" href="login?act=ch">  中文 </a>
                             </li>
                         </c:if>
                         <c:if test="${language == 'ch'}">
                             <li class="nav-item">
-                                <a class="nav-link" href="login?act=en&amp;page=cakeinfo">  English </a>
+                                <a class="nav-link" href="login?act=en">  English </a>
                             </li>
                         </c:if>
                     </ul>
@@ -134,43 +134,41 @@
             </div>
         </nav>
 
-
+        <br>
         <div class="container">
 
-            <div class="title">
-                <h1>Helen's Delicious Cakes</h1>
-            </div>
+            <h1 class="text-center">${currCake.name}</h1>
 
-            <div class="cakeinfo">
-                <div class="image">
-                    <img src="<c:url value='${currCake.image}'/>" alt="Cake Picture" height="240" width="240">
-                </div>
+            <br>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="rounded" src="<c:url value='${currCake.image}'/>" alt="Cake Picture" height="240" width="240">
+                    </div>
+                    <div class="col-md-5">
 
-                <div class="info">
-                    <ul>
-                        <li>${currCake.name}</li>
-                        <li>$${currCake.price}</li>
-                        <li>${currCake.size}"</li>
-                    </ul>
-
-                    <p><strong>Description:</strong> ${currCake.description}</p>
-
-                    <div class="button">
+                        <h4><i>Price</i><font color="red"> $${currCake.price}</font></h4>
+                        <h4><i>Size</i><font color="blue"> ${currCake.size}"</font></h4>
+                        <br>
+                        <p><strong>Description:</strong> ${currCake.description}</p>
+                    </div>
+                    <div class="col-md-3">
                         <form action="cakeinfo" method="POST">
-                            <!--cake quantity between 1 to 20-->
-                            <p><input type="number" name="quantity" value="1" min="1" max="20" style="width: 20%;"></p>
+                            <strong>Quantity</strong>
+                            <input type="number" name="quantity" value="1" min="1" max="20" style="width: 20%;">
                             <input type="hidden" name="cakeId" value="${currCake.cakeId}">
-                            <input type="submit" value="Add To Cart" style="width: 20%;">
-                        </form>
-
-                        <form action="mainmenu" method="get">
-                        <input type="submit" value="Continue Shopping" name="data" style="width: 20%;">
-                        &nbsp
+                            <button type="submit" class="btn btn-outline-dark">Add To Cart</button>
                         </form>
                     </div>
                 </div>
-            </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="mainmenu" class="btn btn-outline-dark" style=" float: right;">Continue Shopping</a>
 
+                        &nbsp
+                    </div>
+                </div>
+            </div>
             <div class="clearfix"></div>
         </div>
 
