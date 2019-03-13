@@ -146,7 +146,8 @@
                 <th>Quantity</th>
                 </thead>
                 <tbody>
-                    <c:forEach var="cake" items="${cakes}">
+                    //cakesInCart is cakeArray in CartService for cart.jsp use
+                    <c:forEach var="cake" items="${cakesInCart}">
                         <tr>
                             <c:if test="${cake != null}">
                                 <td><img src="<c:url value='${cake.image}'/>" alt="Cake Picture" width="80dp" height="80dp"/></td>
