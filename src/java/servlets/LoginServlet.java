@@ -24,36 +24,41 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String act = request.getParameter("act");
         String page = request.getParameter("page");
+
+        if (act != null) {
+            if (act.equals("logout")) {
+                session.setAttribute("userObj", null);
+                getServletContext().getRequestDispatcher("/mainmenu").forward(request, response);
+            }
+        }
+
         if (act == null || act.equals("") || page == null || page.equals("")) {
             getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-        } else if (act.equals("logout")) {
-            session.setAttribute("userObj", null);
-            getServletContext().getRequestDispatcher("/mainmenu").forward(request, response);
-        } else if (act.equals("ch") && page.equals("mainmenu")){//handle mainmenue ch/en toggle
+        } else if (act.equals("ch") && page.equals("mainmenu")) {//handle mainmenue ch/en toggle
             session.setAttribute("language", "ch");
             getServletContext().getRequestDispatcher("/mainmenu").forward(request, response);
-        } else if (act.equals("en") && page.equals("mainmenu")){
+        } else if (act.equals("en") && page.equals("mainmenu")) {
             session.setAttribute("language", "en");
             getServletContext().getRequestDispatcher("/mainmenu").forward(request, response);
-        }else if (act.equals("ch") && page.equals("cakeinfo")){//handle cakeinfo ch/en toggle
+        } else if (act.equals("ch") && page.equals("cakeinfo")) {//handle cakeinfo ch/en toggle
             session.setAttribute("language", "ch");
             getServletContext().getRequestDispatcher("/cakeinfo").forward(request, response);
-        } else if (act.equals("en") && page.equals("cakeinfo")){
+        } else if (act.equals("en") && page.equals("cakeinfo")) {
             session.setAttribute("language", "en");
             getServletContext().getRequestDispatcher("/cakeinfo").forward(request, response);
-        }else if (act.equals("ch") && page.equals("cart")){//handle cart ch/en toggle
+        } else if (act.equals("ch") && page.equals("cart")) {//handle cart ch/en toggle
             session.setAttribute("language", "ch");
             getServletContext().getRequestDispatcher("/cart").forward(request, response);
-        } else if (act.equals("en") && page.equals("cart")){
+        } else if (act.equals("en") && page.equals("cart")) {
             session.setAttribute("language", "en");
             getServletContext().getRequestDispatcher("/cart").forward(request, response);
-        }else if (act.equals("ch") && page.equals("orderdetails")){//handle orderdetails ch/en toggle
+        } else if (act.equals("ch") && page.equals("orderdetails")) {//handle orderdetails ch/en toggle
             session.setAttribute("language", "ch");
             getServletContext().getRequestDispatcher("/orderdetails").forward(request, response);
-        } else if (act.equals("en") && page.equals("orderdetails")){
+        } else if (act.equals("en") && page.equals("orderdetails")) {
             session.setAttribute("language", "en");
             getServletContext().getRequestDispatcher("/orderdetails").forward(request, response);
-        }else {
+        } else {
             getServletContext().getRequestDispatcher("/mainmenu").forward(request, response);
         }
 

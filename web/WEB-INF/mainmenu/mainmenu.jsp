@@ -37,7 +37,7 @@
             <div class="container">
                 <a class="navbar-brand" href="#"> H D C </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
@@ -91,14 +91,14 @@
                         <c:if test="${userObj != null}">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="glyphicon glyphicon-user">
-                                    </span> ${userObj.name} 
+                                    <i class="fas fa-user-circle"></i> 
+                                    ${userObj.name} 
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="#">My Profile</a>
                                     <a class="dropdown-item" href="#">My Orders</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="login?act=logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
+                                    <a class="dropdown-item" href="login?act=logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
                                 </div>
                             </li>
                         </c:if>
@@ -118,12 +118,12 @@
                         <!--button toggle ch/en-->
                         <c:if test="${(language == null)||(language == 'en') }">
                             <li class="nav-item">
-                                <a class="nav-link" href="login?act=ch">  中文 </a>
+                                <a class="nav-link" href="login?act=ch&amp;page=mainmenu"><i class="fas fa-globe-americas"></i>  中文 </a>
                             </li>
                         </c:if>
                         <c:if test="${language == 'ch'}">
                             <li class="nav-item">
-                                <a class="nav-link" href="login?act=en">  English </a>
+                                <a class="nav-link" href="login?act=en&amp;page=mainmenu"><i class="fas fa-globe-americas"></i>  English </a>
                             </li>
                         </c:if>
                     </ul>

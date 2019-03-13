@@ -90,14 +90,14 @@
                         <c:if test="${userObj != null}">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="glyphicon glyphicon-user">
-                                    </span> ${userObj.name} 
+                                    <i class="fas fa-user-circle"></i> 
+                                    ${userObj.name} 
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="#">My Profile</a>
                                     <a class="dropdown-item" href="#">My Orders</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="login?act=logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
+                                    <a class="dropdown-item" href="login?act=logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
                                 </div>
                             </li>
                         </c:if>
