@@ -81,6 +81,10 @@ public class CartServlet extends HttpServlet
         }
         else {
             emptyCart = true;
+            //set totalprice=0
+            double totalPrice = 0;
+            request.setAttribute("totalPrice", totalPrice);
+            
             request.setAttribute("errorMessage", "Your cart is empty");
         }
        
