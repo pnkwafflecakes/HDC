@@ -73,7 +73,7 @@ public class CartServlet extends HttpServlet
             }
             
             request.setAttribute("counter", counter);
-            request.setAttribute("cakes", cakeArray);
+            request.setAttribute("cakesInCart", cakeArray);
             request.setAttribute("totalPrice", totalPrice);
             
             ArrayList<Cake> cakes2 = (ArrayList<Cake>) session.getAttribute("cakes");
@@ -81,6 +81,10 @@ public class CartServlet extends HttpServlet
         }
         else {
             emptyCart = true;
+            //set totalprice=0
+            double totalPrice = 0;
+            request.setAttribute("totalPrice", totalPrice);
+            
             request.setAttribute("errorMessage", "Your cart is empty");
         }
        
