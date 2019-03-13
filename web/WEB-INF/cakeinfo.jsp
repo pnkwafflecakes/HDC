@@ -155,7 +155,8 @@
 
                     <div class="button">
                         <form action="cakeinfo" method="POST">
-                            <p><input type="number" name="quantity" value="1"></td></p>
+                            //cake quantity between 1 to 20
+                            <p><input type="number" name="quantity" value="1" min="1" max="20"></p>
                             <input type="hidden" name="cakeId" value="${currCake.cakeId}">
                             <input type="submit" value="Add To Cart">
                         </form>
