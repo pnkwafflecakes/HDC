@@ -168,11 +168,17 @@
                 </tbody>
             </table>
             <form action="cart" method="post">
-                <input type="submit" value="Checkout" name="data">
-
+                <input type="submit" value="Checkout" name="data" style="width: 20%;">
+                
                 &nbsp
 
                 <text align="right"> Total Price: ${totalPrice} </text>
+            </form>
+            <form action="mainmenu" method="get">
+                <input type="submit" value="Continue Shopping" name="data" style="width: 20%;">
+                
+                &nbsp
+            
             </form>
         </div>
 
