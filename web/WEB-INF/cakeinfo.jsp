@@ -117,12 +117,12 @@
                         <!--button toggle ch/en-->
                         <c:if test="${(language == null)||(language == 'en') }">
                             <li class="nav-item">
-                                <a class="nav-link" href="login?act=ch&amp;page=mainmenu"><i class="fas fa-globe-americas"></i>  中文 </a>
+                                <a class="nav-link" href="login?act=ch&amp;page=cakeinfo"><i class="fas fa-globe-americas"></i>  中文 </a>
                             </li>
                         </c:if>
                         <c:if test="${language == 'ch'}">
                             <li class="nav-item">
-                                <a class="nav-link" href="login?act=en&amp;page=mainmenu"><i class="fas fa-globe-americas"></i>  English </a>
+                                <a class="nav-link" href="login?act=en&amp;page=cakeinfo"><i class="fas fa-globe-americas"></i>  English </a>
                             </li>
                         </c:if>
                     </ul>
