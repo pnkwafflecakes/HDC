@@ -5,3 +5,9 @@
 .btn-outline-secondary:hover{
     background-color: #CB98F8;
 }
+
+.carousel-caption{
+    background-color: black;
+    color: white;
+    opacity: 0.5;
+}

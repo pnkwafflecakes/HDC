@@ -146,17 +146,16 @@
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img class="img-responsive" src="<c:url value='${cake.image}'/>" />
                                 <img alt="First slide" width="900" height="500" class="d-block w-100" src="<c:url value='/images/home1.jpg'/>" />
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h5>
+                                    <h3>
                                         <c:if test="${(language == null)||(language == 'en') }">
                                             ${cake1.name}
                                         </c:if>
                                         <c:if test="${language == 'ch'}">
                                             ${cake1.namecn}
                                         </c:if>
-                                    </h5>
+                                    </h3>
                                     <p>
                                         <c:if test="${(language == null)||(language == 'en') }">
                                             ${cake1.description}
@@ -170,14 +169,14 @@
                             <div class="carousel-item">
                                 <img src="images/home2.jpg" alt="Second slide" width="749" height="499" class="d-block w-100">
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h5>
+                                    <h3>
                                         <c:if test="${(language == null)||(language == 'en') }">
                                             ${cake2.name}
                                         </c:if>
                                         <c:if test="${language == 'ch'}">
                                             ${cake2.namecn}
                                         </c:if>
-                                    </h5>
+                                    </h3>
                                     <p>
                                         <c:if test="${(language == null)||(language == 'en') }">
                                             ${cake2.description}
@@ -191,14 +190,14 @@
                             <div class="carousel-item">
                                 <img src="images/home3.jpg" alt="Third slide" width="891" height="500" class="d-block w-100">
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h5>
+                                    <h3>
                                         <c:if test="${(language == null)||(language == 'en') }">
                                             ${cake3.name}
                                         </c:if>
                                         <c:if test="${language == 'ch'}">
                                             ${cake3.namecn}
                                         </c:if>
-                                    </h5>
+                                    </h3>
                                     <p>
                                         <c:if test="${(language == null)||(language == 'en') }">
                                             ${cake3.description}
