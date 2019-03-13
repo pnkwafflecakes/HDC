@@ -141,7 +141,7 @@
 
                     <div class="form-group col-md-6">
                         <label for="inputName">Name</label>
-                        <input type="text" class="form-control" id="inputName" name="name" value=${userObj.name} readonly>
+                        <input type="text" class="form-control" id="inputName" name="name" value="${userObj.name}" readonly>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputPhone">Phone Number</label>
@@ -152,7 +152,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="inputAddress">Address</label>
-                        <input type="text" class="form-control" id="inputAddress" name="address" value=${userObj.address} readonly>
+                        <input type="text" class="form-control" id="inputAddress" name="address" value="${userObj.address}" readonly>
                     </div>
                 </div>
 
@@ -169,7 +169,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="inputNotes">Notes</label>
-                        <textarea class="form-control" rows="3" id="inputNotes"  name="notes"></textarea>
+                        <textarea class="form-control" rows="3" id="inputNotes"  name="notes" >Cash on delivery</textarea>
                     </div>
                 </div>
                 <div class="col text-center">

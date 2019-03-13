@@ -146,7 +146,7 @@
                 <th>Quantity</th>
                 </thead>
                 <tbody>
-                    //cakesInCart is cakeArray in CartService for cart.jsp use
+                    <!--cakesInCart is cakeArray in CartService for cart.jsp use-->
                     <c:forEach var="cake" items="${cakesInCart}">
                         <tr>
                             <c:if test="${cake != null}">
