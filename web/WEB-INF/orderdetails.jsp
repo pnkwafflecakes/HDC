@@ -141,34 +141,35 @@
 
                     <div class="form-group col-md-6">
                         <label for="inputName">Name</label>
-                        <input type="name" class="form-control" id="inputName" value="${name}" readonly>
+                        <input type="text" class="form-control" id="inputName" name="name" value=${userObj.name} readonly>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputPhone">Phone Number</label>
-                        <input type="phone" class="form-control" id="inputPhone" value="${phoneNo}" readonly>
+                        <input type="text" class="form-control" id="inputPhone" name="phoneNo" value=${userObj.phoneNo} readonly>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="inputAddress">Address</label>
-                        <input type="text" class="form-control" id="inputAddress" value="${address}" readonly>
+                        <input type="text" class="form-control" id="inputAddress" name="address" value=${userObj.address} readonly>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <label for="delivery">Delivery Method</label>
-                        <select class="form-control" id="delivery">
+                        <label for="delivery">Delivery Method</label>               
+<!--                        <select class="form-control" id="delivery">
                             <option> Train Station </option>
                             <option> Home Delivery </option>
-                        </select>
+                            </select>-->
+                        <input type="text" class="form-control" id="delivery"  name="method" value="Delivery" readonly>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="inputNotes">Notes</label>
-                        <textarea class="form-control" rows="3" id="inputNotes"></textarea>
+                        <textarea class="form-control" rows="3" id="inputNotes"  name="notes"></textarea>
                     </div>
                 </div>
                 <div class="col text-center">
