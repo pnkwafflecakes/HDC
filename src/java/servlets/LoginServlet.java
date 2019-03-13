@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
         } else if (act.equals("en") && page.equals("cakeinfo")){
             session.setAttribute("language", "en");
             getServletContext().getRequestDispatcher("/cakeinfo").forward(request, response);
-        }else if (act.equals("ch") && page.equals("cart")){//handle cakeinfo ch/en toggle
+        }else if (act.equals("ch") && page.equals("cart")){//handle cart ch/en toggle
             session.setAttribute("language", "ch");
             getServletContext().getRequestDispatcher("/cart").forward(request, response);
         } else if (act.equals("en") && page.equals("cart")){

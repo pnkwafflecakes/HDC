@@ -142,6 +142,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>homepage</welcome-file>
+        <welcome-file>mainmenu</welcome-file>
     </welcome-file-list>
 </web-app>

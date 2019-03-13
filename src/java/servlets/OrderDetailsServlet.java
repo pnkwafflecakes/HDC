@@ -43,20 +43,21 @@ public class OrderDetailsServlet extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        System.out.println("YES");
-        HttpSession session = request.getSession();
-        //User user = (User) session.getAttribute("userObj");
-        
-        //--*-- Simualted part
-        UserService us = new UserService();
-        User user = us.get(1);
-        System.out.println("User in OrderDetails: " + user);
+         //--*-- Simualted part
+//        System.out.println("YES");
+//        HttpSession session = request.getSession();
+//        //User user = (User) session.getAttribute("userObj");
+//        
+//       
+//        UserService us = new UserService();
+//        User user = us.get(1);
+//        System.out.println("User in OrderDetails: " + user);
+//        
+//        
+//        request.setAttribute("address", user.getAddress());
+//        System.out.println(user.getAddress());
+//        request.setAttribute("phoneNo", user.getPhoneNo());
         //--*--
-        
-        request.setAttribute("address", user.getAddress());
-        System.out.println(user.getAddress());
-        request.setAttribute("phoneNo", user.getPhoneNo());
-        
         getServletContext().getRequestDispatcher("/WEB-INF/orderdetails.jsp").forward(request, response);
     }
 
@@ -110,13 +111,16 @@ public class OrderDetailsServlet extends HttpServlet
             cakeArray[i] = cs.get(cakes.get(i));
         }
         
-        UserService us = new UserService();
-        User user = us.get(1);
+        //--*-- Simualted part
+//        UserService us = new UserService();
+//        User user = us.get(1);
+        //--*--
+        User user = (User)session.getAttribute("userObj");
+        
         String returnPage = "";
         
         if (dbEntry.inserOrderDB(cakeArray, user, delivery)){
             //clear cakes 
-             
             cakes = new ArrayList<>();
             session.setAttribute("cakes", cakes);
             returnPage = "mainmenu?result=success";
