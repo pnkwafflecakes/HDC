@@ -84,6 +84,7 @@ public class CakeInfoServlet extends HttpServlet
         }
 
         session.setAttribute("cakes", cakes);
+        session.setAttribute("cartSize", cakes.size());
         response.sendRedirect("cart");
     }
 }
