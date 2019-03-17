@@ -14,7 +14,6 @@
     </head>
 
     <body>
-        <p align="center">${errorMessage}</p>
         <div class="container">
 
             <div class="row">
@@ -23,7 +22,10 @@
 
                     <div class="card card-signin my-5">
                         <div class="card-body">
-                            <h5 class="card-title text-center">Sign In</h5>
+                            <h5 class="card-title text-center">Welcome to Hellen Delicious Cakes</h5>
+                            <h5 class="card-title text-center" style="font-style: italic;">Please log in</h5>
+                            <h5 class="card-title text-center" style="color: orange">${errorMessage}</h5>
+
 
                             <form class="form-signin" action="login" method="POST">
                                 <div class="form-label-group">
