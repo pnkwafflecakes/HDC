@@ -33,31 +33,30 @@ public class SearchServlet extends HttpServlet
             throws ServletException, IOException
     {
         //Variable set up
-        String searchWord = request.getParameter("searchWord");
-        int i =0;
-        boolean processing = true;
         ArrayList<Cake> searchList = new ArrayList();
         CakeService cs = new CakeService();
         boolean validCake;
-        if (searchWord == null && searchWordGl != null) searchWord = searchWordGl;
+        
+        HttpSession session = request.getSession(true);
+        String searchWord = session.getAttribute("searchWord")+"";
         
         if (searchWord != null) {
-            while (processing) {
+            List<Cake> cakeListDB = cs.getAll();
+            for (int i=0; i < cakeListDB.size(); i++) {
                 validCake = false;
-                Cake cakeProc = cs.get(i);
-                if (cakeProc == null) processing = false;
-                else {
-                    if (cakeProc.getName().contains(searchWord)) validCake = true;
-                    else if (cakeProc.getDescription().contains(searchWord)) validCake = true;
+                Cake cakeProc = cakeListDB.get(i);
+                String abc = "abc";
+                
+                
+                if (cakeProc.getName().toLowerCase().contains(searchWord.toLowerCase())) validCake = true;
+                else if (cakeProc.getDescription().toLowerCase().contains(searchWord.toLowerCase())) validCake = true;
                     
-                    if (validCake) searchList.add(cakeProc);
-                }
-                i++;
+                if (validCake) searchList.add(cakeProc);
             }
             
         }
         request.setAttribute("cakes", searchList);
-        if (searchList.size() == 0) request.setAttribute("message", "No cakes containing that description or name");
+        if (searchList.isEmpty()) request.setAttribute("message", "No cakes containing that description or name");
         getServletContext().getRequestDispatcher("/WEB-INF/search.jsp").forward(request, response);
     }
 
@@ -73,9 +72,11 @@ public class SearchServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        String searchWord = request.getParameter("searchbar");
-        if (searchWord == null || searchWord.isEmpty()) searchWordGl = null;
-        else searchWordGl = searchWord;
+        String searchWord = request.getParameter("searchWord");
+        HttpSession session = request.getSession(true);
+        session.setAttribute("searchWord", searchWord);
+        System.out.println("SearchWord: " +searchWord);
+        System.out.println("Search Word in Session: " + session.getAttribute("searchWord"));
         doGet(request, response);
     }
 }

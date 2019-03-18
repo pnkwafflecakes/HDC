@@ -13,9 +13,16 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Search Results</h1>
+        <form action="search" method="post">
+        <input type="text" name="searchWord" value="">
+             <input type="submit" value="Search">
+            <input type="hidden" name="action" value="Search">
+        </form>
         <table>
+             ${message}
              <c:forEach var="cake" items="${cakes}">
+                 
                         <tr>
                             <td><img src="<c:url value='${cake.image}'/>" alt="Cake Picture" width="50%" height="50%"/></td>
                             <td>${cake.cakeId}</td>
@@ -27,7 +34,7 @@
                             <td>${cake.featured}</td>
                             <td>${cake.special}</td>
                         </tr>
-             </c:foreach>
+            </c:forEach>
         </table>
     </body>
 </html>
