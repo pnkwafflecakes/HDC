@@ -135,12 +135,6 @@
             </div>
         </nav>
 
-        <form action="search" method="post">
-            <input type="text" name="searchWord" value="">
-            <input type="submit" value="Search">
-            <input type="hidden" name="action" value="Search">
-        </form>
-                        
         <div class="container mt-3">
             <div class="row">
                 <div class="col-12">
