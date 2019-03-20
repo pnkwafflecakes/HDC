@@ -52,7 +52,6 @@ public class ViewOrders extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            int rownumber = 1;
         try {
             //Get session variable
             //Create user variable to put into session
@@ -60,7 +59,6 @@ public class ViewOrders extends HttpServlet {
             User user = (User) session.getAttribute("userObj");
             user.setAddress("211 Sample Road");
             //Use session variable to query database for users orders
-            int id = user.getUserId();
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/capstonedb","root", "password");
             String preparedQuery = "Select * from Orders Where user_id = ?";
@@ -72,7 +70,11 @@ public class ViewOrders extends HttpServlet {
             rs.last();
             int rows = rs.getRow();
             rs.first();
-            
+            //Push a message to the page if there are no orders
+            if(rows == 0)
+            {
+                request.setAttribute("error","No orders have been placed yet.");
+            }
             while(i < rows)
             {
                 //Create object from resultset data
@@ -93,7 +95,6 @@ public class ViewOrders extends HttpServlet {
                 ps2.setInt(1,order_no);
                 ResultSet rs2 = ps2.executeQuery();
                 rs2.next();
-                int delivery_no = rs2.getInt("delivery_no");
                 
                 //Grab delivery object from database
                 String prepDeliveryStatement = "Select * from Delivery where delivery_no = ? ;";
@@ -115,7 +116,6 @@ public class ViewOrders extends HttpServlet {
             //Push orderList to page
             request.setAttribute("orderList", orderList);
             getServletContext().getRequestDispatcher("/WEB-INF/orders.jsp").forward(request, response);
-            //Display orders in a decent way
             
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ViewOrders.class.getName()).log(Level.SEVERE, null, ex);

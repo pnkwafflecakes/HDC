@@ -14,6 +14,7 @@
     </head>
     <body>
         <h1 align="center">Orders</h1>
+        <p align="center"">${error}</p>
         <table align="center">
             <c:forEach items="${orderList}" var="order">
                 <tr>
