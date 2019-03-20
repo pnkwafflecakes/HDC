@@ -68,6 +68,14 @@
         <servlet-name>ViewOrders</servlet-name>
         <servlet-class>servlets.ViewOrders</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchServlet</servlet-name>
+        <servlet-class>servlets.SearchServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchServlet</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>EditCakeServlet</servlet-name>
         <url-pattern>/editcake</url-pattern>
