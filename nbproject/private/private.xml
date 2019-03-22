@@ -28,12 +28,6 @@
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/cakeinfo.jsp</file>
             <file>file:/C:/Users/775224/Documents/NetBeansProjects/new/HDC/web/WEB-INF/cart.jsp</file>
         </group>
-        <group>
-            <file>file:/C:/Users/Knyfe/Documents/GitHub/HDC/src/java/servlets/LoginServlet.java</file>
-            <file>file:/C:/Users/Knyfe/Documents/GitHub/HDC/src/java/Database/capstoneDB.sql</file>
-            <file>file:/C:/Users/Knyfe/Documents/GitHub/HDC/src/java/servlets/RegisterServlet.java</file>
-            <file>file:/C:/Users/Knyfe/Documents/GitHub/HDC/src/java/servlets/ViewOrders.java</file>
-            <file>file:/C:/Users/Knyfe/Documents/GitHub/HDC/web/WEB-INF/orders.jsp</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

@@ -56,66 +56,61 @@ public class ViewOrders extends HttpServlet {
             //Get session variable
             //Create user variable to put into session
             HttpSession session = request.getSession();
+            User test = new User();
+            test.setUserId(0);
+            session.setAttribute("userObj", test);
+            
+            
             User user = (User) session.getAttribute("userObj");
             user.setAddress("211 Sample Road");
             //Use session variable to query database for users orders
+            //Querying for the cake items as well is most likely necessary.
+            int id = test.getUserId();
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/capstonedb","root", "password");
             String preparedQuery = "Select * from Orders Where user_id = ?";
             PreparedStatement ps = connection.prepareStatement(preparedQuery);
-            ps.setInt(1, user.getUserId());
+            ps.setInt(1,id);
             ResultSet rs = ps.executeQuery();
+            rs.next();
             ArrayList orderList = new ArrayList();
+            int orders = 0;
             int i = 0;
             rs.last();
             int rows = rs.getRow();
-            rs.first();
-            //Push a message to the page if there are no orders
-            if(rows == 0)
-            {
-                request.setAttribute("error","No orders have been placed yet.");
-            }
-            while(i < rows)
+            orders = rows / 7;
+            while(i < orders)
             {
                 //Create object from resultset data
                 Date orderDate = rs.getDate("order_datetime");
                 Date dueDate = rs.getDate("due_datetime");
                 Orders order = new Orders();
                 order.setOrderNo(rs.getInt("order_no"));
-                order.setUserId(user);
+                order.setUserId(test);
                 order.setOrderDatetime(orderDate);
                 order.setDueDatetime(dueDate);
-                order.setOrderItems(rs.getString("order_items"));
+                order.setOrderItems("order_items");
                 order.setTotalPrice(rs.getDouble("total_price"));
-                int order_no = order.getOrderNo();
-                
-                //Get the delivery number from the order.
-                String prepOrderStatement = "Select delivery_no from Orders where order_no = ? ;";
-                PreparedStatement ps2 = connection.prepareStatement(prepOrderStatement);
-                ps2.setInt(1,order_no);
-                ResultSet rs2 = ps2.executeQuery();
-                rs2.next();
                 
                 //Grab delivery object from database
-                String prepDeliveryStatement = "Select * from Delivery where delivery_no = ? ;";
-                PreparedStatement ps3 = connection.prepareStatement(prepDeliveryStatement);
-                ps3.setInt(1, order.getOrderNo());
-                ResultSet rs3 = ps3.executeQuery();
-                rs3.next();
+                Class.forName("com.mysql.jdbc.Driver");
+                String prepStatement = "Select * from delivery where address = ?;";
+                PreparedStatement ps2 = connection.prepareStatement(prepStatement);
+                ps2.setString(1, user.getAddress());
+                ResultSet rs2 = ps2.executeQuery();
                 Delivery del = new Delivery();
                 del.setDeliveryNo(rs2.getInt("delivery_no"));
-                del.setMethod(rs3.getString("method"));
-                del.setAddress(rs3.getString("address"));
-                del.setPhoneNo(rs3.getString("phone_no"));
-                del.setNotes(rs3.getString("notes"));
+                del.setMethod(rs2.getString("method"));
+                del.setAddress(rs2.getString("address"));
+                del.setPhoneNo(rs2.getString("phone_no"));
+                del.setNotes(rs2.getString("notes"));
                 order.setDeliveryNo(del);
                 orderList.add(order);
                 i++;
-                rs.next();
             }          
             //Push orderList to page
-            request.setAttribute("orderList", orderList);
             getServletContext().getRequestDispatcher("/WEB-INF/orders.jsp").forward(request, response);
+            //Display orders in a decent way
             
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ViewOrders.class.getName()).log(Level.SEVERE, null, ex);
