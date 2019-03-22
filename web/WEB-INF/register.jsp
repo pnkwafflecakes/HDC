@@ -14,7 +14,7 @@
     </head>
 
     <body>
-        <p style="color:red">${error}</p>
+        <p style="color:red" align="center">${error}</p>
         <p style="color:green">${status}</p>
         <div class="container">
             <div class="row">

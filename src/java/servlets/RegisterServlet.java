@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author 744916
+ * @author Knyfe
  */
 public class RegisterServlet extends HttpServlet
 {
@@ -54,40 +54,83 @@ public class RegisterServlet extends HttpServlet
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         Boolean errorCheck = false;
-        if(username.equals(""))
+        //Validation for correct length and that each field is not blank
+        if(username.equals("") || username.length() < 8)
         {
             errorCheck = true;
             request.setAttribute("error", "Please Enter Your Username");
         }
-        if(password.equals("") || password.length() > 30)
+        else if(password.equals("") || password.length() < 8)
         {
             errorCheck = true;
-            request.setAttribute("error", "Please Enter a Password");
+            request.setAttribute("error", "Please Enter a Password That Is 8 Characters Or Longer.");
         }
-        if(name.equals("") || name.length() > 25)
+        else if(name.equals("") || name.length() < 5)
         {
             errorCheck = true;
             request.setAttribute("error", "Please Enter Your Full Name");
         }
-        if(address.equals(""))
+        else if(address.equals("") || address.length() < 10)
         {
             errorCheck = true;
             request.setAttribute("error", "Please Enter Your Full Address");
         }
-        if(postalCode.equals(""))
+        else if(postalCode.equals("") || postalCode.length() < 7 || postalCode.length() > 7)
         {
             errorCheck = true;
-            request.setAttribute("error", "Please Enter Your Postal Code");
+            request.setAttribute("error", "Please Enter Your Postal Code (Please Include The Dash)");
         }
-        if(email.equals(""))
+        else if(email.equals(""))
         {
             errorCheck = true;
             request.setAttribute("error", "Please Enter Your Email");
         }
-        if(phone.equals(""))
+        else if(phone.equals("") || phone.length() < 12)
         {
             errorCheck = true;
-            request.setAttribute("error", "Please Enter Your Phone Number");
+            request.setAttribute("error", "Please Enter Your Phone Number (Include The Dashes)");
+        }
+        
+        //Validation alphanumeric and specidic characters/patterns
+        if(username.contains("_"))
+        {
+            errorCheck = true;
+            request.setAttribute("error", "Please Only Include Letters And Numbers");
+        }
+        if(!username.matches(".[a-zA-Z0-9]*"))
+        {
+            errorCheck = true;
+            request.setAttribute("error", "Please Enter a Username With Only Letters and Numbers");
+        }
+        if(!password.matches(".[a-zA-Z0-9]*"))
+        {
+            errorCheck = true;
+            request.setAttribute("error", "Please Enter a Password That Contains Only Letters and Numbers");
+        }
+        if(!name.matches(".[a-zA-Z ]*"))
+        {
+            errorCheck = true;
+            request.setAttribute("error", "Please Enter Your Name");
+        }
+        if(!address.matches(".[a-zA-Z0-9. ]*"))
+        {
+            errorCheck = true;
+            request.setAttribute("error", "Please Enter Your Full Address");
+        }
+        if(!postalCode.matches("^[a-zA-z]{1}[0-9]{1}[a-zA-z]{1}[-]{1}[0-9]{1}[a-zA-Z]{1}[0-9]{1}"))
+        {
+            errorCheck = true;
+            request.setAttribute("error", "Please Enter Your Postal Code With the Dashes Included");
+        }
+        if(!email.matches("[A-Za-z0-9]{2,30}[@][A-Za-z0-9]{2,20}{1}[.]{1}[A-Za-z]{2,8}"))
+        {
+            errorCheck = true;
+            request.setAttribute("error", "Please Enter a Valid Email Address");
+        }
+        if(!phone.matches("^\\d{3}[-]{1}\\d{3}[-]{1}\\d{4}") && !phone.matches("^[+]{1}\\d{1,3}[-]{1}\\d{3}[-]{1}\\d{3}[-]{1}\\d{4}"))
+        {
+            errorCheck = true;
+            request.setAttribute("error", "Please Enter a Valid Phone Number (Add a Plus and a Dash For Extensions)");
         }
         if(errorCheck)
         {
