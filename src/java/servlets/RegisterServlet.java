@@ -154,6 +154,10 @@ public class RegisterServlet extends HttpServlet
                 int user_id = rs.getInt(1);
                 user_id++;
                 
+                //Prepare postalCode
+                
+                postalCode = postalCode.replace("-",""); 
+                
                 //Add user input into prepared statement.
                 ps = connection.prepareStatement(prepInsertUser);
                 ps.setInt(1, user_id);
