@@ -15,11 +15,12 @@ import javax.servlet.http.HttpSession;
  * @author Adam Schlinker
  * @version 1.0
  *
- * This Java Servlet is responsible for handling the requests and responses of cakeinfo.jsp. It also
- * serves as the connection between cakeinfo.jsp and the database.
+ * This Java Servlet is responsible for handling the requests and responses of
+ * cakeinfo.jsp. It also serves as the connection between cakeinfo.jsp and the
+ * database.
  */
-public class CakeInfoServlet extends HttpServlet
-{
+public class CakeInfoServlet extends HttpServlet {
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -30,23 +31,31 @@ public class CakeInfoServlet extends HttpServlet
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String language = (String) session.getAttribute("language");
+
         int cakeId = 1;
 
-        try
-        {
+        try {
             cakeId = Integer.valueOf(request.getParameter("cakeid"));
-        }
-        catch (NumberFormatException e)
-        {
+        } catch (NumberFormatException e) {
         }
 
         CakeService service = new CakeService();
         Cake currCake = service.get(cakeId);
 
         request.setAttribute("currCake", currCake);
-        getServletContext().getRequestDispatcher("/WEB-INF/cakeinfo.jsp").forward(request, response);
+//        getServletContext().getRequestDispatcher("/WEB-INF/cakeinfo.jsp").forward(request, response);
+
+        if (language == null) {
+            language = "en";
+        }
+        if (language.equals("cn")) {
+            getServletContext().getRequestDispatcher("/WEB-INF/cn/cakeinfo.jsp").forward(request, response);
+        } else {
+            getServletContext().getRequestDispatcher("/WEB-INF/en/cakeinfo.jsp").forward(request, response);
+        }
     }
 
     /**
@@ -59,27 +68,25 @@ public class CakeInfoServlet extends HttpServlet
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         HttpSession session = request.getSession(true);
 
         ArrayList<Integer> cakes = (ArrayList<Integer>) session.getAttribute("cakes");
 
-        if (cakes == null)
-        {
+        if (cakes == null) {
             cakes = new ArrayList<Integer>();
         }
 
         int cakeId = Integer.valueOf(request.getParameter("cakeId"));
-        
+
         System.out.println("Cake contents: " + cakes.toString());
 
         CakeService cs = new CakeService();
         Cake currCake = cs.get(cakeId);
         int quantity = Integer.valueOf(request.getParameter("quantity"));
-        System.out.println("Quantity: "+quantity);
+        System.out.println("Quantity: " + quantity);
         for (int i = 0; i < quantity; i++) {
-            System.out.println("adding at instance: "+i);
+            System.out.println("adding at instance: " + i);
             cakes.add(cakeId);
         }
 

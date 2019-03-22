@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         String act = request.getParameter("act");
-        String page = request.getParameter("page");
+
 
         if (act != null) {
             if (act.equals("logout")) {
@@ -31,7 +31,9 @@ public class LoginServlet extends HttpServlet {
                 getServletContext().getRequestDispatcher("/mainmenu").forward(request, response);
             }
         }
+        getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 
+        /*
         if (act == null || act.equals("") || page == null || page.equals("")) {
             getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         } else if (act.equals("ch") && page.equals("mainmenu")) {//handle mainmenue ch/en toggle
@@ -61,7 +63,7 @@ public class LoginServlet extends HttpServlet {
         } else {
             getServletContext().getRequestDispatcher("/mainmenu").forward(request, response);
         }
-
+         */
     }
 
     /**

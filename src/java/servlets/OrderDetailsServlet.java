@@ -42,6 +42,10 @@ public class OrderDetailsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+        String language = (String) session.getAttribute("language");
+
         //--*-- Simualted part
 //        System.out.println("YES");
 //        HttpSession session = request.getSession();
@@ -57,7 +61,19 @@ public class OrderDetailsServlet extends HttpServlet {
 //        System.out.println(user.getAddress());
 //        request.setAttribute("phoneNo", user.getPhoneNo());
         //--*--
-        getServletContext().getRequestDispatcher("/WEB-INF/orderdetails.jsp").forward(request, response);
+        
+        
+//        getServletContext().getRequestDispatcher("/WEB-INF/orderdetails.jsp").forward(request, response);
+
+        if (language == null) {
+            language = "en";
+        }
+        if (language.equals("cn")) {
+            getServletContext().getRequestDispatcher("/WEB-INF/cn/orderdetails.jsp").forward(request, response);
+        } else {
+            getServletContext().getRequestDispatcher("/WEB-INF/en/orderdetails.jsp").forward(request, response);
+        }
+
     }
 
     @Override

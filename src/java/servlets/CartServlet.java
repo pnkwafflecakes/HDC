@@ -21,9 +21,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author 744916
  */
-public class CartServlet extends HttpServlet
-{
-    
+public class CartServlet extends HttpServlet {
+
     private boolean emptyCart = true;
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -37,58 +36,66 @@ public class CartServlet extends HttpServlet
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
-        HttpSession session = request.getSession(true);
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String language = (String) session.getAttribute("language");
+
         ArrayList<Integer> cakes = (ArrayList<Integer>) session.getAttribute("cakes");
-        
-        if (cakes!=null && cakes.size()!=0) {
+
+        if (cakes != null && cakes.size() != 0) {
             System.out.println("Cake was valid: " + cakes + " size: " + cakes.size());
             double totalPrice = 0;
             CakeService cs = new CakeService();
             List<Cake> allCakes = cs.getAll();
-            int[] counter = new int[allCakes.size()+1];
-            
+            int[] counter = new int[allCakes.size() + 1];
+
             //todo: Make add quantity
-            
             //For da prices
             for (int i = 0; i < cakes.size(); i++) {
                 totalPrice = totalPrice + cs.get(cakes.get(i)).getPrice();
             }
             emptyCart = false;
-            
+
             System.out.println("Size: " + cakes.size());
-            
+
             Cake[] cakeArray = new Cake[allCakes.size()];
-            
-            for (int i =0; i < cakes.size(); i++) {
+
+            for (int i = 0; i < cakes.size(); i++) {
                 int a = cakes.get(i);
                 if (cakeArray[a] == null) {
-                    cakeArray[a] =cs.get(a);
+                    cakeArray[a] = cs.get(a);
                     counter[a] = 1;
-                }
-                else {
+                } else {
                     counter[a]++;
                 }
             }
-            
+
             request.setAttribute("counter", counter);
             request.setAttribute("cakesInCart", cakeArray);
             request.setAttribute("totalPrice", totalPrice);
-            
+
             ArrayList<Cake> cakes2 = (ArrayList<Cake>) session.getAttribute("cakes");
             System.out.println("Cakes after processing: " + cakes2);
-        }
-        else {
+        } else {
             emptyCart = true;
             //set totalprice=0
             double totalPrice = 0;
             request.setAttribute("totalPrice", totalPrice);
-            
+
             request.setAttribute("errorMessage", "Your cart is empty");
         }
-       
-        getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
+
+//        getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
+
+        if (language == null) {
+            language = "en";
+        }
+        if (language.equals("cn")) {
+        getServletContext().getRequestDispatcher("/WEB-INF/cn/cart.jsp").forward(request, response);
+        } else {
+        getServletContext().getRequestDispatcher("/WEB-INF/en/cart.jsp").forward(request, response);
+        }
+
     }
 
     /**
@@ -101,8 +108,7 @@ public class CartServlet extends HttpServlet
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action != null) {
             if (action.equals("delete")) {
@@ -110,7 +116,7 @@ public class CartServlet extends HttpServlet
                 HttpSession session = request.getSession(true);
                 ArrayList<Integer> cakes = (ArrayList<Integer>) session.getAttribute("cakes");
 
-                for (int i=0; i < cakes.size(); i++) {
+                for (int i = 0; i < cakes.size(); i++) {
                     if (cakes.get(i) == selectedCakeId) {
                         cakes.remove(i);
                         i = cakes.size();
@@ -121,8 +127,7 @@ public class CartServlet extends HttpServlet
         }
         if (emptyCart == false) {
             response.sendRedirect("orderdetails");
-        }
-        else {
+        } else {
             response.sendRedirect("cart");
         }
     }

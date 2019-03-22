@@ -27,6 +27,10 @@ public class MainMenuServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+        String language = (String) session.getAttribute("language");
+
         CakeService cs = new CakeService();
         List<Cake> cakes = cs.getAll();
         ArrayList<Cake> cakearray = new ArrayList<>();
@@ -46,7 +50,14 @@ public class MainMenuServlet extends HttpServlet {
         request.setAttribute("cake5", cakearray.get(4));
         request.setAttribute("cake6", cakearray.get(5));
 
-        getServletContext().getRequestDispatcher("/WEB-INF/mainmenu/mainmenu.jsp").forward(request, response);
+        if (language == null) {
+            language = "en";
+        }
+        if (language.equals("cn")) {
+            getServletContext().getRequestDispatcher("/WEB-INF/cn/mainmenu.jsp").forward(request, response);
+        } else {
+            getServletContext().getRequestDispatcher("/WEB-INF/en/mainmenu.jsp").forward(request, response);
+        }
 
     }
 
