@@ -57,7 +57,6 @@
                 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                 <thead>
                 <th>Image</th>
-                <th>ID</th>
                 <th>Name</th>
                 <th>Category</th>
                 <th>Size</th>
@@ -72,14 +71,20 @@
                     <c:forEach var="cake" items="${cakes}">
                         <tr>
                             <td><img src="<c:url value='${cake.image}'/>" alt="Cake Picture" width="50%" height="50%"/></td>
-                            <td>${cake.cakeId}</td>
+                            
                             <td>${cake.name}</td>
                             <td>${cake.categoryId.description}</td>
                             <td>${cake.size}</td>
                             <td>${cake.price}</td>
                             <td>${cake.description}</td>
-                            <td>${cake.featured}</td>
-                            <td>${cake.special}</td>
+                            <td>
+                                <input type="checkbox" name="featuredCheck" disabled="disabled"
+                                    <c:if test="${cake.featured == true}">checked="checked"</c:if>
+/>                          </td>
+                            <td>
+                                <input type="checkbox" name="specialCheck" disabled="disabled"
+                                    <c:if test="${cake.special == true}">checked="checked"</c:if>
+/>                          </td>
                             <td>
                                 <form action="managecakes" method="post" >
                                     <input type="submit" value="Edit">
@@ -90,7 +95,7 @@
                             <td>
                                 <form action="managecakes" method="post" >
                                     <input type="submit" value="Delete">
-                                    <input type="hidden" name="action" value="Delete">
+                                    <input type="hidden" name="action" value="delete">
                                     <input type="hidden" name="selectedCakeId" value="${cake.cakeId}">
                                 </form>
                             </td>

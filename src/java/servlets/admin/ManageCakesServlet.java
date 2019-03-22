@@ -65,11 +65,13 @@ public class ManageCakesServlet extends HttpServlet
         try {
         CakeService cs = new CakeService();
         String action = request.getParameter("action");
+        System.out.println(action);
         if (action != null) {
             int cakeId = Integer.valueOf(request.getParameter("selectedCakeId"));
             if (action.equals("delete")) {
                 cs.delete(cakeId);
-                doGet(request, response);
+                System.out.println("Redir from delete");
+                response.sendRedirect("managecakes");
             }
             else if (action.equals("edit")) {
                 session.setAttribute("cakeId", cakeId);

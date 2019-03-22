@@ -29,7 +29,7 @@ import javax.servlet.http.Part;
  * @author 744916
  */
 @MultipartConfig
-public class EditCakeServlet extends HttpServlet
+public class EditCakeServlet1 extends HttpServlet
 {
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -80,41 +80,30 @@ public class EditCakeServlet extends HttpServlet
         boolean featured = false;
         boolean special = false;
         
-        //name
-        String name = request.getParameter("name");
-        String namecn = request.getParameter("namecn");
+        //image
+        
         
         //Description
         String description = request.getParameter("description");
-        String descriptioncn = request.getParameter("descriptioncn");
         //Featured
         String[] featuredCheck = request.getParameterValues("featured");
-        if (featuredCheck==null) featured = false;
-        else if (featuredCheck[0].equals("on")) featured = true;
-        else System.out.println("Featured Check value " + featuredCheck[0]);
+        if (featuredCheck[0].equals("checked")) featured = true;
         //Price
         double price = Double.valueOf(request.getParameter("price"));
         //Size
         int size = Integer.valueOf(request.getParameter("size"));
         //Special
         String[] specialCheck = request.getParameterValues("special");
-        if (specialCheck==null) featured = false;
-        else if (specialCheck[0].equals("on")) special = true;
-        else System.out.println("Special Check value " + specialCheck[0]);
+        if (specialCheck[0].equals("checked")) special = true;
         
         int categoryId = Integer.valueOf(request.getParameter("categorySelect"));           
         
         cake.setCategoryId(ccs.get(categoryId));
-        cake.setName(name);
-        cake.setNamecn(namecn);
         cake.setDescription(description);
-        cake.setDescriptioncn(descriptioncn);
         cake.setFeatured(featured);
         cake.setPrice(price);
         cake.setSize(size);
         cake.setSpecial(special);
-        
-        
         
         try {
             System.out.println("EditCake: 1: " + action);
@@ -123,13 +112,6 @@ public class EditCakeServlet extends HttpServlet
                 int cakeId = Integer.valueOf(request.getParameter("selectedCakeId"));
                 System.out.println("CakeId "+cakeId);
                 cake.setCakeId(cakeId);
-                
-                String imagePath = processFile(request, response);
-                if (imagePath == null) {
-                    imagePath = cs.get(cakeId).getImage();
-                }
-                cake.setImage(imagePath);
-                
                 //try {
                 cs.update(cake);
                 //}

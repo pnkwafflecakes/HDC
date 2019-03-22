@@ -30,7 +30,7 @@ import javax.persistence.EntityTransaction;
  */
 public class CakeJpaController implements Serializable {
 
-    public void create(Cake cake) throws PreexistingEntityException, Exception {
+    public void create(Cake cake) throws PreexistingEntityException {
         if (cake.getOrdersCollection() == null) {
             cake.setOrdersCollection(new ArrayList<Orders>());
         }
@@ -89,7 +89,7 @@ public class CakeJpaController implements Serializable {
         }
     }
 
-    public void edit(Cake cake) throws IllegalOrphanException, NonexistentEntityException, Exception {
+    public void edit(Cake cake) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             EntityTransaction trans = em.getTransaction();
@@ -103,11 +103,14 @@ public class CakeJpaController implements Serializable {
             Collection<Cakeorder> cakeorderCollectionNew = cake.getCakeorderCollection();
             List<String> illegalOrphanMessages = null;
             for (Cakeorder cakeorderCollectionOldCakeorder : cakeorderCollectionOld) {
+                if (cakeorderCollectionNew ==  null);
+                else {
                 if (!cakeorderCollectionNew.contains(cakeorderCollectionOldCakeorder)) {
                     if (illegalOrphanMessages == null) {
                         illegalOrphanMessages = new ArrayList<String>();
                     }
                     illegalOrphanMessages.add("You must retain Cakeorder " + cakeorderCollectionOldCakeorder + " since its cake field is not nullable.");
+                }
                 }
             }
             if (illegalOrphanMessages != null) {
@@ -118,16 +121,24 @@ public class CakeJpaController implements Serializable {
                 cake.setCategoryId(categoryIdNew);
             }
             Collection<Orders> attachedOrdersCollectionNew = new ArrayList<Orders>();
+            try {
             for (Orders ordersCollectionNewOrdersToAttach : ordersCollectionNew) {
                 ordersCollectionNewOrdersToAttach = em.getReference(ordersCollectionNewOrdersToAttach.getClass(), ordersCollectionNewOrdersToAttach.getOrderNo());
                 attachedOrdersCollectionNew.add(ordersCollectionNewOrdersToAttach);
             }
+            } catch (NullPointerException e) {
+                
+            }
             ordersCollectionNew = attachedOrdersCollectionNew;
             cake.setOrdersCollection(ordersCollectionNew);
             Collection<Cakeorder> attachedCakeorderCollectionNew = new ArrayList<Cakeorder>();
+            try {
             for (Cakeorder cakeorderCollectionNewCakeorderToAttach : cakeorderCollectionNew) {
                 cakeorderCollectionNewCakeorderToAttach = em.getReference(cakeorderCollectionNewCakeorderToAttach.getClass(), cakeorderCollectionNewCakeorderToAttach.getCakeorderPK());
                 attachedCakeorderCollectionNew.add(cakeorderCollectionNewCakeorderToAttach);
+            }
+            } catch (NullPointerException e) {
+                
             }
             cakeorderCollectionNew = attachedCakeorderCollectionNew;
             cake.setCakeorderCollection(cakeorderCollectionNew);
