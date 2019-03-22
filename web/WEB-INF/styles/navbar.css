@@ -19,3 +19,11 @@
 .btn-outline-dark:hover{
     background-color: #CB98F8;
 }
+
+#bottomfooter{
+    background-color: #624562;
+}
+
+.footertext{
+    color: white;
+}
