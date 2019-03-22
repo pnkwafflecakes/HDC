@@ -42,52 +42,27 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="mainmenu">
-                                <c:if test="${(language == null)||(language == 'en') }">
-                                    Home
-                                </c:if>
-                                <c:if test="${language == 'ch'}">
-                                    主页
-                                </c:if>
-                                <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="mainmenu">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <c:if test="${(language == null)||(language == 'en') }">
-                                    Browse
-                                </c:if>
-                                <c:if test="${language == 'ch'}">
-                                    浏览
-                                </c:if>
+                            <a class="nav-link" href="#">Browse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <c:if test="${(language == null)||(language == 'en') }">
-                                    Contact
-                                </c:if>
-                                <c:if test="${language == 'ch'}">
-                                    联系我们
-                                </c:if>
-                            </a>
+                            <a class="nav-link" href="cart">Cart<span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="cart">
-                                <c:if test="${(language == null)||(language == 'en') }">
-                                    Cart
-                                </c:if>
-                                <c:if test="${language == 'ch'}">
-                                    购物车
-                                </c:if>
-                                <span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
-                        </li>
-
-
                         <li class="nav-item"> </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
 
+                        <form class="form-inline my-2 my-lg-0" action="search" method="post">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchWord">
+                            <input type="hidden" name="action" value="Search">
+                        </form>
                         <c:if test="${userObj != null}">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -104,33 +79,15 @@
                         </c:if>
                         <c:if test="${userObj == null}">
                             <li class="nav-item">
-                                <a class="nav-link" href="login">
-                                    <c:if test="${(language == null)||(language == 'en') }">
-                                        Login/Register
-                                    </c:if>
-                                    <c:if test="${language == 'ch'}">
-                                        登录/注册
-                                    </c:if>
+                                <a class="nav-link" href="login">Login/Register
                                 </a>
                             </li>
                         </c:if>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login?act=ch&amp;page=mainmenu"><i class="fas fa-globe-americas"></i>  中文 </a>
+                        </li>
 
-                        <!--button toggle ch/en-->
-                        <c:if test="${(language == null)||(language == 'en') }">
-                            <li class="nav-item">
-                                <a class="nav-link" href="login?act=ch&amp;page=mainmenu"><i class="fas fa-globe-americas"></i>  中文 </a>
-                            </li>
-                        </c:if>
-                        <c:if test="${language == 'ch'}">
-                            <li class="nav-item">
-                                <a class="nav-link" href="login?act=en&amp;page=mainmenu"><i class="fas fa-globe-americas"></i>  English </a>
-                            </li>
-                        </c:if>
                     </ul>
-
-
-
-
                 </div>
             </div>
         </nav>
@@ -149,20 +106,10 @@
                                 <img alt="First slide" width="900" height="500" class="d-block w-100" src="<c:url value='/images/home1.jpg'/>" />
                                 <div class="carousel-caption d-none d-md-block">
                                     <h3>
-                                        <c:if test="${(language == null)||(language == 'en') }">
-                                            ${cake1.name}
-                                        </c:if>
-                                        <c:if test="${language == 'ch'}">
-                                            ${cake1.namecn}
-                                        </c:if>
+                                        ${cake1.name}
                                     </h3>
                                     <p>
-                                        <c:if test="${(language == null)||(language == 'en') }">
-                                            ${cake1.description}
-                                        </c:if>
-                                        <c:if test="${language == 'ch'}">
-                                            ${cake1.descriptioncn}
-                                        </c:if>
+                                        ${cake1.description}
                                     </p>
                                 </div>
                             </div>
@@ -170,20 +117,10 @@
                                 <img src="images/home2.jpg" alt="Second slide" width="749" height="499" class="d-block w-100">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h3>
-                                        <c:if test="${(language == null)||(language == 'en') }">
-                                            ${cake2.name}
-                                        </c:if>
-                                        <c:if test="${language == 'ch'}">
-                                            ${cake2.namecn}
-                                        </c:if>
+                                        ${cake2.name}
                                     </h3>
                                     <p>
-                                        <c:if test="${(language == null)||(language == 'en') }">
-                                            ${cake2.description}
-                                        </c:if>
-                                        <c:if test="${language == 'ch'}">
-                                            ${cake2.descriptioncn}
-                                        </c:if>
+                                        ${cake2.description}
                                     </p>
                                 </div>
                             </div>
@@ -191,20 +128,10 @@
                                 <img src="images/home3.jpg" alt="Third slide" width="891" height="500" class="d-block w-100">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h3>
-                                        <c:if test="${(language == null)||(language == 'en') }">
-                                            ${cake3.name}
-                                        </c:if>
-                                        <c:if test="${language == 'ch'}">
-                                            ${cake3.namecn}
-                                        </c:if>
+                                        ${cake3.name}
                                     </h3>
                                     <p>
-                                        <c:if test="${(language == null)||(language == 'en') }">
-                                            ${cake3.description}
-                                        </c:if>
-                                        <c:if test="${language == 'ch'}">
-                                            ${cake3.descriptioncn}
-                                        </c:if>
+                                        ${cake3.description}
                                     </p>
                                 </div>
                             </div>
@@ -223,13 +150,7 @@
         </div>
         <hr>
         <h2 class="text-center">
-
-            <c:if test="${(language == null)||(language == 'en') }">
-                RECOMMENDED CAKES
-            </c:if>
-            <c:if test="${language == 'ch'}">
-                精选蛋糕
-            </c:if>
+            RECOMMENDED CAKES
         </h2>
         <hr>
         <div class="container">
@@ -239,20 +160,10 @@
                         <img class="card-img-top" alt="Card image cap" src="<c:url value='${cake1.image}'/>" />
                         <div class="card-body">
                             <h5 class="card-title">
-                                <c:if test="${(language == null)||(language == 'en') }">
-                                    ${cake1.name}
-                                </c:if>
-                                <c:if test="${language == 'ch'}">
-                                    ${cake1.namecn}
-                                </c:if>
+                                ${cake1.name}
                             </h5>
                             <p class="card-text">
-                                <c:if test="${(language == null)||(language == 'en') }">
-                                    ${cake1.description}
-                                </c:if>
-                                <c:if test="${language == 'ch'}">
-                                    ${cake1.descriptioncn}
-                                </c:if>
+                                ${cake1.description}
                             </p>
                             <a href="cakeinfo?cakeid=${cake1.cakeId}" class="btn btn-outline-secondary">Add to Cart</a>
                         </div>
@@ -263,20 +174,10 @@
                         <img class="card-img-top" alt="Card image cap" src="<c:url value='${cake2.image}'/>" />
                         <div class="card-body">
                             <h5 class="card-title">
-                                <c:if test="${(language == null)||(language == 'en') }">
-                                    ${cake2.name}
-                                </c:if>
-                                <c:if test="${language == 'ch'}">
-                                    ${cake2.namecn}
-                                </c:if>
+                                ${cake2.name}
                             </h5>
                             <p class="card-text">                                
-                                <c:if test="${(language == null)||(language == 'en') }">
-                                    ${cake2.description}
-                                </c:if>
-                                <c:if test="${language == 'ch'}">
-                                    ${cake2.descriptioncn}
-                                </c:if>
+                                ${cake2.description}
                             </p>
                             <a href="cakeinfo?cakeid=${cake2.cakeId}" class="btn btn-outline-secondary">Add to Cart</a>
                         </div>
@@ -287,20 +188,10 @@
                         <img class="card-img-top" alt="Card image cap" src="<c:url value='${cake3.image}'/>" />
                         <div class="card-body">
                             <h5 class="card-title">
-                                <c:if test="${(language == null)||(language == 'en') }">
-                                    ${cake3.name}
-                                </c:if>
-                                <c:if test="${language == 'ch'}">
-                                    ${cake3.namecn}
-                                </c:if>
+                                ${cake3.name}
                             </h5>
                             <p class="card-text">
-                                <c:if test="${(language == null)||(language == 'en') }">
-                                    ${cake3.description}
-                                </c:if>
-                                <c:if test="${language == 'ch'}">
-                                    ${cake3.descriptioncn}
-                                </c:if>
+                                ${cake3.description}
                             </p>
                             <a href="cakeinfo?cakeid=${cake3.cakeId}" class="btn btn-outline-secondary">Add to Cart</a>
                         </div>
@@ -313,20 +204,10 @@
                         <img class="card-img-top" alt="Card image cap" src="<c:url value='${cake4.image}'/>" />
                         <div class="card-body">
                             <h5 class="card-title">$
-                                <c:if test="${(language == null)||(language == 'en') }">
-                                    ${cake4.name}
-                                </c:if>
-                                <c:if test="${language == 'ch'}">
-                                    ${cake4.namecn}
-                                </c:if>
+                                ${cake4.name}
                             </h5>
                             <p class="card-text">
-                                <c:if test="${(language == null)||(language == 'en') }">
-                                    ${cake4.description}
-                                </c:if>
-                                <c:if test="${language == 'ch'}">
-                                    ${cake4.descriptioncn}
-                                </c:if>
+                                ${cake4.description}
                             </p>
                             <a href="cakeinfo?cakeid=${cake4.cakeId}" class="btn btn-outline-secondary">Add to Cart</a>
                         </div>
@@ -337,20 +218,10 @@
                         <img class="card-img-top" alt="Card image cap" src="<c:url value='${cake5.image}'/>" />
                         <div class="card-body">
                             <h5 class="card-title">
-                                <c:if test="${(language == null)||(language == 'en') }">
-                                    ${cake5.name}
-                                </c:if>
-                                <c:if test="${language == 'ch'}">
-                                    ${cake5.namecn}
-                                </c:if>
+                                ${cake5.name}
                             </h5>
                             <p class="card-text">
-                                <c:if test="${(language == null)||(language == 'en') }">
-                                    ${cake5.description}
-                                </c:if>
-                                <c:if test="${language == 'ch'}">
-                                    ${cake5.descriptioncn}
-                                </c:if>
+                                ${cake5.description}
                             </p>
                             <a href="cakeinfo?cakeid=${cake5.cakeId}" class="btn btn-outline-secondary">Add to Cart</a>
                         </div>
@@ -361,20 +232,10 @@
                         <img class="card-img-top" alt="Card image cap" src="<c:url value='${cake6.image}'/>" />
                         <div class="card-body">
                             <h5 class="card-title">
-                                <c:if test="${(language == null)||(language == 'en') }">
-                                    ${cake6.name}
-                                </c:if>
-                                <c:if test="${language == 'ch'}">
-                                    ${cake6.namecn}
-                                </c:if>
+                                ${cake6.name}
                             </h5>
                             <p class="card-text">
-                                <c:if test="${(language == null)||(language == 'en') }">
-                                    ${cake6.description}
-                                </c:if>
-                                <c:if test="${language == 'ch'}">
-                                    ${cake6.descriptioncn}
-                                </c:if>
+                                ${cake6.description}
                             </p>
                             <a href="cakeinfo?cakeid=${cake6.cakeId}" class="btn btn-outline-secondary">Add to Cart</a>
                         </div>
@@ -382,75 +243,83 @@
                 </div>
             </div>
         </div>
-        <hr>
 
-        <div class="container text-white bg-dark p-4">
-            <div class="row">
-                <div class="col-6 col-md-8 col-lg-7">
-                    <div class="row text-center">
-                        <div class="col-sm-6 col-md-4 col-lg-4 col-12">
-                            <ul class="list-unstyled">
+        <div class="containter" id="bottomfooter">
+            <!-- Footer -->
+            <br>
+            <footer class="page-footer font-small unique-color-dark">
 
-                                <li class="btn-link"> <a href="#" class="fab fa-facebook"> facebook</a> </li>
-                                <li class="btn-link"> <a href="#" class="fab fa-instagram"> instagram</a> </li>
-                                <li class="btn-link"> <a href="#" class="fab fa-weixin"> wechat</a> </li>
 
-                            </ul>
+                <!-- Footer Links -->
+                <div class="container text-center text-md-left mt-5">
+
+                    <!-- Grid row -->
+                    <div class="row mt-3">
+
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+                            <!-- Content -->
+                            <h6 class="text-uppercase font-weight-bold footertext">Hellen Delicious Cakes, Inc.</h6>
+                            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                            <p class="footertext">Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit.</p>
+
                         </div>
-                        <div class="col-sm-6 col-md-4 col-lg-4 col-12">
-                            <ul class="list-unstyled">
-                                <li class="btn-link">                                   
-                                    <c:if test="${(language == null)||(language == 'en') }">
-                                        <a>About us</a> 
-                                    </c:if>
-                                    <c:if test="${language == 'ch'}">
-                                        <a>关于我们</a> 
-                                    </c:if>
-                                </li>
-                                <li class="btn-link"> 
-                                    <c:if test="${(language == null)||(language == 'en') }">
-                                        <a>Contact</a> 
-                                    </c:if>
-                                    <c:if test="${language == 'ch'}">
-                                        <a>联系方式</a> 
-                                    </c:if>
-                                </li>
-                                <li class="btn-link"> 
-                                    <c:if test="${(language == null)||(language == 'en') }">
-                                        <a>Map</a>  
-                                    </c:if>
-                                    <c:if test="${language == 'ch'}">
-                                        <a>地图</a> 
-                                    </c:if>
-                                </li>
-                            </ul>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                            <!-- Links -->
+                            <h6 class="text-uppercase font-weight-bold footertext">Follow Us</h6>
+                            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                            <p>
+                                <a href="#" class="fab fa-facebook footertext"> facebook</a>  
+                            </p>
+                            <p>
+                                <a href="#" class="fab fa-instagram footertext"> instagram</a> 
+                            </p>
+                            <p>
+                                <a href="#" class="fab fa-weixin footertext"> wechat</a>                            </p>
+                            </p>
+
+
                         </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+                            <!-- Links -->
+                            <h6 class="text-uppercase font-weight-bold footertext">Contact</h6>
+                            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                            <p class="footertext">
+                                <i class="fas fa-home mr-3 "></i>188 Springbluff Blvd SW <br>Calgary, AB</p>
+                            <p class="footertext">
+                                <i class="fas fa-envelope mr-3 "></i>  <a href="mailto:#">helen@gmail.com</a></p>
+                            <p class="footertext">
+                                <i class="fas fa-phone mr-3 "></i>(403) 808-3860</p>
+
+                        </div>
+                        <!-- Grid column -->
 
                     </div>
+                    <!-- Grid row -->
+
                 </div>
-                <div class="col-md-4 col-lg-5 col-6">
-                    <address>
-                        <strong>Hellen Delicious Cakes, Inc.</strong><br>
-                        188 Springbluff Blvd SW<br>
-                        Clagary, AB, T3H 5R6<br>
-                        <abbr title="Phone">P:</abbr> (403) 808-3860
-                    </address>
-                    <address>
-                        <strong>Email</strong><br>
-                        <a href="mailto:#">helen@gmail.com</a>
-                    </address>
+                <!-- Footer Links -->
+
+                <!-- Copyright -->
+                <div class="footer-copyright text-center py-3 footertext">
+                    Copyright © Helen's Delicious Cakes. All rights reserved
                 </div>
-            </div>
+                <!-- Copyright -->
+
+            </footer>
+            <!-- Footer -->
         </div>
-        <footer class="text-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <p>Copyright © Helen's Delicious Cakes. All rights reserved.</p>
-                    </div>
-                </div>
-            </div>
-        </footer>
+
 
     </body>
 </html> 
