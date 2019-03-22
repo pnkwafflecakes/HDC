@@ -25,7 +25,7 @@ public class CakeService
         return cakeController.findCakeEntities();
     }
 
-    public void update(Cake cake) throws Exception
+    public void update(Cake cake) throws BusinessClasses.exceptions.NonexistentEntityException, IllegalOrphanException, java.lang.Exception
     {
         cakeController.edit(cake);
     }
@@ -37,7 +37,7 @@ public class CakeService
 
     public void insert(Cake cake) throws Exception
     {
-        int newId;
+        int newId = 1;
         List<Cake> currCakes = (List<Cake>) cakeController.findCakeEntities();
 
         if (currCakes == null)
@@ -46,11 +46,23 @@ public class CakeService
         }
         else
         {
-            Cake lastCake = currCakes.get(currCakes.size() - 1);
-            newId = lastCake.getCakeId() + 1;
+            Cake selectedCake;
+            int openId = 2;
+            for (int i=0; i < currCakes.size(); i++) {
+                selectedCake = currCakes.get(i);
+                if (openId != selectedCake.getCakeId()+1) {
+                    newId = openId;
+                    i = currCakes.size();
+                }
+                else {
+                    openId++;
+                }
+            }
         }
 
         Cake newCake = new Cake(newId, cake.getName(), cake.getPrice(), cake.getDescription(), cake.getImage());
         cakeController.create(newCake);
     }
+    
+    
 }
