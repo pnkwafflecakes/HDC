@@ -9,7 +9,6 @@ import Entities.Cake;
 import Entities.Cakecategory;
 import businesslogic.CakeCategoryService;
 import businesslogic.CakeService;
-import dataaccess.CakeJpaController;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -46,8 +45,7 @@ public class EditCakeServlet extends HttpServlet
     {
         String inputType = request.getParameter("input");
         HttpSession session = request.getSession(true);
-        //request.setAttribute("input", inputType);
-        session.setAttribute("input", inputType);
+        request.setAttribute("input", inputType);
         CakeCategoryService ccs = new CakeCategoryService();
         List<Cakecategory> categoryList = ccs.getAll();
         
@@ -75,107 +73,52 @@ public class EditCakeServlet extends HttpServlet
     {
         CakeService cs = new CakeService();
         String action = request.getParameter("action");
-        CakeCategoryService ccs = new CakeCategoryService();
         Cake cake = new Cake();
         boolean featured = false;
         boolean special = false;
         
-        //name
-        String name = request.getParameter("name");
-        String namecn = request.getParameter("namecn");
-        
-        //Description
+        boolean valid = processFile(request, response);
+            
+        int cakeId = Integer.valueOf(request.getParameter("cakeId"));
         String description = request.getParameter("description");
-        String descriptioncn = request.getParameter("descriptioncn");
-        //Featured
+            
         String[] featuredCheck = request.getParameterValues("featured");
-        if (featuredCheck==null) featured = false;
-        else if (featuredCheck[0].equals("on")) featured = true;
-        else System.out.println("Featured Check value " + featuredCheck[0]);
-        //Price
+        if (featuredCheck[0].equals("checked")) featured = true;
+            
         double price = Double.valueOf(request.getParameter("price"));
-        //Size
         int size = Integer.valueOf(request.getParameter("size"));
-        //Special
+            
         String[] specialCheck = request.getParameterValues("special");
-        if (specialCheck==null) featured = false;
-        else if (specialCheck[0].equals("on")) special = true;
-        else System.out.println("Special Check value " + specialCheck[0]);
-        
-        int categoryId = Integer.valueOf(request.getParameter("categorySelect"));           
-        
-        cake.setCategoryId(ccs.get(categoryId));
-        cake.setName(name);
-        cake.setNamecn(namecn);
+        if (specialCheck[0].equals("checked")) special = true;
+           
+        cake.setCakeId(cakeId);
+        //cake.setCategoryId(categoryId);
         cake.setDescription(description);
-        cake.setDescriptioncn(descriptioncn);
         cake.setFeatured(featured);
+        //cake.setImage();
         cake.setPrice(price);
         cake.setSize(size);
         cake.setSpecial(special);
         
-        
-        
         try {
-            System.out.println("EditCake: 1: " + action);
             if (action.equals("edit")) 
             {
-                int cakeId = Integer.valueOf(request.getParameter("selectedCakeId"));
-                System.out.println("CakeId "+cakeId);
-                cake.setCakeId(cakeId);
-                
-                String imagePath = processFile(request, response);
-                if (imagePath == null) {
-                    imagePath = cs.get(cakeId).getImage();
-                }
-                cake.setImage(imagePath);
-                
-                //try {
                 cs.update(cake);
-                //}
-                /**
-                catch(Exception e) {
-                    System.out.println("3-1");
-                    cs.delete(cakeId);
-                    System.out.println("3-2");
-                    CakeJpaController cjc = new CakeJpaController();
-                    System.out.println("3-3");
-                    cjc.create(cake);
-                    System.out.println("3-4");
-                }
-                * */
-                System.out.println("EditCake: 2-4");
-                
             }
-            else if (action.equals("add")) 
-            {
-                System.out.println("EditCake: 2-5");
-                String imagePath = processFile(request, response);
-                if (imagePath == null) {
-                    imagePath = cs.get(1).getImage();
-                }
-                cake.setImage(imagePath);
-                
+            else if (action.equals("add")) {
                 cs.insert(cake);
-                
             }
-            response.sendRedirect("managecakes");
         } catch(Exception e) {
-            HttpSession session = request.getSession(true);
-            String inputType = session.getAttribute("input")+"";
-            System.out.println("Error!!!: " + e.getMessage());
-            System.out.println(e.getCause());
-            e.printStackTrace();
-            response.sendRedirect("editcake?input=" + inputType);
+            
         }
     }
     
-    private String processFile(HttpServletRequest request, HttpServletResponse response) 
+    private boolean processFile(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException
     {
         Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
         System.out.println("fileName: " + fileName);
-        return null;
+        return false;
     }
 }
