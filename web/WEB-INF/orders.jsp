@@ -4,7 +4,6 @@
     Author     : Knyfe
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,34 +13,31 @@
     </head>
     <body>
         <h1 align="center">Orders</h1>
-        <p align="center"">${error}</p>
         <table align="center">
-            <c:forEach items="${orderList}" var="order">
-                <tr>
-                    <th>Order Number:</th>
-                    <td><c:out value="${order.orderNo}"/></td>
-                </tr>
-                <tr>
-                    <th>Date Placed:</th>
-                    <td><c:out value="${order.orderDatetime}"/></td>
-                </tr>
-                <tr>
-                    <th>Order Due:</th>
-                    <td><c:out value="${order.dueDatetime}"/></td>
-                </tr>
-                <tr>
-                    <th>Items:</th>
-                    <td><c:out value="${order.orderItems}"/></td>
-                </tr>
-                <tr>
-                    <th>Total Price:</th>
-                    <td><c:out value="$:${order.totalPrice}"/></td>
-                </tr>
-                <tr>
-                    <th>Delivery Number:</th>
-                    <td><c:out value="${order.deliveryNo.deliveryNo}"/></td>
-                </tr>
-            </c:forEach>
+            <tr>
+                <th>Order Number:</th>
+                <td>${order.order_no}</td>
+            </tr>
+            <tr>
+                <th>Date Placed:</th>
+                <td>${order.order_datetime}</td>
+            </tr>
+            <tr>
+                <th>Order Due:</th>
+                <td>${order.due_datetime}</td>
+            </tr>
+            <tr>
+                <th>Items:</th>
+                <td>${order.order_items}</td>
+            </tr>
+            <tr>
+                <th>Total Price:</th>
+                <td>${order.total_price}</td>
+            </tr>
+            <tr>
+                <th>Delivery Number:</th>
+                <td>${order.delivery_no}</td>
+            </tr>
         </table>
     </body>
 </html>
