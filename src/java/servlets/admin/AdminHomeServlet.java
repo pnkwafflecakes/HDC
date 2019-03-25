@@ -1,10 +1,18 @@
 package servlets.admin;
 
+import Entities.Cake;
+import Entities.Orders;
+import Entities.User;
+import businesslogic.CakeService;
+import businesslogic.OrderService;
+import businesslogic.UserService;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -29,6 +37,53 @@ public class AdminHomeServlet extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        HttpSession session = request.getSession();
+
+        // Gets lists of all entities needed to populate stats table
+        CakeService cs = new CakeService();
+        List<Cake> cakes = cs.getAll();
+        UserService us = new UserService();
+        List<User> users = us.getAll();
+        OrderService os = new OrderService();
+        List<Orders> orders = os.getAll();
+
+        // Intitialize all variables needed for statistics
+        int totalCakes = 0;
+        String lastAdded = "";
+        int totalCustomers = 0;
+        int totalStaff = 0;
+        int totalUsers = 0;
+        int totalOrders = 0;
+
+        // Populate variables for cake stats
+        totalCakes = cakes.size();
+        lastAdded = cakes.get(cakes.size() - 1).getName();
+
+        // Populate variables for user stats
+        for (int i = 0; i < users.size(); i++)
+        {
+            if (users.get(i).getAccountType().getAccountType() == 1)
+            {
+                totalCustomers++;
+            }
+            else
+            {
+                totalStaff++;
+            }
+        }
+        totalUsers = users.size();
+
+        // Populate variables for order stats
+        totalOrders = orders.size();
+
+        // Set variables to session to display in table
+        session.setAttribute("cakeNumber", totalCakes);
+        session.setAttribute("lastCake", lastAdded);
+        session.setAttribute("custNumber", totalCustomers);
+        session.setAttribute("staffNumber", totalStaff);
+        session.setAttribute("totalNumber", totalUsers);
+        session.setAttribute("totalorders", totalOrders);
+
         getServletContext().getRequestDispatcher("/WEB-INF/adminportal/adminhome.jsp").forward(request, response);
     }
 

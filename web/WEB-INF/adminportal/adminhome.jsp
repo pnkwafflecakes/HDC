@@ -61,12 +61,12 @@
             <a href="managecakes">Manage Cakes</a><br>
             <table>
                 <tr>
-                    <th>Cakes</th>
+                    <th>Total Cakes</th>
                     <th>Last Added</th>
                 </tr>
                 <tr>
                     <td>${cakeNumber}</td>
-                    <td>${lastAdded}</td>
+                    <td>${lastCake}</td>
                 </tr>
             </table>
         </div>
@@ -91,40 +91,11 @@
             <a href="manageorders">Manage Orders</a><br>
             <table>
                 <tr>
-                    <th>Current Orders</th>
-                    <th>All Orders</th>
+                    <th>Week's Orders</th>
+                    <th>Total Orders</th>
                 </tr>
                 <tr>
-                    <td>${currOrders}</td>
-                    <td>${allOrders}</td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="portal">
-            <a href="managepickups">Manage Pickup Locations</a><br>
-            <table>
-                <tr>
-                    <th># of Locations</th>
-                    <th>Last Added</th>
-                </tr>
-                <tr>
-                    <td>${locationNumber}</td>
-                    <td>${lastAdded}</td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="portal">
-            <a href="managefeedback">Manage Feedback</a><br>
-            <table>
-                <tr>
-                    <th># of Cakes</th>
-                    <th>Last Added</th>
-                </tr>
-                <tr>
-                    <td>${cakeNumber}</td>
-                    <td>${lastAdded}</td>
+                    <td>${totalOrders}</td>
                 </tr>
             </table>
         </div>
