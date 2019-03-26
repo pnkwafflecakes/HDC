@@ -76,6 +76,10 @@
         <servlet-name>LanguageServlet</servlet-name>
         <servlet-class>servlets.LanguageServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BrowseServlet</servlet-name>
+        <servlet-class>servlets.BrowseServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchServlet</servlet-name>
         <url-pattern>/search</url-pattern>
@@ -151,6 +155,10 @@
     <servlet-mapping>
         <servlet-name>LanguageServlet</servlet-name>
         <url-pattern>/lang</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BrowseServlet</servlet-name>
+        <url-pattern>/browse</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
