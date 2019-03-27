@@ -163,43 +163,52 @@
             <div class="row text-center">
                 <div class="col-md-4 pb-1 pb-md-0">
                     <div class="card">
-                        <img class="card-img-top" alt="Card image cap" src="<c:url value='${cake1.image}'/>" />
+                        <a href="cakeinfo?cakeid=${cake1.cakeId}">
+                            <img class="card-img-top" src="<c:url value='${cake1.image}'/>" />
+                        </a>
                         <div class="card-body">
-                            <h5 class="card-title">
-                                ${cake1.name}
-                            </h5>
+                            <a href="cakeinfo?cakeid=${cake1.cakeId}">
+                                <h5 class="card-title">
+                                    ${cake1.name}
+                                </h5>
+                            </a>
                             <p class="card-text">
                                 ${cake1.description}
                             </p>
-                            <a href="cakeinfo?cakeid=${cake1.cakeId}" class="btn btn-outline-secondary">Add to Cart</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 pb-1 pb-md-0">
                     <div class="card">
-                        <img class="card-img-top" alt="Card image cap" src="<c:url value='${cake2.image}'/>" />
+                        <a href="cakeinfo?cakeid=${cake2.cakeId}">
+                            <img class="card-img-top" src="<c:url value='${cake2.image}'/>" />
+                        </a>
                         <div class="card-body">
-                            <h5 class="card-title">
-                                ${cake2.name}
-                            </h5>
-                            <p class="card-text">                                
+                            <a href="cakeinfo?cakeid=${cake2.cakeId}">
+                                <h5 class="card-title">
+                                    ${cake2.name}
+                                </h5>
+                            </a>
+                            <p class="card-text">
                                 ${cake2.description}
                             </p>
-                            <a href="cakeinfo?cakeid=${cake2.cakeId}" class="btn btn-outline-secondary">Add to Cart</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 pb-1 pb-md-0">
                     <div class="card">
-                        <img class="card-img-top" alt="Card image cap" src="<c:url value='${cake3.image}'/>" />
+                        <a href="cakeinfo?cakeid=${cake3.cakeId}">
+                            <img class="card-img-top" src="<c:url value='${cake3.image}'/>" />
+                        </a>
                         <div class="card-body">
-                            <h5 class="card-title">
-                                ${cake3.name}
-                            </h5>
+                            <a href="cakeinfo?cakeid=${cake3.cakeId}">
+                                <h5 class="card-title">
+                                    ${cake3.name}
+                                </h5>
+                            </a>
                             <p class="card-text">
-                                ${cake3.description}
+                                ${cake2.description}
                             </p>
-                            <a href="cakeinfo?cakeid=${cake3.cakeId}" class="btn btn-outline-secondary">Add to Cart</a>
                         </div>
                     </div>
                 </div>
@@ -207,43 +216,52 @@
             <div class="row text-center mt-4">
                 <div class="col-md-4 pb-1 pb-md-0">
                     <div class="card">
-                        <img class="card-img-top" alt="Card image cap" src="<c:url value='${cake4.image}'/>" />
+                        <a href="cakeinfo?cakeid=${cake4.cakeId}">
+                            <img class="card-img-top" src="<c:url value='${cake4.image}'/>" />
+                        </a>
                         <div class="card-body">
-                            <h5 class="card-title">$
-                                ${cake4.name}
-                            </h5>
+                            <a href="cakeinfo?cakeid=${cake4.cakeId}">
+                                <h5 class="card-title">
+                                    ${cake4.name}
+                                </h5>
+                            </a>
                             <p class="card-text">
                                 ${cake4.description}
                             </p>
-                            <a href="cakeinfo?cakeid=${cake4.cakeId}" class="btn btn-outline-secondary">Add to Cart</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 pb-1 pb-md-0">
                     <div class="card">
-                        <img class="card-img-top" alt="Card image cap" src="<c:url value='${cake5.image}'/>" />
+                        <a href="cakeinfo?cakeid=${cake5.cakeId}">
+                            <img class="card-img-top" src="<c:url value='${cake5.image}'/>" />
+                        </a>
                         <div class="card-body">
-                            <h5 class="card-title">
-                                ${cake5.name}
-                            </h5>
+                            <a href="cakeinfo?cakeid=${cake5.cakeId}">
+                                <h5 class="card-title">
+                                    ${cake5.name}
+                                </h5>
+                            </a>
                             <p class="card-text">
                                 ${cake5.description}
                             </p>
-                            <a href="cakeinfo?cakeid=${cake5.cakeId}" class="btn btn-outline-secondary">Add to Cart</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 pb-1 pb-md-0">
+                 <div class="col-md-4 pb-1 pb-md-0">
                     <div class="card">
-                        <img class="card-img-top" alt="Card image cap" src="<c:url value='${cake6.image}'/>" />
+                        <a href="cakeinfo?cakeid=${cake6.cakeId}">
+                            <img class="card-img-top" src="<c:url value='${cake6.image}'/>" />
+                        </a>
                         <div class="card-body">
-                            <h5 class="card-title">
-                                ${cake6.name}
-                            </h5>
+                            <a href="cakeinfo?cakeid=${cake6.cakeId}">
+                                <h5 class="card-title">
+                                    ${cake6.name}
+                                </h5>
+                            </a>
                             <p class="card-text">
                                 ${cake6.description}
                             </p>
-                            <a href="cakeinfo?cakeid=${cake6.cakeId}" class="btn btn-outline-secondary">Add to Cart</a>
                         </div>
                     </div>
                 </div>
