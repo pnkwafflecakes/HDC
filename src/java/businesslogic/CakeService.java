@@ -51,7 +51,7 @@ public class CakeService
             for (int i=0; i < currCakes.size(); i++) {
                 selectedCake = currCakes.get(i);
                 if (openId != selectedCake.getCakeId()+1) {
-                    newId = openId;
+                    newId = openId-1;
                     i = currCakes.size();
                 }
                 else {
@@ -60,8 +60,8 @@ public class CakeService
             }
         }
 
-        Cake newCake = new Cake(newId, cake.getName(), cake.getPrice(), cake.getDescription(), cake.getImage());
-        cakeController.create(newCake);
+        cake.setCakeId(newId);
+        cakeController.create(cake);
     }
     
     

@@ -5,7 +5,8 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -68,6 +69,10 @@
                 <th>Delete</th>
                 </thead>
                 <tbody>
+                    <tr><td><form action="managecakes" method="post" >
+                                    <input type="submit" value="Add New Cake">
+                                    <input type="hidden" name="action" value="add">
+                                </form></td></tr>
                     <c:forEach var="cake" items="${cakes}">
                         <tr>
                             <td><img src="<c:url value='${cake.image}'/>" alt="Cake Picture" width="50%" height="50%"/></td>

@@ -82,11 +82,9 @@ public class EditCakeServlet extends HttpServlet
         
         //name
         String name = request.getParameter("name");
-        String namecn = request.getParameter("namecn");
         
         //Description
         String description = request.getParameter("description");
-        String descriptioncn = request.getParameter("descriptioncn");
         //Featured
         String[] featuredCheck = request.getParameterValues("featured");
         if (featuredCheck==null) featured = false;
@@ -102,7 +100,15 @@ public class EditCakeServlet extends HttpServlet
         else if (specialCheck[0].equals("on")) special = true;
         else System.out.println("Special Check value " + specialCheck[0]);
         
-        int categoryId = Integer.valueOf(request.getParameter("categorySelect"));           
+        int categoryId = Integer.valueOf(request.getParameter("categorySelect"));      
+        
+        //String namecn = request.getParameter("namecn");
+        String descriptioncn = new String(request.getParameter("descriptioncn").getBytes("ISO-8859-1"),"utf-8");
+        String namecn = new String(request.getParameter("namecn").getBytes("ISO-8859-1"),"utf-8");
+        
+        
+        System.out.println("可可脂蛋糕");
+        System.out.println("CN Name: " + namecn + ", CN Desc: " + descriptioncn);
         
         cake.setCategoryId(ccs.get(categoryId));
         cake.setName(name);
@@ -114,7 +120,7 @@ public class EditCakeServlet extends HttpServlet
         cake.setSize(size);
         cake.setSpecial(special);
         
-        
+        CakeJpaController cjc = new CakeJpaController();
         
         try {
             System.out.println("EditCake: 1: " + action);
@@ -138,7 +144,7 @@ public class EditCakeServlet extends HttpServlet
                     System.out.println("3-1");
                     cs.delete(cakeId);
                     System.out.println("3-2");
-                    CakeJpaController cjc = new CakeJpaController();
+                    
                     System.out.println("3-3");
                     cjc.create(cake);
                     System.out.println("3-4");
@@ -149,13 +155,22 @@ public class EditCakeServlet extends HttpServlet
             }
             else if (action.equals("add")) 
             {
+
                 System.out.println("EditCake: 2-5");
                 String imagePath = processFile(request, response);
                 if (imagePath == null) {
                     imagePath = cs.get(1).getImage();
                 }
                 cake.setImage(imagePath);
-                
+                System.out.println("cake values: ");
+                System.out.println("id: "+cake.getCakeId());
+                System.out.println("Desc: "+cake.getDescription());
+                System.out.println("cn desc: " + cake.getDescriptioncn());
+                System.out.println("image: "+ cake.getImage());
+                System.out.println("Name: "+cake.getName());
+                System.out.println("Name cn: "+cake.getNamecn());
+                System.out.println("Size: " + cake.getSize());
+                System.out.println("Price: " + cake.getPrice());
                 cs.insert(cake);
                 
             }
