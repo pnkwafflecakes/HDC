@@ -248,6 +248,12 @@
                     </div>
                 </div>
             </div>
+            <div class="row text-center mt-4">
+                <div class="col-md-12">
+                    <a href="browse" class="btn btn-warning btn-lg">Show More</a>
+                </div>
+            </div>
+            <br>
         </div>
 
         <div class="containter" id="bottomfooter">

@@ -46,7 +46,7 @@
                             <a class="nav-link" href="mainmenu">Home</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Browse</a>
+                            <a class="nav-link" href="browse">Browse</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact
@@ -101,28 +101,25 @@
 
         <hr>
 
-
-
         <div class="containter" id="cakecontainer">
-
-            <div class="row">
+            <div class="row text-center">
                 <c:forEach items="${allcakes}" var="ck">
-                    <div class="responsive">
-                        <div class="gallery">
-                            <a target="_blank" href="cakeinfo?cakeid=${ck.cakeId}">
-                                <img src="<c:url value='${ck.image}'/>" alt="${ck.name}" width="600" height="400">
-                            </a>
-                            <div class="desc">${ck.description}</div>
+                    <div class="card responsive">
+                        <img class="card-img-top" alt="Card image cap" src="<c:url value='${ck.image}'/>" />
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                ${ck.name}
+                            </h5>
+                            <p class="card-text">
+                                ${ck.description}
+                            </p>
+                            <a href="cakeinfo?cakeid=${ck.cakeId}" class="btn btn-outline-secondary">Add to Cart</a>
                         </div>
                     </div>
                 </c:forEach>
-
-
             </div>
-
-
         </div>
-
+        
         <hr>
 
         <div class="containter" id="bottomfooter">

@@ -41,14 +41,14 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" href="mainmenu">
                                 主页
                             </a>
                             <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="browse">
                                 浏览
                             </a>
                         </li>
@@ -57,7 +57,7 @@
                                 联系我们
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="cart">
                                 购物车
                                 <span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
