@@ -77,10 +77,10 @@
                                     </span> ${userObj.name} 
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">My Profile</a>
-                                    <a class="dropdown-item" href="#">My Orders</a>
+                                    <a class="dropdown-item" href="#">我的账户</a>
+                                    <a class="dropdown-item" href="#">我的订单</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="login?act=logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
+                                    <a class="dropdown-item" href="login?act=logout"><span class="glyphicon glyphicon-log-out"></span> 登出</a>
                                 </div>
                             </li>
                         </c:if>
@@ -103,16 +103,16 @@
 
         <div class="container">
             <br>
-            <h2 class="text-center">Shopping Cart</h2>
+            <h2 class="text-center">购物车</h2>
             <br>
             ${errorMessage}
             <table class="table table-bordered table-striped table-hover">
                 <thead>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Quantity</th>
+                <th>图片</th>
+                <th>名称</th>
+                <th>描述</th>
+                <th>价格</th>
+                <th>数量</th>
                 </thead>
                 <tbody>
                     <!--cakesInCart is cakeArray in CartService for cart.jsp use-->
@@ -126,7 +126,7 @@
                                 <td width="5%"><c:out value="${counter[cake.cakeId]}"/></td>
                                 <td width="10%">
                                     <form action="cart" method="post" >
-                                        <input type="submit" value="Delete">
+                                        <input type="submit" value="删除">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="selectedCake" value="${cake.cakeId}">
                                     </form>
@@ -137,17 +137,17 @@
                 </tbody>
             </table>
             <br>
-            <h3 class="text-left">Subtotal <font color="red">$${totalPrice}</font></h3>
+            <h3 class="text-left">总金额： <font color="red">$${totalPrice}</font></h3>
             <br>
             <div class="row">
                 <div class="col-md-6">
                     <form action="cart" method="post">
-                        <button type="submit" class="btn btn-outline-dark" name="data"><h3>Checkout</h3></button>
+                        <button type="submit" class="btn btn-outline-dark" name="data"><h3>结账</h3></button>
                         &nbsp
                     </form>
                 </div>
                 <div class="col-md-6">
-                    <a href="mainmenu" class="btn btn-outline-dark" style=" float: right;">Continue Shopping</a>
+                    <a href="mainmenu" class="btn btn-outline-dark" style=" float: right;">继续选购</a>
                 </div>
             </div>
         </div>

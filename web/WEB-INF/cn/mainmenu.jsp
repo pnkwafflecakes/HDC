@@ -45,7 +45,7 @@
                             <a class="nav-link" href="mainmenu">
                                 主页
                             </a>
-                            <span class="sr-only">(current)</span></a>
+                            <span class="sr-only">(current)</span>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
@@ -77,10 +77,10 @@
                                     </span> ${userObj.name} 
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">My Profile</a>
-                                    <a class="dropdown-item" href="#">My Orders</a>
+                                    <a class="dropdown-item" href="#">我的账号</a>
+                                    <a class="dropdown-item" href="#">我的订单</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="login?act=logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
+                                    <a class="dropdown-item" href="login?act=logout"><span class="glyphicon glyphicon-log-out"></span> 登出</a>
                                 </div>
                             </li>
                         </c:if>
@@ -174,7 +174,7 @@
                             <p class="card-text">
                                 ${cake1.descriptioncn}
                             </p>
-                            <a href="cakeinfo?cakeid=${cake1.cakeId}" class="btn btn-outline-secondary">Add to Cart</a>
+                            <a href="cakeinfo?cakeid=${cake1.cakeId}" class="btn btn-outline-secondary">加入购物车</a>
                         </div>
                     </div>
                 </div>
@@ -188,7 +188,7 @@
                             <p class="card-text">                                
                                 ${cake2.descriptioncn}
                             </p>
-                            <a href="cakeinfo?cakeid=${cake2.cakeId}" class="btn btn-outline-secondary">Add to Cart</a>
+                            <a href="cakeinfo?cakeid=${cake2.cakeId}" class="btn btn-outline-secondary">加入购物车</a>
                         </div>
                     </div>
                 </div>
@@ -202,7 +202,7 @@
                             <p class="card-text">
                                 ${cake3.descriptioncn}
                             </p>
-                            <a href="cakeinfo?cakeid=${cake3.cakeId}" class="btn btn-outline-secondary">Add to Cart</a>
+                            <a href="cakeinfo?cakeid=${cake3.cakeId}" class="btn btn-outline-secondary">加入购物车</a>
                         </div>
                     </div>
                 </div>
@@ -218,7 +218,7 @@
                             <p class="card-text">
                                 ${cake4.descriptioncn}
                             </p>
-                            <a href="cakeinfo?cakeid=${cake4.cakeId}" class="btn btn-outline-secondary">Add to Cart</a>
+                            <a href="cakeinfo?cakeid=${cake4.cakeId}" class="btn btn-outline-secondary">加入购物车</a>
                         </div>
                     </div>
                 </div>
@@ -232,7 +232,7 @@
                             <p class="card-text">
                                 ${cake5.descriptioncn}
                             </p>
-                            <a href="cakeinfo?cakeid=${cake5.cakeId}" class="btn btn-outline-secondary">Add to Cart</a>
+                            <a href="cakeinfo?cakeid=${cake5.cakeId}" class="btn btn-outline-secondary">加入购物车</a>
                         </div>
                     </div>
                 </div>
@@ -246,7 +246,7 @@
                             <p class="card-text">
                                 ${cake6.descriptioncn}
                             </p>
-                            <a href="cakeinfo?cakeid=${cake6.cakeId}" class="btn btn-outline-secondary">Add to Cart</a>
+                            <a href="cakeinfo?cakeid=${cake6.cakeId}" class="btn btn-outline-secondary">加入购物车</a>
                         </div>
                     </div>
                 </div>
@@ -270,7 +270,7 @@
                         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
 
                             <!-- Content -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Hellen Delicious Cakes, Inc.</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">海燕美味蛋糕</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                             <p class="footertext">Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit.</p>
@@ -282,7 +282,7 @@
                         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
                             <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Follow Us</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">关注我们</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                             <p>
                                 <a href="#" class="fab fa-facebook footertext"> facebook</a>  
@@ -302,7 +302,7 @@
                         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
 
                             <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Contact</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">联系方式</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                             <p class="footertext">
                                 <i class="fas fa-home mr-3 "></i>188 Springbluff Blvd SW <br>Calgary, AB</p>

@@ -76,10 +76,10 @@
                                     </span> ${userObj.name} 
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">My Profile</a>
-                                    <a class="dropdown-item" href="#">My Orders</a>
+                                    <a class="dropdown-item" href="#">我的账户</a>
+                                    <a class="dropdown-item" href="#">我的订单</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="login?act=logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
+                                    <a class="dropdown-item" href="login?act=logout"><span class="glyphicon glyphicon-log-out"></span> 登出</a>
                                 </div>
                             </li>
                         </c:if>
@@ -103,7 +103,7 @@
         <br>
         <div class="container">
 
-            <h1 class="text-center">${currCake.name}</h1>
+            <h1 class="text-center">${currCake.namecn}</h1>
 
             <br>
             <div class="container-fluid">
@@ -113,23 +113,23 @@
                     </div>
                     <div class="col-md-5">
 
-                        <h4><i>Price</i><font color="red"> $${currCake.price}</font></h4>
-                        <h4><i>Size</i><font color="blue"> ${currCake.size}"</font></h4>
+                        <h4><i>价格</i><font color="red"> $${currCake.price}</font></h4>
+                        <h4><i>尺寸</i><font color="blue"> ${currCake.size}"</font></h4>
                         <br>
-                        <p><strong>Description:</strong> ${currCake.descriptioncn}</p>
+                        <p><strong>描述</strong> ${currCake.descriptioncn}</p>
                     </div>
                     <div class="col-md-3">
                         <form action="cakeinfo" method="POST">
-                            <strong>Quantity</strong>
+                            <strong>数量</strong>
                             <input type="number" name="quantity" value="1" min="1" max="20" style="width: 20%;">
                             <input type="hidden" name="cakeId" value="${currCake.cakeId}">
-                            <button type="submit" class="btn btn-outline-dark">Add To Cart</button>
+                            <button type="submit" class="btn btn-outline-dark">加入购物车</button>
                         </form>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <a href="mainmenu" class="btn btn-outline-dark" style=" float: right;">Continue Shopping</a>
+                        <a href="mainmenu" class="btn btn-outline-dark" style=" float: right;">继续选购</a>
 
                         &nbsp
                     </div>
@@ -157,7 +157,7 @@
                         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
 
                             <!-- Content -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Hellen Delicious Cakes, Inc.</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">海燕美味蛋糕</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                             <p class="footertext">Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit.</p>
@@ -169,7 +169,7 @@
                         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
                             <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Follow Us</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">关注我们</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                             <p>
                                 <a href="#" class="fab fa-facebook footertext"> facebook</a>  
@@ -189,7 +189,7 @@
                         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
 
                             <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Contact</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">联系方式</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                             <p class="footertext">
                                 <i class="fas fa-home mr-3 "></i>188 Springbluff Blvd SW <br>Calgary, AB</p>

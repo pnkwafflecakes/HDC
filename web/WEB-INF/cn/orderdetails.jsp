@@ -77,10 +77,10 @@
                                     </span> ${userObj.name} 
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">My Profile</a>
-                                    <a class="dropdown-item" href="#">My Orders</a>
+                                    <a class="dropdown-item" href="#">我的账户</a>
+                                    <a class="dropdown-item" href="#">我的订单</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="login?act=logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
+                                    <a class="dropdown-item" href="login?act=logout"><span class="glyphicon glyphicon-log-out"></span> 登出</a>
                                 </div>
                             </li>
                         </c:if>
@@ -103,31 +103,31 @@
 
         <div class="container">
             <br>
-            <h1 class="text-center">Order Details</h1>
+            <h1 class="text-center">订单明细</h1>
             <br>
             <form action="orderdetails" method="POST">
                 <div class="form-row">
 
                     <div class="form-group col-md-6">
-                        <label for="inputName">Name</label>
+                        <label for="inputName">姓名</label>
                         <input type="text" class="form-control" id="inputName" name="name" value="${userObj.name}" readonly>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="inputPhone">Phone Number</label>
+                        <label for="inputPhone">电话号码</label>
                         <input type="text" class="form-control" id="inputPhone" name="phoneNo" value=${userObj.phoneNo} readonly>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <label for="inputAddress">Address</label>
+                        <label for="inputAddress">地址</label>
                         <input type="text" class="form-control" id="inputAddress" name="address" value="${userObj.address}" readonly>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <label for="delivery">Delivery Method</label>               
+                        <label for="delivery">运送方式</label>               
                         <!--                        <select class="form-control" id="delivery">
                                                     <option> Train Station </option>
                                                     <option> Home Delivery </option>
@@ -137,12 +137,12 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <label for="inputNotes">Notes</label>
+                        <label for="inputNotes">备注</label>
                         <textarea class="form-control" rows="3" id="inputNotes"  name="notes" >Cash on delivery</textarea>
                     </div>
                 </div>
                 <div class="col text-center">
-                    <button type="submit" class="btn btn-outline-dark"><h3>Submit</h3></button>
+                    <button type="submit" class="btn btn-outline-dark"><h3>提交订单</h3></button>
                 </div>
             </form>
         </div>
@@ -164,7 +164,7 @@
                         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
 
                             <!-- Content -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Hellen Delicious Cakes, Inc.</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">海燕美味蛋糕</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                             <p class="footertext">Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit.</p>
@@ -176,7 +176,7 @@
                         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
                             <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Follow Us</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">关注我们</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                             <p>
                                 <a href="#" class="fab fa-facebook footertext"> facebook</a>  
@@ -196,7 +196,7 @@
                         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
 
                             <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Contact</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">联系方式</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                             <p class="footertext">
                                 <i class="fas fa-home mr-3 "></i>188 Springbluff Blvd SW <br>Calgary, AB</p>
