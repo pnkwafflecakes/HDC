@@ -8,8 +8,8 @@ package servlets;
 import Entities.Cake;
 import businesslogic.CakeService;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +21,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author 744916
  */
-public class CartServlet extends HttpServlet {
+public class CartServlet extends HttpServlet
+{
 
     private boolean emptyCart = true;
 
@@ -36,13 +37,15 @@ public class CartServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException
+    {
         HttpSession session = request.getSession();
         String language = (String) session.getAttribute("language");
 
         ArrayList<Integer> cakes = (ArrayList<Integer>) session.getAttribute("cakes");
 
-        if (cakes != null && cakes.size() != 0) {
+        if (cakes != null && cakes.size() != 0)
+        {
             System.out.println("Cake was valid: " + cakes + " size: " + cakes.size());
             double totalPrice = 0;
             CakeService cs = new CakeService();
@@ -51,7 +54,8 @@ public class CartServlet extends HttpServlet {
 
             //todo: Make add quantity
             //For da prices
-            for (int i = 0; i < cakes.size(); i++) {
+            for (int i = 0; i < cakes.size(); i++)
+            {
                 totalPrice = totalPrice + cs.get(cakes.get(i)).getPrice();
             }
             emptyCart = false;
@@ -60,12 +64,16 @@ public class CartServlet extends HttpServlet {
 
             Cake[] cakeArray = new Cake[allCakes.size()];
 
-            for (int i = 0; i < cakes.size(); i++) {
+            for (int i = 0; i < cakes.size(); i++)
+            {
                 int a = cakes.get(i);
-                if (cakeArray[a] == null) {
+                if (cakeArray[a] == null)
+                {
                     cakeArray[a] = cs.get(a);
                     counter[a] = 1;
-                } else {
+                }
+                else
+                {
                     counter[a]++;
                 }
             }
@@ -76,7 +84,9 @@ public class CartServlet extends HttpServlet {
 
             ArrayList<Cake> cakes2 = (ArrayList<Cake>) session.getAttribute("cakes");
             System.out.println("Cakes after processing: " + cakes2);
-        } else {
+        }
+        else
+        {
             emptyCart = true;
             //set totalprice=0
             double totalPrice = 0;
@@ -86,14 +96,17 @@ public class CartServlet extends HttpServlet {
         }
 
 //        getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
-
-        if (language == null) {
+        if (language == null)
+        {
             language = "en";
         }
-        if (language.equals("cn")) {
-        getServletContext().getRequestDispatcher("/WEB-INF/cn/cart.jsp").forward(request, response);
-        } else {
-        getServletContext().getRequestDispatcher("/WEB-INF/en/cart.jsp").forward(request, response);
+        if (language.equals("cn"))
+        {
+            getServletContext().getRequestDispatcher("/WEB-INF/cn/cart.jsp").forward(request, response);
+        }
+        else
+        {
+            getServletContext().getRequestDispatcher("/WEB-INF/en/cart.jsp").forward(request, response);
         }
 
     }
@@ -108,26 +121,38 @@ public class CartServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException
+    {
         String action = request.getParameter("action");
-        if (action != null) {
-            if (action.equals("delete")) {
-                int selectedCakeId = Integer.valueOf(request.getParameter("selectedCake"));
+        if (action != null)
+        {
+            if (action.equals("delete"))
+            {
                 HttpSession session = request.getSession(true);
+                int selectedCakeId = Integer.valueOf(request.getParameter("selectedCake"));
+                int delQuantity = Integer.valueOf(request.getParameter("delQuantity"));
                 ArrayList<Integer> cakes = (ArrayList<Integer>) session.getAttribute("cakes");
 
-                for (int i = 0; i < cakes.size(); i++) {
-                    if (cakes.get(i) == selectedCakeId) {
-                        cakes.remove(i);
-                        i = cakes.size();
+                Iterator iterator = cakes.iterator();
+
+                while ((iterator.hasNext()) && (delQuantity > 0))
+                {
+                    if (iterator.next().equals(selectedCakeId))
+                    {
+                        iterator.remove();
+                        delQuantity--;
                     }
                 }
+
                 doGet(request, response);
             }
         }
-        if (emptyCart == false) {
+        if (emptyCart == false)
+        {
             response.sendRedirect("orderdetails");
-        } else {
+        }
+        else
+        {
             response.sendRedirect("cart");
         }
     }
