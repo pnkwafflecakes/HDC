@@ -42,6 +42,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Cake.findBySpecial", query = "SELECT c FROM Cake c WHERE c.special = :special")})
 public class Cake implements Serializable {
 
+    @Column(name = "active")
+    private Boolean active;
+
     @Basic(optional = false)
     @Column(name = "namecn")
     private String namecn;
@@ -227,6 +230,14 @@ public class Cake implements Serializable {
 
     public void setCakeorderCollection(Collection<Cakeorder> cakeorderCollection) {
         this.cakeorderCollection = cakeorderCollection;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
     
 }

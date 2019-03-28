@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import Entities.Cake;
 import Entities.Orders;
-import dataaccess.DBUtil;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -31,7 +30,7 @@ import javax.persistence.EntityTransaction;
  * @author 775224
  */
 public class OrdersJpaController implements Serializable {
-    
+
     public void create(Orders orders) throws PreexistingEntityException, Exception {
         if (orders.getCakeorderCollection() == null) {
             orders.setCakeorderCollection(new ArrayList<Cakeorder>());
