@@ -65,15 +65,17 @@ public class ManageCakesServlet extends HttpServlet
         try {
         CakeService cs = new CakeService();
         String action = request.getParameter("action");
-        System.out.println(action);
+        System.out.println("Act: "+action);
         if (action != null) {
-            int cakeId = Integer.valueOf(request.getParameter("selectedCakeId"));
+            
             if (action.equals("delete")) {
+                int cakeId = Integer.valueOf(request.getParameter("selectedCakeId"));
                 cs.delete(cakeId);
                 System.out.println("Redir from delete");
                 response.sendRedirect("managecakes");
             }
             else if (action.equals("edit")) {
+                int cakeId = Integer.valueOf(request.getParameter("selectedCakeId"));
                 session.setAttribute("cakeId", cakeId);
                 response.sendRedirect("editcake?input=edit");
             }
@@ -82,6 +84,7 @@ public class ManageCakesServlet extends HttpServlet
             }
         }
         } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
             response.sendRedirect("login");
         }
     }

@@ -74,7 +74,7 @@ public class CakeInfoServlet extends HttpServlet {
         ArrayList<Integer> cakes = (ArrayList<Integer>) session.getAttribute("cakes");
 
         if (cakes == null) {
-            cakes = new ArrayList<Integer>();
+            cakes = new ArrayList<>();
         }
 
         int cakeId = Integer.valueOf(request.getParameter("cakeId"));

@@ -108,6 +108,8 @@
                    <th>CakeCollection</th>
                    <th>deliveryNo</th>
                    <th>userId</th>
+                   <th>Confirmed</th>
+                   <th>Paid</th>
                    <th>Delete</th>
                    <th>Edit</th>
 
@@ -121,6 +123,8 @@
                        <td>${order.cakeCollection}</td>
                        <td>${order.deliveryNo}</td>
                        <td>${order.userId}</td>
+                       <td>${order.confirmed}</td>
+                       <td>${order.paid}</td>
                        <td>
                            <form action="manageorders" method="post" >
                                <input type="submit" value="Delete">

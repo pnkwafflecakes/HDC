@@ -105,21 +105,25 @@
             <div class="row text-center">
                 <c:forEach items="${allcakes}" var="ck">
                     <div class="card responsive">
-                        <img class="card-img-top" alt="Card image cap" src="<c:url value='${ck.image}'/>" />
+                        <a href="cakeinfo?cakeid=${ck.cakeId}">
+                            <img class="card-img-top" alt="Card image cap" src="<c:url value='${ck.image}'/>" />
+                        </a>
                         <div class="card-body">
-                            <h5 class="card-title">
-                                ${ck.name}
-                            </h5>
+                            <a href="cakeinfo?cakeid=${ck.cakeId}">
+                                <h5 class="card-title">
+                                    ${ck.name}
+                                </h5>
+                            </a>
                             <p class="card-text">
                                 ${ck.description}
                             </p>
-                            <a href="cakeinfo?cakeid=${ck.cakeId}" class="btn btn-outline-secondary">Add to Cart</a>
+
                         </div>
                     </div>
                 </c:forEach>
             </div>
         </div>
-        
+
         <hr>
 
         <div class="containter" id="bottomfooter">
