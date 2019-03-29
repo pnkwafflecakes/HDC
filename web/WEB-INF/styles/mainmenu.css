@@ -16,3 +16,7 @@ img, .card-img-top{
     height: 100%; 
     object-fit: contain;
 }
+
+.card{
+    border:0;
+}
