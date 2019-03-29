@@ -15,32 +15,40 @@
     <body>
         <h1 align="center">Orders</h1>
         <p align="center">${error}</p>
+         <p style="color:red" align="center">${notdeleted}</p>
+        <p style="color:green" align="center">${deleted}</p>
         <table align="center">
             <c:forEach items="${orderList}" var="order">
-                <tr>
-                    <th>Order Number:</th>
-                    <td><c:out value="${order.orderNo}"/></td>
-                </tr>
-                <tr>
-                    <th>Date Placed:</th>
-                    <td><c:out value="${order.orderDatetime}"/></td>
-                </tr>
-                <tr>
-                    <th>Order Due:</th>
-                    <td><c:out value="${order.dueDatetime}"/></td>
-                </tr>
-                <tr>
-                    <th>Items:</th>
-                    <td><c:out value="${order.orderItems}"/></td>
-                </tr>
-                <tr>
-                    <th>Total Price:</th>
-                    <td><c:out value="$:${order.totalPrice}"/></td>
-                </tr>
-                <tr>
-                    <th>Delivery Number:</th>
-                    <td><c:out value="${order.deliveryNo.deliveryNo}"/></td>
-                </tr>
+                <form action="Orders" method="POST">
+                    <tr>
+                        <th>Order Number:</th>
+                        <td><c:out value="${order.orderNo}"/></td>
+                    </tr>
+                    <tr>
+                        <th>Date Placed:</th>
+                        <td><c:out value="${order.orderDatetime}"/></td>
+                    </tr>
+                    <tr>
+                        <th>Order Due:</th>
+                        <td><c:out value="${order.dueDatetime}"/></td>
+                    </tr>
+                    <tr>
+                        <th>Items:</th>
+                        <td><c:out value="${order.orderItems}"/></td>
+                    </tr>
+                    <tr>
+                        <th>Total Price:</th>
+                        <td><c:out value="$:${order.totalPrice}"/></td>
+                    </tr>
+                    <tr>
+                        <th>Delivery Number:</th>
+                        <td><c:out value="${order.deliveryNo.deliveryNo}"/></td>
+                    </tr>
+                    <tr>
+                        <input type="hidden" name="deleteOrder" value="${order.orderNo}">
+                        <td><input type="submit" value="Delete"/></td>
+                    </tr>
+                </form>
             </c:forEach>
         </table>
     </body>
