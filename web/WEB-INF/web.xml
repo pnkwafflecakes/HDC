@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?> 
+<?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <Connector port="8080" protocol="HTTP/1.1" onnectionTimeout="20000" redirectPort="8443" URIEncoding="UTF-8"/>
-    
+    <Connector URIEncoding="UTF-8" onnectionTimeout="20000" port="8080" protocol="HTTP/1.1" redirectPort="8443"/>
     <servlet>
         <servlet-name>MainMenuServlet</servlet-name>
         <servlet-class>servlets.MainMenuServlet</servlet-class>
@@ -82,6 +81,10 @@
         <servlet-name>BrowseServlet</servlet-name>
         <servlet-class>servlets.BrowseServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PaymentServlet</servlet-name>
+        <servlet-class>servlets.PaymentServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchServlet</servlet-name>
         <url-pattern>/search</url-pattern>
@@ -161,6 +164,10 @@
     <servlet-mapping>
         <servlet-name>BrowseServlet</servlet-name>
         <url-pattern>/browse</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PaymentServlet</servlet-name>
+        <url-pattern>/payment</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

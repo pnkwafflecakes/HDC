@@ -81,7 +81,9 @@ public class CartServlet extends HttpServlet
             request.setAttribute("counter", counter);
             request.setAttribute("cakesInCart", cakeArray);
             request.setAttribute("totalPrice", totalPrice);
-
+            
+            //put totalPrice in session
+            session.setAttribute("totalPrice", totalPrice);
             ArrayList<Cake> cakes2 = (ArrayList<Cake>) session.getAttribute("cakes");
             System.out.println("Cakes after processing: " + cakes2);
         }

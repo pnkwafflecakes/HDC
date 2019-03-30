@@ -138,8 +138,8 @@
 
         <div class="container-fluid">
             <br>
-            <h2 class="text-center">Congratulations!</h2>
-            <h2 class="text-center">Payment successful! Your order is being processed.</h2>
+            <h2 class="text-center">oops!</h2>
+            <h2 class="text-center">Payment not finished! Please try it again.</h2>
             <br>
             <div class="text-center">
                 <i>You're being direct to home page in <span id="countdowntimer">5 </span> Seconds</i>
