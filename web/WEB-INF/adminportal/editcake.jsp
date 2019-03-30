@@ -26,7 +26,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="editcake" method="post"  enctype="multipart/form-data">
+        <form action="editcake" method="post"  enctype="multipart/form-data" name="subCake">
             <table>
                 <tr>
                     <td><img src="<c:url value='${cake.image}'/>" alt="Cake Picture" width="200" height="200"/></td>

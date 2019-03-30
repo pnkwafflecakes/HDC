@@ -172,9 +172,7 @@
                                     ${cake1.name}
                                 </h5>
                             </a>
-                            <p class="card-text">
-                                ${cake1.description}
-                            </p>
+                            
                         </div>
                     </div>
                 </div>
@@ -189,9 +187,7 @@
                                     ${cake2.name}
                                 </h5>
                             </a>
-                            <p class="card-text">
-                                ${cake2.description}
-                            </p>
+                            
                         </div>
                     </div>
                 </div>
@@ -206,9 +202,7 @@
                                     ${cake3.name}
                                 </h5>
                             </a>
-                            <p class="card-text">
-                                ${cake2.description}
-                            </p>
+                            
                         </div>
                     </div>
                 </div>
@@ -225,9 +219,7 @@
                                     ${cake4.name}
                                 </h5>
                             </a>
-                            <p class="card-text">
-                                ${cake4.description}
-                            </p>
+                            
                         </div>
                     </div>
                 </div>
@@ -242,9 +234,7 @@
                                     ${cake5.name}
                                 </h5>
                             </a>
-                            <p class="card-text">
-                                ${cake5.description}
-                            </p>
+                            
                         </div>
                     </div>
                 </div>
@@ -259,9 +249,7 @@
                                     ${cake6.name}
                                 </h5>
                             </a>
-                            <p class="card-text">
-                                ${cake6.description}
-                            </p>
+                            
                         </div>
                     </div>
                 </div>
