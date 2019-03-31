@@ -51,7 +51,8 @@ public class CartServlet extends HttpServlet
             double totalPrice = 0;
             CakeService cs = new CakeService();
             List<Cake> allCakes = cs.getAll();
-            int cakeArraySize = allCakes.get(allCakes.size()).getCakeId()+1;
+            System.out.println("Size: " + allCakes.size());
+            int cakeArraySize = allCakes.get(allCakes.size()-1).getCakeId() + 1;
             
             int[] counter = new int[cakeArraySize];
 
