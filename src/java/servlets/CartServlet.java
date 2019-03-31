@@ -46,11 +46,14 @@ public class CartServlet extends HttpServlet
 
         if (cakes != null && cakes.size() != 0)
         {
+            
             System.out.println("Cake was valid: " + cakes + " size: " + cakes.size());
             double totalPrice = 0;
             CakeService cs = new CakeService();
             List<Cake> allCakes = cs.getAll();
-            int[] counter = new int[allCakes.size() + 1];
+            int cakeArraySize = allCakes.get(allCakes.size()).getCakeId()+1;
+            
+            int[] counter = new int[cakeArraySize];
 
             //todo: Make add quantity
             //For da prices
@@ -61,8 +64,10 @@ public class CartServlet extends HttpServlet
             emptyCart = false;
 
             System.out.println("Size: " + cakes.size());
+            
+            
 
-            Cake[] cakeArray = new Cake[allCakes.size()];
+            Cake[] cakeArray = new Cake[cakeArraySize];
 
             for (int i = 0; i < cakes.size(); i++)
             {
