@@ -100,42 +100,51 @@
 
         <div class="container">
             <br>
-            <h1 class="text-center">Order Details</h1>
+            <h1 class="text-center">Customer Details</h1>
             <br>
             <form action="orderdetails" method="POST">
                 <div class="form-row">
 
                     <div class="form-group col-md-6">
                         <label for="inputName">Name</label>
-                        <input type="text" class="form-control" id="inputName" name="name" value="${userObj.name}" readonly>
+                        <input type="text" class="form-control" id="inputName" name="name" value="${userObj.name}">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputPhone">Phone Number</label>
-                        <input type="text" class="form-control" id="inputPhone" name="phoneNo" value=${userObj.phoneNo} readonly>
+                        <input type="text" placeholder="###-###-####" pattern="^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$" class="form-control" id="inputPhone" name="phoneNo" value="${userObj.phoneNo}">
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="inputAddress">Address</label>
-                        <input type="text" class="form-control" id="inputAddress" name="address" value="${userObj.address}" readonly>
+                        <input type="text" class="form-control" id="inputAddress" name="address" value="${userObj.address}">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="delivery">Delivery Method</label>               
+                        <select class="form-control" id="delivery">
+                            <option> Train Station </option>
+                            <option> Home Delivery </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="payment">Payment Method</label>               
+                        <select class="form-control" id="payment">
+                            <option> Cash Upon Delivery </option>
+                            <option> e-Transfer </option>
+                            <option> PayPal </option>
+                        </select>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <label for="delivery">Delivery Method</label>               
-                        <!--                        <select class="form-control" id="delivery">
-                                                    <option> Train Station </option>
-                                                    <option> Home Delivery </option>
-                                                    </select>-->
-                        <input type="text" class="form-control" id="delivery"  name="method" value="Delivery" readonly>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-12">
                         <label for="inputNotes">Notes</label>
-                        <textarea class="form-control" rows="3" id="inputNotes"  name="notes" >Cash on delivery</textarea>
+                        <textarea class="form-control" rows="3" id="inputNotes"  name="notes" placeholder="Additional notes here..." ></textarea>
                     </div>
                 </div>
                 <div class="col text-center">
@@ -143,7 +152,7 @@
                 </div>
             </form>
         </div>
-                    <!--paypal button-->
+        <!--paypal button
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <input type="hidden" name="cmd" value="_xclick">
 <input type="hidden" name="business" value="YMPFXKHT6YJTC">
@@ -166,83 +175,83 @@
 
 
 
-        <hr>
-        <div class="containter" id="bottomfooter">
-            <!-- Footer -->
-            <br>
-            <footer class="page-footer font-small unique-color-dark">
+<hr>
+<div class="containter" id="bottomfooter">
+        <!-- Footer -->
+        <br>
+        <footer class="page-footer font-small unique-color-dark">
 
 
-                <!-- Footer Links -->
-                <div class="container text-center text-md-left mt-5">
+            <!-- Footer Links -->
+            <div class="container text-center text-md-left mt-5">
 
-                    <!-- Grid row -->
-                    <div class="row mt-3">
+                <!-- Grid row -->
+                <div class="row mt-3">
 
-                        <!-- Grid column -->
-                        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
 
-                            <!-- Content -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Hellen Delicious Cakes, Inc.</h6>
-                            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                            <p class="footertext">Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit.</p>
-
-                        </div>
-                        <!-- Grid column -->
-
-                        <!-- Grid column -->
-                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-
-                            <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Follow Us</h6>
-                            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                            <p>
-                                <a href="#" class="fab fa-facebook footertext"> facebook</a>  
-                            </p>
-                            <p>
-                                <a href="#" class="fab fa-instagram footertext"> instagram</a> 
-                            </p>
-                            <p>
-                                <a href="#" class="fab fa-weixin footertext"> wechat</a>
-                            </p>
-
-
-                        </div>
-                        <!-- Grid column -->
-
-                        <!-- Grid column -->
-                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-
-                            <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Contact</h6>
-                            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                            <p class="footertext">
-                                <i class="fas fa-home mr-3 "></i>188 Springbluff Blvd SW <br>Calgary, AB</p>
-                            <p class="footertext">
-                                <i class="fas fa-envelope mr-3 "></i>  <a href="mailto:#">helen@gmail.com</a></p>
-                            <p class="footertext">
-                                <i class="fas fa-phone mr-3 "></i>(403) 808-3860</p>
-
-                        </div>
-                        <!-- Grid column -->
+                        <!-- Content -->
+                        <h6 class="text-uppercase font-weight-bold footertext">Hellen Delicious Cakes, Inc.</h6>
+                        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                        <p class="footertext">Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
+                            adipisicing elit.</p>
 
                     </div>
-                    <!-- Grid row -->
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                        <!-- Links -->
+                        <h6 class="text-uppercase font-weight-bold footertext">Follow Us</h6>
+                        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                        <p>
+                            <a href="#" class="fab fa-facebook footertext"> facebook</a>  
+                        </p>
+                        <p>
+                            <a href="#" class="fab fa-instagram footertext"> instagram</a> 
+                        </p>
+                        <p>
+                            <a href="#" class="fab fa-weixin footertext"> wechat</a>
+                        </p>
+
+
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+                        <!-- Links -->
+                        <h6 class="text-uppercase font-weight-bold footertext">Contact</h6>
+                        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                        <p class="footertext">
+                            <i class="fas fa-home mr-3 "></i>188 Springbluff Blvd SW <br>Calgary, AB</p>
+                        <p class="footertext">
+                            <i class="fas fa-envelope mr-3 "></i>  <a href="mailto:#">helen@gmail.com</a></p>
+                        <p class="footertext">
+                            <i class="fas fa-phone mr-3 "></i>(403) 808-3860</p>
+
+                    </div>
+                    <!-- Grid column -->
 
                 </div>
-                <!-- Footer Links -->
+                <!-- Grid row -->
 
-                <!-- Copyright -->
-                <div class="footer-copyright text-center py-3 footertext">
-                    Copyright © Helen's Delicious Cakes. All rights reserved
-                </div>
-                <!-- Copyright -->
+            </div>
+            <!-- Footer Links -->
 
-            </footer>
-            <!-- Footer -->
-        </div>
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3 footertext">
+                Copyright © Helen's Delicious Cakes. All rights reserved
+            </div>
+            <!-- Copyright -->
+
+        </footer>
+        <!-- Footer -->
+    </div>
 
 
-    </body>
+</body>
 </html> 
