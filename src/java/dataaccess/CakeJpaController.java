@@ -23,7 +23,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.TypedQuery;
 
 /**
  *
@@ -268,25 +267,5 @@ public class CakeJpaController implements Serializable {
             em.close();
         }
     }
-    
-    //    another solution for search in English, not work on Chinese
-    public List<Cake> search(String str) throws NonexistentEntityException{
-//      return  DBUtil.getEmFactory().createEntityManager().createQuery("select n from Note n", Note.class).getResultList();
-        EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        String qString = "SELECT c FROM Cake c where c.descriptioncn LIKE :pattern";
-        TypedQuery<Cake> q = em.createQuery(qString,Cake.class);
-        q.setParameter("pattern", "%" +str+"%");
-        List<Cake> cakes;
-        try{
-            cakes = q.getResultList();
-            System.out.println("CakeJpaController.search"+cakes);
-            if(cakes == null || cakes.isEmpty()){
-                cakes = null;
-            }
-            }finally{
-                    em.close();
-            }
-        return cakes;
-        }
     
 }
