@@ -80,7 +80,7 @@ public class OrderDetailsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String address = request.getParameter("address") + "";
-        String method = request.getParameter("method");
+        String method = request.getParameter("methodList");
         String notes = request.getParameter("notes") + "";
         String phoneNo = request.getParameter("phoneNo") + "";
         System.out.println("Gathered values:");
@@ -109,6 +109,7 @@ public class OrderDetailsServlet extends HttpServlet {
         delivery.setMethod(method);
         delivery.setNotes(notes);
         delivery.setPhoneNo(phoneNo);
+        delivery.setMethod(method);
         DeliveryJpaController djc = new DeliveryJpaController();
         try {
             djc.create(delivery);
