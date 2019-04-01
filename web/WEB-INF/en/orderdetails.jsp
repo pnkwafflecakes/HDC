@@ -125,9 +125,9 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="delivery">Delivery Method</label>               
-                        <select class="form-control" id="delivery">
-                            <option> Train Station </option>
-                            <option> Home Delivery </option>
+                        <select class="form-control" id="delivery" name="methodList">
+                            <option value="Train Station"> Train Station </option>
+                            <option value="Home Delivery"> Home Delivery </option>
                         </select>
                     </div>
 
