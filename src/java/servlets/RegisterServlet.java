@@ -1,5 +1,8 @@
 package servlets;
 
+import Entities.Accounttype;
+import Entities.User;
+import businesslogic.UserService;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
  * @author Knyfe
  */
 public class RegisterServlet extends HttpServlet
@@ -58,7 +60,7 @@ public class RegisterServlet extends HttpServlet
         if(username.equals("") || username.length() < 8)
         {
             errorCheck = true;
-            request.setAttribute("error", "Please Enter Your Username");
+            request.setAttribute("error", "Please Enter a Username That Is 8 Characters Or Longer.");
         }
         else if(password.equals("") || password.length() < 8)
         {
@@ -90,13 +92,7 @@ public class RegisterServlet extends HttpServlet
             errorCheck = true;
             request.setAttribute("error", "Please Enter Your Phone Number (Include The Dashes)");
         }
-        
         //Validation alphanumeric and specidic characters/patterns
-        if(username.contains("_"))
-        {
-            errorCheck = true;
-            request.setAttribute("error", "Please Only Include Letters And Numbers");
-        }
         if(!username.matches(".[a-zA-Z0-9]*"))
         {
             errorCheck = true;
@@ -145,34 +141,29 @@ public class RegisterServlet extends HttpServlet
                 String prepStatement = "Select MAX(user_id) from user;";
                 PreparedStatement ps = connection.prepareStatement(prepStatement);
                 ResultSet rs = ps.executeQuery();
-                
-                //Create Insert statement
-                String prepInsertUser = "Insert Into User(user_id,name,address,postal_code,email,phone_no,account_type,username,password,account_status) Values(?,?,?,?,?,?,?,?,?,?);";
-
-                //Get highest account number.
                 rs.next();
                 int user_id = rs.getInt(1);
                 user_id++;
-                
-                //Prepare postalCode
-                
                 postalCode = postalCode.replace("-",""); 
-                
-                //Add user input into prepared statement.
-                ps = connection.prepareStatement(prepInsertUser);
-                ps.setInt(1, user_id);
-                ps.setString(2, name);
-                ps.setString(3, address);
-                ps.setString(4, postalCode);
-                ps.setString(5, email);
-                ps.setString(6, phone);
-                ps.setInt(7, 1);
-                ps.setString(8, username);
-                ps.setString(9, password);
-                ps.setInt(10, 1);
-                //Insert user into user table.
-                ps.executeUpdate();
-                
+                Accounttype at = new Accounttype(1);
+                //Create User
+                User user = new User();
+                user.setUserId(user_id);
+                user.setName(name);
+                user.setAddress(address);
+                user.setPostalCode(postalCode);
+                user.setEmail(email);
+                user.setPhoneNo(phone);
+                user.setAccountType(at);
+                user.setUsername(username);
+                user.setPassword(password);
+                user.setAccountStatus(true);
+                UserService us = new UserService();
+                try {
+                    us.create(user);
+                } catch (Exception ex) {
+                    Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 //Confirm to user that they have been registered.
                 request.setAttribute("status", "Registration Complete! Please login to begin");
                 getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
