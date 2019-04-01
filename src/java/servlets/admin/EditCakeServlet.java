@@ -23,6 +23,9 @@ import java.io.*;
 import java.nio.file.*;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.Part;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -31,6 +34,9 @@ import javax.servlet.http.Part;
 @MultipartConfig
 public class EditCakeServlet extends HttpServlet
 {
+    
+    private String path = "/images/";
+    private String name = null;
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -45,6 +51,9 @@ public class EditCakeServlet extends HttpServlet
             throws ServletException, IOException
     {
         String inputType = request.getParameter("input");
+        name = request.getParameter("imagename");
+        System.out.println("Image name: " + name);
+
         HttpSession session = request.getSession(true);
         //request.setAttribute("input", inputType);
         session.setAttribute("input", inputType);
@@ -62,6 +71,13 @@ public class EditCakeServlet extends HttpServlet
             request.setAttribute("selectedCategory", excludeCategory);
             categoryList.remove(excludeCategory);
             System.out.println("Selected Category: " + excludeCategory);
+        }
+        else {
+            if (name != null) {
+                System.out.println("Path: " + path+name);
+                String newPath = path+name;
+                request.setAttribute("imagePath", newPath);
+            }
         }
         
         Cakecategory[] categories = categoryList.toArray(new Cakecategory[categoryList.size()]);
@@ -130,26 +146,15 @@ public class EditCakeServlet extends HttpServlet
                 System.out.println("CakeId "+cakeId);
                 cake.setCakeId(cakeId);
                 
-                String imagePath = processFile(request, response);
+                String imagePath = path+this.name;
                 if (imagePath == null) {
                     imagePath = cs.get(cakeId).getImage();
                 }
                 cake.setImage(imagePath);
                 
-                //try {
                 cs.update(cake);
-                //}
-                /**
-                catch(Exception e) {
-                    System.out.println("3-1");
-                    cs.delete(cakeId);
-                    System.out.println("3-2");
-                    
-                    System.out.println("3-3");
-                    cjc.create(cake);
-                    System.out.println("3-4");
-                }
-                * */
+                
+
                 System.out.println("EditCake: 2-4");
                 
             }
@@ -157,7 +162,7 @@ public class EditCakeServlet extends HttpServlet
             {
 
                 System.out.println("EditCake: 2-5");
-                String imagePath = processFile(request, response);
+                String imagePath = path+this.name;
                 if (imagePath == null) {
                     imagePath = cs.get(1).getImage();
                 }
@@ -184,13 +189,5 @@ public class EditCakeServlet extends HttpServlet
             response.sendRedirect("editcake?input=" + inputType);
         }
     }
-    
-    private String processFile(HttpServletRequest request, HttpServletResponse response) 
-        throws ServletException, IOException
-    {
-        Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
-        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
-        System.out.println("fileName: " + fileName);
-        return null;
-    }
+
 }

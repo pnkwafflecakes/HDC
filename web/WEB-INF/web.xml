@@ -85,6 +85,10 @@
         <servlet-name>PaymentServlet</servlet-name>
         <servlet-class>servlets.PaymentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UploadServlet</servlet-name>
+        <servlet-class>servlets.admin.UploadServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchServlet</servlet-name>
         <url-pattern>/search</url-pattern>
@@ -168,6 +172,10 @@
     <servlet-mapping>
         <servlet-name>PaymentServlet</servlet-name>
         <url-pattern>/payment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadServlet</servlet-name>
+        <url-pattern>/upload</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

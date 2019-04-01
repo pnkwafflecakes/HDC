@@ -37,7 +37,7 @@ public class CakeService
 
     public void insert(Cake cake) throws Exception
     {
-        int newId = 1;
+        int newId = 0;
         List<Cake> currCakes = (List<Cake>) cakeController.findCakeEntities();
 
         if (currCakes == null)
@@ -51,13 +51,14 @@ public class CakeService
             for (int i=0; i < currCakes.size(); i++) {
                 selectedCake = currCakes.get(i);
                 if (openId != selectedCake.getCakeId()+1) {
-                    newId = openId-1;
+                    newId = openId-1; //Issue here :/
                     i = currCakes.size();
                 }
                 else {
                     openId++;
                 }
             }
+            if(newId == 0) newId = currCakes.size()+1;
         }
 
         cake.setCakeId(newId);
