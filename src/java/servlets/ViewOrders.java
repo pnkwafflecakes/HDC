@@ -5,11 +5,9 @@
  */
 package servlets;
 
-import BusinessClasses.exceptions.NonexistentEntityException;
 import Entities.Delivery;
 import Entities.Orders;
 import Entities.User;
-import dataaccess.OrdersJpaController;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -181,7 +179,6 @@ public class ViewOrders extends HttpServlet {
                         ps2.setInt(1, user_id);
                         ps2.setInt(2,orderNo);
                         ps2.executeUpdate(prepUpdateStatement);
-                        ps2.close();
                         //doesnt actually change value in database???
                     }
                     catch(ClassNotFoundException | SQLException ex){
