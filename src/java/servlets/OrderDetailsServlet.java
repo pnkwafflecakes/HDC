@@ -109,7 +109,7 @@ public class OrderDetailsServlet extends HttpServlet {
         delivery.setMethod(method);
         delivery.setNotes(notes);
         delivery.setPhoneNo(phoneNo);
-        delivery.setMethod(method);
+//        delivery.setMethod(method);
         DeliveryJpaController djc = new DeliveryJpaController();
         try {
             djc.create(delivery);
