@@ -124,7 +124,7 @@
                                 <td width="5%"><c:out value="${counter[cake.cakeId]}"/></td>
                                 <td width="10%">
                                     <form action="cart" method="post" >
-                                        <input type="number" name="delQuantity" value="1" min="1" max="20">
+                                        <input type="number" name="delQuantity" value="1" min="1" max="${counter[cake.cakeId]}">
                                         <input type="submit" value="Delete">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="selectedCake" value="${cake.cakeId}">

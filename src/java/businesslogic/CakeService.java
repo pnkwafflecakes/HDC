@@ -65,5 +65,10 @@ public class CakeService
         cakeController.create(cake);
     }
     
+//    another solution for search in English, not work on Chinese
+    public List<Cake> search(String str)throws BusinessClasses.exceptions.NonexistentEntityException{
+        return cakeController.search(str);
+    }
+    
     
 }

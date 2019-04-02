@@ -20,6 +20,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -170,6 +171,24 @@ public class CakeorderJpaController implements Serializable {
         } finally {
             em.close();
         }
+    }
+    
+    public List<Cakeorder> findCakeorderByOrderNo(int orderNo){
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String qString = "SELECT c FROM Cakeorder c WHERE c.cakeorderPK.orderNo = :orderNo";
+        TypedQuery<Cakeorder> q = em.createQuery(qString,Cakeorder.class);
+        q.setParameter("orderNo", orderNo);
+        List<Cakeorder> Cakeorders;
+        try{
+            Cakeorders = q.getResultList();
+            System.out.println("CakeorderJpaController.search"+Cakeorders);
+            if(Cakeorders == null || Cakeorders.isEmpty()){
+                Cakeorders = null;
+            }
+            }finally{
+                    em.close();
+            }
+        return Cakeorders;
     }
     
 }

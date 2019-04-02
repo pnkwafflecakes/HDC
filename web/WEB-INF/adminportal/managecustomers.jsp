@@ -66,7 +66,7 @@
 
 
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-md-3">
                     <h3>Add Customer</h3>
                     <form action="managecustomers" method="POST">
                         <table>
@@ -105,7 +105,7 @@
                     </form>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-md-6">
                     <form action="managecustomers" method="POST">
                         <select name="action" onchange="this.form.submit()">
                             <option value="default">--choose an option--</option>
@@ -156,63 +156,54 @@
                     </div>
                 </div>
 
-                <div class="col-sm-3">
+                
+                 <div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Add Customer</a></li>
+    <li><a href="#">Add Staff</a></li>
+  </ul>
+</div> 
+                <div class="col-md-3">
                     <h3>Add Staff</h3>
                     <form action="managecustomers" method="POST">
                         <table>
                             <tr>
                                 <th>Name</th>
-                                <td>
-                                    <input type="text" name="staffname">
-                                </td>
+                                <td><input type="text" name="staffname"></td>
                             </tr>
                             <tr>
                                 <th>Address</th>
-                                <td>
-                                    <input type="text" name="staffaddress">
-                                </td>
+                                <td><input type="text" name="staffaddress"></td>
                             </tr>
                             <tr>
                                 <th>Postal Code</th>
-                                <td>
-                                    <input type="text" name="staffpostal">
-                                </td>
+                                <td><input type="text" name="staffpostal"></td>
                             </tr>
                             <tr>
                                 <th>Email</th>
-                                <td>
-                                    <input type="email" name="staffemail">
-                                </td>
+                                <td><input type="email" name="staffemail"></td>
                             </tr>
                             <tr>
                                 <th>Phone Number</th>
-                                <td>
-                                    <input type="text" name="staffphone">
-                                </td>
+                                <td><input type="text" name="staffphone"></td>
                             </tr>
                             <tr>
                                 <th>Username</th>
-                                <td>
-                                    <input type="text" name="staffusername">
-                                </td>
+                                <td><input type="text" name="staffusername"></td>
                             </tr>
                             <tr>
                                 <th>Password</th>
-                                <td>
-                                    <input type="password" name="staffpassword">
-                                </td>
+                                <td><input type="password" name="staffpassword"></td>
                             </tr>
                             <tr>
                                 <th>Name</th>
-                                <td>
-                                    <input type="text" name="staffname">
-                                </td>
+                                <td><input type="text" name="staffname"></td>
                             </tr>
                             <tr>
                                 <th>Name</th>
-                                <td>
-                                    <input type="text" name="staffname">
-                                </td>
+                                <td><input type="text" name="staffname"></td>
                             </tr>
                         </table>
                         <br>
