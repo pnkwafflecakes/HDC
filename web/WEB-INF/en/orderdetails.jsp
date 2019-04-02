@@ -125,7 +125,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="delivery">Delivery Method</label>               
-                        <select class="form-control" id="delivery" name="methodList">
+                        <select class="form-control" id="delivery" name="deliveryList">
                             <option value="Train Station"> Train Station </option>
                             <option value="Home Delivery"> Home Delivery </option>
                         </select>
@@ -133,7 +133,7 @@
 
                     <div class="form-group col-md-6">
                         <label for="payment">Payment Method</label>               
-                        <select class="form-control" id="payment">
+                        <select class="form-control" id="payment" name="paymentList">
                             <option> Cash Upon Delivery </option>
                             <option> e-Transfer </option>
                             <option> PayPal </option>

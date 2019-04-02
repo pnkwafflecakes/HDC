@@ -141,6 +141,7 @@ public class ViewOrders extends HttpServlet
         HttpSession session = request.getSession();
         String order_no = request.getParameter("deleteOrder");
         int orderNo = Integer.parseInt(order_no);
+
         User user = (User) session.getAttribute("userObj");
         int user_id = user.getUserId();
         int active = 0;
@@ -162,39 +163,34 @@ public class ViewOrders extends HttpServlet
             active = rs.getInt("active");
             confirmed = rs.getInt("confirmed");
             paid = rs.getInt("paid");
-
         }
-        catch (ClassNotFoundException | SQLException ex)
+        catch (SQLException ex)
         {
-
+        }
+        catch (ClassNotFoundException ex)
+        {
+            Logger.getLogger(ViewOrders.class.getName()).log(Level.SEVERE, null, ex);
         }
         //if active and not confirmed or paid yet delete
         if (active == 1 && confirmed == 0 && paid == 0)
         {
-
             //update page and inform user
             ArrayList orderList = (ArrayList) session.getAttribute("orderList");
-            int i = 0;
-            orderList.size();
-            for (i = 0; i < orderList.size(); i++)
-            {
-            }
+
             try
             {
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/capstonedb", "root", "password");
-                String prepUpdateStatement = "Update Orders Set `active` = false Where `user_id` = ? and `order_no` = ?;";
+                String prepUpdateStatement = "UPDATE orders SET active = false WHERE user_id = ? AND order_no = ?;";
                 PreparedStatement ps2 = connection.prepareStatement(prepUpdateStatement);
                 ps2.setInt(1, user_id);
                 ps2.setInt(2, orderNo);
                 ps2.executeUpdate(prepUpdateStatement);
-                //doesnt actually change value in database???
             }
             catch (ClassNotFoundException | SQLException ex)
             {
-
             }
-            orderList.remove(i - 1);
+
             request.setAttribute("deleted", "Order Deleted!");
             getServletContext().getRequestDispatcher("/WEB-INF/orders.jsp").forward(request, response);
         }
