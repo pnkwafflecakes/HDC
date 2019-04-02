@@ -8,6 +8,8 @@ import Entities.User;
 import businesslogic.DeliveryService;
 import businesslogic.OrderService;
 import dataaccess.CakeorderJpaController;
+import dataaccess.DeliveryJpaController;
+import dataaccess.OrdersJpaController;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -58,7 +60,7 @@ public class ManageOrdersServlet extends HttpServlet
             Delivery delivery = selectedOrder.getDeliveryNo();
             //get user
             User user = selectedOrder.getUserId();
-//            //get cakeOrder
+            //get cakeOrder
             List<Cakeorder> cakeOrders = co.findCakeorderByOrderNo(selectedOrderId);
             
             request.setAttribute("selectedOrder", selectedOrder);
@@ -111,6 +113,8 @@ public class ManageOrdersServlet extends HttpServlet
         String url = "/WEB-INF/adminportal/manageorders.jsp";
         OrderService os = new OrderService();
         DeliveryService ds = new DeliveryService();
+        OrdersJpaController ojc = new OrdersJpaController();
+        DeliveryJpaController djc = new DeliveryJpaController();
         CakeorderJpaController cos = new CakeorderJpaController();
         HttpSession session = request.getSession();
         
@@ -120,29 +124,32 @@ public class ManageOrdersServlet extends HttpServlet
             
             if(action != null && action.equals("delete")){
               int selectedOrderId = Integer.parseInt(request.getParameter("selectedOrderId"));
-//              cakeorderPK coPK = new CakeorderPK(selectedOrderId, cakeId);
-//                cos.destroy(selectedOrderId);
-//                os.destroy(selectedOrderId);
+                ojc.destroy(selectedOrderId);
             }else if(action != null && action.equals("edit")){
                 //save edit order
                 int selectedOrderId = Integer.parseInt(request.getParameter("selectedOrderId"));//not change
 //                System.out.println("manageorder servlet post edit");
 //                System.out.println(selectedOrderId);
                 Orders orderOld    = os.get(selectedOrderId);
-                Date order_date    = orderOld.getOrderDatetime();//not change
-                Date due_date      = orderOld.getDueDatetime();//not change
-                String order_items = request.getParameter("orderItems");
-                double total_price = Double.parseDouble(request.getParameter("totalPrice"));
+//                Date order_date    = orderOld.getOrderDatetime();//not change
+//                Date due_date      = orderOld.getDueDatetime();//not change
+//                String order_items = request.getParameter("orderItems");
+//                double total_price = Double.parseDouble(request.getParameter("totalPrice"));
                 int delivery_no    = orderOld.getDeliveryNo().getDeliveryNo();//not change
-                System.out.println("os" + os);
-                os.edit(selectedOrderId, order_date, due_date, order_items, total_price, delivery_no);
+//                System.out.println("os" + os);
+////                os.edit(selectedOrderId, order_date, due_date, order_items, total_price, delivery_no);
+//                Orders orderNew = new Orders(selectedOrderId, order_date, due_date, order_items, total_price);
+//                ojc.edit(orderNew);
                 
                 //save edit delivery
                 String method  = request.getParameter("method");
                 String address = request.getParameter("address");
                 String phoneNo = request.getParameter("phoneNo");
                 String notes   = request.getParameter("notes");
-                ds.edit(delivery_no, method, address, phoneNo, notes);
+//                ds.edit(delivery_no, method, address, phoneNo, notes);
+                Delivery delivery = new Delivery(delivery_no, method, address, phoneNo, notes);
+                djc.edit(delivery);
+                
             }
         }catch (Exception ex) {
                     Logger.getLogger(ManageOrdersServlet.class.getName()).log(Level.SEVERE, null, ex);
