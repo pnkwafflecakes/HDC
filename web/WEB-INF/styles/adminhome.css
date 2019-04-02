@@ -7,19 +7,47 @@ h1{
     text-align:center;
     color: #ba7823;
 }
-table
-{
-    border-collapse: collapse;
-    margin: 0 -15px; 
-    border-radius: 20px;
-    overflow: hidden;
-    border: none;
-}
-
-
-
 
 div.c
 {
     text-align: center;
 } 
+
+#tableheader{
+    text-align: center;
+    background-color: white;
+    padding: 0.5em;
+    color: red;
+    font-size: 1.5em;
+    border-radius:40px;
+}
+
+
+
+table  { 
+    border-spacing: 1; 
+    border-collapse: collapse; 
+    background:white;
+    border-radius:6px;
+    overflow:hidden;
+    max-width:800px; 
+    width:100%;
+    margin:0 auto;
+    position:relative;
+
+    *{ 
+        position:relative ;
+    }
+
+    td,th{ 
+        padding-left:1em;
+    }
+
+    thead tr{ 
+        height:60px;
+        background:#FFED86;
+        font-size:16px;
+    }
+
+}
+
