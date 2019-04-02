@@ -127,10 +127,10 @@
                         <label for="delivery">Delivery Method</label>               
                         <select class="form-control" id="delivery" name="methodList">
                             <option value="Home Delivery"> Home Delivery </option>
-                            <option value="Train Station"> Pickup Location 1 </option>
-                            <option value="Train Station"> Pickup Location 2 </option>
-                            <option value="Train Station"> Pickup Location 3 </option>
-                            <option value="Train Station"> Pickup Location 4 </option>
+                            <option value="Pickup Location 1"> Pickup Location 1 </option>
+                            <option value="Pickup Location 2"> Pickup Location 2 </option>
+                            <option value="Pickup Location 3"> Pickup Location 3 </option>
+                            <option value="Pickup Location 4"> Pickup Location 4 </option>
                         </select>
                     </div>
 
