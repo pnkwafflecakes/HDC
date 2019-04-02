@@ -12,81 +12,69 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style><%@include file="/WEB-INF/styles/adminhome.css"%></style>
-        <style>
-            panel-default
-            {
+        <style><%@include file="/WEB-INF/styles/navbar.css"%></style>
 
-            }
-            h1
-            {
-            	text-align:center;
-            }
-            table
-            {
-                border-collapse: collapse;
-                margin: 0 -15px; 
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clH="TMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
-            }
 
-            div
-            {
-                border: 0px solid black;
-            }
-
-            table, td, th
-            {
-                border: 1px solid black;
-
-            }
-            div.c
-            {
-                text-align: center;
-            } 
-            h1
-            {
-                color: #ba7823;
-            }
-        </style>
-        
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        
         <title>Admin Portal</title>
     </head>
     <body>
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="mainmenu">Helen's Delicious Cakes</a>
+
+        <nav class="navbar navbar-expand-lg navbar-custom">
+            <div class="container">
+                <a class="navbar-brand" href="mainmenu"> H D C </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="manageorders">Orders</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="managecakes">Cakes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="managecustomers">Customers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="managepickups">Pickups</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="managefeedback">Feedback</a>
+                        </li>
+
+                        <li class="nav-item"> </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="nav-item"><a class="nav-link" href="adminhome"><span class="glyphicon glyphicon-user"></span> Admin Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="login"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+                    </ul>
                 </div>
-                <ul class="nav navbar-nav">
-                    <li><a href="manageorders">Orders</a></li>
-                    <li><a href="managecakes">Cakes</a></li>
-                    <li><a href="managecustomers">Customers</a></li>
-                    <li><a href="managepickups">Pickups</a></li>
-                    <li><a href="managefeedback">Feedback</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="adminhome"><span class="glyphicon glyphicon-user"></span> Admin Home</a></li>
-                    <li><a href="login"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
-                </ul>
             </div>
         </nav>
 
+
+        <br>
         <h1>Administration</h1>
         <div class="container">
+            
             <div class="row">
                 <div class="col-md-6">
 
-                    <table class="table table-bordered">
-                        <tr>
-                            <th scope="col"><a href="managecakes"><center>Manage Cakes</center></a></th> 
-                        </tr>
-                    </table>
 
-                    <table class="table table-bordered">
+                    
+                    <table class="table">
                         <thead>
+                            <tr class="table-light">
+                                <th colspan="2"><a href="managecakes"><center>Manage Cakes</center></a></th> 
+                            </tr>
                             <tr>
                                 <th scope="col">Cakes</th>
                                 <th scope="col">Last Added</th>
@@ -99,22 +87,16 @@
                             </tr>
                         </tbody>
                     </table>
-
+                   
                 </div>
 
                 <div class="col-md-6">
 
-                    <table class="table table-bordered">
-
-                        <tr>
-                            <th scope="col"><a href="managecustomers"><center>Manage Users</center></a></th> 
-                        </tr>
-
-                    </table>
-
-
-                    <table class="table table-bordered">
+                    <table class="table table-dark">
                         <thead>
+                            <tr>
+                                <th colspan="3"><a href="managecustomers"><center>Manage Users</center></a></th> 
+                            </tr>
                             <tr>
                                 <th scope="col">Customers</th>
                                 <th scope="col">Staff</th>
@@ -138,15 +120,13 @@
 
 
 
-                    <table class="table table-bordered">
 
-                        <tr>
-                            <th scope="col"><a href="manageorders"><center>Manage Orders</center></a></th> 
-                        </tr>
-
-                    </table>
                     <table class="table table-bordered">
                         <thead>
+
+                            <tr>
+                                <th colspan="2"><a href="manageorders"><center>Manage Orders</center></a></th> 
+                            </tr>
                             <tr>
                                 <th scope="col">Current Orders</th>
                                 <th scope="col">Total Orders</th>
@@ -165,8 +145,8 @@
                 <div class="col-md-6">
 
 
-                    
-                    
+
+
                 </div>
             </div>
         </div>

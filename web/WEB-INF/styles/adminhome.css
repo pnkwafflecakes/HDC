@@ -1,6 +1,25 @@
-.portal
-{
-    border: 1px;
-    border-color: black;
-    border-style: solid;
+
+body {
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(98,69,98,1) 100%);
 }
+h1{
+    text-align:center;
+    color: #ba7823;
+}
+table
+{
+    border-collapse: collapse;
+    margin: 0 -15px; 
+    border-radius: 20px;
+    overflow: hidden;
+    border: none;
+}
+
+
+
+
+div.c
+{
+    text-align: center;
+} 
