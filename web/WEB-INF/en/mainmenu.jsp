@@ -109,36 +109,24 @@
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img alt="First slide" width="900" height="500" class="d-block w-100" src="<c:url value='/images/home1.jpg'/>" />
+                                <img alt="First slide" width="100em" height="100em" class="d-block w-100" src="<c:url value='/images/home1.jpg'/>" />
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h3>
-                                        ${cake1.name}
-                                    </h3>
-                                    <p>
-                                        ${cake1.description}
-                                    </p>
+                                    
+                                    
                                 </div>
                             </div>
                             <div class="carousel-item">
-                                <img src="images/home2.jpg" alt="Second slide" width="749" height="499" class="d-block w-100">
+                                <img src="images/home2.jpg" alt="Second slide" width="100em" height="100em"  class="d-block w-100">
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h3>
-                                        ${cake2.name}
-                                    </h3>
-                                    <p>
-                                        ${cake2.description}
-                                    </p>
+                                    
+                                    
                                 </div>
                             </div>
                             <div class="carousel-item">
-                                <img src="images/home3.jpg" alt="Third slide" width="891" height="500" class="d-block w-100">
+                                <img src="images/home3.jpg" alt="Third slide" width="100em" height="100em" class="d-block w-100">
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h3>
-                                        ${cake3.name}
-                                    </h3>
-                                    <p>
-                                        ${cake3.description}
-                                    </p>
+                                    
+                                    
                                 </div>
                             </div>
                         </div>
