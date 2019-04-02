@@ -1,9 +1,13 @@
 package servlets.admin;
 
+import Entities.Cakeorder;
+import Entities.CakeorderPK;
 import Entities.Delivery;
 import Entities.Orders;
+import Entities.User;
 import businesslogic.DeliveryService;
 import businesslogic.OrderService;
+import dataaccess.CakeorderJpaController;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -33,7 +37,8 @@ public class ManageOrdersServlet extends HttpServlet
 //        getServletContext().getRequestDispatcher("/WEB-INF/adminportal/manageorders.jsp").forward(request, response);
      OrderService os = new OrderService();
      DeliveryService ds = new DeliveryService();
-     
+     CakeorderJpaController co = new CakeorderJpaController();
+        
      String action = request.getParameter("action");
      String url = "/WEB-INF/adminportal/manageorders.jsp";
      HttpSession session = request.getSession();
@@ -47,13 +52,19 @@ public class ManageOrdersServlet extends HttpServlet
      }else if(action != null && action.equals("view")){
          int selectedOrderId = Integer.parseInt(request.getParameter("selectedOrderId"));
          try{
-             //get order
+            //get order
             Orders selectedOrder = os.get(selectedOrderId);
             //get order related delivery
             Delivery delivery = selectedOrder.getDeliveryNo();
+            //get user
+            User user = selectedOrder.getUserId();
+//            //get cakeOrder
+            List<Cakeorder> cakeOrders = co.findCakeorderByOrderNo(selectedOrderId);
             
             request.setAttribute("selectedOrder", selectedOrder);
             request.setAttribute("delivery", delivery);
+            request.setAttribute("user", user);
+            request.setAttribute("cakeOrders", cakeOrders);
             
             url = "/WEB-INF/adminportal/manageorders.jsp";
          } catch (Exception ex) {
@@ -95,11 +106,12 @@ public class ManageOrdersServlet extends HttpServlet
             throws ServletException, IOException
     {
         
-//         System.out.println("manageorders");
-//         getServletContext().getRequestDispatcher("/WEB-INF/adminportal/manageorders.jsp").forward(request, response);
+//      System.out.println("manageorders");
+//      getServletContext().getRequestDispatcher("/WEB-INF/adminportal/manageorders.jsp").forward(request, response);
         String url = "/WEB-INF/adminportal/manageorders.jsp";
         OrderService os = new OrderService();
         DeliveryService ds = new DeliveryService();
+        CakeorderJpaController cos = new CakeorderJpaController();
         HttpSession session = request.getSession();
         
         try{
@@ -108,26 +120,28 @@ public class ManageOrdersServlet extends HttpServlet
             
             if(action != null && action.equals("delete")){
               int selectedOrderId = Integer.parseInt(request.getParameter("selectedOrderId"));
-                os.destroy(selectedOrderId);
+//              cakeorderPK coPK = new CakeorderPK(selectedOrderId, cakeId);
+//                cos.destroy(selectedOrderId);
+//                os.destroy(selectedOrderId);
             }else if(action != null && action.equals("edit")){
                 //save edit order
                 int selectedOrderId = Integer.parseInt(request.getParameter("selectedOrderId"));//not change
 //                System.out.println("manageorder servlet post edit");
 //                System.out.println(selectedOrderId);
-                Orders orderOld= os.get(selectedOrderId);
-                Date order_date = orderOld.getOrderDatetime();//not change
-                Date due_date = orderOld.getDueDatetime();//not change
+                Orders orderOld    = os.get(selectedOrderId);
+                Date order_date    = orderOld.getOrderDatetime();//not change
+                Date due_date      = orderOld.getDueDatetime();//not change
                 String order_items = request.getParameter("orderItems");
                 double total_price = Double.parseDouble(request.getParameter("totalPrice"));
-                int delivery_no = orderOld.getDeliveryNo().getDeliveryNo();//not change
+                int delivery_no    = orderOld.getDeliveryNo().getDeliveryNo();//not change
                 System.out.println("os" + os);
                 os.edit(selectedOrderId, order_date, due_date, order_items, total_price, delivery_no);
                 
                 //save edit delivery
-                String method = request.getParameter("method");
+                String method  = request.getParameter("method");
                 String address = request.getParameter("address");
                 String phoneNo = request.getParameter("phoneNo");
-                String notes = request.getParameter("notes");
+                String notes   = request.getParameter("notes");
                 ds.edit(delivery_no, method, address, phoneNo, notes);
             }
         }catch (Exception ex) {
