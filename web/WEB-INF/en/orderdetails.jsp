@@ -101,6 +101,7 @@
         <div class="container">
             <br>
             <h1 class="text-center">Customer Details</h1>
+            ${errorMessage}
             <br>
             <form action="orderdetails" method="POST">
                 <div class="form-row">

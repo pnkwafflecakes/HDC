@@ -85,16 +85,10 @@ public class OrderDetailsServlet extends HttpServlet
     {
         String name = request.getParameter("name") + "";
         String address = request.getParameter("address") + "";
-        String deliveryMethod = request.getParameter("methodList");
-        String paymentMethod = request.getParameter("methodList");
-        String notes = request.getParameter("notes") + "";
+        String deliveryMethod = request.getParameter("deliveryList");
+        String paymentMethod = request.getParameter("paymentList");
+        String notes = request.getParameter("notes") + "; Name for order: " + name + "";
         String phoneNo = request.getParameter("phoneNo") + "";
-
-        System.out.println("Gathered values:");
-        System.out.println("Address: " + address);
-        System.out.println("Method: " + method);
-        System.out.println("Notes: " + notes);
-        System.out.println("PhoneNo " + phoneNo);
 
         int deliveryNo = 1;
 
@@ -116,12 +110,13 @@ public class OrderDetailsServlet extends HttpServlet
         System.out.println("--*-- ID found: " + deliveryNo);
 
         Delivery delivery = new Delivery();
+
         delivery.setAddress(address);
         delivery.setDeliveryNo(deliveryNo);
-        delivery.setMethod(method);
+        delivery.setMethod(deliveryMethod);
         delivery.setNotes(notes);
         delivery.setPhoneNo(phoneNo);
-//        delivery.setMethod(method);
+
         DeliveryJpaController djc = new DeliveryJpaController();
         try
         {
@@ -149,7 +144,17 @@ public class OrderDetailsServlet extends HttpServlet
 //        UserService us = new UserService();
 //        User user = us.get(1);
         //--*--
-        User user = (User) session.getAttribute("userObj");
+        User user;
+
+        if (session.getAttribute("userObj") != null)
+        {
+            user = (User) session.getAttribute("userObj");
+        }
+        else
+        {
+            UserService us = new UserService();
+            user = us.get(1);
+        }
 
         String returnPage = "";
 
@@ -158,6 +163,7 @@ public class OrderDetailsServlet extends HttpServlet
             //clear cakes 
             cakes = new ArrayList<>();
             session.setAttribute("cakes", cakes);
+            session.setAttribute("payment", paymentMethod);
             getServletContext().getRequestDispatcher("/WEB-INF/successorder.jsp").forward(request, response);
         }
         else
