@@ -9,14 +9,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Adam Schlinker
  * @version 1.0
  */
-public class ContactServlet extends HttpServlet
-{
+public class ContactServlet extends HttpServlet {
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -27,9 +28,19 @@ public class ContactServlet extends HttpServlet
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
-        getServletContext().getRequestDispatcher("/WEB-INF/contact.jsp").forward(request, response);
+            throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+        String language = (String) session.getAttribute("language");
+
+        if (language == null) {
+            language = "en";
+        }
+        if (language.equals("cn")) {
+            getServletContext().getRequestDispatcher("/WEB-INF/cn/contact.jsp").forward(request, response);
+        } else {
+            getServletContext().getRequestDispatcher("/WEB-INF/en/contact.jsp").forward(request, response);
+        }
     }
 
     /**
@@ -42,7 +53,6 @@ public class ContactServlet extends HttpServlet
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
     }
 }
