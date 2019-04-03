@@ -75,8 +75,8 @@
                                     </span> ${userObj.name} 
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">我的账户</a>
-                                    <a class="dropdown-item" href="#">我的订单</a>
+                                    <a class="dropdown-item" href="manageaccount">我的账户</a>
+                                    <a class="dropdown-item" href="orders">我的订单</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="login?act=logout"><span class="glyphicon glyphicon-log-out"></span> 登出</a>
                                 </div>
