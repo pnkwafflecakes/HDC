@@ -37,6 +37,7 @@ public class EditCakeServlet extends HttpServlet
     
     private String path = "/images/";
     private String name = null;
+    private String changed = null;
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -52,6 +53,7 @@ public class EditCakeServlet extends HttpServlet
     {
         String inputType = request.getParameter("input");
         name = request.getParameter("imagename");
+        changed = request.getParameter("changed");
         System.out.println("Image name: " + name);
 
         HttpSession session = request.getSession(true);
@@ -61,6 +63,14 @@ public class EditCakeServlet extends HttpServlet
         List<Cakecategory> categoryList = ccs.getAll();
         
         System.out.println("Input: " + inputType);
+        
+        if (changed != null) {
+                System.out.println("Path: " + path+name);
+                String newPath = path+name;
+                request.setAttribute("imagePath", newPath);
+                request.setAttribute("changed", "1");
+        }
+        
         if (inputType.equals("edit")) {
             System.out.println("In edits");
             CakeService cs = new CakeService();
@@ -71,13 +81,6 @@ public class EditCakeServlet extends HttpServlet
             request.setAttribute("selectedCategory", excludeCategory);
             categoryList.remove(excludeCategory);
             System.out.println("Selected Category: " + excludeCategory);
-        }
-        else {
-            if (name != null) {
-                System.out.println("Path: " + path+name);
-                String newPath = path+name;
-                request.setAttribute("imagePath", newPath);
-            }
         }
         
         Cakecategory[] categories = categoryList.toArray(new Cakecategory[categoryList.size()]);

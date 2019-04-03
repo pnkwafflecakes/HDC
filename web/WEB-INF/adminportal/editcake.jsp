@@ -26,18 +26,18 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="upload?input=add" method="post" enctype="multipart/form-data">
+        <form action="upload?input=${input}" method="post" enctype="multipart/form-data">
             Image: <input type="file" name="file">
             <input type="submit" value="Upload Image">
         </form>
         <form action="editcake" method="post" enctype="multipart/form-data">
             <table>
                 <tr>
-                    <c:if test="${input == 'edit'}">
+                    <c:if test="${input == 'edit' && changed==null}">
                         <td><img src="<c:url value='${cake.image}'/>" alt="Cake Picture" width="200" height="200"/></td>
                     </c:if>
-                    <c:if test="${input == 'add'}">
-                        <td><img src="<c:url value='${imagePath}'/>" alt="${imagePath}" width="200" height="200"/></td>
+                    <c:if test="${changed == '1'}">
+                        <td><img src="<c:url value='${imagePath}'/>" alt="${imagePath}" name="newImage" width="200" height="200"/></td>
                     </c:if>
                 </tr>
                 <tr>
