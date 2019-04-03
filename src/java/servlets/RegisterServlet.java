@@ -142,33 +142,58 @@ public class RegisterServlet extends HttpServlet
                 PreparedStatement ps = connection.prepareStatement(prepStatement);
                 ResultSet rs = ps.executeQuery();
                 rs.next();
-                int user_id = rs.getInt(1);
-                user_id++;
-                postalCode = postalCode.replace("-",""); 
-                Accounttype at = new Accounttype(1);
-                //Create User
-                User user = new User();
-                user.setUserId(user_id);
-                user.setName(name);
-                user.setAddress(address);
-                user.setPostalCode(postalCode);
-                user.setEmail(email);
-                user.setPhoneNo(phone);
-                user.setAccountType(at);
-                user.setUsername(username);
-                user.setPassword(password);
-                user.setAccountStatus(true);
-                UserService us = new UserService();
-                try {
-                    us.create(user);
-                } catch (Exception ex) {
-                    Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+                boolean error = false;
+                //check for username in db
+                String prepSelectStatement = "Select username from user where username = ?;";
+                PreparedStatement ps2 = connection.prepareStatement(prepSelectStatement);
+                ps2.setString(1, username);
+                ResultSet rs2 = ps2.executeQuery();
+                rs2.next();
+                int row = rs2.getRow();
+                if(row == 1)
+                {
+                    
+                    if(rs2.getString("username").equals(username))
+                    {
+                        error = true;
+                        request.setAttribute("error", "Username is Already in Use!");
+                        getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+                    }
                 }
-                //Confirm to user that they have been registered.
-                request.setAttribute("status", "Registration Complete! Please login to begin");
-                getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
-            } catch (SQLException | ClassNotFoundException ex) {
-                Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+                if(!error)
+                {
+                    
+                    int user_id = rs.getInt(1);
+                    user_id++;
+                    postalCode = postalCode.replace("-",""); 
+                    Accounttype at = new Accounttype(1);
+                    //Create User
+                    User user = new User();
+                    user.setUserId(user_id);
+                    user.setName(name);
+                    user.setAddress(address);
+                    user.setPostalCode(postalCode);
+                    user.setEmail(email);
+                    user.setPhoneNo(phone);
+                    user.setAccountType(at);
+                    user.setUsername(username);
+                    user.setPassword(password);
+                    user.setAccountStatus(true);
+                    UserService us = new UserService();
+                    try 
+                    {
+                        us.create(user);
+                    } catch (Exception ex) {
+                        Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    //Confirm to user that they have been registered.
+                    request.setAttribute("status", "Registration Complete! Please login to begin");
+                    getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+                }
+            }
+            catch(IOException | ClassNotFoundException | SQLException | ServletException ex)
+            {
+                
             }
         }
     }
