@@ -39,7 +39,7 @@ public class ManageOrdersServlet extends HttpServlet
 //        getServletContext().getRequestDispatcher("/WEB-INF/adminportal/manageorders.jsp").forward(request, response);
      OrderService os = new OrderService();
      DeliveryService ds = new DeliveryService();
-     CakeorderJpaController co = new CakeorderJpaController();
+     CakeorderJpaController cojc = new CakeorderJpaController();
         
      String action = request.getParameter("action");
      String url = "/WEB-INF/adminportal/manageorders.jsp";
@@ -61,12 +61,15 @@ public class ManageOrdersServlet extends HttpServlet
             //get user
             User user = selectedOrder.getUserId();
             //get cakeOrder
-            List<Cakeorder> cakeOrders = co.findCakeorderByOrderNo(selectedOrderId);
+            List<Cakeorder> cakeOrders = cojc.findCakeorderByOrderNo(selectedOrderId);
             
             request.setAttribute("selectedOrder", selectedOrder);
             request.setAttribute("delivery", delivery);
             request.setAttribute("user", user);
             request.setAttribute("cakeOrders", cakeOrders);
+            //put cakeOrders in session for doPost change qty
+            session.setAttribute("cakeOrdersSession", cakeOrders);
+            
             
             url = "/WEB-INF/adminportal/manageorders.jsp";
          } catch (Exception ex) {
@@ -79,7 +82,7 @@ public class ManageOrdersServlet extends HttpServlet
      try{
          orders = os.getAll();
          for(Orders order:orders){
-             System.out.println(order.getOrderNo());
+//             System.out.println(order.getOrderNo());
          }
              
          request.setAttribute("orders", orders);
@@ -109,14 +112,17 @@ public class ManageOrdersServlet extends HttpServlet
     {
         
 //      System.out.println("manageorders");
-//      getServletContext().getRequestDispatcher("/WEB-INF/adminportal/manageorders.jsp").forward(request, response);
         String url = "/WEB-INF/adminportal/manageorders.jsp";
         OrderService os = new OrderService();
-        DeliveryService ds = new DeliveryService();
+
         OrdersJpaController ojc = new OrdersJpaController();
         DeliveryJpaController djc = new DeliveryJpaController();
-        CakeorderJpaController cos = new CakeorderJpaController();
+        CakeorderJpaController cojc = new CakeorderJpaController();
         HttpSession session = request.getSession();
+        
+        boolean active = false;
+        boolean confirmed = false;
+        boolean paid = false;
         
         try{
             
@@ -130,26 +136,99 @@ public class ManageOrdersServlet extends HttpServlet
                 int selectedOrderId = Integer.parseInt(request.getParameter("selectedOrderId"));//not change
 //                System.out.println("manageorder servlet post edit");
 //                System.out.println(selectedOrderId);
-                Orders orderOld    = os.get(selectedOrderId);
-//                Date order_date    = orderOld.getOrderDatetime();//not change
-//                Date due_date      = orderOld.getDueDatetime();//not change
-//                String order_items = request.getParameter("orderItems");
-//                double total_price = Double.parseDouble(request.getParameter("totalPrice"));
+                Orders orderOld = ojc.findOrders(selectedOrderId);
+                Date order_date    = orderOld.getOrderDatetime();//not change
+                Date due_date      = orderOld.getDueDatetime();//not change
+                String order_items = request.getParameter("orderItems");
+                double total_price = Double.parseDouble(request.getParameter("totalPrice"));
                 int delivery_no    = orderOld.getDeliveryNo().getDeliveryNo();//not change
-//                System.out.println("os" + os);
-////                os.edit(selectedOrderId, order_date, due_date, order_items, total_price, delivery_no);
-//                Orders orderNew = new Orders(selectedOrderId, order_date, due_date, order_items, total_price);
-//                ojc.edit(orderNew);
+//                get active checkbox
+                String[] activeCheck = request.getParameterValues("active");
+                if (activeCheck==null) active = false;
+                else if (activeCheck[0].equals("on")) active = true;
+                else System.out.println("Special Check value " + activeCheck[0]);
+    
+//                get confirmed checkbox
+                String[] confirmedCheck = request.getParameterValues("confirmed");
+                if (confirmedCheck==null) confirmed = false;
+                else if (confirmedCheck[0].equals("on")) confirmed = true;
+                else System.out.println("Special Check value " + confirmedCheck[0]);
+               
+//                get paid checkbox
+                String[] paidCheck = request.getParameterValues("paid");
+                if (paidCheck==null) paid = false;
+                else if (paidCheck[0].equals("on")) paid = true;
+                else System.out.println("Special Check value " + paidCheck[0]);
+                
+                orderOld.setTotalPrice(total_price);
+                orderOld.setActive(active);
+                orderOld.setConfirmed(confirmed);
+                orderOld.setPaid(paid);
+                
+                ojc.edit(orderOld);
                 
                 //save edit delivery
                 String method  = request.getParameter("method");
                 String address = request.getParameter("address");
                 String phoneNo = request.getParameter("phoneNo");
                 String notes   = request.getParameter("notes");
-//                ds.edit(delivery_no, method, address, phoneNo, notes);
-                Delivery delivery = new Delivery(delivery_no, method, address, phoneNo, notes);
-                djc.edit(delivery);
+
+                Delivery deliveryOld = djc.findDelivery(delivery_no);
+                deliveryOld.setMethod(method);
+                deliveryOld.setAddress(address);
+                deliveryOld.setPhoneNo(phoneNo);
+                deliveryOld.setNotes(notes);
+                   
+                djc.edit(deliveryOld);
                 
+            }else if(action != null && action.equals("changeQuantity")){
+                System.out.println("changeqty");
+                int selectedCakeOrder = Integer.parseInt(request.getParameter("selectedCakeOrder"));
+                int quantity = Integer.parseInt(request.getParameter("quantity"));
+                System.out.println("selectedCakeOrder "+selectedCakeOrder);
+                System.out.println("quantity "+quantity);
+                List<Cakeorder> cakeOrdersOld = (List<Cakeorder>)session.getAttribute("cakeOrdersSession");
+                List<Cakeorder> cakeOrdersNew = cojc.findCakeorderByOrderNo(cakeOrdersOld.get(0).getOrders().getOrderNo());
+                
+                Cakeorder cakeOrderCurrent = cakeOrdersNew.get(selectedCakeOrder);
+                
+                     cakeOrderCurrent.setQuantity(quantity);
+                     cojc.edit(cakeOrderCurrent);
+                
+              
+//              calculate subtotal
+//                cakeOrders = (List<Cakeorder>)session.getAttribute("cakeOrders");
+                cakeOrdersNew = cojc.findCakeorderByOrderNo(cakeOrdersOld.get(0).getOrders().getOrderNo());
+                double total = 0;
+                for (Cakeorder co : cakeOrdersNew){
+                    total = total + co.getQuantity()*co.getCake().getPrice();
+                }
+                //change total price for this order
+                int selectedOrderId = Integer.parseInt(request.getParameter("selectedOrderId"));
+                Orders orderOld = ojc.findOrders(selectedOrderId);
+                orderOld.setTotalPrice(total);
+                ojc.edit(orderOld);
+                
+                 
+                //if qty =0 , remove this cake order
+                if(quantity == 0){
+                     cojc.destroy(cakeOrderCurrent.getCakeorderPK());
+                }
+                
+                //update cake item  
+                cakeOrdersNew = cojc.findCakeorderByOrderNo(cakeOrdersOld.get(0).getOrders().getOrderNo());
+                
+                String orderItems = "";
+                if(cakeOrdersNew == null){
+                    orderItems = "";
+                }else{
+                    orderItems = "";
+                    for (Cakeorder co : cakeOrdersNew){
+                        orderItems = orderItems + co.getCake().getName()+",";
+                        }
+                }
+                orderOld.setOrderItems(orderItems);
+                ojc.edit(orderOld);
             }
         }catch (Exception ex) {
                     Logger.getLogger(ManageOrdersServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -161,10 +240,25 @@ public class ManageOrdersServlet extends HttpServlet
      try{
          orders = os.getAll();
          for(Orders order:orders){
-             System.out.println(order.getOrderNo());
+//             System.out.println(order.getOrderNo());
          }
              
          request.setAttribute("orders", orders);
+//         sent selectedOrder back to jsp, so edit part can show
+         int selectedOrderId = Integer.parseInt(request.getParameter("selectedOrderId"));
+         //get order
+            Orders selectedOrder = ojc.findOrders(selectedOrderId);
+            //get order related delivery
+            Delivery delivery = selectedOrder.getDeliveryNo();
+            //get user
+            User user = selectedOrder.getUserId();
+            //get cakeOrder
+            List<Cakeorder> cakeOrders = cojc.findCakeorderByOrderNo(selectedOrderId);
+            
+            request.setAttribute("selectedOrder", selectedOrder);
+            request.setAttribute("delivery", delivery);
+            request.setAttribute("user", user);
+            request.setAttribute("cakeOrders", cakeOrders);
      }catch (Exception ex) {
                     Logger.getLogger(ManageOrdersServlet.class.getName()).log(Level.SEVERE, null, ex);
                     ex.printStackTrace();
