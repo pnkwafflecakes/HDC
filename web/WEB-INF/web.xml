@@ -163,7 +163,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ViewOrders</servlet-name>
-        <url-pattern>/Orders</url-pattern>
+        <url-pattern>/orders</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LanguageServlet</servlet-name>

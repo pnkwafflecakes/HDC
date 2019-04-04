@@ -95,8 +95,8 @@
                                     </span> ${userObj.name} 
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">My Profile</a>
-                                    <a class="dropdown-item" href="#">My Orders</a>
+                                    <a class="dropdown-item" href="manageaccount">My Profile</a>
+                                    <a class="dropdown-item" href="orders">My Orders</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="login?act=logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
                                 </div>

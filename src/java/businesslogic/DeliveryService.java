@@ -32,18 +32,33 @@ public class DeliveryService {
     /**
      * Add new delivery
      */
-    public void create(String method, String address, String phoneNo, String notes) throws Exception{
+    public void create(Delivery delivery) throws Exception{
         
-        int newNo;
-        int check = djc.getDeliveryCount();
+        int newId = 0;
+        List<Delivery> currDelivery = (List<Delivery>) djc.findDeliveryEntities();
 
-        if (check == 0){
-            newNo = 1;
+        if (currDelivery == null)
+        {
+            newId = 1;
         }
-        else{
-            newNo = check + 1;
+        else
+        {
+            Delivery selectedDelivery;
+            int openId = 2;
+            for (int i=0; i < currDelivery.size(); i++) {
+                selectedDelivery = currDelivery.get(i);
+                if (openId != selectedDelivery.getDeliveryNo()+1) {
+                    newId = openId-1; //Issue here :/
+                    i = currDelivery.size();
+                }
+                else {
+                    openId++;
+                }
+            }
+            if(newId == 0) newId = currDelivery.size()+1;
         }
-        Delivery delivery = new Delivery(newNo, method, address, phoneNo, notes);
+
+        delivery.setDeliveryNo(newId);
         djc.create(delivery);
 
     }
@@ -51,9 +66,8 @@ public class DeliveryService {
      * Edit the delivery details
      * 
      */
-    public void edit(Integer delivery_no, String method, String address, String phoneNo, String notes) throws Exception{
+    public void edit(Delivery delivery) throws Exception{
         
-            Delivery delivery = new Delivery(delivery_no, method, address, phoneNo, notes);
         djc.edit(delivery);
 
         }

@@ -1,5 +1,5 @@
 <%-- 
-    Document   : browse
+    Document   : mainmenu
     Created on : Feb 7, 2019, 2:45:09 PM
     Author     : 703842
 --%>
@@ -28,8 +28,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
         <style><%@include file="/WEB-INF/styles/navbar.css"%></style>
-        <style><%@include file="/WEB-INF/styles/mainmenu.css"%></style>
-        <style><%@include file="/WEB-INF/styles/browse.css"%></style>
+        <style><%@include file="/WEB-INF/styles/contact.css"%></style>
 
 
     </head>
@@ -42,14 +41,14 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="mainmenu">Home</a>
                         </li>
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" href="browse">Browse</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact
+                            <a class="nav-link" href="contact">Contact
                             </a>
                         </li>
                         <li class="nav-item">
@@ -73,8 +72,8 @@
                                     ${userObj.name} 
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="manageaccount">My Profile</a>
-                                    <a class="dropdown-item" href="orders">My Orders</a>
+                                    <a class="dropdown-item" href="#">My Profile</a>
+                                    <a class="dropdown-item" href="#">My Orders</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="login?act=logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
                                 </div>
@@ -99,32 +98,43 @@
             </div>
         </nav>
 
+
         <hr>
 
-        <div class="containter" id="cakecontainer">
-            <div class="row text-center">
-                <c:forEach items="${allcakes}" var="ck">
-                    <div class="card responsive">
-                        <a href="cakeinfo?cakeid=${ck.cakeId}">
-                            <img class="card-img-top" alt="Card image cap" src="<c:url value='${ck.image}'/>" />
-                        </a>
-                        <div class="card-body">
-                            <a href="cakeinfo?cakeid=${ck.cakeId}">
-                                <h5 class="card-title">
-                                    ${ck.name}
-                                </h5>
-                            </a>
-                            <p class="card-text">
-                                ${ck.description}
-                            </p>
-
+        <div class="containter-fluid" id="maincontainter">
+            <h1 class="text-center">Hellen's Delicious Cakes</h1>
+            <br>
+            <h2 class="text-center">Contact</h2>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h3 class="align-middle">Phone</h3>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="align-middle">403 603 0087</p>
                         </div>
                     </div>
-                </c:forEach>
+
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h3 class="align-middle">Email</h3>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="align-middle">helenbkf@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <img class="image-fluid rounded" src="<c:url value='/images/orderline.png'/>" />
+                </div>
             </div>
         </div>
 
-        <hr>
+
 
         <div class="containter" id="bottomfooter">
             <!-- Footer -->

@@ -72,8 +72,8 @@
                                     ${userObj.name} 
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">My Profile</a>
-                                    <a class="dropdown-item" href="#">My Orders</a>
+                                    <a class="dropdown-item" href="manageaccount">My Profile</a>
+                                    <a class="dropdown-item" href="orders">My Orders</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="login?act=logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
                                 </div>
@@ -97,12 +97,14 @@
                 </div>
             </div>
         </nav>
-
+        
         <div class="container">
             <br>
+            
             <h1 class="text-center">Customer Details</h1>
             ${errorMessage}
             <br>
+            
             <form action="orderdetails" method="POST">
                 <div class="form-row">
 
@@ -152,6 +154,11 @@
                         <textarea class="form-control" rows="3" id="inputNotes"  name="notes" placeholder="Additional notes here..." ></textarea>
                     </div>
                 </div>
+                    <c:if test="${userObj == null}">
+                        <p>Warning: If you are not logged in you will not get to monitor order progress. You can still continue and contact Helen By: </p>
+                        <p>Phone: (403) 808-3860</p>
+                        <p>Email: helen@gmail.com</p>
+                    </c:if>
                 <div class="col text-center">
                     <button type="submit" class="btn btn-outline-dark"><h3>Submit</h3></button>
                 </div>
