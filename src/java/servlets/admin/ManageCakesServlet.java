@@ -68,11 +68,24 @@ public class ManageCakesServlet extends HttpServlet
         System.out.println("Act: "+action);
         if (action != null) {
             
+            if (action.equals("undo")) {
+                Cake undoCake = (Cake) session.getAttribute("undoCake");
+                if (undoCake != null) {
+                    cs.insert(undoCake);
+                    request.setAttribute("notification", "Cake deletion was un-done");
+                }
+                else request.setAttribute("notification", "No recent cake deletions found");
+                doGet(request, response);
+            }
+            
             if (action.equals("delete")) {
+                request.setAttribute("notification", "Cake deleted. Can undo this with the \"Undo\" button");
                 int cakeId = Integer.valueOf(request.getParameter("selectedCakeId"));
+                Cake undoCake = cs.get(cakeId);
+                session.setAttribute("undoCake", undoCake);
                 cs.delete(cakeId);
                 System.out.println("Redir from delete");
-                response.sendRedirect("managecakes");
+                doGet(request, response);
             }
             else if (action.equals("edit")) {
                 int cakeId = Integer.valueOf(request.getParameter("selectedCakeId"));

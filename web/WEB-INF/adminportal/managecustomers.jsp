@@ -61,9 +61,13 @@
         <div class="c">
             <h1>Manage Users</h1>
             <h3>${notification}</h3>
+            
         </div>
         <div class="container">
-
+            <form action="managecustomers" method="post" >
+                <input type="submit" value="Undo">
+                <input type="hidden" name="action" value="undo">
+            </form>
 
             <div class="row">
                 <div class="col-md-3">

@@ -135,6 +135,11 @@
              
         <div class="col-sm-9">
             <h3>Orders</h3>
+            
+            <form action="manageorders" method="post" >
+                <input type="submit" value="Undo">
+                <input type="hidden" name="action" value="undo">
+            </form>
             <table>
            
                    <th>Order No</th>

@@ -102,7 +102,8 @@ public class ManageCustomersServlet extends HttpServlet
                 try
                 {
                     customerId = Integer.parseInt(selectedCustomer);
-
+                    User undoUser = us.get(customerId);
+                    session.setAttribute("undoUser", undoUser);
                     us.destroy(customerId);
                     users = us.getAll();
 
@@ -131,6 +132,18 @@ public class ManageCustomersServlet extends HttpServlet
 
                 session.setAttribute("user", editUser);
                 getServletContext().getRequestDispatcher("/WEB-INF/adminportal/edituser.jsp").forward(request, response);
+                break;
+                
+            case "undo":
+                try {
+                User undoUser = (User) session.getAttribute("undoUser");
+                us.create(undoUser);
+                request.setAttribute("notification", "Delete successfully un-done");
+                doGet(request, response);
+                } catch(Exception e) {
+                    request.setAttribute("notification", "Undo delete failed");
+                    doGet(request, response);
+                }
                 break;
 
             default:

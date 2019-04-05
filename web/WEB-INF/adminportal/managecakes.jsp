@@ -50,10 +50,15 @@
         <div class="c">
             <h1>Manage Cakes</h1>
             <h3>${notification}</h3>
+            
         </div>
 
         <div class="container-fluid">
-
+            <form action="managecakes" method="post" >
+                <input type="submit" value="Undo">
+                <input type="hidden" name="action" value="undo">
+            </form>
+            
             <table class="table table-bordered table-striped table-hover">
                 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                 <thead>
@@ -69,10 +74,14 @@
                 <th>Delete</th>
                 </thead>
                 <tbody>
-                    <tr><td><form action="managecakes" method="post" >
-                                    <input type="submit" value="Add New Cake">
-                                    <input type="hidden" name="action" value="add">
-                                </form></td></tr>
+                    <tr>
+                        <td COLSPAN=10 align="center">
+                            <form action="managecakes" method="post" >
+                                <input type="submit" value="Add New Cake">
+                                <input type="hidden" name="action" value="add">
+                            </form>
+                        </td>
+                    </tr>
                     <c:forEach var="cake" items="${cakes}">
                         <tr>
                             <td><img src="<c:url value='${cake.image}'/>" alt="Cake Picture" width="50%" height="50%"/></td>

@@ -130,8 +130,19 @@ public class ManageOrdersServlet extends HttpServlet
             
             if(action != null && action.equals("delete")){
               int selectedOrderId = Integer.parseInt(request.getParameter("selectedOrderId"));
-                ojc.destroy(selectedOrderId);
-            }else if(action != null && action.equals("edit")){
+              Orders undoOrder = ojc.findOrders(selectedOrderId);
+              session.setAttribute("undoOrder", undoOrder);
+              ojc.destroy(selectedOrderId);
+            }
+            else if (action != null && action.equals("undo")) {
+                Orders undoOrder = (Orders) session.getAttribute("undoOrder");
+                if (undoOrder != null) {
+                    ojc.create(undoOrder);
+                    request.setAttribute("errorMessage", "Undo Delete was successful");
+                }
+            }
+            
+            else if(action != null && action.equals("edit")){
                 //save edit order
                 int selectedOrderId = Integer.parseInt(request.getParameter("selectedOrderId"));//not change
 //                System.out.println("manageorder servlet post edit");
