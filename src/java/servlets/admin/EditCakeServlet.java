@@ -38,6 +38,7 @@ public class EditCakeServlet extends HttpServlet
     private String path = "/images/";
     private String name = null;
     private String changed = null;
+    boolean exists = false;
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -51,6 +52,7 @@ public class EditCakeServlet extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        exists = false;
         String inputType = request.getParameter("input");
         name = request.getParameter("imagename");
         changed = request.getParameter("changed");
@@ -81,6 +83,10 @@ public class EditCakeServlet extends HttpServlet
             request.setAttribute("selectedCategory", excludeCategory);
             categoryList.remove(excludeCategory);
             System.out.println("Selected Category: " + excludeCategory);
+            if (cs.get(cakeId).getOrdersCollection().size() != 0) {
+                request.setAttribute("notification", "This cake is in a current order. Will become new cake with changes");
+                exists = true;
+            }
         }
         
         Cakecategory[] categories = categoryList.toArray(new Cakecategory[categoryList.size()]);
@@ -155,7 +161,12 @@ public class EditCakeServlet extends HttpServlet
                 }
                 cake.setImage(imagePath);
                 
-                cs.update(cake);
+                if (exists==false) cs.update(cake);
+                else if (exists==true) {
+                    cake.setActive(false);
+                    cs.update(cake);
+                    cs.insert(cake);
+                }
                 
 
                 System.out.println("EditCake: 2-4");
