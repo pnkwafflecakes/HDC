@@ -8,6 +8,7 @@ package servlets.admin;
 import BusinessClasses.DBEntry;
 import Entities.Cake;
 import Entities.Delivery;
+import Entities.Orders;
 import Entities.User;
 import businesslogic.CakeService;
 import businesslogic.DeliveryService;
@@ -79,13 +80,26 @@ public class ManageCakesServlet extends HttpServlet
             }
             
             if (action.equals("delete")) {
-                request.setAttribute("notification", "Cake deleted. Can undo this with the \"Undo\" button");
                 int cakeId = Integer.valueOf(request.getParameter("selectedCakeId"));
-                Cake undoCake = cs.get(cakeId);
-                session.setAttribute("undoCake", undoCake);
-                cs.delete(cakeId);
-                System.out.println("Redir from delete");
-                doGet(request, response);
+                if (cs.get(cakeId).getOrdersCollection().size() != 0) {
+                    String orderNums = "";
+                    List<Orders> orderN = (List<Orders>) cs.get(cakeId).getOrdersCollection();
+                    Orders[] ordArray = orderN.toArray(new Orders[orderN.size()]);
+                    for (int i =0; i < ordArray.length; i++) {
+                        orderNums = orderNums + ordArray[i].getOrderNo() + ", ";
+                    }
+                    orderNums.subSequence(0, orderNums.length()-2);
+                    request.setAttribute("notification", "Cake is in an orders numbers: " + orderNums +". Will be put to inactive instead (Not visible to customer)");
+                    cs.get(cakeId).setActive(false);
+                }
+                else {
+                    request.setAttribute("notification", "Cake deleted. Can undo this with the \"Undo\" button");
+                    Cake undoCake = cs.get(cakeId);
+                    session.setAttribute("undoCake", undoCake);
+                    cs.delete(cakeId);
+                    System.out.println("Redir from delete");
+                }
+                    doGet(request, response);
             }
             else if (action.equals("edit")) {
                 int cakeId = Integer.valueOf(request.getParameter("selectedCakeId"));
