@@ -163,7 +163,7 @@ public class EditCakeServlet extends HttpServlet
                 
                 if (exists==false) cs.update(cake);
                 else if (exists==true) {
-                    cake.setActive(false)
+                    cake.setActive(false);
                     cs.update(cake);
                     cs.insert(cake);
                 }
