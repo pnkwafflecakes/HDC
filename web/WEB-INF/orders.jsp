@@ -40,14 +40,6 @@
                         <th>Total Price:</th>
                         <td><c:out value="$:${order.totalPrice}"/></td>
                     </tr>
-                    <tr>
-                        <th>Delivery Number:</th>
-                        <td><c:out value="${order.deliveryNo.deliveryNo}"/></td>
-                    </tr>
-                    <tr>
-                        <input type="hidden" name="deleteOrder" value="${order.orderNo}">
-                        <td><input type="submit" value="Delete"/></td>
-                    </tr>
                 </form>
             </c:forEach>
         </table>
