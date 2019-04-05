@@ -54,12 +54,25 @@ public class DBEntry {
         List<Cake> cakeList = cs.getAll();
         int size = cakeList.get(cakeList.size()-1).getCakeId()+1;
         int[] counter = new int[size];
+        String[] itemEntry = new String[size];
         for (Cake cake : cakes) {
             price = price + cake.getPrice();
             counter[cake.getCakeId()]++;
-            items = items + cake.getName() + ", ";
+            if (counter[cake.getCakeId()] > 1) {
+                itemEntry[cake.getCakeId()] = cake.getName() + "x" + counter[cake.getCakeId()];
+            }
         }
+        
+        for (int i = 0; i < itemEntry.length; i++) {
+            if (itemEntry[i] != null) items = items + ", ";
+        }
+        
         items = items.substring(0, items.length()-2);
+        if (items.length() > 99) {
+            items = items.substring(0, 98);
+            items = items + "+";
+        }
+        
         order.setTotalPrice(price);
         Date currDate = new Date();
         order.setOrderDatetime(currDate);
