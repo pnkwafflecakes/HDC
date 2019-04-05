@@ -51,6 +51,10 @@ public class PaymentServlet extends HttpServlet {
                  getServletContext().getRequestDispatcher("/WEB-INF/successorder.jsp").forward(request, response);
             }else if(payment.equals("fail")){
                  getServletContext().getRequestDispatcher("/WEB-INF/notsuccessorder.jsp").forward(request, response);
+            }else if(payment.equals("cash")){
+                 getServletContext().getRequestDispatcher("/WEB-INF/placedorder.jsp").forward(request, response);
+            }else if(payment.equals("etrasfer")){
+                 getServletContext().getRequestDispatcher("/WEB-INF/placedorder.jsp").forward(request, response);
             }
         }
         getServletContext().getRequestDispatcher("/mainmenu").forward(request, response);

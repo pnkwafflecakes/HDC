@@ -164,7 +164,8 @@ public class OrderDetailsServlet extends HttpServlet
             cakes = new ArrayList<>();
             session.setAttribute("cakes", cakes);
             session.setAttribute("payment", paymentMethod);
-            getServletContext().getRequestDispatcher("/WEB-INF/successorder.jsp").forward(request, response);
+//          getServletContext().getRequestDispatcher("/WEB-INF/successorder.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/summary").forward(request, response);
         }
         else
         {

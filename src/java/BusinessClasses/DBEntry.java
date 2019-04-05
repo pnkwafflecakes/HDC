@@ -67,7 +67,7 @@ public class DBEntry {
             if (itemEntry[i] != null) items = items + ", ";
         }
         
-        items = items.substring(0, items.length()-2);
+//        items = items.substring(0, items.length()-1);
         if (items.length() > 99) {
             items = items.substring(0, 98);
             items = items + "+";
