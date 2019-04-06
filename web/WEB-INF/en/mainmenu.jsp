@@ -30,7 +30,7 @@
         <style><%@include file="/WEB-INF/styles/navbar.css"%></style>
         <style><%@include file="/WEB-INF/styles/mainmenu.css"%></style>
 
-        <!-- Smartsupp Live Chat script -->
+       <!-- Smartsupp Live Chat script -->
         <script type="text/javascript">
         var _smartsupp = _smartsupp || {};
         _smartsupp.key = '074195e0af5b79e1e0bc9cc3a449002e9b19a149';
