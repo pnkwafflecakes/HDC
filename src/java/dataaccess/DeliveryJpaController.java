@@ -15,7 +15,6 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import Entities.Orders;
-import dataaccess.DBUtil;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

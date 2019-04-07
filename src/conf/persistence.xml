@@ -9,6 +9,7 @@
     <class>Entities.Delivery</class>
     <class>Entities.Orders</class>
     <class>Entities.User</class>
+    <class>Entities.Pickup</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/capstonedb?zeroDateTimeBehavior=convertToNull"/>

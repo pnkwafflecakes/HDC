@@ -36,6 +36,13 @@ Create table `User`
     CONSTRAINT `FK_USER_ACCOUNT_TYPE` FOREIGN KEY (`account_type`) REFERENCES `AccountType` (`account_type`) ON DELETE RESTRICT ON UPDATE RESTRICT
 );
 
+Create table `Pickup`
+(
+    `pickup_id` int(4) NOT NULL,
+    `pickup_name` VARCHAR(150) NOT NULL,
+    `pickup_address` VARCHAR(199) NOT NULL,
+    PRIMARY KEY (`pickup_id`)
+);
 
 
 Create table `Delivery`
@@ -60,13 +67,16 @@ Create table `Orders`
     `active` boolean NOT NULL,
     `confirmed` boolean NOT NULL,
     `paid` boolean NOT NULL,
+    `pickup_id` int(4) NULL,
     -- Primary Key
     PRIMARY KEY (`order_no`),
     -- Forign Key
     KEY `FK_ORDER_USER_ID` (`user_id`), 
     CONSTRAINT `FK_ORDER_USERID` FOREIGN KEY (`user_id`) REFERENCES `User` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
     KEY `FK_ORDER_Delivery_No` (`delivery_no`), 
-    CONSTRAINT `FK_ORDER_Delivery_No` FOREIGN KEY (`delivery_no`) REFERENCES `Delivery` (`delivery_no`) ON DELETE RESTRICT ON UPDATE RESTRICT
+    CONSTRAINT `FK_ORDER_Delivery_No` FOREIGN KEY (`delivery_no`) REFERENCES `Delivery` (`delivery_no`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+    KEY `FK_ORDER_PICKUP_ID` (`pickup_id`), 
+    CONSTRAINT `FK_ORDER_PICKUP_ID` FOREIGN KEY (`pickup_id`) REFERENCES `Pickup` (`pickup_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 );
 
 
