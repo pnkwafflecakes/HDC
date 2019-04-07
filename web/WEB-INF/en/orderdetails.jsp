@@ -129,12 +129,12 @@
                     <div class="form-group col-md-6">
                         <label for="delivery">Delivery Method</label>               
                         <select class="form-control" id="delivery" name="deliveryList">
-                            <option value="Train Station"> Train Station </option>
                             <option value="Home Delivery"> Home Delivery </option>
-                            <option value="Pickup Location 1"> Pickup Location 1 </option>
-                            <option value="Pickup Location 2"> Pickup Location 2 </option>
-                            <option value="Pickup Location 3"> Pickup Location 3 </option>
-                            <option value="Pickup Location 4"> Pickup Location 4 </option>
+                            <option value="69 Street Park & Ride Surface"> 69 Street Park & Ride Surface </option>
+                            <option value="Tom Baines School North Parking Lot"> Tom Baines School North Parking Lot </option>
+                            <option value="T&T North HSBC Bank Parking Lot"> T&T North HSBC Bank Parking Lot </option>
+                            <option value="Nickle School Parking Lot"> Nickle School Parking Lot </option>
+                            <option value="Somerset Station Parking Lot"> Somerset Station Parking Lot </option>
                         </select>
                     </div>
 

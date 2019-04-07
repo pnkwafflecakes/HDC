@@ -200,7 +200,7 @@
                     <div class="card-header" id="headingThree">
                         <h5 class="mb-0">
                             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                HSBC Bank Parking Lot                       
+                                T&T North HSBC Bank Parking Lot                       
                             </button>
                         </h5>
                     </div>
@@ -232,14 +232,14 @@
                     <div class="card-header" id="headingFive">
                         <h5 class="mb-0">
                             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                Shawnessy     
+                                Somerset Station Parking Lot     
                             </button>
                         </h5>
                     </div>
                     <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
                         <div class="card-body">
-                            <p>288 Shawville Way SE, Calgary, AB T2S 0J2</p>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2516.295732407826!2d-114.06915688450209!3d50.89974386277015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x537175d77cdb7d7b%3A0xe81caf8aa1726eb2!2s288+Shawville+Way+SE%2C+Calgary%2C+AB+T2Y+3Z9!5e0!3m2!1sen!2sca!4v1554490683659!5m2!1sen!2sca" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                            <p>288 Shawville Way SE Parking</p>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5032.591774224743!2d-114.066968!3d50.899741!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xfc0166cafe59f052!2s288+Shawville+Way+SE+Parking!5e0!3m2!1sen!2sca!4v1554618697625!5m2!1sen!2sca" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
