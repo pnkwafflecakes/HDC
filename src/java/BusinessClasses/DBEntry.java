@@ -78,13 +78,19 @@ public class DBEntry {
         }
         
 //        get dueDate
+        Date currDate = new Date();
         Date dueDateDB = new Date();
-        if(dueDate == null || "".equals(dueDate)){
+//        if customer not input dueDate, defualt datre is currentdate+2
+        if(dueDate == null || "".equals(dueDate) ){
             dueDateDB = calculateDueDate(new Date());
         }else{
             try {
                 DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-                dueDateDB = format.parse(dueDate);  
+                dueDateDB = format.parse(dueDate);
+//                if customer input dueDate beffore current date, use default date
+                if(dueDateDB.compareTo(currDate)< 0){
+                    dueDateDB = calculateDueDate(new Date());
+                }
             } catch (ParseException ex) {
                 Logger.getLogger(DBEntry.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -92,7 +98,7 @@ public class DBEntry {
         order.setDueDatetime(dueDateDB);
         
         order.setTotalPrice(price);
-        Date currDate = new Date();
+//        Date currDate = new Date();
         order.setOrderDatetime(currDate);
 //        order.setDueDatetime(calculateDueDate(currDate));
         order.setUserId(user);
