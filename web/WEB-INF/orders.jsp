@@ -30,7 +30,6 @@
         <style><%@include file="/WEB-INF/styles/navbar.css"%></style>
         <style><%@include file="/WEB-INF/styles/orders.css"%></style>
 
-
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-custom">
@@ -97,12 +96,9 @@
                 </div>
             </div>
         </nav>
-
-
         <br>
         <h1 align="center">Orders</h1>
         <p align="center">${error}</p>
-<<<<<<< HEAD
         <p align="center">To Cancel an Order Please Contact Us!</p>
         <table align="center">
             <c:forEach items="${orderList}" var="order">
@@ -290,8 +286,5 @@
             </footer>
             <!-- Footer -->
         </div>
-
-
->>>>>>> 0784a0fa3ac47c7b411f677e0b4450cc4cbb4da9
     </body>
 </html> 
