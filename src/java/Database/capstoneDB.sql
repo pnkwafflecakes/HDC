@@ -38,7 +38,7 @@ Create table `User`
 
 Create table `Pickup`
 (
-    `pickup_id` int(4) NOT NULL,
+    `pickup_id` int(4) NOT NULL AUTO_INCREMENT,
     `pickup_name` VARCHAR(150) NOT NULL,
     `pickup_address` VARCHAR(199) NOT NULL,
     PRIMARY KEY (`pickup_id`)
@@ -166,3 +166,9 @@ insert into `Cake` values(0017, 0001, 'Choco Cream Egg','可可脂蛋糕', 8, 55
 insert into `Cake` values(0018, 0001, 'Oreo Dream',     '奥利奥之梦', 12, 57.99, 'Have you ever wondered what it would be like to eat an Oreo the size of a cake? Here it is. Made with chocolate cake batter, vanilla icing, and topped with real Oreos!', '曾经梦想过品尝一块和蛋糕一样大的奥利奥吗？不要错过！由精选香草糖霜制成，表面装装饰以真正的奥利奥饼干','/images/cake8.jpg', 0, 0, 1);
 insert into `Cake` values(0019, 0001, 'Choco Cream Egg','可可脂蛋糕', 8, 55.99, 'Have a taste of Easter with this chocolatey delight. Made with chocolate cake batter, chocolate icing, mini eggs and full-size cream eggs!', '体验由巧克力带来的复活节风情！由精选巧克力糖霜，迷你鸡蛋及全尺寸奶油蛋制成。', '/images/cake1.jpg', 1, 1, 1);
 insert into `Cake` values(0020, 0001, 'Oreo Dream',     '奥利奥之梦', 12, 57.99, 'Have you ever wondered what it would be like to eat an Oreo the size of a cake? Here it is. Made with chocolate cake batter, vanilla icing, and topped with real Oreos!', '曾经梦想过品尝一块和蛋糕一样大的奥利奥吗？不要错过！由精选香草糖霜制成，表面装装饰以真正的奥利奥饼干', '/images/cake2.jpg', 1, 1, 1);
+
+insert into `Pickup` values(null,"69 Street Park & Ride Surface","69 Street Park & Ride Surface");
+insert into `Pickup` values(null,"Tom Baines School North Parking Lot","250 Edgepark Blvd NW, Calgary, AB T3A 3S2");
+insert into `Pickup` values(null,"T&T North HSBC Bank Parking Lot","409-9650 Harvest Hills Blvd N, Calgary, AB T3K 0B3");
+insert into `Pickup` values(null,"Nickle School Parking Lot","2500 Lake Bonavista Dr SE, Calgary, AB T2J 2Y6");
+insert into `Pickup` values(null,"Somerset Station Parking Lot","288 Shawville Way SE Parking");
