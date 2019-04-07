@@ -41,7 +41,7 @@
        
         
     
-        <p>${errorMessage}</p>
+        <h2>${notification}</h2>
         
          <div class = "col-sm-3">
              <!--can admin add cake--> 
@@ -66,11 +66,9 @@
                                 <tr><td>Pickup Address</td><td><input type="text" name="pickupAddress" value="${selectedPickup.pickupAddress}"></td></tr>  
                                 <input type="hidden" name="selectedPickupId" value="${selectedPickup.pickupId}">
                                 <input type="hidden" name="action" value="edit">
-                       
-                                <tr><td><input type="submit" value="Save"></td></tr>
                     <!--table to show cakes info in this order-->
                         </table>
-                                 
+                        <input type="submit" value="Save">
                     </form>  
                 </c:if> 
          </div>

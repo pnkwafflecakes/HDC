@@ -59,6 +59,7 @@ public class ManagePickupsServlet extends HttpServlet
                 Pickup pickup = new Pickup();
                 pickup.setPickupName(selectedPickupName);
                 pickup.setPickupAddress(selectedPickupAddress);
+                request.setAttribute("notification", "New Pickup Location was added");
                 ps.insert(pickup);
 
             }
@@ -75,7 +76,13 @@ public class ManagePickupsServlet extends HttpServlet
             }
             else if (action.equals("undo")) {
                 Pickup undoPickup = (Pickup) session.getAttribute("undoPickup");
-                ps.insert(undoPickup);
+                if (undoPickup != null) {
+                    request.setAttribute("notification", "Undo delete was successful");
+                    ps.insert(undoPickup);
+                }
+                else {
+                    request.setAttribute("notification", "No recently deleted pickups exist to undo deletion of");
+                }
             }
             else if(action.equals("delete")) {
                 int pickupId = Integer.valueOf(request.getParameter("selectedPickupId")+"");
@@ -83,17 +90,16 @@ public class ManagePickupsServlet extends HttpServlet
                 session.setAttribute("undoPickup", deletePickup);
                 try {
                     ps.delete(pickupId);
+                    request.setAttribute("notification", "Pickup Location was successfully deleted");
                 } catch (IllegalOrphanException | NonexistentEntityException | dataaccess.exceptions.NonexistentEntityException e) {
                     request.setAttribute("notification", "Cannot delete this location because it is being used for a delivery");
-                    doGet(request, response);
-            doGet(request, response);
                 }
             }
             else if (action.equals("view")) {
                 int selectedPickupId = Integer.valueOf(request.getParameter("selectedPickupId"));
                 Pickup selectedPickup = ps.get(selectedPickupId);
                 request.setAttribute("selectedPickup", selectedPickup);
-                doGet(request, response);
+                request.setAttribute("notification", "Entry can now be edited under the \"Edit Pickup\" section");
             }
             doGet(request, response);
         } catch(Exception e) {
