@@ -5,8 +5,14 @@
  */
 package servlets;
 
+import BusinessClasses.exceptions.NonexistentEntityException;
+import Entities.Orders;
+import businesslogic.OrderService;
+import dataaccess.OrdersJpaController;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -48,6 +54,17 @@ public class PaymentServlet extends HttpServlet {
         String payment = (String) request.getParameter("payment");
         if(payment != null && !"".equals(payment)){
             if(payment.equals("success")){
+                 int selectedOrderId = getOrderNo()-1;
+                 OrdersJpaController ojc = new OrdersJpaController();
+                 Orders orderOld = ojc.findOrders(selectedOrderId);
+                 orderOld.setPaid(true);
+                try {
+                    ojc.edit(orderOld);
+                } catch (NonexistentEntityException ex) {
+                    Logger.getLogger(PaymentServlet.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
+                    Logger.getLogger(PaymentServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
                  getServletContext().getRequestDispatcher("/WEB-INF/successorder.jsp").forward(request, response);
             }else if(payment.equals("fail")){
                  getServletContext().getRequestDispatcher("/WEB-INF/notsuccessorder.jsp").forward(request, response);
@@ -84,4 +101,15 @@ public class PaymentServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+         public int getOrderNo() {
+        OrderService os = new OrderService();
+        int orderNo = 1;
+        System.out.println("--*-- Finding good ID");
+        boolean notFound = true;
+        while (notFound) {
+            if (os.get(orderNo) != null) orderNo++;
+            else notFound = false;
+        }
+        return orderNo;
+    }
 }
