@@ -138,14 +138,20 @@
                         </select>
                     </div>
 
-                    <div class="form-group col-md-6">
+<!--                    <div class="form-group col-md-6">
                         <label for="payment">Payment Method</label>               
                         <select class="form-control" id="payment" name="paymentList">
                             <option> Cash Upon Delivery </option>
                             <option> e-Transfer </option>
                             <option> PayPal </option>
                         </select>
+                    </div>-->
+                    <div class="form-row">
+                    <div class="form-group col-md-24">
+                        <label for="inputDueDate">Due Date</label>
+                        <input type="date" class="form-control" id="inputDueDate" name="dueDate" >
                     </div>
+                </div>
                 </div>
 
                 <div class="form-row">

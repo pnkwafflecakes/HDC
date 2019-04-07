@@ -20,12 +20,16 @@ import dataaccess.OrdersJpaController;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -42,7 +46,7 @@ public class DBEntry {
      * @param delivery Delivery variable created in OrderDetails
      * @return 
      */
-    public boolean inserOrderDB(Cake[] cakes, User user, Delivery delivery) {
+    public boolean inserOrderDB(Cake[] cakes, User user, Delivery delivery, String dueDate) {
         OrdersJpaController ojc = new OrdersJpaController();
         //Create Delivery then order
         Orders order = new Orders();
@@ -67,16 +71,30 @@ public class DBEntry {
             if (itemEntry[i] != null) items = items + ", ";
         }
         
-//        items = items.substring(0, items.length()-1);
+//        items = items.substring(0, items.length()-2);
         if (items.length() > 99) {
             items = items.substring(0, 98);
             items = items + "+";
         }
         
+//        get dueDate
+        Date dueDateDB = new Date();
+        if(dueDate == null || "".equals(dueDate)){
+            dueDateDB = calculateDueDate(new Date());
+        }else{
+            try {
+                DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+                dueDateDB = format.parse(dueDate);  
+            } catch (ParseException ex) {
+                Logger.getLogger(DBEntry.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        order.setDueDatetime(dueDateDB);
+        
         order.setTotalPrice(price);
         Date currDate = new Date();
         order.setOrderDatetime(currDate);
-        order.setDueDatetime(calculateDueDate(currDate));
+//        order.setDueDatetime(calculateDueDate(currDate));
         order.setUserId(user);
         System.out.println("User added: " + user);
         System.out.println("User is: " + user.getUserId());

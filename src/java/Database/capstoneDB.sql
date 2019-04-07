@@ -48,8 +48,8 @@ Create table `Pickup`
 Create table `Delivery`
 (
     `delivery_no` int(4) NOT NULL,
-    `method` VARCHAR(30) NOT NULL,
-    `address` VARCHAR(80) NOT NULL,
+    `method` VARCHAR(100) NOT NULL,
+    `address` VARCHAR(100) NOT NULL,
     `phone_no` VARCHAR(12) NOT NULL,
     `notes` VARCHAR(99) NOT NULL,
     PRIMARY KEY (`delivery_no`)
