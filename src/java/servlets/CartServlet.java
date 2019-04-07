@@ -8,6 +8,7 @@ package servlets;
 import Entities.Cake;
 import businesslogic.CakeService;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -83,12 +84,15 @@ public class CartServlet extends HttpServlet
                     counter[a]++;
                 }
             }
-
+            
+//            set totalPrice two digits after decimal
+            totalPrice = Double.valueOf(new DecimalFormat("#.00").format(totalPrice));
+            
             request.setAttribute("counter", counter);
             request.setAttribute("cakesInCart", cakeArray);
             request.setAttribute("totalPrice", totalPrice);
             
-            //put totalPrice in session
+            //put totalPrice in session, paypal will pay this number
             session.setAttribute("totalPrice", totalPrice);
             ArrayList<Cake> cakes2 = (ArrayList<Cake>) session.getAttribute("cakes");
             System.out.println("Cakes after processing: " + cakes2);
