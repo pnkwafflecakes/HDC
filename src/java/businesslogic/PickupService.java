@@ -63,6 +63,8 @@ public class PickupService
         }
 
         pickup.setPickupId(newId);
+//        user AUTO_INCREMENT to generage newId
+        pickup.setPickupId(null);
         pickupController.create(pickup);
     }
     
