@@ -68,7 +68,8 @@ public class CartServlet extends HttpServlet
             System.out.println("Size: " + cakes.size());
             
             
-
+//            use cakeArray[a] to store the unique cake of cakeId a
+//            use counter[a] to save the qty for cakeArray[a]
             Cake[] cakeArray = new Cake[cakeArraySize];
 
             for (int i = 0; i < cakes.size(); i++)
@@ -157,8 +158,33 @@ public class CartServlet extends HttpServlet
                 }
 
                 doGet(request, response);
+            }else if(action.equals("change")){
+                HttpSession session = request.getSession(true);
+                int selectedCakeId = Integer.valueOf(request.getParameter("selectedCake"));
+                System.out.println("newQuantity:"+request.getParameter("quantity"));
+                int newQuantity = Integer.parseInt(request.getParameter("quantity"));
+                ArrayList<Integer> cakes = (ArrayList<Integer>) session.getAttribute("cakes");
+
+                 Iterator iterator = cakes.iterator();
+
+                while (iterator.hasNext())
+                {
+                    if (iterator.next().equals(selectedCakeId))
+                    {
+                        iterator.remove();
+                    }
+                }
+                 
+                //add quanty of selectedcakeid
+                for(int i=0;i<newQuantity;i++){
+                    cakes.add(selectedCakeId);
+                }
+                session.setAttribute("cakes", cakes);
+                doGet(request, response);
             }
         }
+        
+        
         if (emptyCart == false)
         {
             response.sendRedirect("orderdetails");

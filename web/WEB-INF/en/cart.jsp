@@ -121,13 +121,13 @@
                                 <td width="20%">${cake.name}</td>
                                 <td width="40%">${cake.description}</td>
                                 <td width="15%">${cake.price}</td>
-                                <td width="5%"><c:out value="${counter[cake.cakeId]}"/></td>
+<!--                                <td width="5%"><c:out value="${counter[cake.cakeId]}"/></td>-->
                                 <td width="10%">
                                     <form action="cart" method="post" >
-                                        <input type="number" name="delQuantity" value="1" min="1" max="${counter[cake.cakeId]}">
-                                        <input type="submit" value="Delete">
-                                        <input type="hidden" name="action" value="delete">
-                                        <input type="hidden" name="selectedCake" value="${cake.cakeId}">
+                                        <input type="number" name="quantity" value="${counter[cake.cakeId]}" min="0" max="20">
+                                        <input type="submit" value="Adjust">
+                                        <input type="hidden" name="action" value="change">
+                                        <input type="hidden" name="selectedCake" value="${cake.cakeId}">   
                                     </form>
                                 </td>
                             </tr>
