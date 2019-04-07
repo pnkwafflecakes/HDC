@@ -102,6 +102,80 @@
         <br>
         <h1 align="center">Orders</h1>
         <p align="center">${error}</p>
+<<<<<<< HEAD
+        <p align="center">To Cancel an Order Please Contact Us!</p>
+        <table align="center">
+            <c:forEach items="${orderList}" var="order">
+                <form action="Orders" method="POST">
+                    <tr>
+                        <th>Order Number:</th>
+                        <td><c:out value="${order.orderNo}"/></td>
+                    </tr>
+                    <tr>
+                        <th>Date Placed:</th>
+                        <td><c:out value="${order.orderDatetime}"/></td>
+                    </tr>
+                    <tr>
+                        <th>Order Due:</th>
+                        <td><c:out value="${order.dueDatetime}"/></td>
+                    </tr>
+                    <tr>
+                        <th>Items:</th>
+                        <td><c:out value="${order.orderItems}"/></td>
+                    </tr>
+                    <tr>
+                        <th>Total Price:</th>
+                        <td><c:out value="$:${order.totalPrice}"/></td>
+                    </tr>
+                    <tr>
+                        
+                        
+                        
+                        <th>Order Status</th>
+                        <td>
+                                <c:set var = "active" scope = "session" value = "${order.active}"/>
+                                <c:set var = "confirmed" scope = "session" value = "${order.confirmed}"/>
+                                <c:if test = "${active == true}">
+                                    <c:if test = "${confirmed == false}">
+                                        <c:out value="Processing"/>
+                                    </c:if>
+                                </c:if>
+                                <c:if test = "${active == true}">
+                                    <c:if test = "${confirmed == true}">
+                                        <c:out value="Confirmed"/>
+                                    </c:if>
+                                </c:if>
+                                <c:if test = "${active == false}">
+                                    <c:if test="${confirmed == true}">
+                                        <c:out value="Completed"/>
+                                    </c:if>
+                                </c:if>
+                                <c:if test = "${active == false}">
+                                    <c:if test = "${confirmed == false}">
+                                        <c:out value="Cancelled"/>
+                                    </c:if>
+                                </c:if>
+                        </td>
+                    </tr>
+                    
+                    
+                    
+                    <tr>
+                        <th>Payment Status</th>
+                        <td>
+                            <c:set var = "paid" scope = "session" value = "${order.paid}"/>
+                            <c:if test = "${paid == true}">
+                                <c:out value="Paid"/>
+                            </c:if>
+                            <c:if test = "${paid == false}">
+                                <c:out value="Not Paid"/>
+                            </c:if>
+                        </td>
+                    </tr>
+                </form>
+            </c:forEach>
+        </table>
+=======
         <p style="color:red" align="center">${notdeleted}</p>
         <p style="color:green" align="center">${deleted}</p>
 
@@ -218,5 +292,6 @@
         </div>
 
 
+>>>>>>> 0784a0fa3ac47c7b411f677e0b4450cc4cbb4da9
     </body>
 </html> 
