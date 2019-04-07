@@ -133,27 +133,33 @@
             </form>
 
             <hr>
+            
             <form action="manageaccount" method="post" >
-                <h1>Change Password</h1>
-                <div class="form-label-group">
-                    <label for="inputPhone">Current Password: </label>
-                    <input text="password" name="currentPassword">
-                </div>
-                <br>
-                <div class="form-label-group">
-                    <label for="inputPhone">New Password: </label>
-                    <input text="password" name="newPassword">
-                </div>
-
-                <div class="form-label-group">
-                    <label for="inputPhone">New Password Confirm: </label>
-                    <input text="password" name="newPasswordConfirm">
-                </div>
-
+                <table>
+                    <tr>
+                        <h1>Change Password</h1>
+                        <div class="form-label-group">
+                            <td><label for="inputPhone">Current Password: </label></td>
+                            <td><input text="password" name="currentPassword"></td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="form-label-group">
+                            <td><label for="inputPhone">New Password: </label></td>
+                            <td><input text="password" name="newPassword"></td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="form-label-group">
+                            <td><label for="inputPhone">New Password Confirm: </label></td>
+                            <td><input text="password" name="newPasswordConfirm"></td>
+                        </div>
+                    </tr>
+                </table>
                 <input type="submit" value="Change Password">
                 <input type="hidden" name="action" value="changePassword">
             </form>
-
+        
 
 
         </div>
