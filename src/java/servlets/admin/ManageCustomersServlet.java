@@ -1,10 +1,14 @@
 package servlets.admin;
 
+import Entities.Accounttype;
 import Entities.User;
 import businesslogic.UserService;
+import dataaccess.UserJpaController;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -114,6 +118,46 @@ public class ManageCustomersServlet extends HttpServlet
 
                 session.setAttribute("editUser", editUser);
                 getServletContext().getRequestDispatcher("/WEB-INF/adminportal/edituser.jsp").forward(request, response);
+                break;
+
+            case "add":
+                UserJpaController userJPA = new UserJpaController();
+                User addUser = new User();
+
+                String name = request.getParameter("name");
+                String address = request.getParameter("address");
+                String postalCode = request.getParameter("postal");
+                String email = request.getParameter("email");
+                String phoneNo = request.getParameter("phone");
+                String accountType = request.getParameter("account");
+                int intAccountType = Integer.parseInt(accountType);
+                Accounttype at = new Accounttype(intAccountType);
+                String username = request.getParameter("username");
+                String password = request.getParameter("password");
+
+                addUser.setName(name);
+                addUser.setAddress(address);
+                addUser.setPostalCode(postalCode);
+                addUser.setEmail(email);
+                addUser.setPhoneNo(phoneNo);
+                addUser.setAccountType(at);
+                addUser.setUsername(username);
+                addUser.setPassword(password);
+                addUser.setAccountStatus(true);
+
+                try
+                {
+                    userJPA.create(addUser);
+                    request.setAttribute("notification", "User added.");
+                    getServletContext().getRequestDispatcher("/WEB-INF/adminportal/managecustomers.jsp").forward(request, response);
+                }
+                catch (Exception ex)
+                {
+                    request.setAttribute("notification", "User not added. " + ex.getMessage());
+                    getServletContext().getRequestDispatcher("/WEB-INF/adminportal/managecustomers.jsp").forward(request, response);
+                    ex.printStackTrace();
+                }
+
                 break;
 
             case "undo":

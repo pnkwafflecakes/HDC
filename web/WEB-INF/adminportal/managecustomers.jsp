@@ -93,6 +93,14 @@
                                 <td><input type="text" name="phone"></td>
                             </tr>
                             <tr>
+                                <th>Account Type</th>
+                                <td><select name="account" id="accounttype">
+                                        <option value="1">Regular</option>
+                                        <option value="2">Administrator</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
                                 <th>Username</th>
                                 <td><input type="text" name="username"></td>
                             </tr>
@@ -166,52 +174,6 @@
                         <li><a href="#">Add Customer</a></li>
                         <li><a href="#">Add Staff</a></li>
                     </ul>
-                </div> 
-                <div class="col-md-3">
-                    <h3>Add Staff</h3>
-                    <form action="managecustomers" method="POST">
-                        <table>
-                            <tr>
-                                <th>Name</th>
-                                <td><input type="text" name="staffname"></td>
-                            </tr>
-                            <tr>
-                                <th>Address</th>
-                                <td><input type="text" name="staffaddress"></td>
-                            </tr>
-                            <tr>
-                                <th>Postal Code</th>
-                                <td><input type="text" name="staffpostal"></td>
-                            </tr>
-                            <tr>
-                                <th>Email</th>
-                                <td><input type="email" name="staffemail"></td>
-                            </tr>
-                            <tr>
-                                <th>Phone Number</th>
-                                <td><input type="text" name="staffphone"></td>
-                            </tr>
-                            <tr>
-                                <th>Username</th>
-                                <td><input type="text" name="staffusername"></td>
-                            </tr>
-                            <tr>
-                                <th>Password</th>
-                                <td><input type="password" name="staffpassword"></td>
-                            </tr>
-                            <tr>
-                                <th>Name</th>
-                                <td><input type="text" name="staffname"></td>
-                            </tr>
-                            <tr>
-                                <th>Name</th>
-                                <td><input type="text" name="staffname"></td>
-                            </tr>
-                        </table>
-                        <br>
-                        <input type="hidden" name="action" value="addstaff">
-                        <input type="submit" value="Add Staff" name="addstaff">
-                    </form>
                 </div>
             </div>
         </div>

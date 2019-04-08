@@ -54,6 +54,11 @@ public class UserJpaController implements Serializable
                 attachedOrdersCollection.add(ordersCollectionOrdersToAttach);
             }
             user.setOrdersCollection(attachedOrdersCollection);
+
+            List<User> allUsers = this.findUserEntities();
+            int maxID = allUsers.get(allUsers.size() - 1).getUserId();
+            user.setUserId(maxID + 1);
+
             em.persist(user);
             if (accountType != null)
             {
