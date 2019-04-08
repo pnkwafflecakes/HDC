@@ -79,37 +79,47 @@
 
                             <form class="form-signin" method="POST">
                                 <div class="form-label-group">
-                                    <input type="text" id="inputUser" name="username" class="form-control" placeholder="Email address" required autofocus>
+                                    <input type="text" id="inputUser" name="username" class="form-control" placeholder="Username" value="${username}" required autofocus>
                                     <label for="inputUser">Username</label>
                                 </div>
 
                                 <div class="form-label-group">
-                                    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
-                                    <label for="inputPassword">Password</label>
+                                    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" value="${password}" required>
+                                    <label for="inputPassword">Create a Password</label>
+                                </div>
+                                
+                                <div class="form-label-group">
+                                    <input type="password" id="inputConfirmPassword" name="confirmpassword" class="form-control" placeholder="ConfirmPassword" value="${confirmPassword}" required>
+                                    <label for="inputConfirmPassword">Confirm Password</label>
                                 </div>
 
                                 <div class="form-label-group">
-                                    <input type="text" id="inputName" name="name" class="form-control" placeholder="Full Name" required autofocus>
-                                    <label for="inputName">Full name</label>
+                                    <input type="text" id="inputFirstName" name="firstname" class="form-control" placeholder="First Name" value="${firstname}" required autofocus>
+                                    <label for="inputFirstName">First Name</label>
+                                </div>
+                                
+                                <div class="form-label-group">
+                                    <input type="text" id="inputLastName" name="lastname" class="form-control" placeholder="Last Name" value="${lastname}" required autofocus>
+                                    <label for="inputLastName">Last Name</label>
                                 </div>
 
                                 <div class="form-label-group">
-                                    <input type="text" id="inputAddress" name="address" class="form-control" placeholder="Address" required autofocus>
+                                    <input type="text" id="inputAddress" name="address" class="form-control" placeholder="Address" value="${address}" required autofocus>
                                     <label for="inputAddress">Address</label>
                                 </div>
 
                                 <div class="form-label-group">
-                                    <input type="text" id="inputPostal" name="postal" class="form-control" placeholder="Postal Code" required autofocus>
+                                    <input type="text" id="inputPostal" name="postal" class="form-control" placeholder="Postal Code" value="${postal}" required autofocus>
                                     <label for="inputPostal">Postal Code</label>
                                 </div>
 
                                 <div class="form-label-group">
-                                    <input type="text" id="inputEmail" name="email" class="form-control" placeholder="Email Address" required autofocus>
+                                    <input type="text" id="inputEmail" name="email" class="form-control" placeholder="Email Address" value="${email}" required autofocus>
                                     <label for="inputEmail">Email Address</label>
                                 </div>
 
                                 <div class="form-label-group">
-                                    <input type="text" id="inputPhone" name="phone" class="form-control" placeholder="Email Address" required autofocus>
+                                    <input type="text" id="inputPhone" name="phone" class="form-control" placeholder="Phone" value="${phone}" required autofocus>
                                     <label for="inputPhone">Phone Number</label>
                                 </div>
 
