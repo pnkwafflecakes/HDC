@@ -195,7 +195,7 @@ public class RegisterServlet extends HttpServlet
                     //Create User
                     User user = new User();
                     user.setUserId(user_id);
-                    user.setName(firstName);
+                    user.setName(firstName + " " + lastName);
                     user.setAddress(address);
                     user.setPostalCode(postalCode);
                     user.setEmail(email);
