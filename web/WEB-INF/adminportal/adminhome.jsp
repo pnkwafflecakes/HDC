@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <style><%@include file="/WEB-INF/styles/adminhome.css"%></style>
         <style><%@include file="/WEB-INF/styles/navbar.css"%></style>
 
@@ -27,10 +28,11 @@
 
         <nav class="navbar navbar-expand-lg navbar-custom">
             <div class="container">
-                <a class="navbar-brand" href="mainmenu"> H D C </a>
+                <a class="navbar-brand"> H D C </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
@@ -40,16 +42,8 @@
                             <a class="nav-link" href="managecakes">Cakes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="managecustomers">Customers</a>
+                            <a class="nav-link" href="managecustomers">Users</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="managepickups">Pickups</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="managefeedback">Feedback</a>
-                        </li>
-
-                        <li class="nav-item"> </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
@@ -62,80 +56,81 @@
 
 
         <br>
-        <h1>Administration</h1>
-        <div class="container">
 
-            <div class="row">
-                <div class="col-md-6">        
-                    <a href="managecakes"><div id="tableheader">Cakes</div></a>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead class="table-success">
-                                <tr>
-                                    <th scope="col">Cakes</th>
-                                    <th scope="col">Last Added</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>${cakeNumber}</td>
-                                    <td>${lastAdded}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+        <div class="card">
+            <div class="card-body">  
+                <p id="headertitle">Dashboard</p>
+                <hr>
+                <div class="container">
+                    <div class ="row">
+                        <div class="col-md-6">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr class="thead-light">
+                                        <th colspan="2">Manage Cakes</th> 
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">Cakes</th>
+                                        <th scope="col">Last Added</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>${cakeNumber}</td>
+                                        <td>${lastAdded}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr class="thead-light">
+                                        <th colspan="2">Manage Orders</th> 
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">Current Orders</th>
+                                        <th scope="col">Total Orders</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>${currOrders}</td>
+                                        <td>${allOrders}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>            
                     </div>
-                </div>
 
-                <div class="col-md-6">
-                    <a href="managecustomers"><div id="tableheader">Users</div></a>
-                    <div class="table-responsive">
-                         <table class="table">
-                            <thead class="table-primary">
-                                <tr>
-                                    <th scope="col">Customers</th>
-                                    <th scope="col">Staff</th>
-                                    <th scope="col">Total Users</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>${custNumber}</td>
-                                    <td>${staffNumber}</td>
-                                    <td>${totalNumber}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
+                    <div class="row">
+                        <div class="col-md-6">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr class="thead-light">
+                                        <th colspan="3">Manage Customers</th> 
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">Customers</th>
+                                        <th scope="col">Staff</th>
+                                        <th scope="col">Total Users</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>${custNumber}</td>
+                                        <td>${staffNumber}</td>
+                                        <td>${totalNumber}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <a href="manageorders"><div id="tableheader">Orders</div></a>
-                    <div class="table-responsive">
-                      <table class="table">
-                            <thead class="table-warning">
-                                <tr>
-                                    <th scope="col">Current Orders</th>
-                                    <th scope="col">Total Orders</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>${currOrders}</td>
-                                    <td>${allOrders}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                    </div>
-                </div>
-                <div class="col-md-6">
 
                 </div>
             </div>
         </div>
 
-    </body>
+</body>
 </html>
