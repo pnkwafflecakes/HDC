@@ -97,6 +97,10 @@
         <servlet-name>SummaryServlet</servlet-name>
         <servlet-class>servlets.SummaryServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditUserServlet</servlet-name>
+        <servlet-class>servlets.admin.EditUserServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchServlet</servlet-name>
         <url-pattern>/search</url-pattern>
@@ -192,6 +196,10 @@
     <servlet-mapping>
         <servlet-name>SummaryServlet</servlet-name>
         <url-pattern>/summary</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditUserServlet</servlet-name>
+        <url-pattern>/edituser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
