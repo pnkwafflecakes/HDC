@@ -62,19 +62,24 @@ public class DBEntry {
         for (Cake cake : cakes) {
             price = price + cake.getPrice();
             counter[cake.getCakeId()]++;
-            if (counter[cake.getCakeId()] > 1) {
+            if (counter[cake.getCakeId()] >= 1) {
                 itemEntry[cake.getCakeId()] = cake.getName() + "x" + counter[cake.getCakeId()];
             }
         }
         
         for (int i = 0; i < itemEntry.length; i++) {
-            if (itemEntry[i] != null) items = items + ", ";
+            if (itemEntry[i] != null){
+            String    eachItem = itemEntry[i].substring(0, itemEntry[i].length()-2);
+                items = items + eachItem +", ";
+            }
         }
         
 //        items = items.substring(0, items.length()-2);
+
+
         if (items.length() > 99) {
             items = items.substring(0, 98);
-            items = items + "+";
+            items = items + "...";
         }
         
 //        get dueDate
