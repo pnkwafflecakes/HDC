@@ -121,7 +121,7 @@
                     </tr>
                     <tr>
                         <th>Total Price:</th>
-                        <td><c:out value="$:${order.totalPrice}"/></td>
+                        <td><c:out value="$${order.totalPrice}"/></td>
                     </tr>
                     <tr>
                         
@@ -133,7 +133,7 @@
                                 <c:set var = "confirmed" scope = "session" value = "${order.confirmed}"/>
                                 <c:if test = "${active == true}">
                                     <c:if test = "${confirmed == false}">
-                                        <c:out value="Processing"/>
+                                        <c:out value="Not Confirmed"/>
                                     </c:if>
                                 </c:if>
                                 <c:if test = "${active == true}">
@@ -143,12 +143,12 @@
                                 </c:if>
                                 <c:if test = "${active == false}">
                                     <c:if test="${confirmed == true}">
-                                        <c:out value="Completed"/>
+                                        <c:out value="Active"/>
                                     </c:if>
                                 </c:if>
                                 <c:if test = "${active == false}">
                                     <c:if test = "${confirmed == false}">
-                                        <c:out value="Cancelled"/>
+                                        <c:out value="Not Active"/>
                                     </c:if>
                                 </c:if>
                         </td>
@@ -171,7 +171,7 @@
                 </form>
             </c:forEach>
         </table>
-=======
+
         <p style="color:red" align="center">${notdeleted}</p>
         <p style="color:green" align="center">${deleted}</p>
 
