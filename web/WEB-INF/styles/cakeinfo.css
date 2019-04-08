@@ -39,3 +39,14 @@
     margin: auto;
     width: 90px;
 }
+
+button {
+  margin: 4px;
+  cursor: pointer;
+}
+input {
+  text-align: center;
+  width: 40px;
+  margin: 4px;
+  color: salmon;
+}

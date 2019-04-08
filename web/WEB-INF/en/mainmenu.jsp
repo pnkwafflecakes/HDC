@@ -129,22 +129,28 @@
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img alt="First slide" width="100em" height="100em" class="d-block w-100" href="cakeinfo?cakeid=${feature1.cakeId}" src="<c:url value='${feature1.image}'/>" />
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h4>${feature1.name}</h4>
-                                </div>
+                                <a href="cakeinfo?cakeid=${feature1.cakeId}">
+                                    <img alt="First slide" width="100em" height="100em" class="d-block w-100" href="cakeinfo?cakeid=${feature1.cakeId}" src="<c:url value='${feature1.image}'/>" />
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h4>${feature1.name}</h4>
+                                    </div>
+                                </a>
                             </div>
                             <div class="carousel-item">
-                                <img alt="Second slide" width="100em" height="100em"  class="d-block w-100" src="<c:url value='${feature2.image}'/>" />
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h4>${feature2.name}</h4>
-                                </div>
+                                <a href="cakeinfo?cakeid=${feature2.cakeId}">
+                                    <img alt="Second slide" width="100em" height="100em"  class="d-block w-100" src="<c:url value='${feature2.image}'/>" />
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h4>${feature2.name}</h4>
+                                    </div>
+                                </a>
                             </div>
                             <div class="carousel-item">
-                                <img alt="Third slide" width="100em" height="100em" class="d-block w-100" src="<c:url value='${feature3.image}'/>" />
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h4>${feature3.name}</h4>
-                                </div>
+                                <a href="cakeinfo?cakeid=${feature3.cakeId}">
+                                    <img alt="Third slide" width="100em" height="100em" class="d-block w-100" src="<c:url value='${feature3.image}'/>" />
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h4>${feature3.name}</h4>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">

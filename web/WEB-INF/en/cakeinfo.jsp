@@ -137,7 +137,24 @@
             <div class="clearfix"></div>
         </div>
 
+        <div id=field1>
+            field 1
+            <button type="button" id="sub" class=sub>-</button>
+            <input type="text" id="1" value=0 class=field>
+            <button type="button" id="add" class=add>+</button>
+        </div>
+        <script>
+            $('.add').click(function () {
+                if ($(this).next().val() < 10)
+                $(this).prev().val(+$(this).prev().val() + 1);
+            });
+            $('.sub').click(function () {
+                if ($(this).next().val() > 0)
+                    $(this).next().val(+$(this).next().val() - 1);
+            });
+        </script>
 
+        <br>
         <div class="containter" id="bottomfooter">
             <!-- Footer -->
             <br>
