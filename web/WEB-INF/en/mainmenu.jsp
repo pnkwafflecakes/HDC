@@ -31,6 +31,8 @@
         <style><%@include file="/WEB-INF/styles/mainmenu.css"%></style>
 
        <!-- Smartsupp Live Chat script -->
+        <!-- Smartsupp Live Chat script -->
+        <!-- Smartsupp Live Chat script -->
         <script type="text/javascript">
         var _smartsupp = _smartsupp || {};
         _smartsupp.key = '074195e0af5b79e1e0bc9cc3a449002e9b19a149';
@@ -41,6 +43,7 @@
           c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
         })(document);
         </script>
+
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-custom">

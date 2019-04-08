@@ -63,9 +63,11 @@ public class DBEntry {
             price = price + cake.getPrice();
             counter[cake.getCakeId()]++;
             if (counter[cake.getCakeId()] >= 1) {
+//              itemEntry[i] = cakename +"x" + counter
                 itemEntry[cake.getCakeId()] = cake.getName() + "x" + counter[cake.getCakeId()];
             }
         }
+        
         
         for (int i = 0; i < itemEntry.length; i++) {
             if (itemEntry[i] != null){

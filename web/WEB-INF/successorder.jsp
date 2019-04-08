@@ -142,13 +142,13 @@
             <h2 class="text-center">Payment successful! Your order is being processed.</h2>
             <br>
             <div class="text-center">
-                <i>You're being direct to home page in <span id="countdowntimer">5 </span> Seconds</i>
+                <!--<i>You're being direct to home page in <span id="countdowntimer">5 </span> Seconds</i>-->
                 <br>
                 <a href="mainmenu" class="btn btn-outline-dark">Take me to home page</a>
             </div>
 
         </div>
-        <script type="text/javascript">
+<!--        <script type="text/javascript">
             var timeleft = 5;
             var downloadTimer = setInterval(function () {
                 timeleft--;
@@ -161,7 +161,7 @@
                 window.location = "mainmenu";
             }
             setTimeout("leave()", 5000);
-        </script>
+        </script>-->
 
 
         <br>
