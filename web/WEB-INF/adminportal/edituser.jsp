@@ -50,33 +50,33 @@
             </div>
         </nav> 
 
-        <h1>Edit Profile: ${user.username}</h1>
+        <h1>Edit Profile: ${editUser.username}</h1>
         <h3>${notification}</h3>
-        <form action="managecustomers" method="GET">
+        <form action="edituser" method="POST">
             <table align="center">
                 <tr>
                     <th>Name:</th>
-                    <td><input type="text" name="name" value="${user.name}"></td>
+                    <td><input type="text" name="name" value="${editUser.name}"></td>
                 </tr>
                 <tr>
                     <th>Address:</th>
-                    <td><input type="text" name="address" value="${user.address}"></td>
+                    <td><input type="text" name="address" value="${editUser.address}"></td>
                 </tr>
                 <tr>
                     <th>Postal Code:</th>
-                    <td><input type="text" name="postalcode" value="${user.postalCode}"></td>
+                    <td><input type="text" name="postalcode" value="${editUser.postalCode}"></td>
                 </tr>
                 <tr>
                     <th>Email:</th>
-                    <td><input type="email" name="email" value="${user.email}"></td>
+                    <td><input type="email" name="email" value="${editUser.email}"></td>
                 </tr>
                 <tr>
                     <th>Phone Number:</th>
-                    <td><input type="text" name="phonenumber" value="${user.phoneNo}"></td>
+                    <td><input type="text" name="phoneNumber" value="${editUser.phoneNo}"></td>
                 </tr>
                 <tr>
                     <th>Account Type:</th>
-                    <td><select name="accounttype" id="accounttype">
+                    <td><select name="accountType" id="accounttype">
                             <option value="1">Regular</option>
                             <option value="2">Administrator</option>
                         </select>
@@ -84,11 +84,11 @@
                 </tr>
                 <tr>
                     <th>Username:</th>
-                    <td><input type="text" name="username" value="${user.username}"></td>
+                    <td><input type="text" name="username" value="${editUser.username}"></td>
                 </tr>
                 <tr>
                     <th>Password:</th>
-                    <td><input type="password" name="password" placeholder="Enter new password" value="${user.password}"></td>
+                    <td><input type="password" name="password" placeholder="Enter new password" value="${editUser.password}"></td>
                 </tr>
                 <tr>
                     <th>Account Status:</th>
@@ -102,6 +102,7 @@
 
             <br>
             <input type="hidden" name="action" value="save">
+            <input type="hidden" name="selectedCustomer" value="${editUser.userId}">
             <input type="submit" value="Save">  
         </form>
         <div class="c">
