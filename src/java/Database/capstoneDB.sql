@@ -6,7 +6,13 @@ USE capstonedb;
 
 
 -- Proper Order
-
+Drop table CakeOrder;
+Drop table Cake;
+Drop table CakeCategory;
+Drop table Order;
+Drop table Delivery;
+Drop table User;
+Drop table Account;
 -- Proper Order
 
 Create table `AccountType`
@@ -146,26 +152,33 @@ insert into `User` values(0005, 'Ada Wong', '1304 16 Ave NW', 'T2X2M1', 'Ada.won
 
 insert into `CakeCategory` values(0001, 'Cool Cakes', 'Cakes that are cool');
 
-insert into `Cake` values(0001, 0001, 'Choco Cream Egg','可可脂蛋糕', 8, 55.99, 'Have a taste of Easter with this chocolatey delight. Made with chocolate cake batter, chocolate icing, mini eggs and full-size cream eggs!', '体验由巧克力带来的复活节风情！由精选巧克力糖霜，迷你鸡蛋及全尺寸奶油蛋制成。', '/images/cake1.jpg', 1, 1, 1);
-insert into `Cake` values(0002, 0001, 'Oreo Dream',     '奥利奥之梦', 12, 57.99, 'Have you ever wondered what it would be like to eat an Oreo the size of a cake? Here it is. Made with chocolate cake batter, vanilla icing, and topped with real Oreos!', '曾经梦想过品尝一块和蛋糕一样大的奥利奥吗？不要错过！由精选香草糖霜制成，表面装装饰以真正的奥利奥饼干', '/images/cake2.jpg', 1, 1, 1);
-insert into `Cake` values(0003, 0001, 'Fruity Delight', '水果狂想曲', 10, 59.99, 'Is chocolate not your thing? No worries! This cake is made with real assorted berries, whipped icing, and fluffy vanilla cake!', '巧克力不是你的菜？ 没关系！精选多种有机浆果，糖霜装饰的100%香草蛋糕', '/images/cake3.jpg', 1, 1, 1);
-insert into `Cake` values(0004, 0001, 'Choco Cream Egg','可可脂蛋糕', 8, 55.99, 'Have a taste of Easter with this chocolatey delight. Made with chocolate cake batter, chocolate icing, mini eggs and full-size cream eggs!', '体验由巧克力带来的复活节风情！由精选巧克力糖霜，迷你鸡蛋及全尺寸奶油蛋制成。','/images/cake4.jpg', 1, 1, 1);
-insert into `Cake` values(0005, 0001, 'Oreo Dream',     '奥利奥之梦', 12, 57.99, 'Have you ever wondered what it would be like to eat an Oreo the size of a cake? Here it is. Made with chocolate cake batter, vanilla icing, and topped with real Oreos!', '曾经梦想过品尝一块和蛋糕一样大的奥利奥吗？不要错过！由精选香草糖霜制成，表面装装饰以真正的奥利奥饼干','/images/cake5.jpg', 1, 1, 1);
-insert into `Cake` values(0006, 0001, 'Fruity Delight', '水果狂想曲', 10, 59.99, 'Is chocolate not your thing? No worries! This cake is made with real assorted berries, whipped icing, and fluffy vanilla cake!', '巧克力不是你的菜？ 没关系！精选多种有机浆果，糖霜装饰的100%香草蛋糕', '/images/cake6.jpg', 1, 1, 1);
+insert into `Cake` values(0001, 0001, 'Choco Cream Egg','可可脂蛋糕', 8, 55.99, 'Have a taste of Easter with this chocolatey delight. Made with chocolate cake batter, chocolate icing, mini eggs and full-size cream eggs!', '体验由巧克力带来的复活节风情！由精选巧克力糖霜，迷你鸡蛋及全尺寸奶油蛋制成。', '/images/cake1.jpg', 0, 1, 1);
+insert into `Cake` values(0002, 0001, 'Oreo Dream',     '奥利奥之梦', 12, 57.99, 'Have you ever wondered what it would be like to eat an Oreo the size of a cake? Here it is. Made with chocolate cake batter, vanilla icing, and topped with real Oreos!', '曾经梦想过品尝一块和蛋糕一样大的奥利奥吗？不要错过！由精选香草糖霜制成，表面装装饰以真正的奥利奥饼干', '/images/cake2.jpg', 0, 1, 1);
+insert into `Cake` values(0003, 0001, 'Fruity Delight', '水果狂想曲', 10, 59.99, 'Is chocolate not your thing? No worries! This cake is made with real assorted berries, whipped icing, and fluffy vanilla cake!', '巧克力不是你的菜？ 没关系！精选多种有机浆果，糖霜装饰的100%香草蛋糕', '/images/cake3.jpg', 0, 1, 1);
+insert into `Cake` values(0004, 0001, 'Choco Cream Egg','可可脂蛋糕', 8, 55.99, 'Have a taste of Easter with this chocolatey delight. Made with chocolate cake batter, chocolate icing, mini eggs and full-size cream eggs!', '体验由巧克力带来的复活节风情！由精选巧克力糖霜，迷你鸡蛋及全尺寸奶油蛋制成。','/images/cake4.jpg', 0, 1, 1);
+insert into `Cake` values(0005, 0001, 'Oreo Dream',     '奥利奥之梦', 12, 57.99, 'Have you ever wondered what it would be like to eat an Oreo the size of a cake? Here it is. Made with chocolate cake batter, vanilla icing, and topped with real Oreos!', '曾经梦想过品尝一块和蛋糕一样大的奥利奥吗？不要错过！由精选香草糖霜制成，表面装装饰以真正的奥利奥饼干','/images/cake5.jpg', 0, 1, 1);
+insert into `Cake` values(0006, 0001, 'Fruity Delight', '水果狂想曲', 10, 59.99, 'Is chocolate not your thing? No worries! This cake is made with real assorted berries, whipped icing, and fluffy vanilla cake!', '巧克力不是你的菜？ 没关系！精选多种有机浆果，糖霜装饰的100%香草蛋糕', '/images/cake6.jpg', 0, 1, 1);
 insert into `Cake` values(0007, 0001, 'Choco Cream Egg','可可脂蛋糕', 8, 55.99, 'Have a taste of Easter with this chocolatey delight. Made with chocolate cake batter, chocolate icing, mini eggs and full-size cream eggs!', '体验由巧克力带来的复活节风情！由精选巧克力糖霜，迷你鸡蛋及全尺寸奶油蛋制成。', '/images/cake7.jpg', 0, 0, 1);
 insert into `Cake` values(0008, 0001, 'Oreo Dream',     '奥利奥之梦', 12, 57.99, 'Have you ever wondered what it would be like to eat an Oreo the size of a cake? Here it is. Made with chocolate cake batter, vanilla icing, and topped with real Oreos!', '曾经梦想过品尝一块和蛋糕一样大的奥利奥吗？不要错过！由精选香草糖霜制成，表面装装饰以真正的奥利奥饼干','/images/cake8.jpg', 0, 0, 1);
-insert into `Cake` values(0009, 0001, 'Choco Cream Egg','可可脂蛋糕', 8, 55.99, 'Have a taste of Easter with this chocolatey delight. Made with chocolate cake batter, chocolate icing, mini eggs and full-size cream eggs!', '体验由巧克力带来的复活节风情！由精选巧克力糖霜，迷你鸡蛋及全尺寸奶油蛋制成。', '/images/cake1.jpg', 1, 1, 1);
-insert into `Cake` values(0010, 0001, 'Oreo Dream',     '奥利奥之梦', 12, 57.99, 'Have you ever wondered what it would be like to eat an Oreo the size of a cake? Here it is. Made with chocolate cake batter, vanilla icing, and topped with real Oreos!', '曾经梦想过品尝一块和蛋糕一样大的奥利奥吗？不要错过！由精选香草糖霜制成，表面装装饰以真正的奥利奥饼干', '/images/cake2.jpg', 1, 1, 1);
-insert into `Cake` values(0011, 0001, 'Fruity Delight', '水果狂想曲', 10, 1.99, 'Is chocolate not your thing? No worries! This cake is made with real assorted berries, whipped icing, and fluffy vanilla cake!', '巧克力不是你的菜？ 没关系！精选多种有机浆果，糖霜装饰的100%香草蛋糕', '/images/cake3.jpg', 1, 1, 1);
-insert into `Cake` values(0012, 0001, 'Choco Cream Egg','可可脂蛋糕', 8, 55.99, 'Have a taste of Easter with this chocolatey delight. Made with chocolate cake batter, chocolate icing, mini eggs and full-size cream eggs!', '体验由巧克力带来的复活节风情！由精选巧克力糖霜，迷你鸡蛋及全尺寸奶油蛋制成。','/images/cake4.jpg', 1, 1, 1);
-insert into `Cake` values(0013, 0001, 'Oreo Dream',     '奥利奥之梦', 12, 57.99, 'Have you ever wondered what it would be like to eat an Oreo the size of a cake? Here it is. Made with chocolate cake batter, vanilla icing, and topped with real Oreos!', '曾经梦想过品尝一块和蛋糕一样大的奥利奥吗？不要错过！由精选香草糖霜制成，表面装装饰以真正的奥利奥饼干','/images/cake5.jpg', 1, 1, 1);
-insert into `Cake` values(0014, 0001, 'Fruity Delight', '水果狂想曲', 10, 59.99, 'Is chocolate not your thing? No worries! This cake is made with real assorted berries, whipped icing, and fluffy vanilla cake!', '巧克力不是你的菜？ 没关系！精选多种有机浆果，糖霜装饰的100%香草蛋糕', '/images/cake6.jpg', 1, 1, 1);
+insert into `Cake` values(0009, 0001, 'Choco Cream Egg','可可脂蛋糕', 8, 55.99, 'Have a taste of Easter with this chocolatey delight. Made with chocolate cake batter, chocolate icing, mini eggs and full-size cream eggs!', '体验由巧克力带来的复活节风情！由精选巧克力糖霜，迷你鸡蛋及全尺寸奶油蛋制成。', '/images/cake1.jpg', 0, 1, 1);
+insert into `Cake` values(0010, 0001, 'Oreo Dream',     '奥利奥之梦', 12, 57.99, 'Have you ever wondered what it would be like to eat an Oreo the size of a cake? Here it is. Made with chocolate cake batter, vanilla icing, and topped with real Oreos!', '曾经梦想过品尝一块和蛋糕一样大的奥利奥吗？不要错过！由精选香草糖霜制成，表面装装饰以真正的奥利奥饼干', '/images/cake2.jpg', 0, 1, 1);
+insert into `Cake` values(0011, 0001, 'Fruity Delight', '水果狂想曲', 10, 1.99, 'Is chocolate not your thing? No worries! This cake is made with real assorted berries, whipped icing, and fluffy vanilla cake!', '巧克力不是你的菜？ 没关系！精选多种有机浆果，糖霜装饰的100%香草蛋糕', '/images/cake3.jpg', 0, 1, 1);
+insert into `Cake` values(0012, 0001, 'Choco Cream Egg','可可脂蛋糕', 8, 55.99, 'Have a taste of Easter with this chocolatey delight. Made with chocolate cake batter, chocolate icing, mini eggs and full-size cream eggs!', '体验由巧克力带来的复活节风情！由精选巧克力糖霜，迷你鸡蛋及全尺寸奶油蛋制成。','/images/cake4.jpg', 0, 1, 1);
+insert into `Cake` values(0013, 0001, 'Oreo Dream',     '奥利奥之梦', 12, 57.99, 'Have you ever wondered what it would be like to eat an Oreo the size of a cake? Here it is. Made with chocolate cake batter, vanilla icing, and topped with real Oreos!', '曾经梦想过品尝一块和蛋糕一样大的奥利奥吗？不要错过！由精选香草糖霜制成，表面装装饰以真正的奥利奥饼干','/images/cake5.jpg', 0, 1, 1);
+insert into `Cake` values(0014, 0001, 'Fruity Delight', '水果狂想曲', 10, 59.99, 'Is chocolate not your thing? No worries! This cake is made with real assorted berries, whipped icing, and fluffy vanilla cake!', '巧克力不是你的菜？ 没关系！精选多种有机浆果，糖霜装饰的100%香草蛋糕', '/images/cake6.jpg', 0, 1, 1);
 insert into `Cake` values(0015, 0001, 'Choco Cream Egg','可可脂蛋糕', 8, 55.99, 'Have a taste of Easter with this chocolatey delight. Made with chocolate cake batter, chocolate icing, mini eggs and full-size cream eggs!', '体验由巧克力带来的复活节风情！由精选巧克力糖霜，迷你鸡蛋及全尺寸奶油蛋制成。', '/images/cake7.jpg', 0, 0, 1);
 insert into `Cake` values(0016, 0001, 'Oreo Dream',     '奥利奥之梦', 12, 57.99, 'Have you ever wondered what it would be like to eat an Oreo the size of a cake? Here it is. Made with chocolate cake batter, vanilla icing, and topped with real Oreos!', '曾经梦想过品尝一块和蛋糕一样大的奥利奥吗？不要错过！由精选香草糖霜制成，表面装装饰以真正的奥利奥饼干','/images/cake8.jpg', 0, 0, 1);
 insert into `Cake` values(0017, 0001, 'Choco Cream Egg','可可脂蛋糕', 8, 55.99, 'Have a taste of Easter with this chocolatey delight. Made with chocolate cake batter, chocolate icing, mini eggs and full-size cream eggs!', '体验由巧克力带来的复活节风情！由精选巧克力糖霜，迷你鸡蛋及全尺寸奶油蛋制成。', '/images/cake7.jpg', 0, 0, 1);
 insert into `Cake` values(0018, 0001, 'Oreo Dream',     '奥利奥之梦', 12, 57.99, 'Have you ever wondered what it would be like to eat an Oreo the size of a cake? Here it is. Made with chocolate cake batter, vanilla icing, and topped with real Oreos!', '曾经梦想过品尝一块和蛋糕一样大的奥利奥吗？不要错过！由精选香草糖霜制成，表面装装饰以真正的奥利奥饼干','/images/cake8.jpg', 0, 0, 1);
-insert into `Cake` values(0019, 0001, 'Choco Cream Egg','可可脂蛋糕', 8, 55.99, 'Have a taste of Easter with this chocolatey delight. Made with chocolate cake batter, chocolate icing, mini eggs and full-size cream eggs!', '体验由巧克力带来的复活节风情！由精选巧克力糖霜，迷你鸡蛋及全尺寸奶油蛋制成。', '/images/cake1.jpg', 1, 1, 1);
-insert into `Cake` values(0020, 0001, 'Oreo Dream',     '奥利奥之梦', 12, 57.99, 'Have you ever wondered what it would be like to eat an Oreo the size of a cake? Here it is. Made with chocolate cake batter, vanilla icing, and topped with real Oreos!', '曾经梦想过品尝一块和蛋糕一样大的奥利奥吗？不要错过！由精选香草糖霜制成，表面装装饰以真正的奥利奥饼干', '/images/cake2.jpg', 1, 1, 1);
+insert into `Cake` values(0019, 0001, 'Choco Cream Egg','可可脂蛋糕', 8, 55.99, 'Have a taste of Easter with this chocolatey delight. Made with chocolate cake batter, chocolate icing, mini eggs and full-size cream eggs!', '体验由巧克力带来的复活节风情！由精选巧克力糖霜，迷你鸡蛋及全尺寸奶油蛋制成。', '/images/cake1.jpg', 0, 1, 1);
+insert into `Cake` values(0020, 0001, 'Oreo Dream',     '奥利奥之梦', 12, 57.99, 'Have you ever wondered what it would be like to eat an Oreo the size of a cake? Here it is. Made with chocolate cake batter, vanilla icing, and topped with real Oreos!', '曾经梦想过品尝一块和蛋糕一样大的奥利奥吗？不要错过！由精选香草糖霜制成，表面装装饰以真正的奥利奥饼干', '/images/cake2.jpg', 0, 1, 1);
+
+--Featured Cakes
+insert into `Cake` values(0021, 0001, 'Oreo Dream',     '奥利奥之梦', 12, 57.99, 'Have you ever wondered what it would be like to eat an Oreo the size of a cake? Here it is. Made with chocolate cake batter, vanilla icing, and topped with real Oreos!', '曾经梦想过品尝一块和蛋糕一样大的奥利奥吗？不要错过！由精选香草糖霜制成，表面装装饰以真正的奥利奥饼干','/images/home1.jpg', 1, 0, 1);
+insert into `Cake` values(0022, 0001, 'Choco Cream Egg','可可脂蛋糕', 8, 55.99, 'Have a taste of Easter with this chocolatey delight. Made with chocolate cake batter, chocolate icing, mini eggs and full-size cream eggs!', '体验由巧克力带来的复活节风情！由精选巧克力糖霜，迷你鸡蛋及全尺寸奶油蛋制成。', '/images/home2.jpg', 1, 0, 1);
+insert into `Cake` values(0023, 0001, 'Oreo Dream',     '奥利奥之梦', 12, 57.99, 'Have you ever wondered what it would be like to eat an Oreo the size of a cake? Here it is. Made with chocolate cake batter, vanilla icing, and topped with real Oreos!', '曾经梦想过品尝一块和蛋糕一样大的奥利奥吗？不要错过！由精选香草糖霜制成，表面装装饰以真正的奥利奥饼干', '/images/home3.jpg', 1, 0, 1);
+
+
 
 insert into `Pickup` values(null,"69 Street Park & Ride Surface","69 Street Park & Ride Surface");
 insert into `Pickup` values(null,"Tom Baines School North Parking Lot","250 Edgepark Blvd NW, Calgary, AB T3A 3S2");
