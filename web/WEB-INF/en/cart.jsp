@@ -125,7 +125,7 @@
                                 <td width="10%">
                                     <form action="cart" method="post" >
                                         <input type="number" name="quantity" value="${counter[cake.cakeId]}" min="0" max="20">
-                                        <input type="submit" value="Adjust">
+                                        <input type="submit" value="Change">
                                         <input type="hidden" name="action" value="change">
                                         <input type="hidden" name="selectedCake" value="${cake.cakeId}">   
                                     </form>

@@ -326,7 +326,7 @@
                             <p class="footertext">
                                 <i class="fas fa-home mr-3 "></i>188 Springbluff Blvd SW <br>Calgary, AB</p>
                             <p class="footertext">
-                                <i class="fas fa-envelope mr-3 "></i>  <a href="mailto:#">helen@gmail.com</a></p>
+                                <i class="fas fa-envelope mr-3 "></i>  <a href="mailto:helenbkf@gmail.com?Subject=Customer%20Contact" target="_top">helenbkf@gmail.com</a></p>
                             <p class="footertext">
                                 <i class="fas fa-phone mr-3 "></i>(403) 808-3860</p>
 
