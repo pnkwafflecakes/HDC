@@ -94,8 +94,6 @@
         <servlet-class>servlets.ManageAccount</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>EditUserServlet</servlet-name>
-        <servlet-class>servlets.admin.EditUserServlet</servlet-class>
         <servlet-name>SummaryServlet</servlet-name>
         <servlet-class>servlets.SummaryServlet</servlet-class>
     </servlet>
@@ -192,8 +190,8 @@
         <url-pattern>/manageaccount</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>EditUserServlet</servlet-name>
-        <url-pattern>/edituser</url-pattern>
+        <servlet-name>SummaryServlet</servlet-name>
+        <url-pattern>/summary</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
