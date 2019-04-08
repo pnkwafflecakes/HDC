@@ -48,13 +48,28 @@ public class RegisterServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        String name = request.getParameter("name");
+        String firstName = request.getParameter("firstname");
+        String lastName = request.getParameter("lastname");
         String address = request.getParameter("address");
         String postalCode = request.getParameter("postal");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        String confirmPassword = request.getParameter("confirmpassword");//wont grab
+        
+        request.setAttribute("firstname", firstName);
+        request.setAttribute("lastname", lastName);
+        request.setAttribute("address",address);
+        request.setAttribute("postal", postalCode);
+        request.setAttribute("email",email);
+        request.setAttribute("phone",phone);
+        request.setAttribute("username", username);
+        
+        //Remove dash from postal code
+        postalCode = postalCode.replace("-", "");
+        
+        
         Boolean errorCheck = false;
         //Validation for correct length and that each field is not blank
         if(username.equals("") || username.length() < 8)
@@ -62,35 +77,45 @@ public class RegisterServlet extends HttpServlet
             errorCheck = true;
             request.setAttribute("error", "Please Enter a Username That Is 8 Characters Or Longer.");
         }
+        else if(!password.equals(confirmPassword))
+        {
+            errorCheck = true;
+            request.setAttribute("error", "The Passwords Do Not Match.");
+        }
         else if(password.equals("") || password.length() < 8)
         {
             errorCheck = true;
             request.setAttribute("error", "Please Enter a Password That Is 8 Characters Or Longer.");
         }
-        else if(name.equals("") || name.length() < 5)
+        else if(firstName.equals("") || firstName.length() < 2)
         {
             errorCheck = true;
             request.setAttribute("error", "Please Enter Your Full Name");
+        }
+        else if(lastName.equals("") || lastName.length() < 2)
+        {
+            errorCheck = true;
+            request.setAttribute("error", "Please Enter Your Last Name");
         }
         else if(address.equals("") || address.length() < 10)
         {
             errorCheck = true;
             request.setAttribute("error", "Please Enter Your Full Address");
         }
-        else if(postalCode.equals("") || postalCode.length() < 7 || postalCode.length() > 7)
+        else if(postalCode.equals("") || postalCode.length() < 6 || postalCode.length() > 6)
         {
             errorCheck = true;
-            request.setAttribute("error", "Please Enter Your Postal Code (Please Include The Dash)");
+            request.setAttribute("error", "Please Enter Your Postal Code");
         }
         else if(email.equals(""))
         {
             errorCheck = true;
             request.setAttribute("error", "Please Enter Your Email");
         }
-        else if(phone.equals("") || phone.length() < 12)
+        else if(phone.equals(""))
         {
             errorCheck = true;
-            request.setAttribute("error", "Please Enter Your Phone Number (Include The Dashes)");
+            request.setAttribute("error", "Please Enter Your Phone Number");
         }
         //Validation alphanumeric and specidic characters/patterns
         if(!username.matches(".[a-zA-Z0-9]*"))
@@ -103,7 +128,7 @@ public class RegisterServlet extends HttpServlet
             errorCheck = true;
             request.setAttribute("error", "Please Enter a Password That Contains Only Letters and Numbers");
         }
-        if(!name.matches(".[a-zA-Z ]*"))
+        if(!firstName.matches(".[a-zA-Z ]*"))
         {
             errorCheck = true;
             request.setAttribute("error", "Please Enter Your Name");
@@ -113,7 +138,7 @@ public class RegisterServlet extends HttpServlet
             errorCheck = true;
             request.setAttribute("error", "Please Enter Your Full Address");
         }
-        if(!postalCode.matches("^[a-zA-z]{1}[0-9]{1}[a-zA-z]{1}[-]{1}[0-9]{1}[a-zA-Z]{1}[0-9]{1}"))
+        if(!postalCode.matches("^[a-zA-z]{1}[0-9]{1}[a-zA-z]{1}[-]{1}[0-9]{1}[a-zA-Z]{1}[0-9]{1}") && !postalCode.matches("^[a-zA-z]{1}[0-9]{1}[a-zA-z]{1}[0-9]{1}[a-zA-Z]{1}[0-9]{1}"))
         {
             errorCheck = true;
             request.setAttribute("error", "Please Enter Your Postal Code With the Dashes Included");
@@ -123,10 +148,10 @@ public class RegisterServlet extends HttpServlet
             errorCheck = true;
             request.setAttribute("error", "Please Enter a Valid Email Address");
         }
-        if(!phone.matches("^\\d{3}[-]{1}\\d{3}[-]{1}\\d{4}") && !phone.matches("^[+]{1}\\d{1,3}[-]{1}\\d{3}[-]{1}\\d{3}[-]{1}\\d{4}"))
+        if(!phone.matches("^\\d{3}[-]{1}\\d{3}[-]{1}\\d{4}") && !phone.matches("^\\d{3}\\d{3}\\d{4}") && !phone.matches("^\\d{3}[ ]{1}\\d{3}[ ]{1}\\d{4}"))
         {
             errorCheck = true;
-            request.setAttribute("error", "Please Enter a Valid Phone Number (Add a Plus and a Dash For Extensions)");
+            request.setAttribute("error", "Please Enter a Valid Phone Number");
         }
         if(errorCheck)
         {
@@ -170,7 +195,7 @@ public class RegisterServlet extends HttpServlet
                     //Create User
                     User user = new User();
                     user.setUserId(user_id);
-                    user.setName(name);
+                    user.setName(firstName);
                     user.setAddress(address);
                     user.setPostalCode(postalCode);
                     user.setEmail(email);
@@ -187,6 +212,13 @@ public class RegisterServlet extends HttpServlet
                         Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     //Confirm to user that they have been registered.
+                    request.setAttribute("firstname", "");
+                    request.setAttribute("lastname", "");
+                    request.setAttribute("address", "");
+                    request.setAttribute("postal", "");
+                    request.setAttribute("email", "");
+                    request.setAttribute("phone", "");
+                    request.setAttribute("username", "");
                     request.setAttribute("status", "Registration Complete! Please login to begin");
                     getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
                 }
