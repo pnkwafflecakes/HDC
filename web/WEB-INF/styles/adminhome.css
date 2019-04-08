@@ -2,52 +2,60 @@
 body {
     background: rgb(255,255,255);
     background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(98,69,98,1) 100%);
+    font-size: 100%;
 }
-h1{
-    text-align:center;
-    color: #ba7823;
+#headertitle {
+    text-align: left;
+    font-size: 1.20em;
+    font-family: verdana;
+    margin: 0 45px; 
 }
+#tableheader {
+    text-align: left;
+    font-size: 1.20em;
+    font-family: verdana;
+    margin: 0 25px; 
+}
+table {
+    border-collapse: collapse;
+    /*margin: 0 -15px;*/ 
+    border-radius: 15px;
+    overflow: hidden;
+/*    border: none;*/
+}
+
+/*.navbar-nav > li{
+  padding-left:10px;
+  padding-right:10px;
+}*/
+
+/*a {
+    background-color: none;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
+}*/
+
+.card {
+    /*border: 0;*/
+    border-radius: 15px;
+    /*text-overflow: ellipsis;*/
+    /*white-space: nowrap;*/
+    /*overflow: hidden;*/
+    width: 90%;
+    margin: 0 auto; 
+    float: none; 
+    margin-bottom: 10px;
+
+}
+
 
 div.c
 {
     text-align: center;
 } 
-
-#tableheader{
-    text-align: center;
-    background-color: white;
-    padding: 0.5em;
-    color: red;
-    font-size: 1.5em;
-    border-radius:40px;
-}
-
-
-
-table  { 
-    border-spacing: 1; 
-    border-collapse: collapse; 
-    background:white;
-    border-radius:6px;
-    overflow:hidden;
-    max-width:800px; 
-    width:100%;
-    margin:0 auto;
-    position:relative;
-
-    *{ 
-        position:relative ;
-    }
-
-    td,th{ 
-        padding-left:1em;
-    }
-
-    thead tr{ 
-        height:60px;
-        background:#FFED86;
-        font-size:16px;
-    }
-
-}
-
