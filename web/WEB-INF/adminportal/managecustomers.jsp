@@ -42,18 +42,11 @@
             <script>
                 function unhideUserList() {
                     document.getElementById('userList').style = "display: block;";
-                    document.getElementById('addCustomer').style = "display: none;";
-                    document.getElementById('addStaff').style = "display: none;";
+                    document.getElementById('addUser').style = "display: none;";
                 }
-                function unhideAddCustomer() {
+                function unhideAddUser() {
                     document.getElementById('userList').style = "display: none;";
-                    document.getElementById('addCustomer').style = "display: block;";
-                    document.getElementById('addStaff').style = "display: none;";
-                }
-                function unhideAddStaff() {
-                    document.getElementById('userList').style = "display: none;";
-                    document.getElementById('addCustomer').style = "display: none;";
-                    document.getElementById('addStaff').style = "display: block;";
+                    document.getElementById('addUser').style = "display: block;";
                 }
             </script>
 
@@ -100,14 +93,15 @@
                         <div class="col-md-4 text-md-right">
 
                             <div class="row">
+                                <form action="managecustomers" method="post" id="buttons">
+                                    <input type="submit" value="Undo">
+                                    <input type="hidden" name="action" value="undo">
+                                </form>
                                 <form method="post" id="buttons">
                                     <input type="button" onClick='unhideUserList()' value="User List">
                                 </form>
                                 <form method="post" id="buttons">
-                                    <input type="button" onClick='unhideAddCustomer()' value="Add Customer">
-                                </form>
-                                <form method="post" id="buttons">
-                                    <input type="button" onClick='unhideAddStaff()' value="Add Staff">
+                                    <input type="button" onClick='unhideAddUser()' value="Add User">
                                 </form>
                             </div>
                         </div>
@@ -172,10 +166,10 @@
                             </div>
                         </div>
 
-                        <div class="container" id="addCustomer" style="display: none">
+                        <div class="container" id="addUser" style="display: none">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p id="addHeader">Add Customer</p>
+                                    <p id="addHeader">Add User</p>
                                     <form action="managecustomers" method="POST">
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
@@ -188,33 +182,42 @@
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <div class="form-group col-md-6">
+                                            <div class="form-group col-md-3">
                                                 <div id="inputHeader">Postal Code</div>
-                                                <input type="text" class="form-control" id="postal">
+                                                <input type="text" class="form-control" name="postal">
                                             </div>
+                                            
+                                            <div class="form-group col-md-3">
+                                                <div id="inputHeader">Account Type</div>
+                                                <select class="form-control" name="account" name="accounttype">
+                                                    <option value="1">Regular User</option>
+                                                    <option value="2">Admin User</option>                                                  
+                                                </select>
+                                            </div>
+                                            
                                             <div class="form-group col-md-6">
                                                 <div id="inputHeader">Email Address</div>
-                                                <input type="email" class="form-control" id="email">
+                                                <input type="email" class="form-control" name="email">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <label for="inputCity">Phone Number</label>
-                                                <input type="number" class="form-control" id="phone">
+                                                <input type="text" class="form-control" name="phone">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="inputState">Username</label>
-                                                <input type="text" class="form-control" id="username">
+                                                <input type="text" class="form-control" name="username">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="inputZip">Password</label>
-                                                <input type="text" class="form-control" id="password">
+                                                <input type="password" class="form-control" name="password">
                                             </div>
                                         </div>
                                         <br>
                                         <div class="col-md-12 text-md-right">
                                             <input type="hidden" name="action" value="add">
-                                            <input type="submit" value="Register" name="register">
+                                            <input type="submit" value="Register User" name="register">
                                         </div>
                                     </form>    
                                     <br>
@@ -223,114 +226,12 @@
                             </div>
 
                         </div>
-                    
-                    <div class="container" id="addStaff" style="display: none">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <p id="addHeader">Add Staff</p>
-                                    <form action="managecustomers" method="POST">
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <div id="inputHeader">Name</div>
-                                                <input type="text" class="form-control" name="staffname">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <div id="inputHeader">Address</div>
-                                                <input type="text" class="form-control" name="staffaddress">
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <div id="inputHeader">Postal Code</div>
-                                                <input type="text" class="form-control" id="staffpostal">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <div id="inputHeader">Email Address</div>
-                                                <input type="email" class="form-control" id="staffemail">
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-4">
-                                                <label for="inputCity">Phone Number</label>
-                                                <input type="number" class="form-control" id="staffphone">
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <label for="inputState">Username</label>
-                                                <input type="text" class="form-control" id="staffusername">
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <label for="inputZip">Password</label>
-                                                <input type="text" class="form-control" id="staffpassword">
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="col-md-12 text-md-right">
-                                            <input type="hidden" name="action" value="add">
-                                            <input type="submit" value="Register" name="Register">
-                                        </div>
-                                    </form>    
-                                    <br>
 
-                                </div>
-                            </div>
 
-                        </div>
                     </div>
                 </div>
-
-
-
-
-
-
-<!--                <div class="container">
-                    <div class="col-md-6">
-                        <h3>Add Staff</h3>
-                        <form action="managecustomers" method="POST">
-                            <table>
-                                <tr>
-                                    <th>Name</th>
-                                    <td><input type="text" name="staffname"></td>
-                                </tr>
-                                <tr>
-                                    <th>Address</th>
-                                    <td><input type="text" name="staffaddress"></td>
-                                </tr>
-                                <tr>
-                                    <th>Postal Code</th>
-                                    <td><input type="text" name="staffpostal"></td>
-                                </tr>
-                                <tr>
-                                    <th>Email</th>
-                                    <td><input type="email" name="staffemail"></td>
-                                </tr>
-                                <tr>
-                                    <th>Phone Number</th>
-                                    <td><input type="text" name="staffphone"></td>
-                                </tr>
-                                <tr>
-                                    <th>Username</th>
-                                    <td><input type="text" name="staffusername"></td>
-                                </tr>
-                                <tr>
-                                    <th>Password</th>
-                                    <td><input type="password" name="staffpassword"></td>
-                                </tr>
-                                <tr>
-                                    <th>Name</th>
-                                    <td><input type="text" name="staffname"></td>
-                                </tr>
-                                <tr>
-                                    <th>Name</th>
-                                    <td><input type="text" name="staffname"></td>
-                                </tr>
-                            </table>
-                            <br>
-                            <input type="hidden" name="action" value="addstaff">
-                            <input type="submit" value="Add Staff" name="addstaff">
-                        </form>
-                    </div>
-                </div>-->
             </div>
         </body>
     </html>
+
+  
