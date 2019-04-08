@@ -89,7 +89,10 @@ public class OrderDetailsServlet extends HttpServlet
         String paymentMethod = request.getParameter("paymentList");
         String notes = request.getParameter("notes") + "; Name for order: " + name + "";
         String phoneNo = request.getParameter("phoneNo") + "";
-
+        String dueDate = request.getParameter("dueDate") + "";
+        
+        
+        System.out.println("duedate:"+dueDate);
         int deliveryNo = 1;
 
         DeliveryService ds = new DeliveryService();
@@ -158,13 +161,14 @@ public class OrderDetailsServlet extends HttpServlet
 
         String returnPage = "";
 
-        if (dbEntry.inserOrderDB(cakeArray, user, delivery))
+        if (dbEntry.inserOrderDB(cakeArray, user, delivery, dueDate))
         {
             //clear cakes 
             cakes = new ArrayList<>();
             session.setAttribute("cakes", cakes);
             session.setAttribute("payment", paymentMethod);
-            getServletContext().getRequestDispatcher("/WEB-INF/successorder.jsp").forward(request, response);
+//          getServletContext().getRequestDispatcher("/WEB-INF/successorder.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/summary").forward(request, response);
         }
         else
         {

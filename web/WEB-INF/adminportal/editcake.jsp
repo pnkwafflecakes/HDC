@@ -47,7 +47,6 @@
                         <select name="categorySelect">
                             <c:if test="${input == 'edit'}">
                                 <option value="${selectedCategory.categoryId}" selected="selected">${selectedCategory.name}</option>
-                                <option value="asd">asd</option>
                             </c:if>
                             <c:forEach var="categories" items="${categories}">
                                 <option value="${categories.categoryId}">${categories.name}</option>

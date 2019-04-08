@@ -29,10 +29,6 @@ public class ManageAccount extends HttpServlet {
         User user = null;
         UserService us;
         us = new UserService();
-        //For testing
-        user = us.get(1);
-        session.setAttribute("userObj", user);
-        //****
         
         getServletContext().getRequestDispatcher("/WEB-INF/manageaccount.jsp").forward(request, response);
     }

@@ -48,7 +48,7 @@
                             <a class="nav-link" href="browse">Browse</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact
+                            <a class="nav-link" href="contact">Contact
                             </a>
                         </li>
                         <li class="nav-item active">
@@ -129,23 +129,29 @@
                     <div class="form-group col-md-6">
                         <label for="delivery">Delivery Method</label>               
                         <select class="form-control" id="delivery" name="deliveryList">
-                            <option value="Train Station"> Train Station </option>
                             <option value="Home Delivery"> Home Delivery </option>
-                            <option value="Pickup Location 1"> Pickup Location 1 </option>
-                            <option value="Pickup Location 2"> Pickup Location 2 </option>
-                            <option value="Pickup Location 3"> Pickup Location 3 </option>
-                            <option value="Pickup Location 4"> Pickup Location 4 </option>
+                            <option value="69 Street Park & Ride Surface"> 69 Street Park & Ride Surface </option>
+                            <option value="Tom Baines School North Parking Lot"> Tom Baines School North Parking Lot </option>
+                            <option value="T&T North HSBC Bank Parking Lot"> T&T North HSBC Bank Parking Lot </option>
+                            <option value="Nickle School Parking Lot"> Nickle School Parking Lot </option>
+                            <option value="Somerset Station Parking Lot"> Somerset Station Parking Lot </option>
                         </select>
                     </div>
 
-                    <div class="form-group col-md-6">
+<!--                    <div class="form-group col-md-6">
                         <label for="payment">Payment Method</label>               
                         <select class="form-control" id="payment" name="paymentList">
                             <option> Cash Upon Delivery </option>
                             <option> e-Transfer </option>
                             <option> PayPal </option>
                         </select>
+                    </div>-->
+                    <div class="form-row">
+                    <div class="form-group col-md-24">
+                        <label for="inputDueDate">Due Date</label>
+                        <input type="date" class="form-control" id="inputDueDate" name="dueDate" >
                     </div>
+                </div>
                 </div>
 
                 <div class="form-row">
@@ -164,7 +170,14 @@
                 </div>
             </form>
         </div>
-        <!--paypal button
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+<!--        paypal button
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <input type="hidden" name="cmd" value="_xclick">
 <input type="hidden" name="business" value="YMPFXKHT6YJTC">
@@ -181,7 +194,7 @@
 <input type="hidden" name="amount" value="${totalPrice}">
 <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>
+</form>-->
 
 
 
@@ -189,7 +202,7 @@
 
 <hr>
 <div class="containter" id="bottomfooter">
-        <!-- Footer -->
+        <!-- Footer 
         <br>
         <footer class="page-footer font-small unique-color-dark">
 

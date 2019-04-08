@@ -8,6 +8,7 @@ package servlets;
 import Entities.Cake;
 import businesslogic.CakeService;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -67,7 +68,8 @@ public class CartServlet extends HttpServlet
             System.out.println("Size: " + cakes.size());
             
             
-
+//            use cakeArray[a] to store the unique cake of cakeId a
+//            use counter[a] to save the qty for cakeArray[a]
             Cake[] cakeArray = new Cake[cakeArraySize];
 
             for (int i = 0; i < cakes.size(); i++)
@@ -83,12 +85,15 @@ public class CartServlet extends HttpServlet
                     counter[a]++;
                 }
             }
-
+            
+//            set totalPrice two digits after decimal
+            totalPrice = Double.valueOf(new DecimalFormat("#.00").format(totalPrice));
+            
             request.setAttribute("counter", counter);
             request.setAttribute("cakesInCart", cakeArray);
             request.setAttribute("totalPrice", totalPrice);
             
-            //put totalPrice in session
+            //put totalPrice in session, paypal will pay this number
             session.setAttribute("totalPrice", totalPrice);
             ArrayList<Cake> cakes2 = (ArrayList<Cake>) session.getAttribute("cakes");
             System.out.println("Cakes after processing: " + cakes2);
@@ -153,8 +158,33 @@ public class CartServlet extends HttpServlet
                 }
 
                 doGet(request, response);
+            }else if(action.equals("change")){
+                HttpSession session = request.getSession(true);
+                int selectedCakeId = Integer.valueOf(request.getParameter("selectedCake"));
+                System.out.println("newQuantity:"+request.getParameter("quantity"));
+                int newQuantity = Integer.parseInt(request.getParameter("quantity"));
+                ArrayList<Integer> cakes = (ArrayList<Integer>) session.getAttribute("cakes");
+
+                 Iterator iterator = cakes.iterator();
+
+                while (iterator.hasNext())
+                {
+                    if (iterator.next().equals(selectedCakeId))
+                    {
+                        iterator.remove();
+                    }
+                }
+                 
+                //add quanty of selectedcakeid
+                for(int i=0;i<newQuantity;i++){
+                    cakes.add(selectedCakeId);
+                }
+                session.setAttribute("cakes", cakes);
+                doGet(request, response);
             }
         }
+        
+        
         if (emptyCart == false)
         {
             response.sendRedirect("orderdetails");

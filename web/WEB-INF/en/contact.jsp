@@ -23,9 +23,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
         <style><%@include file="/WEB-INF/styles/navbar.css"%></style>
         <style><%@include file="/WEB-INF/styles/contact.css"%></style>
@@ -41,13 +40,13 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" href="mainmenu">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="browse">Browse</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="contact">Contact
                             </a>
                         </li>
@@ -104,35 +103,242 @@
         <div class="containter-fluid" id="maincontainter">
             <h1 class="text-center">Hellen's Delicious Cakes</h1>
             <br>
-            <h2 class="text-center">Contact</h2>
-            
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <h3 class="align-middle">Phone</h3>
-                        </div>
-                        <div class="col-md-8">
-                            <p class="align-middle">403 603 0087</p>
-                        </div>
-                    </div>
+            <p class="centralize">Cakes made delicately by haiyan are soft and tasty. Moderate sweetness suit everyone's appetite. All ingredients like eggs,fruits are bought from Costco and T&T. Fresh, delicious and healthy.Striving for perfection.
+            </p>
+            <br>
 
-                </div>
-                <div class="col-md-4">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <h3 class="align-middle">Email</h3>
-                        </div>
-                        <div class="col-md-8">
-                            <p class="align-middle">helenbkf@gmail.com</p>
-                        </div>
+            <br>
+            <div class="centralize">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img  class="img-fluid rounded" src="<c:url value='/images/orderline.png'/>" />
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <img class="image-fluid rounded" src="<c:url value='/images/orderline.png'/>" />
+                    <div class="col-md-6">
+                        <span class="align-middle">
+                            <h3 class="text-center">CONTACT US</h3>
+
+                            <p>Tel: (403) 603-0087
+                                <br>
+                                Email: helenbkf@gmail.com
+                                <br>
+                                If you require immediate assistance please contact us by phone
+                            </p>
+                        </span>
+                    </div>
                 </div>
             </div>
+
+            <br>
+            <br>
+            <h3 class="text-center">CALGARY DELIVERY</h3>
+            <br>
+            <div class= "centralize">
+                <table class="table">
+                    <thead>
+                    <th>Short Range</th>
+                    <th>Mid Range</th>
+                    <th>Long Range</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Downtown</td>
+                            <td>Inner city</td>
+                            <td>Suburban</td>
+                        </tr>
+                        <tr>
+                            <td>Arrives between 9:30 and 12:30</td>
+                            <td>Arrives between 1:30 and 4:30</td>
+                            <td>Arrives between 1:30 and 4:30</td>
+                        </tr>
+                        <tr>
+                            <td>$12.00</td>
+                            <td>$17.00</td>
+                            <td>$23.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <br>
+            <br>
+            <h3 class="text-center">PICKUP LOCATIONS</h3>
+            <div id="accordion" class="centralize">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                69 Street Park & Ride Surface
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <p>69 Street Park & Ride Surface
+                            </p>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2508.8562967973535!2d-114.1897035344972!3d51.03727480278851!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8935ae0b7d60b724!2s69+Street+Park+%26+Ride+Surface!5e0!3m2!1sen!2sca!4v1554489840511!5m2!1sen!2sca" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Tom Baines School North Parking Lot
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            <p>250 Edgepark Blvd NW, Calgary, AB T3A 3S2 
+                            </p>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2503.6419109020003!2d-114.15920428449373!3d51.13351284579232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x537168bd9125ea71%3A0xe55a098ea3d7e240!2s250+Edgepark+Blvd+NW%2C+Calgary%2C+AB+T3A+3S2!5e0!3m2!1sen!2sca!4v1554490083658!5m2!1sen!2sca" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                T&T North HSBC Bank Parking Lot                       
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body">
+                            <p>409-9650 Harvest Hills Blvd N, Calgary, AB T3K 0B3
+                            </p>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2503.2480556209257!2d-114.07045408449342!3d51.14077664526386!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53716687bd59b025%3A0x85939682d8f0529e!2s9650+Harvest+Hills+Blvd+N+Unit+409%2C+Calgary%2C+AB+T3K+0B3!5e0!3m2!1sen!2sca!4v1554490150996!5m2!1sen!2sca" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingFour">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                Nickle School Parking Lot      
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                        <div class="card-body">
+                            <p>2500 Lake Bonavista Dr SE, Calgary, AB T2J 2Y6
+                            </p>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2514.07887431746!2d-114.06364788450072!3d50.94075435979567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x537176c73fc9e7d7%3A0x2be716626afc5776!2s2500+Lake+Bonavista+Dr+SE%2C+Calgary%2C+AB+T2J+2Y6!5e0!3m2!1sen!2sca!4v1554490227438!5m2!1sen!2sca" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingFive">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                Somerset Station Parking Lot     
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                        <div class="card-body">
+                            <p>288 Shawville Way SE Parking</p>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5032.591774224743!2d-114.066968!3d50.899741!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xfc0166cafe59f052!2s288+Shawville+Way+SE+Parking!5e0!3m2!1sen!2sca!4v1554618697625!5m2!1sen!2sca" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <br>
+            <br>
+            <h3 class="text-center">FAQ</h3>
+            <div id="accordion" class="centralize">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                How do I place an order?
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <ul>
+                                <li>
+                                    To place an order we will need to confirm:
+                                </li>
+                                <li>
+                                    Your name and contact details
+                                </li>
+                                <li>
+                                    Date and time for pick up or delivery
+                                </li>
+                                <li>
+                                    Location for pick up
+                                </li>
+                                <li>
+                                    Details of your order including quantities and flavours
+                                </li>
+                                <li>
+                                    INTERRAC e-transfer or PAYPAL
+                                </li>
+                            </ul>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Order Cancellation and Modification Policy
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            48-hours is required to modify or cancel any cake, specialty cupcake or custom order. Modifications or cancellations to an order within 48 hours will be charged for the full amount of the order to the credit card provided at the time the order was taken.
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                How far in advance do I need to place an order?
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body">
+                            We are happy to say that we can now take same-day cupcake orders! For cookies, cakes and specialty cupcakes we require at least 48 hours notice (more notice is required for weekends, we book up quickly!).
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingFour">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                Cake care instructions
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                        <div class="card-body">
+                            <ul>
+                                <li>We believe it’s best if cakes are served on the day they are baked. If you have leftovers or are picking your cupcakes up in advance of your event, they can be stored in their original packaging. They will stay fresh in the refrigerator overnight.
+                                </li>
+                                <li>Please avoid exposing your cupcakes to direct sunlight, as it may melt the icing and/or affect the colour.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
+
 
 
 

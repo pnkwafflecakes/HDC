@@ -96,6 +96,8 @@
     <servlet>
         <servlet-name>EditUserServlet</servlet-name>
         <servlet-class>servlets.admin.EditUserServlet</servlet-class>
+        <servlet-name>SummaryServlet</servlet-name>
+        <servlet-class>servlets.SummaryServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SearchServlet</servlet-name>

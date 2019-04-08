@@ -20,12 +20,16 @@ import dataaccess.OrdersJpaController;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -42,7 +46,7 @@ public class DBEntry {
      * @param delivery Delivery variable created in OrderDetails
      * @return 
      */
-    public boolean inserOrderDB(Cake[] cakes, User user, Delivery delivery) {
+    public boolean inserOrderDB(Cake[] cakes, User user, Delivery delivery, String dueDate) {
         OrdersJpaController ojc = new OrdersJpaController();
         //Create Delivery then order
         Orders order = new Orders();
@@ -54,16 +58,49 @@ public class DBEntry {
         List<Cake> cakeList = cs.getAll();
         int size = cakeList.get(cakeList.size()-1).getCakeId()+1;
         int[] counter = new int[size];
+        String[] itemEntry = new String[size];
         for (Cake cake : cakes) {
             price = price + cake.getPrice();
             counter[cake.getCakeId()]++;
-            items = items + cake.getName() + ", ";
+            if (counter[cake.getCakeId()] > 1) {
+                itemEntry[cake.getCakeId()] = cake.getName() + "x" + counter[cake.getCakeId()];
+            }
         }
-        items = items.substring(0, items.length()-2);
-        order.setTotalPrice(price);
+        
+        for (int i = 0; i < itemEntry.length; i++) {
+            if (itemEntry[i] != null) items = items + ", ";
+        }
+        
+//        items = items.substring(0, items.length()-2);
+        if (items.length() > 99) {
+            items = items.substring(0, 98);
+            items = items + "+";
+        }
+        
+//        get dueDate
         Date currDate = new Date();
+        Date dueDateDB = new Date();
+//        if customer not input dueDate, defualt datre is currentdate+2
+        if(dueDate == null || "".equals(dueDate) ){
+            dueDateDB = calculateDueDate(new Date());
+        }else{
+            try {
+                DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+                dueDateDB = format.parse(dueDate);
+//                if customer input dueDate beffore current date, use default date
+                if(dueDateDB.compareTo(currDate)< 0){
+                    dueDateDB = calculateDueDate(new Date());
+                }
+            } catch (ParseException ex) {
+                Logger.getLogger(DBEntry.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        order.setDueDatetime(dueDateDB);
+        
+        order.setTotalPrice(price);
+//        Date currDate = new Date();
         order.setOrderDatetime(currDate);
-        order.setDueDatetime(calculateDueDate(currDate));
+//        order.setDueDatetime(calculateDueDate(currDate));
         order.setUserId(user);
         System.out.println("User added: " + user);
         System.out.println("User is: " + user.getUserId());

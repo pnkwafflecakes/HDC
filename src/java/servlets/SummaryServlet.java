@@ -5,24 +5,31 @@
  */
 package servlets;
 
-import BusinessClasses.exceptions.NonexistentEntityException;
+import Entities.Cakeorder;
+import Entities.Delivery;
 import Entities.Orders;
+import Entities.User;
+import businesslogic.DeliveryService;
 import businesslogic.OrderService;
+import dataaccess.CakeorderJpaController;
 import dataaccess.OrdersJpaController;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import servlets.admin.ManageOrdersServlet;
 
 /**
  *
  * @author 651218
  */
-public class PaymentServlet extends HttpServlet {
+public class SummaryServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,8 +42,49 @@ public class PaymentServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-
+     DeliveryService ds = new DeliveryService();
+     CakeorderJpaController cojc = new CakeorderJpaController();
+     OrdersJpaController ojc = new OrdersJpaController();
+     
+     String action = request.getParameter("action");
+     String url = "/WEB-INF/summary.jsp";
+     HttpSession session = request.getSession();
+     if(action != null && action.equals("logout")){
+         url = "/mainmenu";
+         session.invalidate();
+          getServletContext()
+            .getRequestDispatcher(url)
+                .forward(request, response);
+          return;
+     }
+         int selectedOrderId = getOrderNo()-1;
+         try{
+            //get order
+            Orders selectedOrder = ojc.findOrders(selectedOrderId);
+            //get order related delivery
+            Delivery delivery = selectedOrder.getDeliveryNo();
+            //get user
+            User user = selectedOrder.getUserId();
+            //get cakeOrder
+            List<Cakeorder> cakeOrders = cojc.findCakeorderByOrderNo(selectedOrderId);
+            System.out.println("cakeOrders.size:"+cakeOrders.size());
+            request.setAttribute("selectedOrder", selectedOrder);
+            request.setAttribute("delivery", delivery);
+            request.setAttribute("user", user);
+            request.setAttribute("cakeOrders", cakeOrders);
+//            //put cakeOrders in session for doPost change qty
+//            session.setAttribute("cakeOrdersSession", cakeOrders);
+            
+            
+            
+         } catch (Exception ex) {
+                        Logger.getLogger(ManageOrdersServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+     
+     // forward to the view
+        getServletContext()
+            .getRequestDispatcher( url)
+                .forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -51,30 +99,7 @@ public class PaymentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String payment = (String) request.getParameter("payment");
-        if(payment != null && !"".equals(payment)){
-            if(payment.equals("success")){
-                 int selectedOrderId = getOrderNo()-1;
-                 OrdersJpaController ojc = new OrdersJpaController();
-                 Orders orderOld = ojc.findOrders(selectedOrderId);
-                 orderOld.setPaid(true);
-                try {
-                    ojc.edit(orderOld);
-                } catch (NonexistentEntityException ex) {
-                    Logger.getLogger(PaymentServlet.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (Exception ex) {
-                    Logger.getLogger(PaymentServlet.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                 getServletContext().getRequestDispatcher("/WEB-INF/successorder.jsp").forward(request, response);
-            }else if(payment.equals("fail")){
-                 getServletContext().getRequestDispatcher("/WEB-INF/notsuccessorder.jsp").forward(request, response);
-            }else if(payment.equals("cash")){
-                 getServletContext().getRequestDispatcher("/WEB-INF/placedorder.jsp").forward(request, response);
-            }else if(payment.equals("etrasfer")){
-                 getServletContext().getRequestDispatcher("/WEB-INF/placedorder.jsp").forward(request, response);
-            }
-        }
-        getServletContext().getRequestDispatcher("/mainmenu").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -100,8 +125,8 @@ public class PaymentServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-         public int getOrderNo() {
+    
+      public int getOrderNo() {
         OrderService os = new OrderService();
         int orderNo = 1;
         System.out.println("--*-- Finding good ID");
@@ -112,4 +137,5 @@ public class PaymentServlet extends HttpServlet {
         }
         return orderNo;
     }
+
 }

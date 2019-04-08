@@ -5,7 +5,6 @@
  */
 package servlets;
 
-import Entities.Delivery;
 import Entities.Orders;
 import Entities.User;
 import businesslogic.OrderService;
@@ -16,7 +15,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,24 +30,7 @@ import javax.servlet.http.HttpSession;
  */
 public class ViewOrders extends HttpServlet
 {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    //Do Get
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
@@ -58,89 +39,40 @@ public class ViewOrders extends HttpServlet
         //Create user variable to put into session
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("userObj");
+        
+        try {
+            OrderService os = new OrderService();
+            List<Orders> orders = os.getAll();
+            ArrayList<Orders> userOrders = new ArrayList<>();
 
-        //Use session variable to query database for users orders
-//            Class.forName("com.mysql.jdbc.Driver");
-//            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/capstonedb", "root", "password");
-//            String preparedQuery = "Select * from Orders Where user_id = ? and active = 1";
-//            PreparedStatement ps = connection.prepareStatement(preparedQuery);
-//            ps.setInt(1, user.getUserId());
-//            ResultSet rs = ps.executeQuery();
-//            ArrayList orderList = new ArrayList();
-//            int i = 0;
-//            rs.last();
-//            int rows = rs.getRow();
-//            rs.first();
-        OrderService os = new OrderService();
-        List<Orders> orders = os.getAll();
-        ArrayList<Orders> userOrders = new ArrayList<>();
-
-        for (int i = 0; i < orders.size(); i++)
-        {
-            if (orders.get(i).getUserId().getUserId() == user.getUserId())
+            for (int i = 0; i < orders.size(); i++)
             {
-                userOrders.add(orders.get(i));
+                if (orders.get(i).getUserId().getUserId() == user.getUserId())
+                {
+                    userOrders.add(orders.get(i));
+                }
             }
-        }
 
-        //Push a message to the page if there are no orders
-        if (userOrders.isEmpty())
+            //Push a message to the page if there are no orders
+            if (userOrders.isEmpty())
+            {
+                request.setAttribute("error", "No orders have been placed yet.");
+                getServletContext().getRequestDispatcher("/WEB-INF/orders.jsp").forward(request, response);
+            }
+            
+            //Push orderList to page
+            session.setAttribute("orderList", userOrders);
+            getServletContext().getRequestDispatcher("/WEB-INF/orders.jsp").forward(request, response);
+            }
+        //Mkae sure that a user who is not logged in cannot view orders.
+        catch(NullPointerException ex)
         {
-            request.setAttribute("error", "No orders have been placed yet.");
+            request.setAttribute("error", "Please Log In to View Orders");
             getServletContext().getRequestDispatcher("/WEB-INF/orders.jsp").forward(request, response);
         }
-
-//            while (i < rows)
-//            {
-//                //Create object from resultset data
-//                Date orderDate = rs.getDate("order_datetime");
-//                Date dueDate = rs.getDate("due_datetime");
-//                Orders order = new Orders();
-//                order.setOrderNo(rs.getInt("order_no"));
-//                order.setUserId(user);
-//                order.setOrderDatetime(orderDate);
-//                order.setDueDatetime(dueDate);
-//                order.setOrderItems(rs.getString("order_items"));
-//                order.setTotalPrice(rs.getDouble("total_price"));
-//                int order_no = order.getOrderNo();
-//
-//                //Get the delivery number from the order.
-//                String prepOrderStatement = "Select delivery_no from Orders where order_no = ? ;";
-//                PreparedStatement ps2 = connection.prepareStatement(prepOrderStatement);
-//                ps2.setInt(1, order_no);
-//                ResultSet rs2 = ps2.executeQuery();
-//                rs2.next();
-//
-//                //Grab delivery object from database
-//                String prepDeliveryStatement = "Select * from Delivery where delivery_no = ? ;";
-//                PreparedStatement ps3 = connection.prepareStatement(prepDeliveryStatement);
-//                ps3.setInt(1, order.getOrderNo());
-//                ResultSet rs3 = ps3.executeQuery();
-//                rs3.next();
-//                Delivery del = new Delivery();
-//                del.setDeliveryNo(rs2.getInt("delivery_no"));
-//                del.setMethod(rs3.getString("method"));
-//                del.setAddress(rs3.getString("address"));
-//                del.setPhoneNo(rs3.getString("phone_no"));
-//                del.setNotes(rs3.getString("notes"));
-//                order.setDeliveryNo(del);
-//                orderList.add(order);
-//                i++;
-//                rs.next();
-//            }
-        //Push orderList to page
-        session.setAttribute("orderList", userOrders);
-        getServletContext().getRequestDispatcher("/WEB-INF/orders.jsp").forward(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    //Do Post
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
@@ -149,7 +81,6 @@ public class ViewOrders extends HttpServlet
         HttpSession session = request.getSession();
         String order_no = request.getParameter("deleteOrder");
         int orderNo = Integer.parseInt(order_no);
-
         User user = (User) session.getAttribute("userObj");
         int user_id = user.getUserId();
         int active = 0;
@@ -173,42 +104,29 @@ public class ViewOrders extends HttpServlet
             paid = rs.getInt("paid");
 
         }
-        catch (SQLException ex)
+        catch(ClassNotFoundException | SQLException ex)
         {
-        }
-        catch (ClassNotFoundException ex)
-        {
-            Logger.getLogger(ViewOrders.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ViewOrders.class.getName()).log(Level.SEVERE, null, ex);
         }
         //if active and not confirmed or paid yet delete
-        if (active == 1 && confirmed == 0 && paid == 0)
-        {
-            //update page and inform user
-            ArrayList orderList = (ArrayList) session.getAttribute("orderList");
+        //update page and inform user
+        ArrayList orderList = (ArrayList) session.getAttribute("orderList");
 
-            try
-            {
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/capstonedb", "root", "password");
-                String prepUpdateStatement = "UPDATE orders SET active = false WHERE user_id = ? AND order_no = ?;";
-                PreparedStatement ps2 = connection.prepareStatement(prepUpdateStatement);
-                ps2.setInt(1, user_id);
-                ps2.setInt(2, orderNo);
-                ps2.executeUpdate(prepUpdateStatement);
-            }
-            catch (ClassNotFoundException | SQLException ex)
-            {
-            }
-
-            request.setAttribute("deleted", "Order Deleted!");
-            getServletContext().getRequestDispatcher("/WEB-INF/orders.jsp").forward(request, response);
-        }
-        else
+        try
         {
-            request.setAttribute("notdeleted", "Order Has Already Started and Cannot be Deleted Anymore!");
-            request.setAttribute("orderList", session.getAttribute("orderList"));
-            getServletContext().getRequestDispatcher("/WEB-INF/orders.jsp").forward(request, response);
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/capstonedb", "root", "password");
+            String prepUpdateStatement = "UPDATE orders SET active = false WHERE user_id = ? AND order_no = ?;";
+            PreparedStatement ps2 = connection.prepareStatement(prepUpdateStatement);
+            ps2.setInt(1, user_id);
+            ps2.setInt(2, orderNo);
+            ps2.executeUpdate(prepUpdateStatement);
         }
+        catch (ClassNotFoundException | SQLException ex)
+        {
+            Logger.getLogger(ViewOrders.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        request.setAttribute("orderList", session.getAttribute("orderList"));
+        getServletContext().getRequestDispatcher("/WEB-INF/orders.jsp").forward(request, response);
     }
 }
