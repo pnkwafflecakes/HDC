@@ -27,28 +27,10 @@ public class ManageCustomersServlet extends HttpServlet
     {
         HttpSession session = request.getSession(true);
         UserService us = new UserService();
+        List users = us.getAll();
 
-        if (request.getParameter("action") == null)
-        {
-            List users = us.getAll();
-
-            session.setAttribute("customers", users);
-            getServletContext().getRequestDispatcher("/WEB-INF/adminportal/managecustomers.jsp").forward(request, response);
-        }
-        else if (request.getParameter("action").equals("save"))
-        {
-            User toEdit = (User) session.getAttribute("user");
-
-            try
-            {
-                us.edit(toEdit);
-            }
-            catch (Exception ex)
-            {
-                request.setAttribute("notification", "User not edited.");
-                getServletContext().getRequestDispatcher("/WEB-INF/adminportal/managecustomers.jsp").forward(request, response);
-            }
-        }
+        session.setAttribute("customers", users);
+        getServletContext().getRequestDispatcher("/WEB-INF/adminportal/managecustomers.jsp").forward(request, response);
     }
 
     /**
@@ -63,7 +45,7 @@ public class ManageCustomersServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession();
         String action = request.getParameter("action");
         String selectedCustomer = request.getParameter("selectedCustomer");
         int customerId;
@@ -122,7 +104,7 @@ public class ManageCustomersServlet extends HttpServlet
                 customerId = Integer.parseInt(selectedCustomer);
                 User viewUser = us.get(customerId);
 
-                session.setAttribute("user", viewUser);
+                session.setAttribute("viewUser", viewUser);
                 getServletContext().getRequestDispatcher("/WEB-INF/adminportal/viewuser.jsp").forward(request, response);
                 break;
 
@@ -130,17 +112,20 @@ public class ManageCustomersServlet extends HttpServlet
                 customerId = Integer.parseInt(selectedCustomer);
                 User editUser = us.get(customerId);
 
-                session.setAttribute("user", editUser);
+                session.setAttribute("editUser", editUser);
                 getServletContext().getRequestDispatcher("/WEB-INF/adminportal/edituser.jsp").forward(request, response);
                 break;
-                
+
             case "undo":
-                try {
-                User undoUser = (User) session.getAttribute("undoUser");
-                us.create(undoUser);
-                request.setAttribute("notification", "Delete successfully un-done");
-                doGet(request, response);
-                } catch(Exception e) {
+                try
+                {
+                    User undoUser = (User) session.getAttribute("undoUser");
+                    us.create(undoUser);
+                    request.setAttribute("notification", "Delete successfully un-done");
+                    doGet(request, response);
+                }
+                catch (Exception e)
+                {
                     request.setAttribute("notification", "Undo delete failed");
                     doGet(request, response);
                 }

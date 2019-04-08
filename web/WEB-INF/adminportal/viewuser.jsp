@@ -45,50 +45,50 @@
         <table align="center">
             <tr>
                 <th>User ID:</th>
-                <td>${user.userId}</td>
+                <td>${viewUser.userId}</td>
             </tr>
             <tr>
                 <th>Name:</th>
-                <td>${user.name}</td>
+                <td>${viewUser.name}</td>
             </tr>
             <tr>
                 <th>Address:</th>
-                <td>${user.address}</td>
+                <td>${viewUser.address}</td>
             </tr>
             <tr>
                 <th>Postal Code:</th>
-                <td>${user.postalCode}</td>
+                <td>${viewUser.postalCode}</td>
             </tr>
             <tr>
                 <th>Email:</th>
-                <td>${user.email}</td>
+                <td>${viewUser.email}</td>
             </tr>
             <tr>
                 <th>Phone Number:</th>
-                <td>${user.phoneNo}</td>
+                <td>${viewUser.phoneNo}</td>
             </tr>
             <tr>
                 <th>Account Type:</th>
                 <td>
-                    <c:if test = "${user.getAccountType().getAccountType() == 1}">
+                    <c:if test = "${viewUser.getAccountType().getAccountType() == 1}">
                         Regular
                     </c:if>
-                    <c:if test = "${user.getAccountType().getAccountType() == 2}">
+                    <c:if test = "${viewUser.getAccountType().getAccountType() == 2}">
                         Administrator
                     </c:if>
                 </td>
             </tr>
             <tr>
                 <th>Username:</th>
-                <td>${user.username}</td>
+                <td>${viewUser.username}</td>
             </tr>
             <tr>
                 <th>Password:</th>
-                <td>${user.password}</td>
+                <td>${viewUser.password}</td>
             </tr>
             <tr>
                 <th>Status:</th>
-                <td>${user.accountStatus}</td>
+                <td>${viewUser.accountStatus}</td>
             </tr>
         </table>
         <br>
@@ -96,7 +96,7 @@
             <form action="managecustomers" method="POST">
                 <input type="submit" value="Edit Profile">
                 <input type="hidden" name="action" value="edit">
-                <input type="hidden" name="selectedCustomer" value="${user.userId}">
+                <input type="hidden" name="selectedCustomer" value="${viewUser.userId}">
             </form>
             <form action="managecustomers" method="GET">
                 <input type="submit" value="Back" align="center">
