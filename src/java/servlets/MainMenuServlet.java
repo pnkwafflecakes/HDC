@@ -34,14 +34,21 @@ public class MainMenuServlet extends HttpServlet {
         CakeService cs = new CakeService();
         List<Cake> cakes = cs.getAll();
         ArrayList<Cake> cakearray = new ArrayList<>();
+        ArrayList<Cake> ftcakes = new ArrayList<>();
 
         Cake tmp = null;
         for (int i = cakes.size() - 1; i >= 0 && cakearray.size() <= 6; i--) {
             tmp = cakes.get(i);
             if (tmp.getFeatured()) {
+                ftcakes.add(tmp);
+            }
+            if (tmp.getSpecial()) {
                 cakearray.add(tmp);
             }
         }
+        request.setAttribute("feature1", ftcakes.get(0));
+        request.setAttribute("feature2", ftcakes.get(1));
+        request.setAttribute("feature3", ftcakes.get(2));
 
         request.setAttribute("cake1", cakearray.get(0));
         request.setAttribute("cake2", cakearray.get(1));
