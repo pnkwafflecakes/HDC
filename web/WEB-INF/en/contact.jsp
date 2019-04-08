@@ -117,9 +117,10 @@
                         <span class="align-middle">
                             <h3 class="text-center">CONTACT US</h3>
 
-                            <p>Tel: (403) 603-0087
+                            <p><b>Tel:</b> (403) 603-0087
                                 <br>
-                                Email: helenbkf@gmail.com
+                               <b>Email:</b> 
+                               <a href="mailto:helenbkf@gmail.com?Subject=Customer%20Contact" target="_top">helenbkf@gmail.com</a>
                                 <br>
                                 If you require immediate assistance please contact us by phone
                             </p>

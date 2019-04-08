@@ -30,18 +30,25 @@
         <style><%@include file="/WEB-INF/styles/navbar.css"%></style>
         <style><%@include file="/WEB-INF/styles/mainmenu.css"%></style>
 
-       <!-- Smartsupp Live Chat script -->
+        <!-- Smartsupp Live Chat script -->
         <!-- Smartsupp Live Chat script -->
         <!-- Smartsupp Live Chat script -->
         <script type="text/javascript">
-        var _smartsupp = _smartsupp || {};
-        _smartsupp.key = '074195e0af5b79e1e0bc9cc3a449002e9b19a149';
-        window.smartsupp||(function(d) {
-          var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-          s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-          c.type='text/javascript';c.charset='utf-8';c.async=true;
-          c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-        })(document);
+            var _smartsupp = _smartsupp || {};
+            _smartsupp.key = '074195e0af5b79e1e0bc9cc3a449002e9b19a149';
+            window.smartsupp || (function (d) {
+                var s, c, o = smartsupp = function () {
+                    o._.push(arguments)
+                };
+                o._ = [];
+                s = d.getElementsByTagName('script')[0];
+                c = d.createElement('script');
+                c.type = 'text/javascript';
+                c.charset = 'utf-8';
+                c.async = true;
+                c.src = 'https://www.smartsuppchat.com/loader.js?';
+                s.parentNode.insertBefore(c, s);
+            })(document);
         </script>
 
     </head>
@@ -122,24 +129,21 @@
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img alt="First slide" width="100em" height="100em" class="d-block w-100" src="<c:url value='/images/home1.jpg'/>" />
+                                <img alt="First slide" width="100em" height="100em" class="d-block w-100" href="cakeinfo?cakeid=${feature1.cakeId}" src="<c:url value='${feature1.image}'/>" />
                                 <div class="carousel-caption d-none d-md-block">
-                                    
-                                    
+                                    <h4>${feature1.name}</h4>
                                 </div>
                             </div>
                             <div class="carousel-item">
-                                <img src="images/home2.jpg" alt="Second slide" width="100em" height="100em"  class="d-block w-100">
+                                <img alt="Second slide" width="100em" height="100em"  class="d-block w-100" src="<c:url value='${feature2.image}'/>" />
                                 <div class="carousel-caption d-none d-md-block">
-                                    
-                                    
+                                    <h4>${feature2.name}</h4>
                                 </div>
                             </div>
                             <div class="carousel-item">
-                                <img src="images/home3.jpg" alt="Third slide" width="100em" height="100em" class="d-block w-100">
+                                <img alt="Third slide" width="100em" height="100em" class="d-block w-100" src="<c:url value='${feature3.image}'/>" />
                                 <div class="carousel-caption d-none d-md-block">
-                                    
-                                    
+                                    <h4>${feature3.name}</h4>
                                 </div>
                             </div>
                         </div>
@@ -173,7 +177,7 @@
                                     ${cake1.name}
                                 </h5>
                             </a>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -188,7 +192,7 @@
                                     ${cake2.name}
                                 </h5>
                             </a>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -203,7 +207,7 @@
                                     ${cake3.name}
                                 </h5>
                             </a>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -220,7 +224,7 @@
                                     ${cake4.name}
                                 </h5>
                             </a>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -235,11 +239,11 @@
                                     ${cake5.name}
                                 </h5>
                             </a>
-                            
+
                         </div>
                     </div>
                 </div>
-                 <div class="col-md-4 pb-1 pb-md-0">
+                <div class="col-md-4 pb-1 pb-md-0">
                     <div class="card">
                         <a href="cakeinfo?cakeid=${cake6.cakeId}">
                             <img class="card-img-top" src="<c:url value='${cake6.image}'/>" />
@@ -250,7 +254,7 @@
                                     ${cake6.name}
                                 </h5>
                             </a>
-                            
+
                         </div>
                     </div>
                 </div>
