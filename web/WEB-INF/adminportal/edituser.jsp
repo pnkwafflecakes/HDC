@@ -31,22 +31,33 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="mainmenu">Helen's Delicious Cakes</a>
+        <nav class="navbar navbar-expand-lg navbar-custom">
+            <div class="container">
+                <a class="navbar-brand mb-0 h1">Helen's Delicious Cakes</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="manageorders">Orders</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="managecakes">Cakes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="managecustomers">Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="managepickups">Pickups</a>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="nav-item"><a class="nav-link" href="login"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+                    </ul>
                 </div>
-                <ul class="nav navbar-nav">
-                    <li><a href="manageorders">Orders</a></li>
-                    <li><a href="managecakes">Cakes</a></li>
-                    <li class="active"><a href="managecustomers">Customers</a></li>
-                    <li><a href="managepickups">Pickups</a></li>
-                    <li><a href="managefeedback">Feedback</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="adminhome"><span class="glyphicon glyphicon-user"></span> Admin Home</a></li>
-                    <li><a href="login"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
-                </ul>
             </div>
         </nav> 
 
