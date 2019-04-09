@@ -1,7 +1,6 @@
 package servlets;
 
 import Entities.Account;
-import Entities.Cake;
 import Entities.User;
 import dataaccess.UserJpaController;
 import java.io.IOException;
@@ -16,17 +15,20 @@ import javax.servlet.http.HttpSession;
  *
  * @author 744916
  */
-public class LoginServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet
+{
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException
+    {
         HttpSession session = request.getSession();
         String act = request.getParameter("act");
 
-
-        if (act != null) {
-            if (act.equals("logout")) {
+        if (act != null)
+        {
+            if (act.equals("logout"))
+            {
                 session.setAttribute("userObj", null);
                 getServletContext().getRequestDispatcher("/mainmenu").forward(request, response);
             }
@@ -76,7 +78,8 @@ public class LoginServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException
+    {
         HttpSession session = request.getSession();
 
         String userIn = request.getParameter("user");
@@ -90,7 +93,8 @@ public class LoginServlet extends HttpServlet {
 
         // validation for empty fields
         if (userIn == null || userIn.isEmpty()
-                || passIn == null || passIn.isEmpty()) {
+                || passIn == null || passIn.isEmpty())
+        {
             request.setAttribute("errorMessage", "Please enter all values.");
             getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         }
@@ -98,14 +102,18 @@ public class LoginServlet extends HttpServlet {
         UserJpaController ujc = new UserJpaController();
         List<User> userList = null;
 
-        try {
+        try
+        {
             userList = ujc.findUserEntities();
-        } catch (Exception ex) {
+        }
+        catch (Exception ex)
+        {
             request.setAttribute("errorMessage", "Could not load account list. Please contact administration.");
             getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         }
         boolean valid = false;
-        for (int i = 0; i < userList.size(); i++) {
+        for (int i = 0; i < userList.size(); i++)
+        {
 
             username = userList.get(i).getUsername();
             password = userList.get(i).getPassword();
@@ -113,34 +121,43 @@ public class LoginServlet extends HttpServlet {
             System.out.println(username);
             System.out.println(password);
 
-            if (username.equals(userIn) && password.equals(passIn)) {
+            if (username.equals(userIn) && password.equals(passIn))
+            {
                 System.out.println("Accepted user: " + userIn);
                 User user = userList.get(i);
                 System.out.println("Assoc user: " + user.getUsername() + " , status: " + user.getAccountStatus());
-                if (user.getAccountStatus() == true) {
+                if (user.getAccountStatus() == true)
+                {
                     System.out.println("User status true");
                     valid = true;
                     String redir = "login";
                     user.getAccountType();
                     System.out.println("Acount type: " + user.getAccountType().getAccountType());
-                    if (user.getAccountType().getAccountType() == 2) {
+                    if (user.getAccountType().getAccountType() == 2)
+                    {
                         session.setAttribute("admin", user);
-                        redir = "adminhome";
-                    } else if (user.getAccountType().getAccountType() == 1) {
+                        redir = "manageorders";
+                    }
+                    else if (user.getAccountType().getAccountType() == 1)
+                    {
                         session.setAttribute("userObj", user);
                         redir = "mainmenu";
                     }
                     response.sendRedirect(redir);
-                } else {
+                }
+                else
+                {
                     request.setAttribute("errorMessage", "Account not active. Please contact administrator.");
                     response.sendRedirect("login");
                 }
             }
-            if (valid == true) {
+            if (valid == true)
+            {
                 i = userList.size();
             }
         }
-        if (valid == false) {
+        if (valid == false)
+        {
             request.setAttribute("errorMessage", "Invalid Username/Password");
             getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         }
