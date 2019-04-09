@@ -28,7 +28,7 @@
 
         <nav class="navbar navbar-expand-lg navbar-custom">
             <div class="container">
-                <a class="navbar-brand"> H D C </a>
+                <a class="navbar-brand mb-0 h1">Helen's Delicious Cakes</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -44,10 +44,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="managecustomers">Users</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="managepickups">Pickups</a>
+                        </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="nav-item"><a class="nav-link" href="adminhome"><span class="glyphicon glyphicon-user"></span> Admin Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="login"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
                     </ul>
                 </div>
