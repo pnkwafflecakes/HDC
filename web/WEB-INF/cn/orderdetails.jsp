@@ -37,50 +37,45 @@
             <div class="container">
                 <a class="navbar-brand" href="#"> H D C </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="mainmenu">
-                                主页
-                            </a>
-                            <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="mainmenu">主页</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="browse">
-                                浏览
-                            </a>
+                            <a class="nav-link" href="browse">浏览</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact">
-                                联系我们
+                            <a class="nav-link" href="contact">联系我们
                             </a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="cart">
-                                购物车
-                                <span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
+                            <a class="nav-link" href="cart">购物车<span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
                         </li>
-
-
-
                         <li class="nav-item"> </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
 
+<!--                        <form class="form-inline my-2 my-lg-0" action="search" method="post">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchWord">
+                            <input type="hidden" name="action" value="Search">
+                        </form>-->
+
+
                         <c:if test="${userObj != null}">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="glyphicon glyphicon-user">
-                                    </span> ${userObj.name} 
+                                    <i class="fas fa-user-circle"></i> 
+                                    ${userObj.name} 
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="manageaccount">我的账户</a>
+                                    <a class="dropdown-item" href="manageaccount">我的账号</a>
                                     <a class="dropdown-item" href="orders">我的订单</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="login?act=logout"><span class="glyphicon glyphicon-log-out"></span> 登出</a>
+                                    <a class="dropdown-item" href="login?act=logout"><i class="fas fa-sign-out-alt"></i> 登出</a>
                                 </div>
                             </li>
                         </c:if>
@@ -92,159 +87,170 @@
                             </li>
                         </c:if>
 
+                        <!--button toggle ch/en-->
                         <li class="nav-item">
-                            <a class="nav-link" href="lang?act=en"><i class="fas fa-globe-americas"></i>  English </a>
+                            <a class="nav-link" href="lang?act=cn"><i class="fas fa-globe-americas"></i>  中文 </a>
                         </li>
+
+
                     </ul>
                 </div>
             </div>
         </nav>
 
-
         <div class="container">
             <br>
-            <h1 class="text-center">订单明细</h1>
+
+            <h1 class="text-center">送货信息</h1>
+            ${errorMessage}
             <br>
+
             <form action="orderdetails" method="POST">
                 <div class="form-row">
 
                     <div class="form-group col-md-6">
                         <label for="inputName">姓名</label>
-                        <input type="text" class="form-control" id="inputName" name="name" value="${userObj.name}" readonly>
+                        <input type="text" class="form-control" id="inputName" name="name" value="${userObj.name}" required="required">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputPhone">电话号码</label>
-                        <input type="text" class="form-control" id="inputPhone" name="phoneNo" value=${userObj.phoneNo} readonly>
+                        <input type="text" placeholder="###-###-####" pattern="^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$" class="form-control" id="inputPhone" name="phoneNo" value="${userObj.phoneNo}" required="required">
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="inputAddress">地址</label>
-                        <input type="text" class="form-control" id="inputAddress" name="address" value="${userObj.address}" readonly>
+                        <input type="text" class="form-control" id="inputAddress" name="address" value="${userObj.address}" required="required">
                     </div>
                 </div>
 
                 <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <label for="delivery">运送方式</label>               
-                        <!--                        <select class="form-control" id="delivery">
-                                                    <option> Train Station </option>
-                                                    <option> Home Delivery </option>
-                                                    </select>-->
-                        <input type="text" class="form-control" id="delivery"  name="method" value="Delivery" readonly>
+                    <div class="form-group col-md-6">
+                        <label for="delivery">送货方式</label>               
+                        <select class="form-control" id="delivery" name="deliveryList">
+                            <option value="Home Delivery"> 送货上门 </option>
+                            <option value="69 Street Park & Ride Surface"> 取货地点:69 Street Park & Ride Surface </option>
+                            <option value="取货地点:Tom Baines School North Parking Lot"> 取货地点:Tom Baines School North Parking Lot </option>
+                            <option value="取货地点:T&T North HSBC Bank Parking Lot"> 取货地点:T&T North HSBC Bank Parking Lot </option>
+                            <option value="取货地点:Nickle School Parking Lot"> 取货地点:Nickle School Parking Lot </option>
+                            <option value="取货地点:Somerset Station Parking Lot"> 取货地点:Somerset Station Parking Lot </option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-24">
+                            <label for="inputDueDate">需求时间</label>
+                            <input type="date" class="form-control" id="inputDueDate" name="dueDate" >
+                            <script type="text/javascript">
+
+                                $("#inputDueDate").val(getFormattedDate(tomorrow()));
+
+                                function tomorrow() {
+                                    return today().getTime() + 24 * 60 * 60 * 1000;
+                                }
+
+                            </script>
+                        </div>
+
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="inputNotes">备注</label>
-                        <textarea class="form-control" rows="3" id="inputNotes"  name="notes" >Cash on delivery</textarea>
+                        <textarea class="form-control" rows="3" id="inputNotes"  name="notes" placeholder="Additional notes here..." ></textarea>
                     </div>
                 </div>
-                <div class="col text-center">
-                    <button type="submit" class="btn btn-outline-dark"><h3>提交订单</h3></button>
-                </div>
-            </form>
+                <c:if test="${userObj == null}">
+                    <p>Warning: If you are not logged in you will not get to monitor order progress. You can still continue and contact Helen By: </p>
+                    <p>Phone: (403) 808-3860</p>
+                    <p>Email: helen@gmail.com</p>
+                </c:if>
         </div>
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_xclick">
-<input type="hidden" name="business" value="YMPFXKHT6YJTC">
-<input type="hidden" name="lc" value="CA">
-<input type="hidden" name="button_subtype" value="services">
-<input type="hidden" name="no_note" value="1">
-<input type="hidden" name="no_shipping" value="1">
-<input type="hidden" name="currency_code" value="CAD">
-<input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted">
-<input type="hidden" name="amount" value="${totalPrice}">
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>
-
-
-
-
-
-
-
-                    
-
-        <hr>
-       <div class="containter" id="bottomfooter">
-            <!-- Footer -->
-            <br>
-            <footer class="page-footer font-small unique-color-dark">
-
-
-                <!-- Footer Links -->
-                <div class="container text-center text-md-left mt-5">
-
-                    <!-- Grid row -->
-                    <div class="row mt-3">
-
-                        <!-- Grid column -->
-                        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-
-                            <!-- Content -->
-                            <h6 class="text-uppercase font-weight-bold footertext">海燕美味蛋糕</h6>
-                            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                            <p class="footertext">Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit.</p>
-
-                        </div>
-                        <!-- Grid column -->
-
-                        <!-- Grid column -->
-                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-
-                            <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">关注我们</h6>
-                            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                            <p>
-                                <a href="#" class="fab fa-facebook footertext"> facebook</a>  
-                            </p>
-                            <p>
-                                <a href="#" class="fab fa-instagram footertext"> instagram</a> 
-                            </p>
-                            <p>
-                                <a href="#" class="fab fa-weixin footertext"> wechat</a>                            </p>
-                            </p>
-
-
-                        </div>
-                        <!-- Grid column -->
-
-                        <!-- Grid column -->
-                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-
-                            <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">联系方式</h6>
-                            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                            <p class="footertext">
-                                <i class="fas fa-home mr-3 "></i>188 Springbluff Blvd SW <br>Calgary, AB</p>
-                            <p class="footertext">
-                                <i class="fas fa-envelope mr-3 "></i>  <a href="mailto:#">helen@gmail.com</a></p>
-                            <p class="footertext">
-                                <i class="fas fa-phone mr-3 "></i>(403) 808-3860</p>
-
-                        </div>
-                        <!-- Grid column -->
-
-                    </div>
-                    <!-- Grid row -->
-
-                </div>
-                <!-- Footer Links -->
-
-                <!-- Copyright -->
-                <div class="footer-copyright text-center py-3 footertext">
-                    Copyright © Helen's Delicious Cakes. All rights reserved
-                </div>
-                <!-- Copyright -->
-
-            </footer>
-            <!-- Footer -->
+        <div class="col text-center">
+            <button type="submit" class="btn btn-outline-dark"><h3>提交订单</h3></button>
         </div>
+    </form>
+</div>
 
 
-    </body>
+
+<hr>
+<div class="containter" id="bottomfooter">
+    <!-- Footer 
+    <br>
+    <footer class="page-footer font-small unique-color-dark">
+
+
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left mt-5">
+
+        <!-- Grid row -->
+        <div class="row mt-3">
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+                <!-- Content -->
+                <h6 class="text-uppercase font-weight-bold footertext">海燕美味蛋糕</h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p class="footertext">由海燕精心制作的蛋糕松软可口、细腻绵软、甜度适中，适合所有人的口味</p>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-bold footertext">关注我们</h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p>
+                    <a href="#" class="fab fa-facebook footertext"> facebook</a>  
+                </p>
+                <p>
+                    <a href="#" class="fab fa-instagram footertext"> instagram</a> 
+                </p>
+                <p>
+                    <a href="#" class="fab fa-weixin footertext"> wechat</a>
+                </p>
+
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-bold footertext">联系方式</h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p class="footertext">
+                    <i class="fas fa-home mr-3 "></i>188 Springbluff Blvd SW <br>Calgary, AB</p>
+                <p class="footertext">
+                    <i class="fas fa-envelope mr-3 "></i>  <a href="mailto:#">helen@gmail.com</a></p>
+                <p class="footertext">
+                    <i class="fas fa-phone mr-3 "></i>(403) 808-3860</p>
+
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3 footertext">
+        版权所有 © 海燕美味蛋糕
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+</div>
+
+
+</body>
 </html> 

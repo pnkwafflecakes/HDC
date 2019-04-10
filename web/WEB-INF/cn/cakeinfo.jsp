@@ -3,6 +3,7 @@
     Created on : Feb 7, 2019, 2:45:09 PM
     Author     : 703842
 --%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -36,49 +37,45 @@
             <div class="container">
                 <a class="navbar-brand" href="#"> H D C </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="mainmenu">
-                                主页
-                            </a>
+                            <a class="nav-link" href="mainmenu">主页</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="browse">
-                                浏览
+                            <a class="nav-link" href="browse">浏览</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact">联系我们
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact">
-                                联系我们
-                            </a>
+                            <a class="nav-link" href="cart">购物车<span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="cart">
-                                购物车
-                                <span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
-                        </li>
-
-
-
                         <li class="nav-item"> </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
 
+<!--                        <form class="form-inline my-2 my-lg-0" action="search" method="post">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchWord">
+                            <input type="hidden" name="action" value="Search">
+                        </form>-->
+
+
                         <c:if test="${userObj != null}">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="glyphicon glyphicon-user">
-                                    </span> ${userObj.name} 
+                                    <i class="fas fa-user-circle"></i> 
+                                    ${userObj.name} 
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="manageaccount">我的账户</a>
+                                    <a class="dropdown-item" href="manageaccount">我的账号</a>
                                     <a class="dropdown-item" href="orders">我的订单</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="login?act=logout"><span class="glyphicon glyphicon-log-out"></span> 登出</a>
+                                    <a class="dropdown-item" href="login?act=logout"><i class="fas fa-sign-out-alt"></i> 登出</a>
                                 </div>
                             </li>
                         </c:if>
@@ -90,9 +87,12 @@
                             </li>
                         </c:if>
 
+                        <!--button toggle ch/en-->
                         <li class="nav-item">
                             <a class="nav-link" href="lang?act=en"><i class="fas fa-globe-americas"></i>  English </a>
                         </li>
+
+
                     </ul>
                 </div>
             </div>
@@ -115,14 +115,25 @@
                         <h4><i>价格</i><font color="red"> $${currCake.price}</font></h4>
                         <h4><i>尺寸</i><font color="blue"> ${currCake.size}"</font></h4>
                         <br>
-                        <p><strong>描述</strong> ${currCake.descriptioncn}</p>
+                        <p><strong>描述：</strong> ${currCake.descriptioncn}</p>
                     </div>
+
                     <div class="col-md-3">
-                        <form action="cakeinfo" method="POST">
-                            <strong>数量</strong>
-                            <input type="number" name="quantity" value="1" min="1" max="20" style="width: 20%;">
+                        <form action="cakeinfo" method="POST" class="form-inline">
+                            <div class="form-group row">
+                                <strong></strong>
+                            </div>
+                            <!--                            <input type="number" name="quantity" value="1" min="1" max="20" style="width: 20%;">-->
+                            <div class="form-group row">
+                                <i class="minus fas fa-minus-square fa-2x" ></i>
+                                <input type="text" name="quantity" class="form-control" style="width: 20%;" value="1" readonly/>
+                                <i class="plus fas fa-plus-square fa-2x"></i>
+                            </div>
+
                             <input type="hidden" name="cakeId" value="${currCake.cakeId}">
-                            <button type="submit" class="btn btn-outline-dark">加入购物车</button>
+                            <div class="form-group row">
+                                <button type="submit" class="btn btn-warning">添加入购物车</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -138,8 +149,26 @@
         </div>
 
 
-        <hr>
+        <script>
+            $(document).ready(function () {
+                $('.minus').click(function () {
+                    var $input = $(this).parent().find('input');
+                    var count = parseInt($input.val()) - 1;
+                    count = count < 1 ? 1 : count;
+                    $input.val(count);
+                    $input.change();
+                    return false;
+                });
+                $('.plus').click(function () {
+                    var $input = $(this).parent().find('input');
+                    $input.val(parseInt($input.val()) + 1);
+                    $input.change();
+                    return false;
+                });
+            });
+        </script>
 
+        <br>
         <div class="containter" id="bottomfooter">
             <!-- Footer -->
             <br>
@@ -158,8 +187,7 @@
                             <!-- Content -->
                             <h6 class="text-uppercase font-weight-bold footertext">海燕美味蛋糕</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                            <p class="footertext">Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit.</p>
+                            <p class="footertext">由海燕精心制作的蛋糕松软可口、细腻绵软、甜度适中，适合所有人的口味</p>
 
                         </div>
                         <!-- Grid column -->
@@ -208,7 +236,7 @@
 
                 <!-- Copyright -->
                 <div class="footer-copyright text-center py-3 footertext">
-                    Copyright © Helen's Delicious Cakes. All rights reserved
+                    版权所有 © 海燕美味蛋糕
                 </div>
                 <!-- Copyright -->
 
