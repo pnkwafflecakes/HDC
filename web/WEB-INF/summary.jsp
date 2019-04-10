@@ -187,7 +187,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <form>
-                                    <input type="radio" name="payment" value="paypal"> Paypal<br>
+                                    <input type="radio" name="payment" value="paypal" checked> Paypal<br>
                                     <input type="radio" name="payment" value="etransfer"> INTERAC e-Transfer<br>
                                     <input type="radio" name="payment" value="cod"> Cash On Delivery
                                 </form> 
@@ -234,6 +234,10 @@
 
                         <script>
                             $(document).ready(function () {
+//                                default show paypal button
+                                        $("#paypaytab").show();
+                                        $("#etranstertab").hide();
+                                        $("#codtab").hide();
                                 $('input:radio[name=payment]').change(function () {
                                     if (this.value == 'paypal') {
                                         $("#paypaytab").show();

@@ -163,9 +163,9 @@
                         <thead>
                             <tr>
                                 <th class="col-md-2"></th>
-                                <th class="col-md-4">Name</th>
-                                <th class="col-md-3">Price</th>
-                                <th class="col-md-3">Qty</th>
+                                <th class="col-md-4">名称</th>
+                                <th class="col-md-3">价格</th>
+                                <th class="col-md-3">数量</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -187,7 +187,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <form>
-                                    <input type="radio" name="payment" value="paypal"> Paypal<br>
+                                    <input type="radio" name="payment" value="paypal" checked> Paypal<br>
                                     <input type="radio" name="payment" value="etransfer"> INTERAC e-Transfer<br>
                                     <input type="radio" name="payment" value="cod"> Cash On Delivery
                                 </form> 
@@ -234,7 +234,11 @@
 
                         <script>
                             $(document).ready(function () {
+                                $("#paypaytab").show();
+                                        $("#etranstertab").hide();
+                                        $("#codtab").hide();
                                 $('input:radio[name=payment]').change(function () {
+                                        
                                     if (this.value == 'paypal') {
                                         $("#paypaytab").show();
                                         $("#etranstertab").hide();
@@ -278,10 +282,9 @@
                         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
 
                             <!-- Content -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Hellen Delicious Cakes, Inc.</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">海燕美味蛋糕</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                            <p class="footertext">Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit.</p>
+                            <p class="footertext">由海燕精心制作的蛋糕松软可口、细腻绵软、甜度适中，适合所有人的口味</p>
 
                         </div>
                         <!-- Grid column -->
@@ -290,7 +293,7 @@
                         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
                             <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Follow Us</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">关注我们</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                             <p>
                                 <a href="#" class="fab fa-facebook footertext"> facebook</a>  
@@ -310,7 +313,7 @@
                         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
 
                             <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Contact</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">联系方式</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                             <p class="footertext">
                                 <i class="fas fa-home mr-3 "></i>188 Springbluff Blvd SW <br>Calgary, AB</p>
@@ -330,7 +333,7 @@
 
                 <!-- Copyright -->
                 <div class="footer-copyright text-center py-3 footertext">
-                    Copyright © Helen's Delicious Cakes. All rights reserved
+                    版权所有 © 海燕美味蛋糕
                 </div>
                 <!-- Copyright -->
 
