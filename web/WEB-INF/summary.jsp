@@ -132,11 +132,11 @@
                             <td>${user.username}</td>
                         </tr>
                         <tr>
-                            <th>PhoneNo</th>
+                            <th>User PhoneNo</th>
                             <td>${user.phoneNo}</td>
                         </tr>
                         <tr>
-                            <th>Email</th>
+                            <th>User Email</th>
                             <td>${user.email}</td>
                         </tr>
                         <tr>
@@ -144,11 +144,11 @@
                             <td>${delivery.method}</td>
                         </tr>
                         <tr>
-                            <th>Address</th>
+                            <th>Delivery Address</th>
                             <td>${delivery.address}</td>
                         </tr>
                         <tr>
-                            <th>Phone No.</th>
+                            <th>Delivery Phone No.</th>
                             <td>${delivery.phoneNo}</td>
                         </tr>
                         <tr>

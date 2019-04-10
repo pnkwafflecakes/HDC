@@ -132,11 +132,11 @@
                             <td>${user.username}</td>
                         </tr>
                         <tr>
-                            <th>电话号码</th>
+                            <th>用户电话</th>
                             <td>${user.phoneNo}</td>
                         </tr>
                         <tr>
-                            <th>Email</th>
+                            <th>用户邮箱</th>
                             <td>${user.email}</td>
                         </tr>
                         <tr>
@@ -144,11 +144,11 @@
                             <td>${delivery.method}</td>
                         </tr>
                         <tr>
-                            <th>地址</th>
+                            <th>送货地址</th>
                             <td>${delivery.address}</td>
                         </tr>
                         <tr>
-                            <th>电话号码</th>
+                            <th>送货电话</th>
                             <td>${delivery.phoneNo}</td>
                         </tr>
                         <tr>
