@@ -51,36 +51,8 @@
                                 </c:if>
                                 <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <c:if test="${(language == null)||(language == 'en') }">
-                                    Browse
-                                </c:if>
-                                <c:if test="${language == 'ch'}">
-                                    浏览
-                                </c:if>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <c:if test="${(language == null)||(language == 'en') }">
-                                    Contact
-                                </c:if>
-                                <c:if test="${language == 'ch'}">
-                                    联系我们
-                                </c:if>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="cart">
-                                <c:if test="${(language == null)||(language == 'en') }">
-                                    Cart
-                                </c:if>
-                                <c:if test="${language == 'ch'}">
-                                    购物车
-                                </c:if>
-                                <span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
-                        </li>
+                        
+                        
 
 
                         <li class="nav-item"> </li>
@@ -94,12 +66,7 @@
                                     <span class="glyphicon glyphicon-user">
                                     </span> ${userObj.name} 
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="manageaccount">My Profile</a>
-                                    <a class="dropdown-item" href="orders">My Orders</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="login?act=logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
-                                </div>
+                                
                             </li>
                         </c:if>
                         <c:if test="${userObj == null}">
@@ -115,17 +82,7 @@
                             </li>
                         </c:if>
 
-                        <!--button toggle ch/en-->
-                        <c:if test="${(language == null)||(language == 'en') }">
-                            <li class="nav-item">
-                                <a class="nav-link" href="login?act=ch">  中文 </a>
-                            </li>
-                        </c:if>
-                        <c:if test="${language == 'ch'}">
-                            <li class="nav-item">
-                                <a class="nav-link" href="login?act=en">  English </a>
-                            </li>
-                        </c:if>
+                        
                     </ul>
 
 
@@ -138,13 +95,13 @@
 
         <div class="container-fluid">
             <br>
-            <h2 class="text-center">oops!</h2>
-            <h2 class="text-center">Payment not finished! Please try it again.</h2>
+
+            <h2 class="text-center">付款没有成功! 请再试一次</h2>
             <br>
             <div class="text-center">
-                <!--<i>You're being direct to home page in <span id="countdowntimer">5 </span> Seconds</i>-->
+<!--                <i>You're being direct to home page in <span id="countdowntimer">5 </span> Seconds</i>-->
                 <br>
-                <a href="mainmenu" class="btn btn-outline-dark">Take me to home page</a>
+                <a href="mainmenu" class="btn btn-outline-dark">回到主页</a>
             </div>
 
         </div>
@@ -168,73 +125,87 @@
         <br>
         <hr>
 
-        <div class="container text-white bg-dark p-4">
-            <div class="row">
-                <div class="col-6 col-md-8 col-lg-7">
-                    <div class="row text-center">
-                        <div class="col-sm-6 col-md-4 col-lg-4 col-12">
-                            <ul class="list-unstyled">
+        <div class="containter" id="bottomfooter">
+            <!-- Footer -->
+            <br>
+            <footer class="page-footer font-small unique-color-dark">
 
-                                <li class="btn-link"> <a href="#" class="fab fa-facebook"> facebook</a> </li>
-                                <li class="btn-link"> <a href="#" class="fab fa-instagram"> instagram</a> </li>
-                                <li class="btn-link"> <a href="#" class="fab fa-weixin"> wechat</a> </li>
 
-                            </ul>
+                <!-- Footer Links -->
+                        <div class="containter" id="bottomfooter">
+            <!-- Footer -->
+            <br>
+            <footer class="page-footer font-small unique-color-dark">
+
+
+                <!-- Footer Links -->
+                <div class="container text-center text-md-left mt-5">
+
+                    <!-- Grid row -->
+                    <div class="row mt-3">
+
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+                            <!-- Content -->
+                            <h6 class="text-uppercase font-weight-bold footertext">海燕美味蛋糕</h6>
+                            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                            <p class="footertext">由海燕精心制作的蛋糕松软可口、细腻绵软、甜度适中，适合所有人的口味</p>
+
                         </div>
-                        <div class="col-sm-6 col-md-4 col-lg-4 col-12">
-                            <ul class="list-unstyled">
-                                <li class="btn-link">                                   
-                                    <c:if test="${(language == null)||(language == 'en') }">
-                                        <a>About us</a> 
-                                    </c:if>
-                                    <c:if test="${language == 'ch'}">
-                                        <a>关于我们</a> 
-                                    </c:if>
-                                </li>
-                                <li class="btn-link"> 
-                                    <c:if test="${(language == null)||(language == 'en') }">
-                                        <a>Contact</a> 
-                                    </c:if>
-                                    <c:if test="${language == 'ch'}">
-                                        <a>联系方式</a> 
-                                    </c:if>
-                                </li>
-                                <li class="btn-link"> 
-                                    <c:if test="${(language == null)||(language == 'en') }">
-                                        <a>Map</a>  
-                                    </c:if>
-                                    <c:if test="${language == 'ch'}">
-                                        <a>地图</a> 
-                                    </c:if>
-                                </li>
-                            </ul>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                            <!-- Links -->
+                            <h6 class="text-uppercase font-weight-bold footertext">关注我们</h6>
+                            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                            <p>
+                                <a href="#" class="fab fa-facebook footertext"> facebook</a>  
+                            </p>
+                            <p>
+                                <a href="#" class="fab fa-instagram footertext"> instagram</a> 
+                            </p>
+                            <p>
+                                <a href="#" class="fab fa-weixin footertext"> wechat</a>
+                            </p>
+
+
                         </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+                            <!-- Links -->
+                            <h6 class="text-uppercase font-weight-bold footertext">联系方式</h6>
+                            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                            <p class="footertext">
+                                <i class="fas fa-home mr-3 "></i>188 Springbluff Blvd SW <br>Calgary, AB</p>
+                            <p class="footertext">
+                                <i class="fas fa-envelope mr-3 "></i>  <a href="mailto:helenbkf@gmail.com?Subject=Customer%20Contact" target="_top">helenbkf@gmail.com</a></p>
+                            <p class="footertext">
+                                <i class="fas fa-phone mr-3 "></i>(403) 808-3860</p>
+
+                        </div>
+                        <!-- Grid column -->
 
                     </div>
+                    <!-- Grid row -->
+
                 </div>
-                <div class="col-md-4 col-lg-5 col-6">
-                    <address>
-                        <strong>Hellen Delicious Cakes, Inc.</strong><br>
-                        188 Springbluff Blvd SW<br>
-                        Clagary, AB, T3H 5R6<br>
-                        <abbr title="Phone">P:</abbr> (403) 808-3860
-                    </address>
-                    <address>
-                        <strong>Email</strong><br>
-                        <a href="mailto:#">helen@gmail.com</a>
-                    </address>
+                <!-- Footer Links -->
+
+                <!-- Copyright -->
+                <div class="footer-copyright text-center py-3 footertext">
+                    版权所有 © 海燕美味蛋糕
                 </div>
-            </div>
+                <!-- Copyright -->
+
+            </footer>
+            <!-- Footer -->
         </div>
-        <footer class="text-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <p>Copyright © Helen's Delicious Cakes. All rights reserved.</p>
-                    </div>
-                </div>
-            </div>
-        </footer>
 
     </body>
 </html> 
