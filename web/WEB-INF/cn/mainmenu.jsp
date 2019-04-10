@@ -29,7 +29,28 @@
 
         <style><%@include file="/WEB-INF/styles/navbar.css"%></style>
         <style><%@include file="/WEB-INF/styles/mainmenu.css"%></style>
+        
 
+        <!-- Smartsupp Live Chat script -->
+        <!-- Smartsupp Live Chat script -->
+        <!-- Smartsupp Live Chat script -->
+        <script type="text/javascript">
+            var _smartsupp = _smartsupp || {};
+            _smartsupp.key = '074195e0af5b79e1e0bc9cc3a449002e9b19a149';
+            window.smartsupp || (function (d) {
+                var s, c, o = smartsupp = function () {
+                    o._.push(arguments)
+                };
+                o._ = [];
+                s = d.getElementsByTagName('script')[0];
+                c = d.createElement('script');
+                c.type = 'text/javascript';
+                c.charset = 'utf-8';
+                c.async = true;
+                c.src = 'https://www.smartsuppchat.com/loader.js?';
+                s.parentNode.insertBefore(c, s);
+            })(document);
+        </script>
 
     </head>
     <body>
@@ -37,50 +58,45 @@
             <div class="container">
                 <a class="navbar-brand" href="#"> H D C </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="mainmenu">
-                                主页
-                            </a>
-                            <span class="sr-only">(current)</span>
+                            <a class="nav-link" href="mainmenu">主页</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="browse">
-                                浏览
-                            </a>
+                            <a class="nav-link" href="browse">浏览</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact">
-                                联系我们
+                            <a class="nav-link" href="contact">联系我们
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="cart">
-                                购物车
-                                <span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
+                            <a class="nav-link" href="cart">购物车<span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
                         </li>
-
-
-
                         <li class="nav-item"> </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
 
+                        <form class="form-inline my-2 my-lg-0" action="search" method="post">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchWord">
+                            <input type="hidden" name="action" value="Search">
+                        </form>
+
+
                         <c:if test="${userObj != null}">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="glyphicon glyphicon-user">
-                                    </span> ${userObj.name} 
+                                    <i class="fas fa-user-circle"></i> 
+                                    ${userObj.name} 
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="manageaccount">我的账号</a>
                                     <a class="dropdown-item" href="orders">我的订单</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="login?act=logout"><span class="glyphicon glyphicon-log-out"></span> 登出</a>
+                                    <a class="dropdown-item" href="login?act=logout"><i class="fas fa-sign-out-alt"></i> 登出</a>
                                 </div>
                             </li>
                         </c:if>
@@ -92,9 +108,12 @@
                             </li>
                         </c:if>
 
+                        <!--button toggle ch/en-->
                         <li class="nav-item">
-                            <a class="nav-link" href="lang?act=en"><i class="fas fa-globe-americas"></i>  English </a>
+                           <a class="nav-link" href="lang?act=en"><i class="fas fa-globe-americas"></i>  English </a>
                         </li>
+
+
                     </ul>
                 </div>
             </div>
@@ -111,38 +130,28 @@
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img class="img-responsive" src="<c:url value='${cake.image}'/>" />
-                                <img alt="First slide" width="900" height="500" class="d-block w-100" src="<c:url value='/images/home1.jpg'/>" />
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>
-                                        ${cake1.namecn}
-                                    </h5>
-                                    <p>
-                                        ${cake1.descriptioncn}
-                                    </p>
-                                </div>
+                                <a href="cakeinfo?cakeid=${feature1.cakeId}">
+                                    <img alt="First slide" width="100em" height="100em" class="d-block w-100" href="cakeinfo?cakeid=${feature1.cakeId}" src="<c:url value='${feature1.image}'/>" />
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h4>${feature1.namecn}</h4>
+                                    </div>
+                                </a>
                             </div>
                             <div class="carousel-item">
-                                <img src="images/home2.jpg" alt="Second slide" width="749" height="499" class="d-block w-100">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>
-                                        ${cake2.namecn}
-                                    </h5>
-                                    <p>
-                                        ${cake2.descriptioncn}
-                                    </p>
-                                </div>
+                                <a href="cakeinfo?cakeid=${feature2.cakeId}">
+                                    <img alt="Second slide" width="100em" height="100em"  class="d-block w-100" src="<c:url value='${feature2.image}'/>" />
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h4>${feature2.namecn}</h4>
+                                    </div>
+                                </a>
                             </div>
                             <div class="carousel-item">
-                                <img src="images/home3.jpg" alt="Third slide" width="891" height="500" class="d-block w-100">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>
-                                        ${cake3.namecn}
-                                    </h5>
-                                    <p>
-                                        ${cake3.descriptioncn}
-                                    </p>
-                                </div>
+                                <a href="cakeinfo?cakeid=${feature3.cakeId}">
+                                    <img alt="Third slide" width="100em" height="100em" class="d-block w-100" src="<c:url value='${feature3.image}'/>" />
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h4>${feature3.namecn}</h4>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -166,43 +175,46 @@
             <div class="row text-center">
                 <div class="col-md-4 pb-1 pb-md-0">
                     <div class="card">
-                        <img class="card-img-top" alt="Card image cap" src="<c:url value='${cake1.image}'/>" />
+                        <a href="cakeinfo?cakeid=${cake1.cakeId}">
+                            <img class="card-img-top" src="<c:url value='${cake1.image}'/>" />
+                        </a>
                         <div class="card-body">
-                            <h5 class="card-title">
-                                ${cake1.namecn}
-                            </h5>
-                            <p class="card-text">
-                                ${cake1.descriptioncn}
-                            </p>
-                            <a href="cakeinfo?cakeid=${cake1.cakeId}" class="btn btn-outline-secondary">加入购物车</a>
+                            <a href="cakeinfo?cakeid=${cake1.cakeId}">
+                                <h5 class="card-title">
+                                    ${cake1.namecn}
+                                </h5>
+                            </a>
+
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 pb-1 pb-md-0">
                     <div class="card">
-                        <img class="card-img-top" alt="Card image cap" src="<c:url value='${cake2.image}'/>" />
+                        <a href="cakeinfo?cakeid=${cake2.cakeId}">
+                            <img class="card-img-top" src="<c:url value='${cake2.image}'/>" />
+                        </a>
                         <div class="card-body">
-                            <h5 class="card-title">
-                                ${cake2.namecn}
-                            </h5>
-                            <p class="card-text">                                
-                                ${cake2.descriptioncn}
-                            </p>
-                            <a href="cakeinfo?cakeid=${cake2.cakeId}" class="btn btn-outline-secondary">加入购物车</a>
+                            <a href="cakeinfo?cakeid=${cake2.cakeId}">
+                                <h5 class="card-title">
+                                    ${cake2.namecn}
+                                </h5>
+                            </a>
+
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 pb-1 pb-md-0">
                     <div class="card">
-                        <img class="card-img-top" alt="Card image cap" src="<c:url value='${cake3.image}'/>" />
+                        <a href="cakeinfo?cakeid=${cake3.cakeId}">
+                            <img class="card-img-top" src="<c:url value='${cake3.image}'/>" />
+                        </a>
                         <div class="card-body">
-                            <h5 class="card-title">
-                                ${cake3.namecn}
-                            </h5>
-                            <p class="card-text">
-                                ${cake3.descriptioncn}
-                            </p>
-                            <a href="cakeinfo?cakeid=${cake3.cakeId}" class="btn btn-outline-secondary">加入购物车</a>
+                            <a href="cakeinfo?cakeid=${cake3.cakeId}">
+                                <h5 class="card-title">
+                                    ${cake3.namecn}
+                                </h5>
+                            </a>
+
                         </div>
                     </div>
                 </div>
@@ -210,49 +222,57 @@
             <div class="row text-center mt-4">
                 <div class="col-md-4 pb-1 pb-md-0">
                     <div class="card">
-                        <img class="card-img-top" alt="Card image cap" src="<c:url value='${cake4.image}'/>" />
+                        <a href="cakeinfo?cakeid=${cake4.cakeId}">
+                            <img class="card-img-top" src="<c:url value='${cake4.image}'/>" />
+                        </a>
                         <div class="card-body">
-                            <h5 class="card-title">$
-                                ${cake4.namecn}
-                            </h5>
-                            <p class="card-text">
-                                ${cake4.descriptioncn}
-                            </p>
-                            <a href="cakeinfo?cakeid=${cake4.cakeId}" class="btn btn-outline-secondary">加入购物车</a>
+                            <a href="cakeinfo?cakeid=${cake4.cakeId}">
+                                <h5 class="card-title">
+                                    ${cake4.namecn}
+                                </h5>
+                            </a>
+
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 pb-1 pb-md-0">
                     <div class="card">
-                        <img class="card-img-top" alt="Card image cap" src="<c:url value='${cake5.image}'/>" />
+                        <a href="cakeinfo?cakeid=${cake5.cakeId}">
+                            <img class="card-img-top" src="<c:url value='${cake5.image}'/>" />
+                        </a>
                         <div class="card-body">
-                            <h5 class="card-title">
-                                ${cake5.namecn}
-                            </h5>
-                            <p class="card-text">
-                                ${cake5.descriptioncn}
-                            </p>
-                            <a href="cakeinfo?cakeid=${cake5.cakeId}" class="btn btn-outline-secondary">加入购物车</a>
+                            <a href="cakeinfo?cakeid=${cake5.cakeId}">
+                                <h5 class="card-title">
+                                    ${cake5.namecn}
+                                </h5>
+                            </a>
+
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 pb-1 pb-md-0">
                     <div class="card">
-                        <img class="card-img-top" alt="Card image cap" src="<c:url value='${cake6.image}'/>" />
+                        <a href="cakeinfo?cakeid=${cake6.cakeId}">
+                            <img class="card-img-top" src="<c:url value='${cake6.image}'/>" />
+                        </a>
                         <div class="card-body">
-                            <h5 class="card-title">
-                                ${cake6.namecn}
-                            </h5>
-                            <p class="card-text">
-                                ${cake6.descriptioncn}
-                            </p>
-                            <a href="cakeinfo?cakeid=${cake6.cakeId}" class="btn btn-outline-secondary">加入购物车</a>
+                            <a href="cakeinfo?cakeid=${cake6.cakeId}">
+                                <h5 class="card-title">
+                                    ${cake6.namecn}
+                                </h5>
+                            </a>
+
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="row text-center mt-4">
+                <div class="col-md-12">
+                    <a href="browse" class="btn btn-warning btn-lg">更多蛋糕</a>
+                </div>
+            </div>
+            <br>
         </div>
-        <hr>
 
         <div class="containter" id="bottomfooter">
             <!-- Footer -->
@@ -272,8 +292,7 @@
                             <!-- Content -->
                             <h6 class="text-uppercase font-weight-bold footertext">海燕美味蛋糕</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                            <p class="footertext">Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit.</p>
+                            <p class="footertext">由海燕精心制作的蛋糕松软可口、细腻绵软、甜度适中，适合所有人的口味</p>
 
                         </div>
                         <!-- Grid column -->
@@ -307,7 +326,7 @@
                             <p class="footertext">
                                 <i class="fas fa-home mr-3 "></i>188 Springbluff Blvd SW <br>Calgary, AB</p>
                             <p class="footertext">
-                                <i class="fas fa-envelope mr-3 "></i>  <a href="mailto:#">helen@gmail.com</a></p>
+                                <i class="fas fa-envelope mr-3 "></i>  <a href="mailto:helenbkf@gmail.com?Subject=Customer%20Contact" target="_top">helenbkf@gmail.com</a></p>
                             <p class="footertext">
                                 <i class="fas fa-phone mr-3 "></i>(403) 808-3860</p>
 
@@ -322,7 +341,7 @@
 
                 <!-- Copyright -->
                 <div class="footer-copyright text-center py-3 footertext">
-                    Copyright © Helen's Delicious Cakes. All rights reserved
+                    版权所有 © 海燕美味蛋糕
                 </div>
                 <!-- Copyright -->
 

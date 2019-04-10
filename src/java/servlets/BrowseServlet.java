@@ -52,15 +52,15 @@ public class BrowseServlet extends HttpServlet {
         
         request.setAttribute("allcakes", cakearray);
 
-//        if (language == null) {
-//            language = "en";
-//        }
-//        if (language.equals("cn")) {
-//            getServletContext().getRequestDispatcher("/WEB-INF/cn/browse.jsp").forward(request, response);
-//        } else {
-//            getServletContext().getRequestDispatcher("/WEB-INF/en/browse.jsp").forward(request, response);
-//        }
-        getServletContext().getRequestDispatcher("/WEB-INF/en/browse.jsp").forward(request, response);
+        if (language == null) {
+            language = "en";
+        }
+        if (language.equals("cn")) {
+            getServletContext().getRequestDispatcher("/WEB-INF/cn/browse.jsp").forward(request, response);
+        } else {
+            getServletContext().getRequestDispatcher("/WEB-INF/en/browse.jsp").forward(request, response);
+        }
+//        getServletContext().getRequestDispatcher("/WEB-INF/en/browse.jsp").forward(request, response);
         
     }
 
