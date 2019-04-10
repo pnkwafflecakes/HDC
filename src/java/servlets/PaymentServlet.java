@@ -55,6 +55,9 @@ public class PaymentServlet extends HttpServlet {
 //        get language option en/ch
         HttpSession session = request.getSession();
         String language = (String) session.getAttribute("language");
+        if (language == null){
+            language = "en";
+        }
         
 //        get payment status
         String payment = (String) request.getParameter("payment");

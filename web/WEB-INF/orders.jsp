@@ -134,6 +134,9 @@
                                     <td class="align-middle">$<c:out value="${ite.price}"/></td>
                                 </tr>
                             </c:forEach>
+                                <tr>
+                                    <td>${order.deliveryNo.notes}</td>
+                                </tr>
                         </tbody>
                     </table>
                 </c:forEach>
