@@ -139,17 +139,6 @@
                                                 <input type="number" class="form-control" name="price" value="${cake.price}">
                                             </div>
 
-                                            <div class="form-group col-md-6">
-                                                <div id="inputHeader">Category </div>
-                                                <select class="form-control" name="categorySelect">
-                                                    <c:if test="${input == 'edit'}">
-                                                        <option value="${selectedCategory.categoryId}" selected="selected">${selectedCategory.name}</option>
-                                                    </c:if>
-                                                    <c:forEach var="categories" items="${categories}">
-                                                        <option value="${categories.categoryId}">${categories.name}</option>
-                                                    </c:forEach>
-                                                </select>
-                                            </div>
 
                                             <div class="form-group col-md-3">
                                                 <div id="inputHeader">Size</div>

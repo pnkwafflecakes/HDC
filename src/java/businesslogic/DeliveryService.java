@@ -43,19 +43,7 @@ public class DeliveryService {
         }
         else
         {
-            Delivery selectedDelivery;
-            int openId = 2;
-            for (int i=0; i < currDelivery.size(); i++) {
-                selectedDelivery = currDelivery.get(i);
-                if (openId != selectedDelivery.getDeliveryNo()+1) {
-                    newId = openId-1; //Issue here :/
-                    i = currDelivery.size();
-                }
-                else {
-                    openId++;
-                }
-            }
-            if(newId == 0) newId = currDelivery.size()+1;
+            newId = currDelivery.get(currDelivery.size()-1).getDeliveryNo()+1;
         }
 
         delivery.setDeliveryNo(newId);

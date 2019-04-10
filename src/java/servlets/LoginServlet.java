@@ -1,6 +1,6 @@
 package servlets;
 
-import Entities.Account;
+
 import Entities.User;
 import dataaccess.UserJpaController;
 import java.io.IOException;
@@ -84,7 +84,6 @@ public class LoginServlet extends HttpServlet
 
         String userIn = request.getParameter("user");
         String passIn = request.getParameter("pass");
-        Account account;
         String username;
         String password;
 
