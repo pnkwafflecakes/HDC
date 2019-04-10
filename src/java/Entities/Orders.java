@@ -39,6 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Orders.findByDueDatetime", query = "SELECT o FROM Orders o WHERE o.dueDatetime = :dueDatetime")
     , @NamedQuery(name = "Orders.findByOrderItems", query = "SELECT o FROM Orders o WHERE o.orderItems = :orderItems")
     , @NamedQuery(name = "Orders.findByTotalPrice", query = "SELECT o FROM Orders o WHERE o.totalPrice = :totalPrice")})
+   
 public class Orders implements Serializable {
 
     @Basic(optional = false)
@@ -50,6 +51,9 @@ public class Orders implements Serializable {
     @Basic(optional = false)
     @Column(name = "paid")
     private boolean paid;
+    @Basic(optional = false)
+    @Column(name = "delivered")
+    private boolean delivered;
 
     @ManyToMany(mappedBy = "ordersCollection")
     private Collection<Cake> cakeCollection;
@@ -135,6 +139,14 @@ public class Orders implements Serializable {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+    
+    public void setDelivered(boolean delivered) {
+        this.delivered = delivered;
+    }
+    
+    public boolean getDelivered() {
+        return delivered;
     }
 
     @XmlTransient

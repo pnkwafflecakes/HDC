@@ -14,7 +14,6 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import Entities.Cakecategory;
 import Entities.Orders;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -42,11 +41,6 @@ public class CakeJpaController implements Serializable {
         try {
             EntityTransaction trans = em.getTransaction();
             trans.begin();
-            Cakecategory categoryId = cake.getCategoryId();
-            if (categoryId != null) {
-                categoryId = em.getReference(categoryId.getClass(), categoryId.getCategoryId());
-                cake.setCategoryId(categoryId);
-            }
             Collection<Orders> attachedOrdersCollection = new ArrayList<Orders>();
             for (Orders ordersCollectionOrdersToAttach : cake.getOrdersCollection()) {
                 ordersCollectionOrdersToAttach = em.getReference(ordersCollectionOrdersToAttach.getClass(), ordersCollectionOrdersToAttach.getOrderNo());
@@ -60,10 +54,6 @@ public class CakeJpaController implements Serializable {
             }
             cake.setCakeorderCollection(attachedCakeorderCollection);
             em.persist(cake);
-            if (categoryId != null) {
-                categoryId.getCakeCollection().add(cake);
-                categoryId = em.merge(categoryId);
-            }
             for (Orders ordersCollectionOrders : cake.getOrdersCollection()) {
                 ordersCollectionOrders.getCakeCollection().add(cake);
                 ordersCollectionOrders = em.merge(ordersCollectionOrders);
@@ -96,8 +86,6 @@ public class CakeJpaController implements Serializable {
             EntityTransaction trans = em.getTransaction();
             trans.begin();
             Cake persistentCake = em.find(Cake.class, cake.getCakeId());
-            Cakecategory categoryIdOld = persistentCake.getCategoryId();
-            Cakecategory categoryIdNew = cake.getCategoryId();
             Collection<Orders> ordersCollectionOld = persistentCake.getOrdersCollection();
             Collection<Orders> ordersCollectionNew = cake.getOrdersCollection();
             Collection<Cakeorder> cakeorderCollectionOld = persistentCake.getCakeorderCollection();
@@ -113,10 +101,6 @@ public class CakeJpaController implements Serializable {
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
-            }
-            if (categoryIdNew != null) {
-                categoryIdNew = em.getReference(categoryIdNew.getClass(), categoryIdNew.getCategoryId());
-                cake.setCategoryId(categoryIdNew);
             }
             Collection<Orders> attachedOrdersCollectionNew = new ArrayList<Orders>();
             try {
@@ -141,14 +125,6 @@ public class CakeJpaController implements Serializable {
             cakeorderCollectionNew = attachedCakeorderCollectionNew;
             cake.setCakeorderCollection(cakeorderCollectionNew);
             cake = em.merge(cake);
-            if (categoryIdOld != null && !categoryIdOld.equals(categoryIdNew)) {
-                categoryIdOld.getCakeCollection().remove(cake);
-                categoryIdOld = em.merge(categoryIdOld);
-            }
-            if (categoryIdNew != null && !categoryIdNew.equals(categoryIdOld)) {
-                categoryIdNew.getCakeCollection().add(cake);
-                categoryIdNew = em.merge(categoryIdNew);
-            }
             try {
                 for (Orders ordersCollectionOldOrders : ordersCollectionOld) {
                     if (!ordersCollectionNew.contains(ordersCollectionOldOrders)) {
@@ -223,11 +199,6 @@ public class CakeJpaController implements Serializable {
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
-            }
-            Cakecategory categoryId = cake.getCategoryId();
-            if (categoryId != null) {
-                categoryId.getCakeCollection().remove(cake);
-                categoryId = em.merge(categoryId);
             }
             Collection<Orders> ordersCollection = cake.getOrdersCollection();
             for (Orders ordersCollectionOrders : ordersCollection) {

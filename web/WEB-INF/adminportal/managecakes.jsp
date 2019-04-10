@@ -111,7 +111,6 @@
                         <thead>
                         <th style="width: 15%">Image</th>
                         <th>Name</th>
-                        <th>Category</th>
                         <th>Size</th>
                         <th>Price</th>
                         <th>Description</th>                       
@@ -125,7 +124,6 @@
                                     <td><img src="<c:url value='${cake.image}'/>" alt="Cake Picture" width="100%" height="50%"/></td>
 
                                     <td>${cake.name}</td>
-                                    <td>${cake.categoryId.description}</td>
                                     <td>${cake.size}</td>
                                     <td>${cake.price}</td>
                                     <td>${cake.description}</td>
@@ -165,7 +163,6 @@
         <thead>
         <th>Image</th>
         <th>Name</th>
-        <th>Category</th>
         <th>Size</th>
         <th>Price</th>
         <th>Description</th>
@@ -184,7 +181,6 @@
         <td><img src="<c:url value='${cake.image}'/>" alt="Cake Picture" width="50%" height="50%"/></td>
 
         <td>${cake.name}</td>
-        <td>${cake.categoryId.description}</td>
         <td>${cake.size}</td>
         <td>${cake.price}</td>
         <td>${cake.description}</td>

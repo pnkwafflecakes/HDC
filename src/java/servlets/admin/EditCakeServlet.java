@@ -6,8 +6,6 @@
 package servlets.admin;
 
 import Entities.Cake;
-import Entities.Cakecategory;
-import businesslogic.CakeCategoryService;
 import businesslogic.CakeService;
 import dataaccess.CakeJpaController;
 import java.io.IOException;
@@ -61,8 +59,6 @@ public class EditCakeServlet extends HttpServlet
         HttpSession session = request.getSession(true);
         //request.setAttribute("input", inputType);
         session.setAttribute("input", inputType);
-        CakeCategoryService ccs = new CakeCategoryService();
-        List<Cakecategory> categoryList = ccs.getAll();
         
         System.out.println("Input: " + inputType);
         
@@ -79,18 +75,12 @@ public class EditCakeServlet extends HttpServlet
             int cakeId = Integer.valueOf(session.getAttribute("cakeId")+"");
             Cake cake = cs.get(cakeId);
             request.setAttribute("cake", cake);
-            Cakecategory excludeCategory = cake.getCategoryId();
-            request.setAttribute("selectedCategory", excludeCategory);
-            categoryList.remove(excludeCategory);
-            System.out.println("Selected Category: " + excludeCategory);
             if (cs.get(cakeId).getOrdersCollection().size() != 0) {
                 request.setAttribute("notification", "This cake is in a current order. Will become new cake with changes");
                 exists = true;
             }
         }
         
-        Cakecategory[] categories = categoryList.toArray(new Cakecategory[categoryList.size()]);
-        request.setAttribute("categories", categories);
         getServletContext().getRequestDispatcher("/WEB-INF/adminportal/editcake.jsp").forward(request, response);
     }
 
@@ -100,7 +90,6 @@ public class EditCakeServlet extends HttpServlet
     {
         CakeService cs = new CakeService();
         String action = request.getParameter("action");
-        CakeCategoryService ccs = new CakeCategoryService();
         Cake cake = new Cake();
         boolean featured = false;
         boolean special = false;
@@ -135,7 +124,7 @@ public class EditCakeServlet extends HttpServlet
         System.out.println("可可脂蛋糕");
         System.out.println("CN Name: " + namecn + ", CN Desc: " + descriptioncn);
         
-        cake.setCategoryId(ccs.get(categoryId));
+
         cake.setName(name);
         cake.setNamecn(namecn);
         cake.setDescription(description);
