@@ -33,9 +33,9 @@
 
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-custom">
+        <nav class="navbar sticky-top navbar-expand-lg navbar-custom">
             <div class="container">
-                <a class="navbar-brand" href="#"> H D C </a>
+                <a class="navbar-brand" href="mainmenu"> H D C </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -101,7 +101,7 @@
         <div class="container">
             <br>
 
-            <h1 class="text-center">Customer Details</h1>
+            <h1 class="text-center">Delivery Details</h1>
             ${errorMessage}
             <br>
 
@@ -140,7 +140,7 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-24">
-                            <label for="inputDueDate">Due Date</label>
+                            <label for="inputDueDate">Expected Date</label>
                             <input type="date" class="form-control" id="inputDueDate" name="dueDate" >
                             <script type="text/javascript">
 

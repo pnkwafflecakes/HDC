@@ -102,6 +102,8 @@
 
         <br>
         <div class="container">
+            <h1 class="text-center">Summary</h1>
+            <br>
             <div class="row">
                 <div class="col-md-6">
                     <table class="table-bordered">
@@ -185,14 +187,14 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <form>
-                                    <input type="radio" name="payment" value="paypal" checked> Paypal<br>
+                                    <input type="radio" name="payment" value="paypal"> Paypal<br>
                                     <input type="radio" name="payment" value="etransfer"> INTERAC e-Transfer<br>
                                     <input type="radio" name="payment" value="cod"> Cash On Delivery
                                 </form> 
                             </div>
 
                             <div class="col-md-6">
-                                <div id="paypaytab" style="display: none;">
+                                <div id="paypaytab" style="display: none;" class="align-middle">
                                     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                                         <input type="hidden" name="cmd" value="_xclick">
                                         <input type="hidden" name="business" value="YMPFXKHT6YJTC">
@@ -212,7 +214,7 @@
                                     </form>
                                 </div>
 
-                                <div id="etranstertab" style="display: none;">
+                                <div id="etranstertab" style="display: none;" class="align-middle">
                                     <form action="payment" method="GET">                                      
                                         <input type="submit" value="Place Your Order">
                                         <input type="hidden" name="payment" value="etrasfer">  
@@ -220,7 +222,7 @@
                                     <p>Please send to:helenbkf@gmail.com</p>
                                 </div>
 
-                                <div id="codtab" style="display: none;">
+                                <div id="codtab" style="display: none;" class="align-middle">
                                     <form action="payment" method="GET">                                    
                                         <input type="submit" value="Place Your Order">
                                         <input type="hidden" name="payment" value="cash">  

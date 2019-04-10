@@ -6,6 +6,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -32,9 +33,9 @@
 
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-custom">
+        <nav class="navbar sticky-top navbar-expand-lg navbar-custom">
             <div class="container">
-                <a class="navbar-brand" href="#"> H D C </a>
+                <a class="navbar-brand" href="mainmenu"> H D C </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -99,97 +100,27 @@
         <br>
         <h1 align="center">Orders</h1>
         <p align="center">${error}</p>
-        <p align="center">To Cancel an Order Please Contact Us!</p>
-        <table align="center">
-            <c:forEach items="${orderList}" var="order">
-                <form action="Orders" method="POST">
-                    <tr>
-                        <th>Order Number:</th>
-                        <td><c:out value="${order.orderNo}"/></td>
-                    </tr>
-                    <tr>
-                        <th>Date Placed:</th>
-                        <td><c:out value="${order.orderDatetime}"/></td>
-                    </tr>
-                    <tr>
-                        <th>Order Due:</th>
-                        <td><c:out value="${order.dueDatetime}"/></td>
-                    </tr>
-                    <tr>
-                        <th>Items:</th>
-                        <td><c:out value="${order.orderItems}"/></td>
-                    </tr>
-                    <tr>
-                        <th>Total Price:</th>
-                        <td><c:out value="$${order.totalPrice}"/></td>
-                    </tr>
-                    <tr>
-                        
-                        
-                        
-                        <th>Order Status</th>
-                        <td>
-                                <c:set var = "active" scope = "session" value = "${order.active}"/>
-                                <c:set var = "confirmed" scope = "session" value = "${order.confirmed}"/>
-                                <c:if test = "${active == true}">
-                                    <c:if test = "${confirmed == false}">
-                                        <c:out value="Not Confirmed"/>
-                                    </c:if>
-                                </c:if>
-                                <c:if test = "${active == true}">
-                                    <c:if test = "${confirmed == true}">
-                                        <c:out value="Confirmed"/>
-                                    </c:if>
-                                </c:if>
-                                <c:if test = "${active == false}">
-                                    <c:if test="${confirmed == true}">
-                                        <c:out value="Active"/>
-                                    </c:if>
-                                </c:if>
-                                <c:if test = "${active == false}">
-                                    <c:if test = "${confirmed == false}">
-                                        <c:out value="Not Active"/>
-                                    </c:if>
-                                </c:if>
-                        </td>
-                    </tr>
-                    
-                    
-                    
-                    <tr>
-                        <th>Payment Status</th>
-                        <td>
-                            <c:set var = "paid" scope = "session" value = "${order.paid}"/>
-                            <c:if test = "${paid == true}">
-                                <c:out value="Paid"/>
-                            </c:if>
-                            <c:if test = "${paid == false}">
-                                <c:out value="Not Paid"/>
-                            </c:if>
-                        </td>
-                    </tr>
-                </form>
-            </c:forEach>
-        </table>
-
-        <p style="color:red" align="center">${notdeleted}</p>
-        <p style="color:green" align="center">${deleted}</p>
 
         <div class="container-fluid" id="ordercontainer">
             <c:if test="${orderList != null}">
+                <p align="center">To Cancel an Order Please Contact Us!</p>
+                <br>
                 <c:forEach items="${orderList}" var="order">
                     <table class="table border">
                         <thead class="table-active">
                             <tr>
-                                <th class="col-md-3">
-                                    Order Number: 
-                                    <c:out value="${order.orderNo}"/>
+                                <th class="col-md-3 align-middle">
+                                    Order No. 
+                                    <fmt:formatNumber pattern="0000" value="${order.orderNo}" />
                                 </th>
-                                <th class="col-md-6">
-                                    Date Placed: 
-                                    <c:out value="${order.orderDatetime}"/>
+                                <th class="col-md-6 align-middle">
+                                    Placed on: 
+                                    <fmt:formatDate value="${order.orderDatetime}" pattern="MMMM dd, yyyy"/>
+                                    <br>
+                                    Expected: 
+                                    <fmt:formatDate value="${order.dueDatetime}" pattern="MMMM dd, yyyy"/>
                                 </th>
-                                <th class="col-md-3">
+                                <th class="col-md-3 align-middle">
                                     Total: 
                                     <c:out value="$${order.totalPrice}"/>
                                 </th>
@@ -198,9 +129,9 @@
                         <tbody>
                             <c:forEach items="${order.cakeCollection}" var="ite">
                                 <tr>
-                                    <td><img height="100em" src="<c:url value='${ite.image}'/>" /></td>
-                                    <td><c:out value="${ite.name}"/></td>
-                                    <td>Price: $<c:out value="${ite.price}"/></td>
+                                    <td class="align-middle"><img height="100em" src="<c:url value='${ite.image}'/>" /></td>
+                                    <td class="align-middle"><c:out value="${ite.name}"/></td>
+                                    <td class="align-middle">$<c:out value="${ite.price}"/></td>
                                 </tr>
                             </c:forEach>
                         </tbody>

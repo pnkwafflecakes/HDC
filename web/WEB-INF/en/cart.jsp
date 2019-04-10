@@ -32,9 +32,9 @@
 
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-custom">
+        <nav class="navbar sticky-top navbar-expand-lg navbar-custom">
             <div class="container">
-                <a class="navbar-brand" href="#"> H D C </a>
+                <a class="navbar-brand" href="mainmenu"> H D C </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -130,7 +130,6 @@
                                 </td>
                                 <td width="40%">${cake.description}</td>
                                 <td width="15%">${cake.price}</td>
-<!--                                <td width="5%"><c:out value="${counter[cake.cakeId]}"/></td>-->
                                 <td width="10%">
                                     <form action="cart" method="post" >
                                         <input type="number" name="quantity" value="${counter[cake.cakeId]}" min="0" max="20" style="width: 100%;">
