@@ -30,7 +30,6 @@
         <style><%@include file="/WEB-INF/styles/navbar.css"%></style>
         <style><%@include file="/WEB-INF/styles/mainmenu.css"%></style>
 
-
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-custom">
@@ -117,15 +116,25 @@
                     <c:forEach var="cake" items="${cakesInCart}">
                         <tr>
                             <c:if test="${cake != null}">
-                                <td><img src="<c:url value='${cake.image}'/>" alt="Cake Picture" width="80dp" height="80dp"/></td>
-                                <td width="20%">${cake.name}</td>
+                                <td>
+                                    <a href="cakeinfo?cakeid=${cake.cakeId}">
+                                        <img src="<c:url value='${cake.image}'/>" alt="Cake Picture" width="80dp" height="80dp"/>
+                                    </a>
+                                </td>
+                                <td width="20%">
+                                    <a href="cakeinfo?cakeid=${cake.cakeId}">
+                                        <p class="card-title">
+                                            ${cake.name}
+                                        </p>
+                                    </a>
+                                </td>
                                 <td width="40%">${cake.description}</td>
                                 <td width="15%">${cake.price}</td>
 <!--                                <td width="5%"><c:out value="${counter[cake.cakeId]}"/></td>-->
                                 <td width="10%">
                                     <form action="cart" method="post" >
-                                        <input type="number" name="quantity" value="${counter[cake.cakeId]}" min="0" max="20">
-                                        <input type="submit" value="Change">
+                                        <input type="number" name="quantity" value="${counter[cake.cakeId]}" min="0" max="20" style="width: 100%;">
+                                        <button type="submit" class="btn btn-primary">Change</button>
                                         <input type="hidden" name="action" value="change">
                                         <input type="hidden" name="selectedCake" value="${cake.cakeId}">   
                                     </form>

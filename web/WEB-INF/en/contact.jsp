@@ -165,15 +165,15 @@
             <h3 class="text-center">PICKUP LOCATIONS</h3>
             <div id="accordion" class="centralize">
                 <div class="card">
-                    <div class="card-header" id="headingOne">
+                    <div class="card-header" id="headingOnea">
                         <h5 class="mb-0">
-                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOnea" aria-expanded="true" aria-controls="collapseOnea">
                                 69 Street Park & Ride Surface
                             </button>
                         </h5>
                     </div>
 
-                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div id="collapseOnea" class="collapse" aria-labelledby="headingOnea" data-parent="#accordion">
                         <div class="card-body">
                             <p>69 Street Park & Ride Surface
                             </p>
@@ -182,14 +182,14 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header" id="headingTwo">
+                    <div class="card-header" id="headingTwoa">
                         <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwoa" aria-expanded="false" aria-controls="collapseTwoa">
                                 Tom Baines School North Parking Lot
                             </button>
                         </h5>
                     </div>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div id="collapseTwoa" class="collapse" aria-labelledby="headingTwoa" data-parent="#accordion">
                         <div class="card-body">
                             <p>250 Edgepark Blvd NW, Calgary, AB T3A 3S2 
                             </p>
@@ -198,14 +198,14 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header" id="headingThree">
+                    <div class="card-header" id="headingThreea">
                         <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThreea" aria-expanded="false" aria-controls="collapseThreea">
                                 T&T North HSBC Bank Parking Lot                       
                             </button>
                         </h5>
                     </div>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div id="collapseThreea" class="collapse" aria-labelledby="headingThreea" data-parent="#accordion">
                         <div class="card-body">
                             <p>409-9650 Harvest Hills Blvd N, Calgary, AB T3K 0B3
                             </p>
@@ -214,14 +214,14 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header" id="headingFour">
+                    <div class="card-header" id="headingFoura">
                         <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFoura" aria-expanded="false" aria-controls="collapseFoura">
                                 Nickle School Parking Lot      
                             </button>
                         </h5>
                     </div>
-                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                    <div id="collapseFoura" class="collapse" aria-labelledby="headingFoura" data-parent="#accordion">
                         <div class="card-body">
                             <p>2500 Lake Bonavista Dr SE, Calgary, AB T2J 2Y6
                             </p>
@@ -230,14 +230,14 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header" id="headingFive">
+                    <div class="card-header" id="headingFivea">
                         <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFivea" aria-expanded="false" aria-controls="collapseFivea">
                                 Somerset Station Parking Lot     
                             </button>
                         </h5>
                     </div>
-                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                    <div id="collapseFivea" class="collapse" aria-labelledby="headingFivea" data-parent="#accordion">
                         <div class="card-body">
                             <p>288 Shawville Way SE Parking</p>
                             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5032.591774224743!2d-114.066968!3d50.899741!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xfc0166cafe59f052!2s288+Shawville+Way+SE+Parking!5e0!3m2!1sen!2sca!4v1554618697625!5m2!1sen!2sca" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
