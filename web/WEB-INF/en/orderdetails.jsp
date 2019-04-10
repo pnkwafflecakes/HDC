@@ -110,18 +110,18 @@
 
                     <div class="form-group col-md-6">
                         <label for="inputName">Name</label>
-                        <input type="text" class="form-control" id="inputName" name="name" value="${userObj.name}" required="required">
+                        <input type="text" class="form-control" id="inputName" name="name" value="${userObj.name}" required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputPhone">Phone Number</label>
-                        <input type="text" placeholder="###-###-####" pattern="^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$" class="form-control" id="inputPhone" name="phoneNo" value="${userObj.phoneNo}" required="required">
+                        <input type="text" placeholder="###-###-####" pattern="^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$" class="form-control" id="inputPhone" name="phoneNo" value="${userObj.phoneNo}" required>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="inputAddress">Address</label>
-                        <input type="text" class="form-control" id="inputAddress" name="address" value="${userObj.address}" required="required">
+                        <input type="text" class="form-control" id="inputAddress" name="address" value="${userObj.address}" required>
                     </div>
                 </div>
 
@@ -140,13 +140,15 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-24">
-                            <label for="inputDueDate">Expected Date</label>
-                            <input type="date" class="form-control" id="inputDueDate" name="dueDate" >
+                            <label for="inputDueDate">Requested Date</label>
+                            <input type="date" class="form-control" id="inputDueDate" name="dueDate" required>
+
                             <script type="text/javascript">
 
                                 $("#inputDueDate").val(getFormattedDate(tomorrow()));
 
-                                function tomorrow() {
+                                function tomorrow()
+                                {
                                     return today().getTime() + 24 * 60 * 60 * 1000;
                                 }
 

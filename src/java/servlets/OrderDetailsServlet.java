@@ -28,7 +28,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author 744916
  */
-public class OrderDetailsServlet extends HttpServlet {
+public class OrderDetailsServlet extends HttpServlet
+{
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -41,7 +42,8 @@ public class OrderDetailsServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException
+    {
 
         HttpSession session = request.getSession();
         String language = (String) session.getAttribute("language");
@@ -62,12 +64,16 @@ public class OrderDetailsServlet extends HttpServlet {
 //        request.setAttribute("phoneNo", user.getPhoneNo());
         //--*--
 //        getServletContext().getRequestDispatcher("/WEB-INF/orderdetails.jsp").forward(request, response);
-        if (language == null) {
+        if (language == null)
+        {
             language = "en";
         }
-        if (language.equals("cn")) {
+        if (language.equals("cn"))
+        {
             getServletContext().getRequestDispatcher("/WEB-INF/cn/orderdetails.jsp").forward(request, response);
-        } else {
+        }
+        else
+        {
             getServletContext().getRequestDispatcher("/WEB-INF/en/orderdetails.jsp").forward(request, response);
         }
 
@@ -75,7 +81,8 @@ public class OrderDetailsServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException
+    {
         String name = request.getParameter("name") + "";
         String address = request.getParameter("address") + "";
         String deliveryMethod = request.getParameter("deliveryList");
@@ -94,10 +101,14 @@ public class OrderDetailsServlet extends HttpServlet {
 
         System.out.println("--*-- Finding good ID");
         boolean notFound = true;
-        while (notFound) {
-            if (ds.get(deliveryNo) != null) {
+        while (notFound)
+        {
+            if (ds.get(deliveryNo) != null)
+            {
                 deliveryNo++;
-            } else {
+            }
+            else
+            {
                 notFound = false;
             }
         }
@@ -105,10 +116,11 @@ public class OrderDetailsServlet extends HttpServlet {
 
         User user = (User) session.getAttribute("userObj");
 
-        if (user == null) {
+        if (user == null)
+        {
             UserService us = new UserService();
             user = us.get(1);
-            notes = notes + "; Name for order: " + name + "";
+            notes = notes + " Name for order: " + name + "";
         }
 
         Delivery delivery = new Delivery();
@@ -120,10 +132,13 @@ public class OrderDetailsServlet extends HttpServlet {
         delivery.setPhoneNo(phoneNo);
 
         DeliveryJpaController djc = new DeliveryJpaController();
-        try {
+        try
+        {
             djc.create(delivery);
             System.out.println("Delivery creation successful");
-        } catch (Exception ex) {
+        }
+        catch (Exception ex)
+        {
             System.out.println("Creation failed, error message: " + ex.getMessage());
         }
 
@@ -133,19 +148,23 @@ public class OrderDetailsServlet extends HttpServlet {
         ArrayList<Integer> cakes = (ArrayList<Integer>) session.getAttribute("cakes");
         System.out.println(cakes);
         Cake[] cakeArray = new Cake[cakes.size()];
-        for (int i = 0; i < cakes.size(); i++) {
+        for (int i = 0; i < cakes.size(); i++)
+        {
             cakeArray[i] = cs.get(cakes.get(i));
         }
 
         String returnPage = "";
 
-        if (dbEntry.inserOrderDB(cakeArray, user, delivery, dueDate)) {
+        if (dbEntry.inserOrderDB(cakeArray, user, delivery, dueDate))
+        {
             //clear cakes 
             cakes = new ArrayList<>();
             session.setAttribute("cakes", cakes);
             session.setAttribute("payment", paymentMethod);
             getServletContext().getRequestDispatcher("/summary").forward(request, response);
-        } else {
+        }
+        else
+        {
             returnPage = "mainmenu?result=fail";
             response.sendRedirect(returnPage);
         }
