@@ -117,12 +117,23 @@
                         <br>
                         <p><strong>Description:</strong> ${currCake.description}</p>
                     </div>
+
                     <div class="col-md-3">
-                        <form action="cakeinfo" method="POST">
-                            <strong>Quantity</strong>
-                            <input type="number" name="quantity" value="1" min="1" max="20" style="width: 20%;">
+                        <form action="cakeinfo" method="POST" class="form-inline">
+                            <div class="form-group row">
+                                <strong>Quantity</strong>
+                            </div>
+                            <!--                            <input type="number" name="quantity" value="1" min="1" max="20" style="width: 20%;">-->
+                            <div class="form-group row">
+                                <i class="minus fas fa-minus-square fa-2x" ></i>
+                                <input type="text" name="quantity" class="form-control" style="width: 20%;" value="1" readonly/>
+                                <i class="plus fas fa-plus-square fa-2x"></i>
+                            </div>
+
                             <input type="hidden" name="cakeId" value="${currCake.cakeId}">
-                            <button type="submit" class="btn btn-outline-dark">Add To Cart</button>
+                            <div class="form-group row">
+                                <button type="submit" class="btn btn-warning">Add To Cart</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -138,6 +149,26 @@
         </div>
 
 
+        <script>
+            $(document).ready(function () {
+                $('.minus').click(function () {
+                    var $input = $(this).parent().find('input');
+                    var count = parseInt($input.val()) - 1;
+                    count = count < 1 ? 1 : count;
+                    $input.val(count);
+                    $input.change();
+                    return false;
+                });
+                $('.plus').click(function () {
+                    var $input = $(this).parent().find('input');
+                    $input.val(parseInt($input.val()) + 1);
+                    $input.change();
+                    return false;
+                });
+            });
+        </script>
+
+        <br>
         <div class="containter" id="bottomfooter">
             <!-- Footer -->
             <br>
