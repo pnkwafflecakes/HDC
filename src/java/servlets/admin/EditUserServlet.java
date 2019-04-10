@@ -2,12 +2,15 @@ package servlets.admin;
 
 import Entities.Accounttype;
 import Entities.User;
+import businesslogic.UserService;
 import dataaccess.UserJpaController;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -83,6 +86,11 @@ public class EditUserServlet extends HttpServlet
             getServletContext().getRequestDispatcher("/WEB-INF/adminportal/managecustomers.jsp").forward(request, response);
         }
 
+        HttpSession session = request.getSession(true);
+        UserService us = new UserService();
+        List users = us.getAll();
+
+        session.setAttribute("customers", users);
         request.setAttribute("notification", "User saved.");
         getServletContext().getRequestDispatcher("/WEB-INF/adminportal/managecustomers.jsp").forward(request, response);
     }
