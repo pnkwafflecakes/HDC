@@ -143,7 +143,7 @@ public class RegisterServlet extends HttpServlet
             errorCheck = true;
             request.setAttribute("error", "Please Enter Your Postal Code With the Dashes Included");
         }
-        if(!email.matches("[A-Za-z0-9]{2,30}[@][A-Za-z0-9]{2,20}{1}[.]{1}[A-Za-z]{2,8}"))
+        if(!email.matches("[A-Za-z0-9.]{2,30}[@][A-Za-z0-9]{2,20}{1}[.]{1}[A-Za-z]{2,8}"))
         {
             errorCheck = true;
             request.setAttribute("error", "Please Enter a Valid Email Address");
