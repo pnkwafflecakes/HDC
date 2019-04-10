@@ -130,11 +130,11 @@
                         <label for="delivery">Delivery Method</label>               
                         <select class="form-control" id="delivery" name="deliveryList">
                             <option value="Home Delivery"> Home Delivery </option>
-                            <option value="69 Street Park & Ride Surface"> 69 Street Park & Ride Surface </option>
-                            <option value="Tom Baines School North Parking Lot"> Tom Baines School North Parking Lot </option>
-                            <option value="T&T North HSBC Bank Parking Lot"> T&T North HSBC Bank Parking Lot </option>
-                            <option value="Nickle School Parking Lot"> Nickle School Parking Lot </option>
-                            <option value="Somerset Station Parking Lot"> Somerset Station Parking Lot </option>
+                            <option value="69 Street Park & Ride Surface"> Pickup: 69 Street Park & Ride Surface </option>
+                            <option value="Tom Baines School North Parking Lot"> Pickup: Tom Baines School North Parking Lot </option>
+                            <option value="T&T North HSBC Bank Parking Lot"> Pickup: T&T North HSBC Bank Parking Lot </option>
+                            <option value="Nickle School Parking Lot"> Pickup: Nickle School Parking Lot </option>
+                            <option value="Somerset Station Parking Lot"> Pickup: Somerset Station Parking Lot </option>
                         </select>
                     </div>
 
