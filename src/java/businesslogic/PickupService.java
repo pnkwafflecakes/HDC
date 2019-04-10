@@ -47,19 +47,7 @@ public class PickupService
         }
         else
         {
-            Pickup selectedPickup;
-            int openId = 2;
-            for (int i=0; i < currPickups.size(); i++) {
-                selectedPickup = currPickups.get(i);
-                if (openId != selectedPickup.getPickupId()+1) {
-                    newId = openId-1; //Issue here :/
-                    i = currPickups.size();
-                }
-                else {
-                    openId++;
-                }
-            }
-            if(newId == 0) newId = currPickups.size()+1;
+            newId = currPickups.get(currPickups.size()-1).getPickupId()+1;
         }
 
         pickup.setPickupId(newId);

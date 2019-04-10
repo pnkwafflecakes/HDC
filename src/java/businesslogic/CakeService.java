@@ -46,19 +46,7 @@ public class CakeService
         }
         else
         {
-            Cake selectedCake;
-            int openId = 2;
-            for (int i=0; i < currCakes.size(); i++) {
-                selectedCake = currCakes.get(i);
-                if (openId != selectedCake.getCakeId()+1) {
-                    newId = openId-1; //Issue here :/
-                    i = currCakes.size();
-                }
-                else {
-                    openId++;
-                }
-            }
-            if(newId == 0) newId = currCakes.size()+1;
+            newId = currCakes.get(currCakes.size()-1).getCakeId()+1;
         }
 
         cake.setCakeId(newId);

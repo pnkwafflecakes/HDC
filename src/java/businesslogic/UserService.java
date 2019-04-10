@@ -37,19 +37,7 @@ public class UserService
         }
         else
         {
-            User selectedUser;
-            int openId = 2;
-            for (int i=0; i < currUsers.size(); i++) {
-                selectedUser = currUsers.get(i);
-                if (openId != selectedUser.getUserId()+1) {
-                    newId = openId-1; //Issue here :/
-                    i = currUsers.size();
-                }
-                else {
-                    openId++;
-                }
-            }
-            if(newId == 0) newId = currUsers.size()+1;
+            newId = currUsers.get(currUsers.size()-1).getUserId()+1;
         }
 
         user.setUserId(newId);
