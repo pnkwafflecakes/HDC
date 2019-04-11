@@ -30,56 +30,51 @@
         <style><%@include file="/WEB-INF/styles/navbar.css"%></style>
         <style><%@include file="/WEB-INF/styles/mainmenu.css"%></style>
 
-
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-custom">
             <div class="container">
                 <a class="navbar-brand" href="#"> H D C </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="mainmenu">
-                                主页
-                            </a>
+                            <a class="nav-link" href="mainmenu">主页</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="browse">
-                                浏览
-                            </a>
+                            <a class="nav-link" href="browse">浏览</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact">
-                                联系我们
+                            <a class="nav-link" href="contact">联系我们
                             </a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="cart">
-                                购物车
-                                <span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
+                            <a class="nav-link" href="cart">购物车<span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
                         </li>
-
-
-
                         <li class="nav-item"> </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
 
+<!--                        <form class="form-inline my-2 my-lg-0" action="search" method="post">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchWord">
+                            <input type="hidden" name="action" value="Search">
+                        </form>-->
+
+
                         <c:if test="${userObj != null}">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="glyphicon glyphicon-user">
-                                    </span> ${userObj.name} 
+                                    <i class="fas fa-user-circle"></i> 
+                                    ${userObj.name} 
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="manageaccount">我的账户</a>
+                                    <a class="dropdown-item" href="manageaccount">我的账号</a>
                                     <a class="dropdown-item" href="orders">我的订单</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="login?act=logout"><span class="glyphicon glyphicon-log-out"></span> 登出</a>
+                                    <a class="dropdown-item" href="login?act=logout"><i class="fas fa-sign-out-alt"></i> 登出</a>
                                 </div>
                             </li>
                         </c:if>
@@ -91,9 +86,12 @@
                             </li>
                         </c:if>
 
+                        <!--button toggle ch/en-->
                         <li class="nav-item">
                             <a class="nav-link" href="lang?act=en"><i class="fas fa-globe-americas"></i>  English </a>
                         </li>
+
+
                     </ul>
                 </div>
             </div>
@@ -118,16 +116,27 @@
                     <c:forEach var="cake" items="${cakesInCart}">
                         <tr>
                             <c:if test="${cake != null}">
-                                <td><img src="<c:url value='${cake.image}'/>" alt="Cake Picture" width="80dp" height="80dp"/></td>
-                                <td width="20%">${cake.namecn}</td>
+                                <td>
+                                    <a href="cakeinfo?cakeid=${cake.cakeId}">
+                                        <img src="<c:url value='${cake.image}'/>" alt="Cake Picture" width="80dp" height="80dp"/>
+                                    </a>
+                                </td>
+                                <td width="20%">
+                                    <a href="cakeinfo?cakeid=${cake.cakeId}">
+                                        <p class="card-title">
+                                            ${cake.namecn}
+                                        </p>
+                                    </a>
+                                </td>
                                 <td width="40%">${cake.descriptioncn}</td>
                                 <td width="15%">${cake.price}</td>
-                                <td width="5%"><c:out value="${counter[cake.cakeId]}"/></td>
+<!--                                <td width="5%"><c:out value="${counter[cake.cakeId]}"/></td>-->
                                 <td width="10%">
                                     <form action="cart" method="post" >
-                                        <input type="submit" value="删除">
-                                        <input type="hidden" name="action" value="delete">
-                                        <input type="hidden" name="selectedCake" value="${cake.cakeId}">
+                                        <input type="number" name="quantity" value="${counter[cake.cakeId]}" min="0" max="20" style="width: 100%;">
+                                        <button type="submit" class="btn btn-primary">修改</button>
+                                        <input type="hidden" name="action" value="change">
+                                        <input type="hidden" name="selectedCake" value="${cake.cakeId}">   
                                     </form>
                                 </td>
                             </tr>
@@ -136,7 +145,7 @@
                 </tbody>
             </table>
             <br>
-            <h3 class="text-left">总金额： <font color="red">$${totalPrice}</font></h3>
+            <h3 class="text-left">总计 <font color="red">$${totalPrice}</font></h3>
             <br>
             <div class="row">
                 <div class="col-md-6">
@@ -146,7 +155,7 @@
                     </form>
                 </div>
                 <div class="col-md-6">
-                    <a href="mainmenu" class="btn btn-outline-dark" style=" float: right;">继续选购</a>
+                    <a href="mainmenu" class="btn btn-outline-dark" style=" float: right;">继续购物</a>
                 </div>
             </div>
         </div>
@@ -170,10 +179,9 @@
                         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
 
                             <!-- Content -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Hellen Delicious Cakes, Inc.</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">海燕美味蛋糕</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                            <p class="footertext">Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit.</p>
+                            <p class="footertext">由海燕精心制作的蛋糕松软可口、细腻绵软、甜度适中，适合所有人的口味</p>
 
                         </div>
                         <!-- Grid column -->
@@ -182,7 +190,7 @@
                         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
                             <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Follow Us</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">关注我们</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                             <p>
                                 <a href="#" class="fab fa-facebook footertext"> facebook</a>  
@@ -202,7 +210,7 @@
                         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
 
                             <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Contact</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">联系方式</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                             <p class="footertext">
                                 <i class="fas fa-home mr-3 "></i>188 Springbluff Blvd SW <br>Calgary, AB</p>
@@ -222,7 +230,7 @@
 
                 <!-- Copyright -->
                 <div class="footer-copyright text-center py-3 footertext">
-                    Copyright © Helen's Delicious Cakes. All rights reserved
+                     版权所有 © 海燕美味蛋糕
                 </div>
                 <!-- Copyright -->
 

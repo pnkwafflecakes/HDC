@@ -1,5 +1,5 @@
 <%-- 
-    Document   : cart
+    Document   : browse
     Created on : Feb 7, 2019, 2:45:09 PM
     Author     : 703842
 --%>
@@ -29,29 +29,31 @@
 
         <style><%@include file="/WEB-INF/styles/navbar.css"%></style>
         <style><%@include file="/WEB-INF/styles/mainmenu.css"%></style>
+        <style><%@include file="/WEB-INF/styles/browse.css"%></style>
+
 
     </head>
     <body>
-        <nav class="navbar sticky-top navbar-expand-lg navbar-custom">
+        <nav class="navbar navbar-expand-lg navbar-custom">
             <div class="container">
-                <a class="navbar-brand" href="mainmenu"> H D C </a>
+                <a class="navbar-brand" href="#"> H D C </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="mainmenu">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="browse">Browse</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact">Contact
-                            </a>
+                            <a class="nav-link" href="mainmenu">主页</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="cart">Cart<span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
+                            <a class="nav-link" href="browse">浏览</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact">联系我们
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="cart">购物车<span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
                         </li>
                         <li class="nav-item"> </li>
                     </ul>
@@ -71,24 +73,24 @@
                                     ${userObj.name} 
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="manageaccount">My Profile</a>
-                                    <a class="dropdown-item" href="orders">My Orders</a>
+                                    <a class="dropdown-item" href="manageaccount">我的账号</a>
+                                    <a class="dropdown-item" href="orders">我的订单</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="login?act=logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+                                    <a class="dropdown-item" href="login?act=logout"><i class="fas fa-sign-out-alt"></i> 登出</a>
                                 </div>
                             </li>
                         </c:if>
                         <c:if test="${userObj == null}">
                             <li class="nav-item">
                                 <a class="nav-link" href="login">
-                                    Login/Register
+                                    登录/注册
                                 </a>
                             </li>
                         </c:if>
 
                         <!--button toggle ch/en-->
                         <li class="nav-item">
-                            <a class="nav-link" href="lang?act=cn"><i class="fas fa-globe-americas"></i>  中文 </a>
+                            <a class="nav-link" href="lang?act=en"><i class="fas fa-globe-americas"></i>  English </a>
                         </li>
 
 
@@ -97,68 +99,30 @@
             </div>
         </nav>
 
+        <hr>
 
-        <div class="container">
-            <br>
-            <h2 class="text-center">Shopping Cart</h2>
-            <br>
-            ${errorMessage}
-            <table class="table table-bordered table-striped table-hover">
-                <thead>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                </thead>
-                <tbody>
-                    <!--cakesInCart is cakeArray in CartService for cart.jsp use-->
-                    <c:forEach var="cake" items="${cakesInCart}">
-                        <tr>
-                            <c:if test="${cake != null}">
-                                <td>
-                                    <a href="cakeinfo?cakeid=${cake.cakeId}">
-                                        <img src="<c:url value='${cake.image}'/>" alt="Cake Picture" width="80dp" height="80dp"/>
-                                    </a>
-                                </td>
-                                <td width="20%">
-                                    <a href="cakeinfo?cakeid=${cake.cakeId}">
-                                        <p class="card-title">
-                                            ${cake.name}
-                                        </p>
-                                    </a>
-                                </td>
-                                <td width="40%">${cake.description}</td>
-                                <td width="15%">${cake.price}</td>
-                                <td width="10%">
-                                    <form action="cart" method="post" >
-                                        <input type="number" name="quantity" value="${counter[cake.cakeId]}" min="0" max="20" style="width: 100%;">
-                                        <button type="submit" class="btn btn-primary">Change</button>
-                                        <input type="hidden" name="action" value="change">
-                                        <input type="hidden" name="selectedCake" value="${cake.cakeId}">   
-                                    </form>
-                                </td>
-                            </tr>
-                        </c:if>
-                    </c:forEach>
-                </tbody>
-            </table>
-            <br>
-            <h3 class="text-left">Subtotal <font color="red">$${totalPrice}</font></h3>
-            <br>
-            <div class="row">
-                <div class="col-md-6">
-                    <form action="cart" method="post">
-                        <button type="submit" class="btn btn-outline-dark" name="data"><h3>Checkout</h3></button>
-                        &nbsp
-                    </form>
-                </div>
-                <div class="col-md-6">
-                    <a href="mainmenu" class="btn btn-outline-dark" style=" float: right;">Continue Shopping</a>
-                </div>
+        <div class="containter" id="cakecontainer">
+            <div class="row text-center">
+                <c:forEach items="${allcakes}" var="ck">
+                    <div class="card responsive">
+                        <a href="cakeinfo?cakeid=${ck.cakeId}">
+                            <img class="card-img-top" alt="Card image cap" src="<c:url value='${ck.image}'/>" />
+                        </a>
+                        <div class="card-body">
+                            <a href="cakeinfo?cakeid=${ck.cakeId}">
+                                <h5 class="card-title">
+                                    ${ck.namecn}
+                                </h5>
+                            </a>
+                            <p class="card-text">
+                                ${ck.descriptioncn}
+                            </p>
+
+                        </div>
+                    </div>
+                </c:forEach>
             </div>
         </div>
-
 
         <hr>
 
@@ -178,9 +142,9 @@
                         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
 
                             <!-- Content -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Helen's Delicious Cakes, Inc.</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">海燕美味蛋糕</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                            <p class="footertext">Helen's Delicious Cakes is a locally owned small business that prides itself on making fresh cakes daily. Our cakes are scratch-baked, and customised to suit your needs. Please don't hesitate to contact us with any questions.</p>
+                            <p class="footertext">由海燕精心制作的蛋糕松软可口、细腻绵软、甜度适中，适合所有人的口味</p>
 
                         </div>
                         <!-- Grid column -->
@@ -189,7 +153,7 @@
                         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
                             <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Follow Us</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">关注我们</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                             <p>
                                 <a href="#" class="fab fa-facebook footertext"> facebook</a>  
@@ -209,7 +173,7 @@
                         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
 
                             <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Contact</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">联系方式</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                             <p class="footertext">
                                 <i class="fas fa-home mr-3 "></i>188 Springbluff Blvd SW <br>Calgary, AB</p>
@@ -229,7 +193,7 @@
 
                 <!-- Copyright -->
                 <div class="footer-copyright text-center py-3 footertext">
-                    Copyright © Helen's Delicious Cakes. All rights reserved.
+                    版权所有 © 海燕美味蛋糕
                 </div>
                 <!-- Copyright -->
 

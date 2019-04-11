@@ -87,12 +87,14 @@ public class OrderDetailsServlet extends HttpServlet
         String address = request.getParameter("address") + "";
         String deliveryMethod = request.getParameter("deliveryList");
         String paymentMethod = request.getParameter("paymentList");
-        String notes = request.getParameter("notes") + "; Name for order: " + name + "";
+        String notes = request.getParameter("notes");
+
         String phoneNo = request.getParameter("phoneNo") + "";
         String dueDate = request.getParameter("dueDate") + "";
-        
-        
-        System.out.println("duedate:"+dueDate);
+
+        HttpSession session = request.getSession(true);
+
+        System.out.println("duedate:" + dueDate);
         int deliveryNo = 1;
 
         DeliveryService ds = new DeliveryService();
@@ -111,6 +113,15 @@ public class OrderDetailsServlet extends HttpServlet
             }
         }
         System.out.println("--*-- ID found: " + deliveryNo);
+
+        User user = (User) session.getAttribute("userObj");
+
+        if (user == null)
+        {
+            UserService us = new UserService();
+            user = us.get(1);
+            notes = notes + " Name for order: " + name + "";
+        }
 
         Delivery delivery = new Delivery();
 
@@ -134,29 +145,12 @@ public class OrderDetailsServlet extends HttpServlet
         DBEntry dbEntry = new DBEntry();
 
         CakeService cs = new CakeService();
-        HttpSession session = request.getSession(true);
         ArrayList<Integer> cakes = (ArrayList<Integer>) session.getAttribute("cakes");
         System.out.println(cakes);
         Cake[] cakeArray = new Cake[cakes.size()];
         for (int i = 0; i < cakes.size(); i++)
         {
             cakeArray[i] = cs.get(cakes.get(i));
-        }
-
-        //--*-- Simualted part
-//        UserService us = new UserService();
-//        User user = us.get(1);
-        //--*--
-        User user;
-
-        if (session.getAttribute("userObj") != null)
-        {
-            user = (User) session.getAttribute("userObj");
-        }
-        else
-        {
-            UserService us = new UserService();
-            user = us.get(1);
         }
 
         String returnPage = "";
@@ -167,7 +161,6 @@ public class OrderDetailsServlet extends HttpServlet
             cakes = new ArrayList<>();
             session.setAttribute("cakes", cakes);
             session.setAttribute("payment", paymentMethod);
-//          getServletContext().getRequestDispatcher("/WEB-INF/successorder.jsp").forward(request, response);
             getServletContext().getRequestDispatcher("/summary").forward(request, response);
         }
         else

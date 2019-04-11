@@ -43,13 +43,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="mainmenu">Home</a>
+                            <a class="nav-link" href="mainmenu">主页</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="browse">Browse</a>
+                            <a class="nav-link" href="browse">浏览</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact">Contact
+                            <a class="nav-link" href="contact">联系我们
                             </a>
                         </li>
                         <li class="nav-item">
@@ -73,17 +73,17 @@
                                     ${userObj.name} 
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="manageaccount">My Profile</a>
-                                    <a class="dropdown-item" href="orders">My Orders</a>
+                                    <a class="dropdown-item" href="manageaccount">我的账户</a>
+                                    <a class="dropdown-item" href="orders">我的订单</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="login?act=logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+                                    <a class="dropdown-item" href="login?act=logout"><i class="fas fa-sign-out-alt"></i> 登出</a>
                                 </div>
                             </li>
                         </c:if>
                         <c:if test="${userObj == null}">
                             <li class="nav-item">
                                 <a class="nav-link" href="login">
-                                    Login/Register
+                                    登录/注册
                                 </a>
                             </li>
                         </c:if>
@@ -102,57 +102,57 @@
 
         <br>
         <div class="container">
-            <h1 class="text-center">Summary</h1>
+            <h1 class="text-center">订单汇总</h1>
             <br>
             <div class="row">
                 <div class="col-md-6">
                     <table class="table-bordered">
                         <tr>
-                            <th>Order No</th>
+                            <th>订单号</th>
                             <td>${selectedOrder.orderNo}</td>
                         </tr>
                         <tr>
-                            <th>Order Time</th>
+                            <th>下单时间</th>
                             <td>${selectedOrder.orderDatetime}</td>
                         </tr>
                         <tr>
-                            <th>Due Time</th>
+                            <th>需求时间</th>
                             <td>${selectedOrder.dueDatetime}</td>
                         </tr>
                         <tr>
-                            <th>Total</th>
+                            <th>总金额</th>
                             <td>${selectedOrder.totalPrice}</td>
                         </tr>
                         <tr>
-                            <th>Delivery No.</th>
+                            <th>送货单号</th>
                             <td>${selectedOrder.deliveryNo.deliveryNo}</td>
                         </tr>
                         <tr>
-                            <th>User Name</th>
+                            <th>用户名</th>
                             <td>${user.username}</td>
                         </tr>
                         <tr>
-                            <th>User PhoneNo</th>
+                            <th>用户电话</th>
                             <td>${user.phoneNo}</td>
                         </tr>
                         <tr>
-                            <th>User Email</th>
+                            <th>用户邮箱</th>
                             <td>${user.email}</td>
                         </tr>
                         <tr>
-                            <th>Delivery Method</th>
+                            <th>送货方式</th>
                             <td>${delivery.method}</td>
                         </tr>
                         <tr>
-                            <th>Delivery Address</th>
+                            <th>送货地址</th>
                             <td>${delivery.address}</td>
                         </tr>
                         <tr>
-                            <th>Delivery Phone No.</th>
+                            <th>送货电话</th>
                             <td>${delivery.phoneNo}</td>
                         </tr>
                         <tr>
-                            <th>Notes</th>
+                            <th>备注</th>
                             <td>${delivery.notes}</td>
                         </tr>
                     </table>
@@ -163,16 +163,16 @@
                         <thead>
                             <tr>
                                 <th class="col-md-2"></th>
-                                <th class="col-md-4">Name</th>
-                                <th class="col-md-3">Price</th>
-                                <th class="col-md-3">Qty</th>
+                                <th class="col-md-4">名称</th>
+                                <th class="col-md-3">价格</th>
+                                <th class="col-md-3">数量</th>
                             </tr>
                         </thead>
                         <tbody>
                         <c:forEach var="cakeOrder" items="${cakeOrders}" > 
                             <tr>
                                 <td><img src="<c:url value='${cakeOrder.cake.image}'/>" alt="Cake Picture" width="80dp" height="80dp"/></td>
-                                <td width="20%">${cakeOrder.cake.name}</td>
+                                <td width="20%">${cakeOrder.cake.namecn}</td>
                                 <td >${cakeOrder.cake.price}</td>
                                 <td>${cakeOrder.quantity}</td>
                             </tr>
@@ -182,7 +182,7 @@
                     <hr>
 
                     <div>
-                        <h2>Please choose your payment method:</h2>
+                        <h2>请选择付款方式:</h2>
 
                         <div class="row">
                             <div class="col-md-6">
@@ -234,11 +234,11 @@
 
                         <script>
                             $(document).ready(function () {
-//                                default show paypal button
-                                        $("#paypaytab").show();
+                                $("#paypaytab").show();
                                         $("#etranstertab").hide();
                                         $("#codtab").hide();
                                 $('input:radio[name=payment]').change(function () {
+                                        
                                     if (this.value == 'paypal') {
                                         $("#paypaytab").show();
                                         $("#etranstertab").hide();
@@ -282,10 +282,9 @@
                         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
 
                             <!-- Content -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Hellen Delicious Cakes, Inc.</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">海燕美味蛋糕</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                            <p class="footertext">Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit.</p>
+                            <p class="footertext">由海燕精心制作的蛋糕松软可口、细腻绵软、甜度适中，适合所有人的口味</p>
 
                         </div>
                         <!-- Grid column -->
@@ -294,7 +293,7 @@
                         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
                             <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Follow Us</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">关注我们</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                             <p>
                                 <a href="#" class="fab fa-facebook footertext"> facebook</a>  
@@ -314,7 +313,7 @@
                         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
 
                             <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Contact</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">联系方式</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                             <p class="footertext">
                                 <i class="fas fa-home mr-3 "></i>188 Springbluff Blvd SW <br>Calgary, AB</p>
@@ -334,7 +333,7 @@
 
                 <!-- Copyright -->
                 <div class="footer-copyright text-center py-3 footertext">
-                    Copyright © Helen's Delicious Cakes. All rights reserved
+                    版权所有 © 海燕美味蛋糕
                 </div>
                 <!-- Copyright -->
 

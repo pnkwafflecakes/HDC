@@ -33,9 +33,9 @@
 
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-custom">
+        <nav class="navbar sticky-top navbar-expand-lg navbar-custom">
             <div class="container">
-                <a class="navbar-brand" href="#"> H D C </a>
+                <a class="navbar-brand" href="mainmenu"> H D C </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -97,31 +97,31 @@
                 </div>
             </div>
         </nav>
-        
+
         <div class="container">
             <br>
-            
-            <h1 class="text-center">Customer Details</h1>
+
+            <h1 class="text-center">Delivery Details</h1>
             ${errorMessage}
             <br>
-            
+
             <form action="orderdetails" method="POST">
                 <div class="form-row">
 
                     <div class="form-group col-md-6">
                         <label for="inputName">Name</label>
-                        <input type="text" class="form-control" id="inputName" name="name" value="${userObj.name}" required="required">
+                        <input type="text" class="form-control" id="inputName" name="name" value="${userObj.name}" required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputPhone">Phone Number</label>
-                        <input type="text" placeholder="###-###-####" pattern="^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$" class="form-control" id="inputPhone" name="phoneNo" value="${userObj.phoneNo}" required="required">
+                        <input type="text" placeholder="###-###-####" pattern="^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$" class="form-control" id="inputPhone" name="phoneNo" value="${userObj.phoneNo}" required>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="inputAddress">Address</label>
-                        <input type="text" class="form-control" id="inputAddress" name="address" value="${userObj.address}" required="required">
+                        <input type="text" class="form-control" id="inputAddress" name="address" value="${userObj.address}" required>
                     </div>
                 </div>
 
@@ -130,162 +130,129 @@
                         <label for="delivery">Delivery Method</label>               
                         <select class="form-control" id="delivery" name="deliveryList">
                             <option value="Home Delivery"> Home Delivery </option>
-                            <option value="69 Street Park & Ride Surface"> 69 Street Park & Ride Surface </option>
-                            <option value="Tom Baines School North Parking Lot"> Tom Baines School North Parking Lot </option>
-                            <option value="T&T North HSBC Bank Parking Lot"> T&T North HSBC Bank Parking Lot </option>
-                            <option value="Nickle School Parking Lot"> Nickle School Parking Lot </option>
-                            <option value="Somerset Station Parking Lot"> Somerset Station Parking Lot </option>
+                            <option value="69 Street Park & Ride Surface"> Pickup: 69 Street Park & Ride Surface </option>
+                            <option value="Tom Baines School North Parking Lot"> Pickup: Tom Baines School North Parking Lot </option>
+                            <option value="T&T North HSBC Bank Parking Lot"> Pickup: T&T North HSBC Bank Parking Lot </option>
+                            <option value="Nickle School Parking Lot"> Pickup: Nickle School Parking Lot </option>
+                            <option value="Somerset Station Parking Lot"> Pickup: Somerset Station Parking Lot </option>
                         </select>
                     </div>
 
-<!--                    <div class="form-group col-md-6">
-                        <label for="payment">Payment Method</label>               
-                        <select class="form-control" id="payment" name="paymentList">
-                            <option> Cash Upon Delivery </option>
-                            <option> e-Transfer </option>
-                            <option> PayPal </option>
-                        </select>
-                    </div>-->
                     <div class="form-row">
-                    <div class="form-group col-md-24">
-                        <label for="inputDueDate">Due Date</label>
-                        <input type="date" class="form-control" id="inputDueDate" name="dueDate" >
-                        <script type="text/javascript">
-                           
-                            $("#inputDueDate").val(getFormattedDate(tomorrow()));
-                           
-                            function tomorrow() {
-                                return today().getTime() + 24 * 60 * 60 * 1000;
-                            }
+                        <div class="form-group col-md-24">
+                            <label for="inputDueDate">Requested Date</label>
+                            <input type="date" class="form-control" id="inputDueDate" name="dueDate" required>
 
-                        </script>
+                            <script type="text/javascript">
+
+                                $("#inputDueDate").val(getFormattedDate(tomorrow()));
+
+                                function tomorrow()
+                                {
+                                    return today().getTime() + 24 * 60 * 60 * 1000;
+                                }
+
+                            </script>
+                        </div>
+
                     </div>
-                         
                 </div>
-                </div>
-
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="inputNotes">Notes</label>
                         <textarea class="form-control" rows="3" id="inputNotes"  name="notes" placeholder="Additional notes here..." ></textarea>
                     </div>
                 </div>
-                    <c:if test="${userObj == null}">
-                        <p>Warning: If you are not logged in you will not get to monitor order progress. You can still continue and contact Helen By: </p>
-                        <p>Phone: (403) 808-3860</p>
-                        <p>Email: helen@gmail.com</p>
-                    </c:if>
-                <div class="col text-center">
-                    <button type="submit" class="btn btn-outline-dark"><h3>Submit</h3></button>
-                </div>
-            </form>
+                <c:if test="${userObj == null}">
+                    <p>Warning: If you are not logged in you will not get to monitor order progress. You can still continue and contact Helen By: </p>
+                    <p>Phone: (403) 808-3860</p>
+                    <p>Email: helen@gmail.com</p>
+                </c:if>
         </div>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-<!--        paypal button
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_xclick">
-<input type="hidden" name="business" value="YMPFXKHT6YJTC">
-<input type="hidden" name="lc" value="CA">
-<input type="hidden" name="item_name" value="Cake">
-<input type="hidden" name="button_subtype" value="services">
-<input type="hidden" name="no_note" value="1">
-<input type="hidden" name="no_shipping" value="1">
-<input type="hidden" name="rm" value="1">
-<input type="hidden" name="return" value="http://localhost:8084/HDCProject/payment?payment=success">
-<input type="hidden" name="cancel_return" value="http://localhost:8084/HDCProject/payment?payment=fail">
-<input type="hidden" name="currency_code" value="CAD">
-<input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted">
-<input type="hidden" name="amount" value="${totalPrice}">
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>-->
-
-
+        <div class="col text-center">
+            <button type="submit" class="btn btn-outline-dark"><h3>Submit</h3></button>
+        </div>
+    </form>
+</div>
 
 
 
 <hr>
 <div class="containter" id="bottomfooter">
-        <!-- Footer 
-        <br>
-        <footer class="page-footer font-small unique-color-dark">
+    <!-- Footer 
+    <br>
+    <footer class="page-footer font-small unique-color-dark">
 
 
-            <!-- Footer Links -->
-            <div class="container text-center text-md-left mt-5">
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left mt-5">
 
-                <!-- Grid row -->
-                <div class="row mt-3">
+        <!-- Grid row -->
+        <div class="row mt-3">
 
-                    <!-- Grid column -->
-                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
 
-                        <!-- Content -->
-                        <h6 class="text-uppercase font-weight-bold footertext">Hellen Delicious Cakes, Inc.</h6>
-                        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                        <p class="footertext">Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
-                            adipisicing elit.</p>
-
-                    </div>
-                    <!-- Grid column -->
-
-                    <!-- Grid column -->
-                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-
-                        <!-- Links -->
-                        <h6 class="text-uppercase font-weight-bold footertext">Follow Us</h6>
-                        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                        <p>
-                            <a href="#" class="fab fa-facebook footertext"> facebook</a>  
-                        </p>
-                        <p>
-                            <a href="#" class="fab fa-instagram footertext"> instagram</a> 
-                        </p>
-                        <p>
-                            <a href="#" class="fab fa-weixin footertext"> wechat</a>
-                        </p>
-
-
-                    </div>
-                    <!-- Grid column -->
-
-                    <!-- Grid column -->
-                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-
-                        <!-- Links -->
-                        <h6 class="text-uppercase font-weight-bold footertext">Contact</h6>
-                        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                        <p class="footertext">
-                            <i class="fas fa-home mr-3 "></i>188 Springbluff Blvd SW <br>Calgary, AB</p>
-                        <p class="footertext">
-                            <i class="fas fa-envelope mr-3 "></i>  <a href="mailto:#">helen@gmail.com</a></p>
-                        <p class="footertext">
-                            <i class="fas fa-phone mr-3 "></i>(403) 808-3860</p>
-
-                    </div>
-                    <!-- Grid column -->
-
-                </div>
-                <!-- Grid row -->
+                <!-- Content -->
+                <h6 class="text-uppercase font-weight-bold footertext">Hellen Delicious Cakes, Inc.</h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p class="footertext">Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
+                    adipisicing elit.</p>
 
             </div>
-            <!-- Footer Links -->
+            <!-- Grid column -->
 
-            <!-- Copyright -->
-            <div class="footer-copyright text-center py-3 footertext">
-                Copyright © Helen's Delicious Cakes. All rights reserved
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-bold footertext">Follow Us</h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p>
+                    <a href="#" class="fab fa-facebook footertext"> facebook</a>  
+                </p>
+                <p>
+                    <a href="#" class="fab fa-instagram footertext"> instagram</a> 
+                </p>
+                <p>
+                    <a href="#" class="fab fa-weixin footertext"> wechat</a>
+                </p>
+
+
             </div>
-            <!-- Copyright -->
+            <!-- Grid column -->
 
-        </footer>
-        <!-- Footer -->
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-bold footertext">Contact</h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p class="footertext">
+                    <i class="fas fa-home mr-3 "></i>188 Springbluff Blvd SW <br>Calgary, AB</p>
+                <p class="footertext">
+                    <i class="fas fa-envelope mr-3 "></i>  <a href="mailto:#">helen@gmail.com</a></p>
+                <p class="footertext">
+                    <i class="fas fa-phone mr-3 "></i>(403) 808-3860</p>
+
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
     </div>
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3 footertext">
+        Copyright © Helen's Delicious Cakes. All rights reserved
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+</div>
 
 
 </body>

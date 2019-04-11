@@ -2,14 +2,13 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="persistence" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>Entities.Cakecategory</class>
-    <class>Entities.Cake</class>
+    <class>Entities.Orders</class>
     <class>Entities.Accounttype</class>
+    <class>Entities.Cake</class>
     <class>Entities.Cakeorder</class>
     <class>Entities.Delivery</class>
-    <class>Entities.Orders</class>
-    <class>Entities.User</class>
     <class>Entities.Pickup</class>
+    <class>Entities.User</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/capstonedb?zeroDateTimeBehavior=convertToNull"/>

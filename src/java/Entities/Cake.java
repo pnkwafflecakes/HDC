@@ -82,9 +82,6 @@ public class Cake implements Serializable {
         @JoinColumn(name = "order_no", referencedColumnName = "order_no")})
     @ManyToMany
     private Collection<Orders> ordersCollection;
-    @JoinColumn(name = "category_id", referencedColumnName = "category_id")
-    @ManyToOne(optional = false)
-    private Cakecategory categoryId;
 
     public Cake() {
     }
@@ -174,13 +171,6 @@ public class Cake implements Serializable {
         this.ordersCollection = ordersCollection;
     }
 
-    public Cakecategory getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Cakecategory categoryId) {
-        this.categoryId = categoryId;
-    }
 
     @Override
     public int hashCode() {

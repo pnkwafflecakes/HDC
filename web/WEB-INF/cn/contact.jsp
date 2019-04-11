@@ -32,26 +32,26 @@
 
     </head>
     <body>
-        <nav class="navbar sticky-top navbar-expand-lg navbar-custom">
+        <nav class="navbar navbar-expand-lg navbar-custom">
             <div class="container">
-                <a class="navbar-brand" href="mainmenu"> H D C </a>
+                <a class="navbar-brand" href="#"> H D C </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="mainmenu">Home</a>
+                            <a class="nav-link" href="mainmenu">主页</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="browse">Browse</a>
+                            <a class="nav-link" href="browse">浏览</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="contact">Contact
+                            <a class="nav-link" href="contact">联系我们
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="cart">Cart<span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
+                            <a class="nav-link" href="cart">购物车<span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
                         </li>
                         <li class="nav-item"> </li>
                     </ul>
@@ -71,24 +71,24 @@
                                     ${userObj.name} 
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">My Profile</a>
-                                    <a class="dropdown-item" href="#">My Orders</a>
+                                    <a class="dropdown-item" href="#">我的账号</a>
+                                    <a class="dropdown-item" href="#">我的订单</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="login?act=logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+                                    <a class="dropdown-item" href="login?act=logout"><i class="fas fa-sign-out-alt"></i> 登出</a>
                                 </div>
                             </li>
                         </c:if>
                         <c:if test="${userObj == null}">
                             <li class="nav-item">
                                 <a class="nav-link" href="login">
-                                    Login/Register
+                                    登录/注册
                                 </a>
                             </li>
                         </c:if>
 
                         <!--button toggle ch/en-->
                         <li class="nav-item">
-                            <a class="nav-link" href="lang?act=cn"><i class="fas fa-globe-americas"></i>  中文 </a>
+                            <a class="nav-link" href="lang?act=en"><i class="fas fa-globe-americas"></i>  English </a>
                         </li>
 
 
@@ -101,9 +101,9 @@
         <hr>
 
         <div class="containter-fluid" id="maincontainter">
-            <h1 class="text-center">Hellen's Delicious Cakes</h1>
+            <h1 class="text-center">海燕美味蛋糕</h1>
             <br>
-            <p class="centralize">Cakes made delicately by haiyan are soft and tasty. Moderate sweetness suit everyone's appetite. All ingredients like eggs,fruits are bought from Costco and T&T. Fresh, delicious and healthy.Striving for perfection.
+            <p class="centralize">由海燕精心制作的蛋糕松软可口、细腻绵软、甜度适中，非常适合中国人的口味！ 所用原料如鸡蛋、水果等均从Costco新鲜采购，健康美味、力求完美。
             </p>
             <br>
 
@@ -115,14 +115,14 @@
                     </div>
                     <div class="col-md-6">
                         <span class="align-middle">
-                            <h3 class="text-center">CONTACT US</h3>
+                            <h3 class="text-center">联系我们</h3>
 
-                            <p><b>Tel:</b> (403) 603-0087
+                            <p><b>电话:</b> (403) 603-0087
                                 <br>
                                <b>Email:</b> 
                                <a href="mailto:helenbkf@gmail.com?Subject=Customer%20Contact" target="_top">helenbkf@gmail.com</a>
                                 <br>
-                                If you require immediate assistance please contact us by phone
+                                需要加急服务，请马上拨打电话
                             </p>
                         </span>
                     </div>
@@ -131,14 +131,14 @@
 
             <br>
             <br>
-            <h3 class="text-center">CALGARY DELIVERY</h3>
+            <h3 class="text-center">卡尔加里送货服务</h3>
             <br>
             <div class= "centralize">
                 <table class="table">
                     <thead>
-                    <th>Short Range</th>
-                    <th>Mid Range</th>
-                    <th>Long Range</th>
+                    <th>短途</th>
+                    <th>中途</th>
+                    <th>长途</th>
                     </thead>
                     <tbody>
                         <tr>
@@ -147,9 +147,9 @@
                             <td>Suburban</td>
                         </tr>
                         <tr>
-                            <td>Arrives between 9:30 and 12:30</td>
-                            <td>Arrives between 1:30 and 4:30</td>
-                            <td>Arrives between 1:30 and 4:30</td>
+                            <td>到达时间 9:30 and 12:30</td>
+                            <td>到达时间 1:30 and 4:30</td>
+                            <td>到达时间 1:30 and 4:30</td>
                         </tr>
                         <tr>
                             <td>$12.00</td>
@@ -162,7 +162,7 @@
 
             <br>
             <br>
-            <h3 class="text-center">PICKUP LOCATIONS</h3>
+            <h3 class="text-center">取货地点</h3>
             <div id="accordion" class="centralize">
                 <div class="card">
                     <div class="card-header" id="headingOnea">
@@ -257,7 +257,7 @@
                     <div class="card-header" id="headingOne">
                         <h5 class="mb-0">
                             <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                How do I place an order?
+                                怎样下订单？
                             </button>
                         </h5>
                     </div>
@@ -266,22 +266,22 @@
                         <div class="card-body">
                             <ul>
                                 <li>
-                                    To place an order we will need to confirm:
+                                   下订单请提供以下信息：
                                 </li>
                                 <li>
-                                    Your name and contact details
+                                    姓名及联系方式
                                 </li>
                                 <li>
-                                    Date and time for pick up or delivery
+                                    取货或送货的日期和时间
                                 </li>
                                 <li>
-                                    Location for pick up
+                                    取货或送货的地点
                                 </li>
                                 <li>
-                                    Details of your order including quantities and flavours
+                                    订单明细包括蛋糕的数量和名称
                                 </li>
                                 <li>
-                                    INTERRAC e-transfer or PAYPAL
+                                    选择INTERRAC e-transfer or PAYPAL支付
                                 </li>
                             </ul>
 
@@ -293,13 +293,13 @@
                     <div class="card-header" id="headingTwo">
                         <h5 class="mb-0">
                             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Order Cancellation and Modification Policy
+                                订单取消及修改
                             </button>
                         </h5>
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                         <div class="card-body">
-                            48-hours is required to modify or cancel any cake, specialty cupcake or custom order. Modifications or cancellations to an order within 48 hours will be charged for the full amount of the order to the credit card provided at the time the order was taken.
+                            如需更改或取消蛋糕订单，请最少在交货时间前48小时与我们联系。
                         </div>
                     </div>
                 </div>
@@ -307,13 +307,13 @@
                     <div class="card-header" id="headingThree">
                         <h5 class="mb-0">
                             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                How far in advance do I need to place an order?
+                                我需要提前多久订蛋糕？
                             </button>
                         </h5>
                     </div>
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                         <div class="card-body">
-                            We are happy to say that we can now take same-day cupcake orders! For cookies, cakes and specialty cupcakes we require at least 48 hours notice (more notice is required for weekends, we book up quickly!).
+                            我们非常高兴能为您提供美味的蛋糕。为了保证蛋糕的新鲜，请至少在需要蛋糕的日期前48小时下单。（周末是需求高峰期，需要更多的时间准备。特殊要求请直接和我们联系）
                         </div>
                     </div>
                 </div>
@@ -321,16 +321,16 @@
                     <div class="card-header" id="headingFour">
                         <h5 class="mb-0">
                             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                Cake care instructions
+                                蛋糕注意事项
                             </button>
                         </h5>
                     </div>
                     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
                         <div class="card-body">
                             <ul>
-                                <li>We believe it’s best if cakes are served on the day they are baked. If you have leftovers or are picking your cupcakes up in advance of your event, they can be stored in their original packaging. They will stay fresh in the refrigerator overnight.
+                                <li>蛋糕在烘焙的当天享用最为鲜美。原包装放入冰箱保鲜层，可以保持过夜后仍然新鲜
                                 </li>
-                                <li>Please avoid exposing your cupcakes to direct sunlight, as it may melt the icing and/or affect the colour.
+                                <li>请避免阳光直射蛋糕，可能会造成奶油融化并影响色泽。
                                 </li>
                             </ul>
                         </div>
@@ -359,9 +359,9 @@
                         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
 
                             <!-- Content -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Helen's Delicious Cakes, Inc.</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">海燕美味蛋糕</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                            <p class="footertext">Helen's Delicious Cakes is a locally owned small business that prides itself on making fresh cakes daily. Our cakes are scratch-baked, and customised to suit your needs. Please don't hesitate to contact us with any questions.</p>
+                            <p class="footertext">由海燕精心制作的蛋糕松软可口、细腻绵软、甜度适中，适合所有人的口味</p>
 
                         </div>
                         <!-- Grid column -->
@@ -370,7 +370,7 @@
                         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
                             <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Follow Us</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">关注我们</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                             <p>
                                 <a href="#" class="fab fa-facebook footertext"> facebook</a>  
@@ -390,7 +390,7 @@
                         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
 
                             <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Contact</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">联系方式</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                             <p class="footertext">
                                 <i class="fas fa-home mr-3 "></i>188 Springbluff Blvd SW <br>Calgary, AB</p>
@@ -410,7 +410,7 @@
 
                 <!-- Copyright -->
                 <div class="footer-copyright text-center py-3 footertext">
-                    Copyright © Helen's Delicious Cakes. All rights reserved.
+                     版权所有 © 海燕美味蛋糕
                 </div>
                 <!-- Copyright -->
 

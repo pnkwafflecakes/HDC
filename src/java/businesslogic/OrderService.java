@@ -37,19 +37,7 @@ public class OrderService {
         }
         else
         {
-            Orders selectedOrder;
-            int openId = 2;
-            for (int i=0; i < currOrders.size(); i++) {
-                selectedOrder = currOrders.get(i);
-                if (openId != selectedOrder.getOrderNo()+1) {
-                    newId = openId-1; //Issue here :/
-                    i = currOrders.size();
-                }
-                else {
-                    openId++;
-                }
-            }
-            if(newId == 0) newId = currOrders.size()+1;
+            newId = currOrders.get(currOrders.size()-1).getOrderNo()+1;
         }
 
         order.setOrderNo(newId);

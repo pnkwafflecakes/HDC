@@ -42,13 +42,17 @@ public class SummaryServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+//        get language option cn/en
+        HttpSession session = request.getSession();
+        String language = (String) session.getAttribute("language");
+        
      DeliveryService ds = new DeliveryService();
      CakeorderJpaController cojc = new CakeorderJpaController();
      OrdersJpaController ojc = new OrdersJpaController();
      
      String action = request.getParameter("action");
      String url = "/WEB-INF/summary.jsp";
-     HttpSession session = request.getSession();
+
      if(action != null && action.equals("logout")){
          url = "/mainmenu";
          session.invalidate();
@@ -82,9 +86,15 @@ public class SummaryServlet extends HttpServlet {
                     }
      
      // forward to the view
-        getServletContext()
-            .getRequestDispatcher( url)
-                .forward(request, response);
+         if (language == null) {
+            language = "en";
+        }
+        if (language.equals("cn")) {
+            getServletContext().getRequestDispatcher("/WEB-INF/cn/summary.jsp").forward(request, response);
+        } else {
+            getServletContext().getRequestDispatcher("/WEB-INF/summary.jsp").forward(request, response);
+        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

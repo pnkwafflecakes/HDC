@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -51,6 +52,14 @@ public class PaymentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+//        get language option en/ch
+        HttpSession session = request.getSession();
+        String language = (String) session.getAttribute("language");
+        if (language == null){
+            language = "en";
+        }
+        
+//        get payment status
         String payment = (String) request.getParameter("payment");
         if(payment != null && !"".equals(payment)){
             if(payment.equals("success")){
@@ -65,13 +74,29 @@ public class PaymentServlet extends HttpServlet {
                 } catch (Exception ex) {
                     Logger.getLogger(PaymentServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                 getServletContext().getRequestDispatcher("/WEB-INF/successorder.jsp").forward(request, response);
+                 if (language.equals("cn")) {
+                        getServletContext().getRequestDispatcher("/WEB-INF/cn/successorder.jsp").forward(request, response);
+                    } else {
+                        getServletContext().getRequestDispatcher("/WEB-INF/successorder.jsp").forward(request, response);
+                    }
             }else if(payment.equals("fail")){
-                 getServletContext().getRequestDispatcher("/WEB-INF/notsuccessorder.jsp").forward(request, response);
+                 if (language.equals("cn")) {
+                        getServletContext().getRequestDispatcher("/WEB-INF/cn/notsuccessorder.jsp").forward(request, response);
+                    } else {
+                        getServletContext().getRequestDispatcher("/WEB-INF/notsuccessorder.jsp").forward(request, response);
+                    }
             }else if(payment.equals("cash")){
-                 getServletContext().getRequestDispatcher("/WEB-INF/placedorder.jsp").forward(request, response);
+                 if (language.equals("cn")) {
+                        getServletContext().getRequestDispatcher("/WEB-INF/cn/placedorder.jsp").forward(request, response);
+                    } else {
+                        getServletContext().getRequestDispatcher("/WEB-INF/placedorder.jsp").forward(request, response);
+                    }
             }else if(payment.equals("etrasfer")){
-                 getServletContext().getRequestDispatcher("/WEB-INF/placedorder.jsp").forward(request, response);
+                 if (language.equals("cn")) {
+                        getServletContext().getRequestDispatcher("/WEB-INF/cn/placedorder.jsp").forward(request, response);
+                    } else {
+                        getServletContext().getRequestDispatcher("/WEB-INF/placedorder.jsp").forward(request, response);
+                    }
             }
         }
         getServletContext().getRequestDispatcher("/mainmenu").forward(request, response);

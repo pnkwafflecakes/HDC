@@ -41,12 +41,12 @@
 }
 
 button {
-  margin: 4px;
-  cursor: pointer;
+    margin: 4px;
+    cursor: pointer;
 }
 input {
-  text-align: center;
-  width: 40px;
-  margin: 4px;
-  color: salmon;
+    text-align: center;
+    width: 40px;
+    margin: 4px;
+    color: salmon;
 }

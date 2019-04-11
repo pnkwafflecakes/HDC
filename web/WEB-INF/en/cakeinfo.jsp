@@ -33,9 +33,9 @@
 
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-custom">
+        <nav class="navbar sticky-top navbar-expand-lg navbar-custom">
             <div class="container">
-                <a class="navbar-brand" href="#"> H D C </a>
+                <a class="navbar-brand" href="mainmenu"> H D C </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -117,12 +117,23 @@
                         <br>
                         <p><strong>Description:</strong> ${currCake.description}</p>
                     </div>
+
                     <div class="col-md-3">
-                        <form action="cakeinfo" method="POST">
-                            <strong>Quantity</strong>
-                            <input type="number" name="quantity" value="1" min="1" max="20" style="width: 20%;">
+                        <form action="cakeinfo" method="POST" class="form-inline">
+                            <div class="form-group row">
+                                <strong>Quantity</strong>
+                            </div>
+                            <!--                            <input type="number" name="quantity" value="1" min="1" max="20" style="width: 20%;">-->
+                            <div class="form-group row">
+                                <i class="minus fas fa-minus-square fa-2x" ></i>
+                                <input type="text" name="quantity" class="form-control" style="width: 20%;" value="1" readonly/>
+                                <i class="plus fas fa-plus-square fa-2x"></i>
+                            </div>
+
                             <input type="hidden" name="cakeId" value="${currCake.cakeId}">
-                            <button type="submit" class="btn btn-outline-dark">Add To Cart</button>
+                            <div class="form-group row">
+                                <button type="submit" class="btn btn-warning">Add To Cart</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -137,20 +148,23 @@
             <div class="clearfix"></div>
         </div>
 
-        <div id=field1>
-            field 1
-            <button type="button" id="sub" class=sub>-</button>
-            <input type="text" id="1" value=0 class=field>
-            <button type="button" id="add" class=add>+</button>
-        </div>
+
         <script>
-            $('.add').click(function () {
-                if ($(this).next().val() < 10)
-                $(this).prev().val(+$(this).prev().val() + 1);
-            });
-            $('.sub').click(function () {
-                if ($(this).next().val() > 0)
-                    $(this).next().val(+$(this).next().val() - 1);
+            $(document).ready(function () {
+                $('.minus').click(function () {
+                    var $input = $(this).parent().find('input');
+                    var count = parseInt($input.val()) - 1;
+                    count = count < 1 ? 1 : count;
+                    $input.val(count);
+                    $input.change();
+                    return false;
+                });
+                $('.plus').click(function () {
+                    var $input = $(this).parent().find('input');
+                    $input.val(parseInt($input.val()) + 1);
+                    $input.change();
+                    return false;
+                });
             });
         </script>
 

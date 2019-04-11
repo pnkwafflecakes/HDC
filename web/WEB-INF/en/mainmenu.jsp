@@ -30,14 +30,17 @@
         <style><%@include file="/WEB-INF/styles/navbar.css"%></style>
         <style><%@include file="/WEB-INF/styles/mainmenu.css"%></style>
 
+
         <!-- Smartsupp Live Chat script -->
         <!-- Smartsupp Live Chat script -->
         <!-- Smartsupp Live Chat script -->
         <script type="text/javascript">
             var _smartsupp = _smartsupp || {};
             _smartsupp.key = '074195e0af5b79e1e0bc9cc3a449002e9b19a149';
-            window.smartsupp || (function (d) {
-                var s, c, o = smartsupp = function () {
+            window.smartsupp || (function (d)
+            {
+                var s, c, o = smartsupp = function ()
+                {
                     o._.push(arguments)
                 };
                 o._ = [];
@@ -53,9 +56,9 @@
 
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-custom">
+        <nav class="navbar sticky-top navbar-expand-lg navbar-custom">
             <div class="container">
-                <a class="navbar-brand" href="#"> H D C </a>
+                <a class="navbar-brand" href="mainmenu"> H D C </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -289,10 +292,9 @@
                         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
 
                             <!-- Content -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Hellen Delicious Cakes, Inc.</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">Helen's Delicious Cakes, Inc.</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                            <p class="footertext">Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit.</p>
+                            <p class="footertext">Helen's Delicious Cakes is a locally owned small business that prides itself on making fresh cakes daily. Our cakes are scratch-baked, and customised to suit your needs. Please don't hesitate to contact us with any questions.</p>
 
                         </div>
                         <!-- Grid column -->
@@ -341,7 +343,7 @@
 
                 <!-- Copyright -->
                 <div class="footer-copyright text-center py-3 footertext">
-                    Copyright © Helen's Delicious Cakes. All rights reserved
+                    Copyright © Helen's Delicious Cakes. All rights reserved.
                 </div>
                 <!-- Copyright -->
 
