@@ -76,6 +76,12 @@ public class RegisterServlet extends HttpServlet {
         request.setAttribute("phone", phone);
         request.setAttribute("username", username);
 
+        HttpSession session = request.getSession();
+        String language = (String) session.getAttribute("language");
+        if (language == null) {
+            language = "en";
+        }
+        
         //Remove dash from postal code
         postalCode = postalCode.replace("-", "");
 
@@ -139,7 +145,11 @@ public class RegisterServlet extends HttpServlet {
             request.setAttribute("error", "Please Enter a Valid Phone Number");
         }
         if (errorCheck) {
-            getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+            if (language.equals("cn")) {
+                getServletContext().getRequestDispatcher("/WEB-INF/cn/register.jsp").forward(request, response);
+            } else {
+                getServletContext().getRequestDispatcher("/WEB-INF/en/register.jsp").forward(request, response);
+            }
         } else {
             try {
                 //Get highest user_id from db
@@ -162,7 +172,12 @@ public class RegisterServlet extends HttpServlet {
                     if (rs2.getString("username").equals(username)) {
                         error = true;
                         request.setAttribute("error", "Username is Already in Use!");
-                        getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+
+                        if (language.equals("cn")) {
+                            getServletContext().getRequestDispatcher("/WEB-INF/cn/register.jsp").forward(request, response);
+                        } else {
+                            getServletContext().getRequestDispatcher("/WEB-INF/en/register.jsp").forward(request, response);
+                        }
                     }
                 }
                 if (!error) {
@@ -198,7 +213,12 @@ public class RegisterServlet extends HttpServlet {
                     request.setAttribute("phone", "");
                     request.setAttribute("username", "");
                     request.setAttribute("status", "Registration Complete! Please login to begin");
-                    getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+
+                    if (language.equals("cn")) {
+                        getServletContext().getRequestDispatcher("/WEB-INF/cn/register.jsp").forward(request, response);
+                    } else {
+                        getServletContext().getRequestDispatcher("/WEB-INF/en/register.jsp").forward(request, response);
+                    }
                 }
             } catch (IOException | ClassNotFoundException | SQLException | ServletException ex) {
 
