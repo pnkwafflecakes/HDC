@@ -35,7 +35,8 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-custom">
             <div class="container">
-                <a class="navbar-brand" href="#"> H D C </a>
+                <a class="navbar-brand" href="mainmenu"><img class="icon" src="<c:url value='/images/hdclogo.png'/>" />
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -51,8 +52,8 @@
                                 </c:if>
                                 <span class="sr-only">(current)</span></a>
                         </li>
-                        
-                        
+
+
 
 
                         <li class="nav-item"> </li>
@@ -66,7 +67,7 @@
                                     <span class="glyphicon glyphicon-user">
                                     </span> ${userObj.name} 
                                 </a>
-                                
+
                             </li>
                         </c:if>
                         <c:if test="${userObj == null}">
@@ -82,7 +83,7 @@
                             </li>
                         </c:if>
 
-                        
+
                     </ul>
 
 

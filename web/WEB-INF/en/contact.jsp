@@ -34,7 +34,8 @@
     <body>
         <nav class="navbar sticky-top navbar-expand-lg navbar-custom">
             <div class="container">
-                <a class="navbar-brand" href="mainmenu"> H D C </a>
+                <a class="navbar-brand" href="mainmenu"><img class="icon" src="<c:url value='/images/hdclogo.png'/>" />
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -51,7 +52,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="cart">Cart<span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
+                            <a class="nav-link" href="cart">Cart <span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
                         </li>
                         <li class="nav-item"> </li>
                     </ul>
@@ -119,8 +120,8 @@
 
                             <p><b>Tel:</b> (403) 603-0087
                                 <br>
-                               <b>Email:</b> 
-                               <a href="mailto:helenbkf@gmail.com?Subject=Customer%20Contact" target="_top">helenbkf@gmail.com</a>
+                                <b>Email:</b> 
+                                <a href="mailto:helenbkf@gmail.com?Subject=Customer%20Contact" target="_top">helenbkf@gmail.com</a>
                                 <br>
                                 If you require immediate assistance please contact us by phone
                             </p>
@@ -348,84 +349,46 @@
 
         </div>
 
-
-
-
-        <div class="containter" id="bottomfooter">
-            <!-- Footer -->
+<footer class="page-footer font-small" id="bottomfooter">
             <br>
-            <footer class="page-footer font-small unique-color-dark">
-
-
-                <!-- Footer Links -->
-                <div class="container text-center text-md-left mt-5">
-
-                    <!-- Grid row -->
-                    <div class="row mt-3">
-
-                        <!-- Grid column -->
-                        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-
-                            <!-- Content -->
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-5 text-center">
+                        <div style="margin: auto; width: 70%;">
                             <h6 class="text-uppercase font-weight-bold footertext">Helen's Delicious Cakes, Inc.</h6>
-                            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                            <hr class="col-md-8">
                             <p class="footertext">Helen's Delicious Cakes is a locally owned small business that prides itself on making fresh cakes daily. Our cakes are scratch-baked, and customised to suit your needs. Please don't hesitate to contact us with any questions.</p>
-
                         </div>
-                        <!-- Grid column -->
-
-                        <!-- Grid column -->
-                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-
-                            <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Follow Us</h6>
-                            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                            <p>
-                                <a href="#" class="fab fa-facebook footertext"> facebook</a>  
-                            </p>
-                            <p>
-                                <a href="#" class="fab fa-instagram footertext"> instagram</a> 
-                            </p>
-                            <p>
-                                <a href="#" class="fab fa-weixin footertext"> wechat</a>                            </p>
-                            </p>
-
-
-                        </div>
-                        <!-- Grid column -->
-
-                        <!-- Grid column -->
-                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-
-                            <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Contact</h6>
-                            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                            <p class="footertext">
-                                <i class="fas fa-home mr-3 "></i>188 Springbluff Blvd SW <br>Calgary, AB</p>
-                            <p class="footertext">
-                                <i class="fas fa-envelope mr-3 "></i>  <a href="mailto:#">helen@gmail.com</a></p>
-                            <p class="footertext">
-                                <i class="fas fa-phone mr-3 "></i>(403) 808-3860</p>
-
-                        </div>
-                        <!-- Grid column -->
 
                     </div>
-                    <!-- Grid row -->
+                    <div class="col-md-2 text-center" style="margin: auto;">
+                        <h6 class="text-uppercase font-weight-bold footertext">Follow Us</h6>
+                        <hr class="col-md-8">
 
+                        <p>
+                            <a href="#" class="fab fa-instagram footertext"> instagram</a> 
+                        </p>
+                        <p>
+                            <a href="#" class="fab fa-weixin footertext"> wechat</a>
+                        </p>
+
+                    </div>
+                    <div class="col-md-5 text-center" style="margin: auto;">
+                        <h6 class="text-uppercase font-weight-bold footertext">Contact</h6>
+                        <hr class="col-md-5">
+                        <p class="footertext">
+                            <i class="fas fa-envelope mr-3 "></i>  <a href="mailto:helenbkf@gmail.com?Subject=Customer%20Contact" target="_top">helenbkf@gmail.com</a>
+                        </p>
+                        <p class="footertext">
+                            <i class="fas fa-phone mr-3 "></i>(403) 603-0087
+                        </p>
+                    </div>
                 </div>
-                <!-- Footer Links -->
-
-                <!-- Copyright -->
-                <div class="footer-copyright text-center py-3 footertext">
-                    Copyright © Helen's Delicious Cakes. All rights reserved.
-                </div>
-                <!-- Copyright -->
-
-            </footer>
-            <!-- Footer -->
-        </div>
-
+            </div>
+            <div class="footer-copyright text-center py-3 footertext">
+                Copyright © Helen's Delicious Cakes. All rights reserved.
+            </div>
+        </footer>
 
     </body>
 </html> 

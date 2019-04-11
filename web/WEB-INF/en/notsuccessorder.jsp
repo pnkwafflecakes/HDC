@@ -35,7 +35,8 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-custom">
             <div class="container">
-                <a class="navbar-brand" href="#"> H D C </a>
+                <a class="navbar-brand" href="mainmenu"><img class="icon" src="<c:url value='/images/hdclogo.png'/>" />
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -51,8 +52,8 @@
                                 </c:if>
                                 <span class="sr-only">(current)</span></a>
                         </li>
-                        
-                        
+
+
 
 
                         <li class="nav-item"> </li>
@@ -66,7 +67,7 @@
                                     <span class="glyphicon glyphicon-user">
                                     </span> ${userObj.name} 
                                 </a>
-                                
+
                             </li>
                         </c:if>
                         <c:if test="${userObj == null}">
@@ -82,7 +83,7 @@
                             </li>
                         </c:if>
 
-                        
+
                     </ul>
 
 
@@ -99,107 +100,72 @@
             <h2 class="text-center">Payment not finished! Please try it again.</h2>
             <br>
             <div class="text-center">
-<!--                <i>You're being direct to home page in <span id="countdowntimer">5 </span> Seconds</i>-->
+                <!--                <i>You're being direct to home page in <span id="countdowntimer">5 </span> Seconds</i>-->
                 <br>
                 <a href="mainmenu" class="btn btn-outline-dark">Take me to home page</a>
             </div>
 
         </div>
-<!--        <script type="text/javascript">
-            var timeleft = 5;
-            var downloadTimer = setInterval(function () {
-                timeleft--;
-                document.getElementById("countdowntimer").textContent = timeleft;
-                if (timeleft <= 0)
-                    clearInterval(downloadTimer);
-            }, 500);
-
-            function leave() {
-                window.location = "mainmenu";
-            }
-            setTimeout("leave()", 5000);
-        </script>-->
+        <!--        <script type="text/javascript">
+                    var timeleft = 5;
+                    var downloadTimer = setInterval(function () {
+                        timeleft--;
+                        document.getElementById("countdowntimer").textContent = timeleft;
+                        if (timeleft <= 0)
+                            clearInterval(downloadTimer);
+                    }, 500);
+        
+                    function leave() {
+                        window.location = "mainmenu";
+                    }
+                    setTimeout("leave()", 5000);
+                </script>-->
 
 
         <br>
         <br>
         <hr>
 
-        <div class="containter" id="bottomfooter">
-            <!-- Footer -->
+        <footer class="page-footer font-small" id="bottomfooter">
             <br>
-            <footer class="page-footer font-small unique-color-dark">
-
-
-                <!-- Footer Links -->
-                <div class="container text-center text-md-left mt-5">
-
-                    <!-- Grid row -->
-                    <div class="row mt-3">
-
-                        <!-- Grid column -->
-                        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-
-                            <!-- Content -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Hellen Delicious Cakes, Inc.</h6>
-                            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                            <p class="footertext">Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit.</p>
-
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-5 text-center">
+                        <div style="margin: auto; width: 70%;">
+                            <h6 class="text-uppercase font-weight-bold footertext">Helen's Delicious Cakes, Inc.</h6>
+                            <hr class="col-md-8">
+                            <p class="footertext">Helen's Delicious Cakes is a locally owned small business that prides itself on making fresh cakes daily. Our cakes are scratch-baked, and customised to suit your needs. Please don't hesitate to contact us with any questions.</p>
                         </div>
-                        <!-- Grid column -->
-
-                        <!-- Grid column -->
-                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-
-                            <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Follow Us</h6>
-                            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                            <p>
-                                <a href="#" class="fab fa-facebook footertext"> facebook</a>  
-                            </p>
-                            <p>
-                                <a href="#" class="fab fa-instagram footertext"> instagram</a> 
-                            </p>
-                            <p>
-                                <a href="#" class="fab fa-weixin footertext"> wechat</a>                            </p>
-                            </p>
-
-
-                        </div>
-                        <!-- Grid column -->
-
-                        <!-- Grid column -->
-                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-
-                            <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Contact</h6>
-                            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                            <p class="footertext">
-                                <i class="fas fa-home mr-3 "></i>188 Springbluff Blvd SW <br>Calgary, AB</p>
-                            <p class="footertext">
-                                <i class="fas fa-envelope mr-3 "></i>  <a href="mailto:helenbkf@gmail.com?Subject=Customer%20Contact" target="_top">helenbkf@gmail.com</a></p>
-                            <p class="footertext">
-                                <i class="fas fa-phone mr-3 "></i>(403) 808-3860</p>
-
-                        </div>
-                        <!-- Grid column -->
 
                     </div>
-                    <!-- Grid row -->
+                    <div class="col-md-2 text-center" style="margin: auto;">
+                        <h6 class="text-uppercase font-weight-bold footertext">Follow Us</h6>
+                        <hr class="col-md-8">
 
+                        <p>
+                            <a href="#" class="fab fa-instagram footertext"> instagram</a> 
+                        </p>
+                        <p>
+                            <a href="#" class="fab fa-weixin footertext"> wechat</a>
+                        </p>
+
+                    </div>
+                    <div class="col-md-5 text-center" style="margin: auto;">
+                        <h6 class="text-uppercase font-weight-bold footertext">Contact</h6>
+                        <hr class="col-md-5">
+                        <p class="footertext">
+                            <i class="fas fa-envelope mr-3 "></i>  <a href="mailto:helenbkf@gmail.com?Subject=Customer%20Contact" target="_top">helenbkf@gmail.com</a>
+                        </p>
+                        <p class="footertext">
+                            <i class="fas fa-phone mr-3 "></i>(403) 603-0087
+                        </p>
+                    </div>
                 </div>
-                <!-- Footer Links -->
-
-                <!-- Copyright -->
-                <div class="footer-copyright text-center py-3 footertext">
-                    Copyright © Helen's Delicious Cakes. All rights reserved
-                </div>
-                <!-- Copyright -->
-
-            </footer>
-            <!-- Footer -->
-        </div>
+            </div>
+            <div class="footer-copyright text-center py-3 footertext">
+                Copyright © Helen's Delicious Cakes. All rights reserved.
+            </div>
+        </footer>
 
     </body>
 </html> 
