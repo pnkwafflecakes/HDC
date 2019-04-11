@@ -87,7 +87,9 @@ public class OrderDetailsServlet extends HttpServlet
         String address = request.getParameter("address") + "";
         String deliveryMethod = request.getParameter("deliveryList");
         String paymentMethod = request.getParameter("paymentList");
-        String notes = request.getParameter("notes");
+//        String notes = request.getParameter("notes");
+//       notes can input cn character
+        String notes = new String(request.getParameter("notes").getBytes("ISO-8859-1"),"utf-8");
 
         String phoneNo = request.getParameter("phoneNo") + "";
         String dueDate = request.getParameter("dueDate") + "";
