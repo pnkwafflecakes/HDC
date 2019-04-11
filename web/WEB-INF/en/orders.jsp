@@ -104,8 +104,10 @@
         <div class="container-fluid" id="ordercontainer">
             <c:if test="${orderList != null}">
                 <p align="center">To Cancel an Order Please Contact Us!</p>
-                <br>
                 <c:forEach items="${orderList}" var="order">
+                    <br>
+                    <br>
+                    <br>
                     <table class="table border">
                         <thead class="table-active">
                             <tr>
@@ -134,11 +136,15 @@
                                     <td class="align-middle">$<c:out value="${ite.price}"/></td>
                                 </tr>
                             </c:forEach>
-                                <tr>
-                                    <td>${order.deliveryNo.notes}</td>
-                                </tr>
                         </tbody>
                     </table>
+                    <c:if test="${order.deliveryNo.notes != null}">
+                        <c:if test="${order.deliveryNo.notes != ''}">
+                            Notes: ${order.deliveryNo.notes}
+                            <br>
+                        </c:if>
+                    </c:if>
+
                 </c:forEach>
             </c:if>
 

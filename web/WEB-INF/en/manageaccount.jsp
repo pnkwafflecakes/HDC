@@ -94,71 +94,135 @@
 
 
         <div class="container">
-            <h1>${prompt}</h1>
-            <form action="manageaccount" method="post" >
-                <div class="form-label-group">
-                    <label for="inputUser">Username</label>
-                    <input type="text" id="inputUser" name="username" class="form-control" value="${sessionScope.userObj.username}" contenteditable="false">
+            <div class="col-md-9" style="margin: auto">
+                <br>
+                <h1 class="text-center">Profile</h1>
+                <br>
+                <h3 class="text-center">${prompt}</h3>
+                <form action="manageaccount" method="post" >
+                    <div class="form-label row">
+                        <label class="col-md-2 col-form-label" for="inputUser">Username</label>
+                        <div class="col-md-10">
+                            <input type="text" id="inputUser" name="username" class="form-control" value="${sessionScope.userObj.username}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-label row">
+                        <label class="col-md-2 col-form-label" for="inputName">Name</label>
+                        <div class="col-md-10">
+                            <input type="text" id="inputName" name="name" class="form-control" value="${sessionScope.userObj.name}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-label row">
+                        <label class="col-md-2 col-form-label" for="inputAddress">Address</label>
+                        <div class="col-md-10">
+
+                            <input type="text" id="inputAddress" name="address" class="form-control" value="${sessionScope.userObj.address}" readonly>
+                        </div>
+                    </div>
+                    <div class="form-label row">
+                        <label class="col-md-2 col-form-label" for="inputPostal">Postal Code</label>
+                        <div class="col-md-10">
+                            <input type="text" id="inputPostal" name="postal" class="form-control" value="${sessionScope.userObj.postalCode}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-label row">
+                        <label class="col-md-2 col-form-label" for="inputEmail">Email Address</label>
+                        <div class="col-md-10">
+                            <input type="text" id="inputEmail" name="email" class="form-control" value="${sessionScope.userObj.email}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-label row">
+                        <label class="col-md-2 col-form-label" for="inputPhone">Phone Number</label>
+                        <div class="col-md-10">
+                            <input type="text" id="inputPhone" name="phone" class="form-control" value="${sessionScope.userObj.phoneNo}" readonly>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div style="display: none;" id="confirmbtn">
+                        <div class="d-flex justify-content-center" style="display: none;">
+                            <button type="submit" class="btn btn-primary" id="submitbtn">Confirm</button>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="hidden" name="action" value="change">
+                </form>
+            </div>
+            <div style="display: none;" id="cancelbtn">
+                <div class="d-flex justify-content-center" >
+                    <button type="button" class="btn btn-danger">Cancel</button>          
                 </div>
+            </div>
 
-                <div class="form-label-group">
-                    <label for="inputName">Name</label>
-                    <input type="text" id="inputName" name="name" class="form-control" value="${sessionScope.userObj.name}">
+            <div class="d-flex justify-content-center">
+                <button type="button" class="btn btn-info" id="editbtn">Edit My Profile</button>
+            </div>
+            <script>
+                $(document).ready(function () {
+                    $('#editbtn').click(function () {
+                        $('#editbtn').hide();
+                        $('#cancelbtn').show();
+                        $('#confirmbtn').show();
 
-                </div>
+                        $("#inputName").attr("readonly", false);
+                        $("#inputAddress").attr("readonly", false);
+                        $("#inputPostal").attr("readonly", false);
+                        $("#inputEmail").attr("readonly", false);
+                        $("#inputPhone").attr("readonly", false);
+                    });
 
-                <div class="form-label-group">
-                    <label for="inputAddress">Address</label>
-                    <input type="text" id="inputAddress" name="address" class="form-control" value="${sessionScope.userObj.address}">
-                </div>
-                <div class="form-label-group">
-                    <label for="inputPostal">Postal Code</label>
-                    <input type="text" id="inputPostal" name="postal" class="form-control" value="${sessionScope.userObj.postalCode}">
+                    $('#cancelbtn').click(function () {
+                        $('#editbtn').show();
+                        $('#cancelbtn').hide();
+                        $('#confirmbtn').hide();
 
-                </div>
-
-                <div class="form-label-group">
-                    <label for="inputEmail">Email Address</label>
-                    <input type="text" id="inputEmail" name="email" class="form-control" value="${sessionScope.userObj.email}">
-
-                </div>
-
-                <div class="form-label-group">
-                    <label for="inputPhone">Phone Number</label>
-                    <input type="text" id="inputPhone" name="phone" class="form-control" value="${sessionScope.userObj.phoneNo}">
-                </div>
-
-                <input type="submit" value="Confirm Change">
-                <input type="hidden" name="action" value="change">
-            </form>
+                        $("#inputName").attr("readonly", true);
+                        $("#inputAddress").attr("readonly", true);
+                        $("#inputPostal").attr("readonly", true);
+                        $("#inputEmail").attr("readonly", true);
+                        $("#inputPhone").attr("readonly", true);
+                    });
+                });
+            </script>
+            <br>
+            <br>
 
             <hr>
+            <div class="col-md-7" style="margin: auto">
+                <h2 class="text-center">Change Password</h2>
+                <form action="manageaccount" method="post" >
 
-            <form action="manageaccount" method="post" >
-                <table>
-                    <tr>
-                    <h1>Change Password</h1>
-                    <div class="form-label-group">
-                        <td><label for="inputPhone">Current Password: </label></td>
-                        <td><input text="password" name="currentPassword"></td>
+                    <div class="form-label row">
+                        <label class="col-md-4 col-form-label" for="currentPassword">Current Password</label>
+                        <div class="col-md-8">
+                            <input type="password" name="currentPassword" class="form-control">
+                        </div>
                     </div>
-                    </tr>
-                    <tr>
-                    <div class="form-label-group">
-                        <td><label for="inputPhone">New Password: </label></td>
-                        <td><input text="password" name="newPassword"></td>
+                    <div class="form-label row">
+                        <label class="col-md-4 col-form-label" for="newPassword">New Password:</label>
+                        <div class="col-md-8">
+                            <input type="password" name="newPassword" class="form-control">
+                        </div>
                     </div>
-                    </tr>
-                    <tr>
-                    <div class="form-label-group">
-                        <td><label for="inputPhone">New Password Confirm: </label></td>
-                        <td><input text="password" name="newPasswordConfirm"></td>
+                    <div class="form-label row">
+                        <label class="col-md-4 col-form-label" for="newPasswordConfirm">New Password Confirm:</label>
+                        <div class="col-md-8">
+                            <input type="password" name="newPasswordConfirm" class="form-control">
+                        </div>
                     </div>
-                    </tr>
-                </table>
-                <input type="submit" value="Change Password">
-                <input type="hidden" name="action" value="changePassword">
-            </form>
+                    <br>
+
+                    <input type="hidden" name="action" value="changePassword">
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-info">Okay</button>
+                    </div>
+
+                </form>
+            </div>
             <br>
 
 
