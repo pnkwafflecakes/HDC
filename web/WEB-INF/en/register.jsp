@@ -13,7 +13,10 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/jquery.validate.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/additional-methods.js"></script>
         <style><%@include file="/WEB-INF/styles/login.css"%></style>
+        <style><%@include file="/WEB-INF/styles/register.css"%></style>
         <style><%@include file="/WEB-INF/styles/navbar.css"%></style>
 
     </head>
@@ -77,12 +80,11 @@
                             <h5 class="card-title text-center" style="color:blue;">${error}</h5>
                             <h5 class="card-title text-center" style="color:green;">${status}</h5>
 
-                            <form class="form-signin" action="register" method="POST">
+                            <form class="form-signin" name="registration" action="register" method="POST">
                                 <div class="form-label-group">
                                     <input type="text" id="inputUser" name="username" class="form-control" placeholder="Username" value="${username}" required autofocus>
                                     <label for="inputUser">Username</label>
                                 </div>
-
                                 <div class="form-label-group">
                                     <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" value="${password}" required>
                                     <label for="inputPassword">Create a Password</label>
@@ -132,6 +134,61 @@
             </div>
         </div>
 
+
+
+        <script>
+            $(function () {
+                $("form[name='registration']").validate({
+                    rules: {
+                        username: {
+                            required: true,
+                            minlength: 8
+                        },
+                        firstname: "required",
+                        lastname: "required",
+                        email: {
+                            required: true,
+                            email: true
+                        },
+                        password: {
+                            required: true,
+                            minlength: 8
+                        }, confirmpassword: {
+                            required: true,
+                            minlength: 8
+                        }, phone: {
+                            required: true,
+                            phoneUS: true
+                        }, postal: {
+                            required: true,
+                            pattern: '^[a-zA-z]{1}[0-9]{1}[a-zA-z]{1}[-]{1}[0-9]{1}[a-zA-Z]{1}[0-9]{1}'
+                        }
+                    },
+                    messages: {
+                        username: "Your username must be at least 8 characters long",
+                        firstname: "Please enter your firstname",
+                        lastname: "Please enter your lastname",
+                        password: {
+                            required: "Please provide a password",
+                            minlength: "Your password must be at least 8 characters long"
+                        }, confirmpassword: {
+                            required: "Please provide a password",
+                            minlength: "Your password must be at least 8 characters long"
+                        },
+                        email: "Please enter a valid email address",
+                        phone: {
+                            required: "Please enter a phone number",
+                            phoneUS: "Please format as 111-222-3333"
+                        }, postal: {
+                            required: "Please a postal code",
+                            pattern: "Please format as A1B-2D3"
+                        }
+                    },
+                    errorElement: 'div',
+                    errorLabelContainer: '.errorTxt'
+                });
+            });
+        </script>
     </body>
 
 
