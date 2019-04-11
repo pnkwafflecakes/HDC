@@ -194,10 +194,9 @@
             <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
 
                 <!-- Content -->
-                <h6 class="text-uppercase font-weight-bold footertext">Hellen Delicious Cakes, Inc.</h6>
+                <h6 class="text-uppercase font-weight-bold footertext">Helen's Delicious Cakes, Inc.</h6>
                 <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                <p class="footertext">Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
-                    adipisicing elit.</p>
+                <p class="footertext">Helen's Delicious Cakes is a locally owned small business that prides itself on making fresh cakes daily. Our cakes are scratch-baked, and customised to suit your needs. Please don't hesitate to contact us with any questions.</p>
 
             </div>
             <!-- Grid column -->
@@ -246,7 +245,7 @@
 
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3 footertext">
-        Copyright © Helen's Delicious Cakes. All rights reserved
+        Copyright © Helen's Delicious Cakes. All rights reserved.
     </div>
     <!-- Copyright -->
 
