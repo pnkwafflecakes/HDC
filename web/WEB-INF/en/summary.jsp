@@ -132,7 +132,7 @@
                             <td>${user.username}</td>
                         </tr>
                         <tr>
-                            <th>User PhoneNo</th>
+                            <th>User Phone No.</th>
                             <td>${user.phoneNo}</td>
                         </tr>
                         <tr>

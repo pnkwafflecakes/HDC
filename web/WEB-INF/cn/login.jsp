@@ -28,38 +28,38 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="mainmenu">Home</a>
+                            <a class="nav-link" href="mainmenu">主页</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="browse">Browse</a>
+                            <a class="nav-link" href="browse">浏览</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact
+                            <a class="nav-link" href="#">联系我们
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="cart">Cart<span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
+                            <a class="nav-link" href="cart">购物车<span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
                         </li>
                         <li class="nav-item"> </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
 
-                        <form class="form-inline my-2 my-lg-0" action="search" method="post">
+<!--                        <form class="form-inline my-2 my-lg-0" action="search" method="post">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchWord">
                             <input type="hidden" name="action" value="Search">
-                        </form>
+                        </form>-->
 
 
                         <li class="nav-item active">
                             <a class="nav-link" href="login">
-                                Login/Register
+                                登录/注册
                             </a>
                         </li>
 
                         <!--button toggle ch/en-->
                         <li class="nav-item">
-                            <a class="nav-link" href="lang?act=cn"><i class="fas fa-globe-americas"></i>  中文 </a>
+                            <a class="nav-link" href="lang?act=en"><i class="fas fa-globe-americas"></i>  English </a>
                         </li>
 
 
@@ -77,25 +77,25 @@
 
                     <div class="card card-signin my-5">
                         <div class="card-body">
-                            <h5 class="card-title text-center">Welcome to Helen's Delicious Cakes</h5>
-                            <h5 class="card-title text-center" style="font-style: italic;">Please log in</h5>
+                            <h5 class="card-title text-center">海燕美味蛋糕</h5>
+                            <h5 class="card-title text-center" style="font-style: italic;">请登录</h5>
                             <h5 class="card-title text-center" style="color: orange">${errorMessage}</h5>
 
 
                             <form class="form-signin" action="login" method="POST">
                                 <div class="form-label-group">
                                     <input type="text" id="inputUser" name="user" class="form-control" placeholder="Username" required autofocus>
-                                    <label for="inputUser">Username</label>
+                                    <label for="inputUser">用户名</label>
                                 </div>
 
                                 <div class="form-label-group">
                                     <input type="password" id="inputPassword" name="pass" class="form-control" placeholder="Password" required>
-                                    <label for="inputPassword">Password</label>
+                                    <label for="inputPassword">密码</label>
                                 </div>
 
-                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">登录</button>
                                 <hr class="my-4">
-                                <a href="register" class="btn btn-lg btn-google btn-block text-uppercase" role="button">Register</a>
+                                <a href="register" class="btn btn-lg btn-google btn-block text-uppercase" role="button">注册</a>
                             </form>
                         </div>
                     </div>

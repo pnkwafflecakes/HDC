@@ -28,38 +28,38 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="mainmenu">Home</a>
+                            <a class="nav-link" href="mainmenu">主页</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="browse">Browse</a>
+                            <a class="nav-link" href="browse">浏览</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact
+                            <a class="nav-link" href="#">联系我们
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="cart">Cart<span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
+                            <a class="nav-link" href="cart">购物车<span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
                         </li>
                         <li class="nav-item"> </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
 
-                        <form class="form-inline my-2 my-lg-0" action="search" method="post">
+<!--                        <form class="form-inline my-2 my-lg-0" action="search" method="post">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchWord">
                             <input type="hidden" name="action" value="Search">
-                        </form>
+                        </form>-->
 
 
                         <li class="nav-item active">
                             <a class="nav-link" href="login">
-                                Login/Register
+                                登录/注册
                             </a>
                         </li>
 
                         <!--button toggle ch/en-->
                         <li class="nav-item">
-                            <a class="nav-link" href="lang?act=cn"><i class="fas fa-globe-americas"></i>  中文 </a>
+                            <a class="nav-link" href="lang?act=en"><i class="fas fa-globe-americas"></i>  English </a>
                         </li>
 
 
@@ -73,57 +73,57 @@
                 <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                     <div class="card card-signin my-5">
                         <div class="card-body">
-                            <h5 class="card-title text-center">Sign Up</h5>
+                            <h5 class="card-title text-center">注册</h5>
                             <h5 class="card-title text-center" style="color:blue;">${error}</h5>
                             <h5 class="card-title text-center" style="color:green;">${status}</h5>
 
                             <form class="form-signin" method="POST">
                                 <div class="form-label-group">
                                     <input type="text" id="inputUser" name="username" class="form-control" placeholder="Username" value="${username}" required autofocus>
-                                    <label for="inputUser">Username</label>
+                                    <label for="inputUser">用户名</label>
                                 </div>
 
                                 <div class="form-label-group">
                                     <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" value="${password}" required>
-                                    <label for="inputPassword">Create a Password</label>
+                                    <label for="inputPassword">输入密码</label>
                                 </div>
                                 
                                 <div class="form-label-group">
                                     <input type="password" id="inputConfirmPassword" name="confirmpassword" class="form-control" placeholder="ConfirmPassword" value="${confirmPassword}" required>
-                                    <label for="inputConfirmPassword">Confirm Password</label>
+                                    <label for="inputConfirmPassword">确认密码</label>
                                 </div>
 
                                 <div class="form-label-group">
                                     <input type="text" id="inputFirstName" name="firstname" class="form-control" placeholder="First Name" value="${firstname}" required autofocus>
-                                    <label for="inputFirstName">First Name</label>
+                                    <label for="inputFirstName">名</label>
                                 </div>
                                 
                                 <div class="form-label-group">
                                     <input type="text" id="inputLastName" name="lastname" class="form-control" placeholder="Last Name" value="${lastname}" required autofocus>
-                                    <label for="inputLastName">Last Name</label>
+                                    <label for="inputLastName">姓</label>
                                 </div>
 
                                 <div class="form-label-group">
                                     <input type="text" id="inputAddress" name="address" class="form-control" placeholder="Address" value="${address}" required autofocus>
-                                    <label for="inputAddress">Address</label>
+                                    <label for="inputAddress">地址</label>
                                 </div>
 
                                 <div class="form-label-group">
                                     <input type="text" id="inputPostal" name="postal" class="form-control" placeholder="Postal Code" value="${postal}" required autofocus>
-                                    <label for="inputPostal">Postal Code</label>
+                                    <label for="inputPostal">邮编</label>
                                 </div>
 
                                 <div class="form-label-group">
                                     <input type="text" id="inputEmail" name="email" class="form-control" placeholder="Email Address" value="${email}" required autofocus>
-                                    <label for="inputEmail">Email Address</label>
+                                    <label for="inputEmail">电子邮件</label>
                                 </div>
 
                                 <div class="form-label-group">
                                     <input type="text" id="inputPhone" name="phone" class="form-control" placeholder="Phone" value="${phone}" required autofocus>
-                                    <label for="inputPhone">Phone Number</label>
+                                    <label for="inputPhone">电话</label>
                                 </div>
 
-                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
+                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">注册</button>
                                 <hr class="my-4">
                             </form>
                         </div>

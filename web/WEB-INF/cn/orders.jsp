@@ -42,27 +42,27 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="mainmenu">Home</a>
+                            <a class="nav-link" href="mainmenu">主页</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="browse">Browse</a>
+                            <a class="nav-link" href="browse">浏览</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact">Contact
+                            <a class="nav-link" href="contact">联系我们
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="cart">Cart<span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
+                            <a class="nav-link" href="cart">购物车<span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
                         </li>
                         <li class="nav-item"> </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
 
-                        <form class="form-inline my-2 my-lg-0" action="search" method="post">
+<!--                        <form class="form-inline my-2 my-lg-0" action="search" method="post">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchWord">
                             <input type="hidden" name="action" value="Search">
-                        </form>
+                        </form>-->
 
 
                         <c:if test="${userObj != null}">
@@ -72,24 +72,24 @@
                                     ${userObj.name} 
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="manageaccount">My Profile</a>
-                                    <a class="dropdown-item" href="orders">My Orders</a>
+                                    <a class="dropdown-item" href="manageaccount">我的账号</a>
+                                    <a class="dropdown-item" href="orders">我的订单</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="login?act=logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+                                    <a class="dropdown-item" href="login?act=logout"><i class="fas fa-sign-out-alt"></i> 登出</a>
                                 </div>
                             </li>
                         </c:if>
                         <c:if test="${userObj == null}">
                             <li class="nav-item">
                                 <a class="nav-link" href="login">
-                                    Login/Register
+                                    登录/注册
                                 </a>
                             </li>
                         </c:if>
 
                         <!--button toggle ch/en-->
                         <li class="nav-item">
-                            <a class="nav-link" href="lang?act=cn"><i class="fas fa-globe-americas"></i>  中文 </a>
+                            <a class="nav-link" href="lang?act=en"><i class="fas fa-globe-americas"></i>  English </a>
                         </li>
 
 
@@ -98,30 +98,30 @@
             </div>
         </nav>
         <br>
-        <h1 align="center">Orders</h1>
+        <h1 align="center">我的订单</h1>
         <p align="center">${error}</p>
 
         <div class="container-fluid" id="ordercontainer">
             <c:if test="${orderList != null}">
-                <p align="center">To Cancel an Order Please Contact Us!</p>
+                <p align="center">如需取消或修改订单，请联系我们!</p>
                 <br>
                 <c:forEach items="${orderList}" var="order">
                     <table class="table border">
                         <thead class="table-active">
                             <tr>
                                 <th class="col-md-3 align-middle">
-                                    Order No. 
+                                    订单号. 
                                     <fmt:formatNumber pattern="0000" value="${order.orderNo}" />
                                 </th>
                                 <th class="col-md-6 align-middle">
-                                    Placed on: 
+                                    下单时间: 
                                     <fmt:formatDate value="${order.orderDatetime}" pattern="MMMM dd, yyyy"/>
                                     <br>
-                                    Expected: 
+                                    需求时间: 
                                     <fmt:formatDate value="${order.dueDatetime}" pattern="MMMM dd, yyyy"/>
                                 </th>
                                 <th class="col-md-3 align-middle">
-                                    Total: 
+                                    总金额: 
                                     <c:out value="$${order.totalPrice}"/>
                                 </th>
                             </tr>
@@ -130,7 +130,7 @@
                             <c:forEach items="${order.cakeCollection}" var="ite">
                                 <tr>
                                     <td class="align-middle"><img height="100em" src="<c:url value='${ite.image}'/>" /></td>
-                                    <td class="align-middle"><c:out value="${ite.name}"/></td>
+                                    <td class="align-middle"><c:out value="${ite.namecn}"/></td>
                                     <td class="align-middle">$<c:out value="${ite.price}"/></td>
                                 </tr>
                             </c:forEach>
@@ -161,9 +161,9 @@
                         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
 
                             <!-- Content -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Helen's Delicious Cakes, Inc.</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">海燕美味蛋糕</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                            <p class="footertext">Helen's Delicious Cakes is a locally owned small business that prides itself on making fresh cakes daily. Our cakes are scratch-baked, and customised to suit your needs. Please don't hesitate to contact us with any questions.</p>
+                            <p class="footertext">由海燕精心制作的蛋糕松软可口、细腻绵软、甜度适中，适合所有人的口味</p>
 
                         </div>
                         <!-- Grid column -->
@@ -172,7 +172,7 @@
                         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
                             <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Follow Us</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">关注我们</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                             <p>
                                 <a href="#" class="fab fa-facebook footertext"> facebook</a>  
@@ -192,7 +192,7 @@
                         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
 
                             <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Contact</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">联系方式</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                             <p class="footertext">
                                 <i class="fas fa-home mr-3 "></i>188 Springbluff Blvd SW <br>Calgary, AB</p>
@@ -212,7 +212,7 @@
 
                 <!-- Copyright -->
                 <div class="footer-copyright text-center py-3 footertext">
-                    Copyright © Helen's Delicious Cakes. All rights reserved.
+                    版权所有 © 海燕美味蛋糕
                 </div>
                 <!-- Copyright -->
 

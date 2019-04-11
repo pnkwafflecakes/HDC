@@ -36,27 +36,27 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="mainmenu">Home</a>
+                            <a class="nav-link" href="mainmenu">主页</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="browse">Browse</a>
+                            <a class="nav-link" href="browse">浏览</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact">Contact
+                            <a class="nav-link" href="contact">联系我们
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="cart">Cart<span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
+                            <a class="nav-link" href="cart">购物车<span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
                         </li>
                         <li class="nav-item"> </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
 
-                        <form class="form-inline my-2 my-lg-0" action="search" method="post">
+<!--                        <form class="form-inline my-2 my-lg-0" action="search" method="post">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchWord">
                             <input type="hidden" name="action" value="Search">
-                        </form>
+                        </form>-->
 
 
                         <c:if test="${userObj != null}">
@@ -66,24 +66,24 @@
                                     ${userObj.name} 
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="manageaccount">My Profile</a>
-                                    <a class="dropdown-item" href="orders">My Orders</a>
+                                    <a class="dropdown-item" href="manageaccount">我的账户</a>
+                                    <a class="dropdown-item" href="orders">我的订单</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="login?act=logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+                                    <a class="dropdown-item" href="login?act=logout"><i class="fas fa-sign-out-alt"></i> 登出</a>
                                 </div>
                             </li>
                         </c:if>
                         <c:if test="${userObj == null}">
                             <li class="nav-item">
                                 <a class="nav-link" href="login">
-                                    Login/Register
+                                    登录/注册
                                 </a>
                             </li>
                         </c:if>
 
                         <!--button toggle ch/en-->
                         <li class="nav-item">
-                            <a class="nav-link" href="lang?act=cn"><i class="fas fa-globe-americas"></i>  中文 </a>
+                            <a class="nav-link" href="lang?act=en"><i class="fas fa-globe-americas"></i>  English </a>
                         </li>
 
 
@@ -97,38 +97,38 @@
             <h1>${prompt}</h1>
             <form action="manageaccount" method="post" >
                 <div class="form-label-group">
-                    <label for="inputUser">Username</label>
+                    <label for="inputUser">用户名</label>
                     <input type="text" id="inputUser" name="username" class="form-control" value="${sessionScope.userObj.username}" contenteditable="false">
                 </div>
 
                 <div class="form-label-group">
-                    <label for="inputName">Name</label>
+                    <label for="inputName">姓名</label>
                     <input type="text" id="inputName" name="name" class="form-control" value="${sessionScope.userObj.name}">
 
                 </div>
 
                 <div class="form-label-group">
-                    <label for="inputAddress">Address</label>
+                    <label for="inputAddress">地址</label>
                     <input type="text" id="inputAddress" name="address" class="form-control" value="${sessionScope.userObj.address}">
                 </div>
                 <div class="form-label-group">
-                    <label for="inputPostal">Postal Code</label>
+                    <label for="inputPostal">邮编</label>
                     <input type="text" id="inputPostal" name="postal" class="form-control" value="${sessionScope.userObj.postalCode}">
 
                 </div>
 
                 <div class="form-label-group">
-                    <label for="inputEmail">Email Address</label>
+                    <label for="inputEmail">电子信箱</label>
                     <input type="text" id="inputEmail" name="email" class="form-control" value="${sessionScope.userObj.email}">
 
                 </div>
 
                 <div class="form-label-group">
-                    <label for="inputPhone">Phone Number</label>
+                    <label for="inputPhone">电话</label>
                     <input type="text" id="inputPhone" name="phone" class="form-control" value="${sessionScope.userObj.phoneNo}">
                 </div>
 
-                <input type="submit" value="Confirm Change">
+                <input type="submit" value="修改">
                 <input type="hidden" name="action" value="change">
             </form>
 
@@ -137,26 +137,26 @@
             <form action="manageaccount" method="post" >
                 <table>
                     <tr>
-                    <h1>Change Password</h1>
+                    <h1>改变密码</h1>
                     <div class="form-label-group">
-                        <td><label for="inputPhone">Current Password: </label></td>
+                        <td><label for="inputPhone">当前密码: </label></td>
                         <td><input text="password" name="currentPassword"></td>
                     </div>
                     </tr>
                     <tr>
                     <div class="form-label-group">
-                        <td><label for="inputPhone">New Password: </label></td>
+                        <td><label for="inputPhone">新密码: </label></td>
                         <td><input text="password" name="newPassword"></td>
                     </div>
                     </tr>
                     <tr>
                     <div class="form-label-group">
-                        <td><label for="inputPhone">New Password Confirm: </label></td>
+                        <td><label for="inputPhone">再次输入新密码: </label></td>
                         <td><input text="password" name="newPasswordConfirm"></td>
                     </div>
                     </tr>
                 </table>
-                <input type="submit" value="Change Password">
+                <input type="submit" value="修改密码">
                 <input type="hidden" name="action" value="changePassword">
             </form>
             <br>
@@ -181,9 +181,9 @@
                         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
 
                             <!-- Content -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Helen's Delicious Cakes, Inc.</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">海燕美味蛋糕</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                            <p class="footertext">Helen's Delicious Cakes is a locally owned small business that prides itself on making fresh cakes daily. Our cakes are scratch-baked, and customised to suit your needs. Please don't hesitate to contact us with any questions.</p>
+                            <p class="footertext">由海燕精心制作的蛋糕松软可口、细腻绵软、甜度适中，适合所有人的口味</p>
 
                         </div>
                         <!-- Grid column -->
@@ -192,7 +192,7 @@
                         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
                             <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Follow Us</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">关注我们</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                             <p>
                                 <a href="#" class="fab fa-facebook footertext"> facebook</a>  
@@ -212,7 +212,7 @@
                         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
 
                             <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Contact</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">联系方式</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                             <p class="footertext">
                                 <i class="fas fa-home mr-3 "></i>188 Springbluff Blvd SW <br>Calgary, AB</p>
@@ -232,7 +232,7 @@
 
                 <!-- Copyright -->
                 <div class="footer-copyright text-center py-3 footertext">
-                    Copyright © Helen's Delicious Cakes. All rights reserved.
+                    版权所有 © 海燕美味蛋糕
                 </div>
                 <!-- Copyright -->
 
