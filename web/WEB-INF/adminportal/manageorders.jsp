@@ -226,6 +226,7 @@
                         <th>Active</th>
                         <th>Confirmed</th>
                         <th>Paid</th>
+                        <th>Delivered</th>
                         <th></th>
                         <th></th>
 
@@ -241,6 +242,7 @@
                                 <td><input type="checkbox" <c:if test="${order.active==true}">checked</c:if> name="active"></td>
                                 <td><input type="checkbox" <c:if test="${order.confirmed==true}">checked</c:if> name="active"></td>
                                 <td><input type="checkbox" <c:if test="${order.paid==true}">checked</c:if> name="active"></td>
+                                <td><input type="checkbox" <c:if test="${order.delivered==true}">checked=</c:if> name="active"></td>
                                     <td>
                                         <form action="manageorders" method="post">
                                             <input type="submit" value="Delete">

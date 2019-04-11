@@ -63,7 +63,7 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="nav-item"><a class="nav-link" href="login"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+                        <li class="nav-item"><a class="nav-link" href="login?act=logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
                     </ul>
                 </div>
             </div>
@@ -75,7 +75,7 @@
             <div class="card-body"> 
                 <div class="row">
                     <div class="col-md-4">
-                        <p id="headertitle">Manage Cakes</p>
+                        <p id="headertitle"><strong>Manage Cakes</strong></p>
                     </div>
                     <div class="col-md-4 text-md-center">${notification}</div>
                     
