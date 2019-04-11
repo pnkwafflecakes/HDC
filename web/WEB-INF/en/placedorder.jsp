@@ -37,107 +37,78 @@
             <div class="container">
                 <a class="navbar-brand" href="#"> H D C </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-bars"></i>
+                    <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="mainmenu">Home</a>
+                            <a class="nav-link" href="mainmenu">
+                                <c:if test="${(language == null)||(language == 'en') }">
+                                    Home
+                                </c:if>
+                                <c:if test="${language == 'ch'}">
+                                    主页
+                                </c:if>
+                                <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Browse</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="cart">Cart<span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
-                        </li>
+                        
+                        
+
+
                         <li class="nav-item"> </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
 
-                        <form class="form-inline my-2 my-lg-0" action="search" method="post">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchWord">
-                            <input type="hidden" name="action" value="Search">
-                        </form>
-
-
                         <c:if test="${userObj != null}">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-user-circle"></i> 
-                                    ${userObj.name} 
+                                    <span class="glyphicon glyphicon-user">
+                                    </span> ${userObj.name} 
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">My Profile</a>
-                                    <a class="dropdown-item" href="#">My Orders</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="login?act=logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
-                                </div>
+                                
                             </li>
                         </c:if>
                         <c:if test="${userObj == null}">
                             <li class="nav-item">
-                                <a class="nav-link" href="login">
-                                    Login/Register
+                                <a class="nav-link" href="login"><span class="glyphicon glyphicon-user"></span>
+                                    <c:if test="${(language == null)||(language == 'en') }">
+                                        Login/Register
+                                    </c:if>
+                                    <c:if test="${language == 'ch'}">
+                                        登录/注册
+                                    </c:if>
                                 </a>
                             </li>
                         </c:if>
 
-                        <!--button toggle ch/en-->
-                        <li class="nav-item">
-                            <a class="nav-link" href="lang?act=cn"><i class="fas fa-globe-americas"></i>  中文 </a>
-                        </li>
-
-
+                        
                     </ul>
+
+
+
+
                 </div>
             </div>
         </nav>
 
 
-        <br>
-        <div class="container">
-
-            <h1 class="text-center">${currCake.name}</h1>
-
+        <div class="container-fluid">
             <br>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-4">
-                        <img class="rounded" src="<c:url value='${currCake.image}'/>" alt="Cake Picture" height="240" width="240">
-                    </div>
-                    <div class="col-md-5">
-
-                        <h4><i>Price</i><font color="red"> $${currCake.price}</font></h4>
-                        <h4><i>Size</i><font color="blue"> ${currCake.size}"</font></h4>
-                        <br>
-                        <p><strong>Description:</strong> ${currCake.description}</p>
-                    </div>
-                    <div class="col-md-3">
-                        <form action="cakeinfo" method="POST">
-                            <strong>Quantity</strong>
-                            <input type="number" name="quantity" value="1" min="1" max="20" style="width: 20%;">
-                            <input type="hidden" name="cakeId" value="${currCake.cakeId}">
-                            <button type="submit" class="btn btn-outline-dark">Add To Cart</button>
-                        </form>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <a href="mainmenu" class="btn btn-outline-dark" style=" float: right;">Continue Shopping</a>
-
-                        &nbsp
-                    </div>
-                </div>
+            <h2 class="text-center">Congratulations!</h2>
+            <h2 class="text-center">Order placed successful! Your order is being processed.</h2>
+            <br>
+            <div class="text-center">
+                <br>
+                <a href="mainmenu" class="btn btn-outline-dark">Take me to home page</a>
             </div>
-            <div class="clearfix"></div>
-        </div>
-        <hr>
 
+        </div>
+
+
+        <br>
+        <br>
+        <hr>
 
         <div class="containter" id="bottomfooter">
             <!-- Footer -->
@@ -192,7 +163,7 @@
                             <p class="footertext">
                                 <i class="fas fa-home mr-3 "></i>188 Springbluff Blvd SW <br>Calgary, AB</p>
                             <p class="footertext">
-                                <i class="fas fa-envelope mr-3 "></i>  <a href="mailto:#">helen@gmail.com</a></p>
+                                <i class="fas fa-envelope mr-3 "></i>  <a href="mailto:helenbkf@gmail.com?Subject=Customer%20Contact" target="_top">helenbkf@gmail.com</a></p>
                             <p class="footertext">
                                 <i class="fas fa-phone mr-3 "></i>(403) 808-3860</p>
 
@@ -214,7 +185,6 @@
             </footer>
             <!-- Footer -->
         </div>
-
 
     </body>
 </html> 

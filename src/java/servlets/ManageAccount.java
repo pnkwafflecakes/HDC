@@ -21,7 +21,6 @@ import javax.servlet.http.HttpSession;
  */
 public class ManageAccount extends HttpServlet {
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -29,8 +28,16 @@ public class ManageAccount extends HttpServlet {
         User user = null;
         UserService us;
         us = new UserService();
-        
-        getServletContext().getRequestDispatcher("/WEB-INF/manageaccount.jsp").forward(request, response);
+
+        String language = (String) session.getAttribute("language");
+        if (language == null) {
+            language = "en";
+        }
+        if (language.equals("cn")) {
+            getServletContext().getRequestDispatcher("/WEB-INF/cn/manageaccount.jsp").forward(request, response);
+        } else {
+            getServletContext().getRequestDispatcher("/WEB-INF/en/manageaccount.jsp").forward(request, response);
+        }
     }
 
     @Override
@@ -47,7 +54,6 @@ public class ManageAccount extends HttpServlet {
 
             String prompt = null;
 
-
             if (action.equals("changePassword")) {
                 String password = user.getPassword();
                 String currentPassword = request.getParameter("currentPassword");
@@ -61,14 +67,16 @@ public class ManageAccount extends HttpServlet {
                             user.setPassword(newPassword);
                             us.edit(user);
                             prompt = "Successfully changed password";
+                        } else {
+                            prompt = "Password and confirm password are different";
                         }
-                        else prompt = "Password and confirm password are different";
+                    } else {
+                        prompt = "Please fill in all password fields";
                     }
-                    else prompt = "Please fill in all password fields";
+                } else {
+                    prompt = "Password is incorrect";
                 }
-                else prompt = "Password is incorrect";
-            }
-            else if(action.equals("change")){
+            } else if (action.equals("change")) {
                 String address = request.getParameter("address");
                 String email = request.getParameter("email");
                 String name = request.getParameter("name");
@@ -82,25 +90,24 @@ public class ManageAccount extends HttpServlet {
                 user.setPhoneNo(phoneNo);
                 user.setPostalCode(postalCode);
                 user.setUsername(username);
-                
-                System.out.println("Address"+address);
+
+                System.out.println("Address" + address);
                 System.out.println("Email: " + email);
                 System.out.println("Name: " + name);
                 System.out.println("PhoneNo" + phoneNo);
                 System.out.println("Postal Code: " + postalCode);
                 System.out.println("Username" + username);
-                
+
                 us.edit(user);
                 prompt = "Data changed successfully!";
             }
 
-            
             request.setAttribute("prompt", prompt);
-            
+
             doGet(request, response);
         } catch (Exception e) {
             request.setAttribute("prompt", "Something went wrong");
-            System.out.println("Error in Manage Account: "+e.getMessage());
+            System.out.println("Error in Manage Account: " + e.getMessage());
             doGet(request, response);
         }
     }

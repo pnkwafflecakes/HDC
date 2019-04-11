@@ -45,8 +45,6 @@ public class SearchServlet extends HttpServlet
             for (int i=0; i < cakeListDB.size(); i++) {
                 validCake = false;
                 Cake cakeProc = cakeListDB.get(i);
-                String abc = "abc";
-                
                 
                 if (cakeProc.getName().toLowerCase().contains(searchWord.toLowerCase())) validCake = true;
                 else if (cakeProc.getDescription().toLowerCase().contains(searchWord.toLowerCase())) validCake = true;
@@ -57,7 +55,16 @@ public class SearchServlet extends HttpServlet
         }
         request.setAttribute("cakes", searchList);
         if (searchList.isEmpty()) request.setAttribute("message", "No cakes containing that description or name");
-        getServletContext().getRequestDispatcher("/WEB-INF/search.jsp").forward(request, response);
+        
+         String language = (String) session.getAttribute("language");
+        if (language == null) {
+            language = "en";
+        }
+        if (language.equals("cn")) {
+            getServletContext().getRequestDispatcher("/WEB-INF/cn/search.jsp").forward(request, response);
+        } else {
+            getServletContext().getRequestDispatcher("/WEB-INF/en/search.jsp").forward(request, response);
+        }
     }
 
     /**

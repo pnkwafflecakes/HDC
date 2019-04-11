@@ -77,25 +77,25 @@ public class PaymentServlet extends HttpServlet {
                  if (language.equals("cn")) {
                         getServletContext().getRequestDispatcher("/WEB-INF/cn/successorder.jsp").forward(request, response);
                     } else {
-                        getServletContext().getRequestDispatcher("/WEB-INF/successorder.jsp").forward(request, response);
+                        getServletContext().getRequestDispatcher("/WEB-INF/en/successorder.jsp").forward(request, response);
                     }
             }else if(payment.equals("fail")){
                  if (language.equals("cn")) {
                         getServletContext().getRequestDispatcher("/WEB-INF/cn/notsuccessorder.jsp").forward(request, response);
                     } else {
-                        getServletContext().getRequestDispatcher("/WEB-INF/notsuccessorder.jsp").forward(request, response);
+                        getServletContext().getRequestDispatcher("/WEB-INF/en/notsuccessorder.jsp").forward(request, response);
                     }
             }else if(payment.equals("cash")){
                  if (language.equals("cn")) {
                         getServletContext().getRequestDispatcher("/WEB-INF/cn/placedorder.jsp").forward(request, response);
                     } else {
-                        getServletContext().getRequestDispatcher("/WEB-INF/placedorder.jsp").forward(request, response);
+                        getServletContext().getRequestDispatcher("/WEB-INF/en/placedorder.jsp").forward(request, response);
                     }
             }else if(payment.equals("etrasfer")){
                  if (language.equals("cn")) {
                         getServletContext().getRequestDispatcher("/WEB-INF/cn/placedorder.jsp").forward(request, response);
                     } else {
-                        getServletContext().getRequestDispatcher("/WEB-INF/placedorder.jsp").forward(request, response);
+                        getServletContext().getRequestDispatcher("/WEB-INF/en/placedorder.jsp").forward(request, response);
                     }
             }
         }

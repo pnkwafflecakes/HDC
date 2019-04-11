@@ -1,9 +1,3 @@
-<%-- 
-    Document   : mainmenu
-    Created on : Feb 7, 2019, 2:45:09 PM
-    Author     : 703842
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -37,93 +31,139 @@
             <div class="container">
                 <a class="navbar-brand" href="#"> H D C </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="mainmenu">
-                                <c:if test="${(language == null)||(language == 'en') }">
-                                    Home
-                                </c:if>
-                                <c:if test="${language == 'ch'}">
-                                    主页
-                                </c:if>
-                                <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="mainmenu">Home</a>
                         </li>
-                        
-                        
-
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="browse">Browse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact">Contact
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="cart">Cart<span class="badge badge-pill badge-secondary">${fn:length(cakes)}</span></a>
+                        </li>
                         <li class="nav-item"> </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
 
+                        <form class="form-inline my-2 my-lg-0" action="search" method="post">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchWord">
+                            <input type="hidden" name="action" value="Search">
+                        </form>
+
+
                         <c:if test="${userObj != null}">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="glyphicon glyphicon-user">
-                                    </span> ${userObj.name} 
+                                    <i class="fas fa-user-circle"></i> 
+                                    ${userObj.name} 
                                 </a>
-                                
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="manageaccount">My Profile</a>
+                                    <a class="dropdown-item" href="orders">My Orders</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="login?act=logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+                                </div>
                             </li>
                         </c:if>
                         <c:if test="${userObj == null}">
                             <li class="nav-item">
-                                <a class="nav-link" href="login"><span class="glyphicon glyphicon-user"></span>
-                                    <c:if test="${(language == null)||(language == 'en') }">
-                                        Login/Register
-                                    </c:if>
-                                    <c:if test="${language == 'ch'}">
-                                        登录/注册
-                                    </c:if>
+                                <a class="nav-link" href="login">
+                                    Login/Register
                                 </a>
                             </li>
                         </c:if>
 
-                        
+                        <!--button toggle ch/en-->
+                        <li class="nav-item">
+                            <a class="nav-link" href="lang?act=cn"><i class="fas fa-globe-americas"></i>  中文 </a>
+                        </li>
+
+
                     </ul>
-
-
-
-
                 </div>
             </div>
         </nav>
 
 
-        <div class="container-fluid">
+        <div class="container">
+            <h1>${prompt}</h1>
+            <form action="manageaccount" method="post" >
+                <div class="form-label-group">
+                    <label for="inputUser">Username</label>
+                    <input type="text" id="inputUser" name="username" class="form-control" value="${sessionScope.userObj.username}" contenteditable="false">
+                </div>
+
+                <div class="form-label-group">
+                    <label for="inputName">Name</label>
+                    <input type="text" id="inputName" name="name" class="form-control" value="${sessionScope.userObj.name}">
+
+                </div>
+
+                <div class="form-label-group">
+                    <label for="inputAddress">Address</label>
+                    <input type="text" id="inputAddress" name="address" class="form-control" value="${sessionScope.userObj.address}">
+                </div>
+                <div class="form-label-group">
+                    <label for="inputPostal">Postal Code</label>
+                    <input type="text" id="inputPostal" name="postal" class="form-control" value="${sessionScope.userObj.postalCode}">
+
+                </div>
+
+                <div class="form-label-group">
+                    <label for="inputEmail">Email Address</label>
+                    <input type="text" id="inputEmail" name="email" class="form-control" value="${sessionScope.userObj.email}">
+
+                </div>
+
+                <div class="form-label-group">
+                    <label for="inputPhone">Phone Number</label>
+                    <input type="text" id="inputPhone" name="phone" class="form-control" value="${sessionScope.userObj.phoneNo}">
+                </div>
+
+                <input type="submit" value="Confirm Change">
+                <input type="hidden" name="action" value="change">
+            </form>
+
+            <hr>
+
+            <form action="manageaccount" method="post" >
+                <table>
+                    <tr>
+                    <h1>Change Password</h1>
+                    <div class="form-label-group">
+                        <td><label for="inputPhone">Current Password: </label></td>
+                        <td><input text="password" name="currentPassword"></td>
+                    </div>
+                    </tr>
+                    <tr>
+                    <div class="form-label-group">
+                        <td><label for="inputPhone">New Password: </label></td>
+                        <td><input text="password" name="newPassword"></td>
+                    </div>
+                    </tr>
+                    <tr>
+                    <div class="form-label-group">
+                        <td><label for="inputPhone">New Password Confirm: </label></td>
+                        <td><input text="password" name="newPasswordConfirm"></td>
+                    </div>
+                    </tr>
+                </table>
+                <input type="submit" value="Change Password">
+                <input type="hidden" name="action" value="changePassword">
+            </form>
             <br>
-            <h2 class="text-center">Congratulations!</h2>
-            <h2 class="text-center">Order placed successful! Your order is being processed.</h2>
-            <br>
-            <div class="text-center">
-<!--                <i>You're being direct to home page in <span id="countdowntimer">5 </span> Seconds</i>-->
-                <br>
-                <a href="mainmenu" class="btn btn-outline-dark">Take me to home page</a>
-            </div>
+
+
 
         </div>
-<!--        <script type="text/javascript">
-            var timeleft = 5;
-            var downloadTimer = setInterval(function () {
-                timeleft--;
-                document.getElementById("countdowntimer").textContent = timeleft;
-                if (timeleft <= 0)
-                    clearInterval(downloadTimer);
-            }, 500);
-
-            function leave() {
-                window.location = "mainmenu";
-            }
-            setTimeout("leave()", 5000);
-        </script>-->
-
-
-        <br>
-        <br>
-        <hr>
 
         <div class="containter" id="bottomfooter">
             <!-- Footer -->
@@ -141,10 +181,9 @@
                         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
 
                             <!-- Content -->
-                            <h6 class="text-uppercase font-weight-bold footertext">Hellen Delicious Cakes, Inc.</h6>
+                            <h6 class="text-uppercase font-weight-bold footertext">Helen's Delicious Cakes, Inc.</h6>
                             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                            <p class="footertext">Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit.</p>
+                            <p class="footertext">Helen's Delicious Cakes is a locally owned small business that prides itself on making fresh cakes daily. Our cakes are scratch-baked, and customised to suit your needs. Please don't hesitate to contact us with any questions.</p>
 
                         </div>
                         <!-- Grid column -->
@@ -178,7 +217,7 @@
                             <p class="footertext">
                                 <i class="fas fa-home mr-3 "></i>188 Springbluff Blvd SW <br>Calgary, AB</p>
                             <p class="footertext">
-                                <i class="fas fa-envelope mr-3 "></i>  <a href="mailto:helenbkf@gmail.com?Subject=Customer%20Contact" target="_top">helenbkf@gmail.com</a></p>
+                                <i class="fas fa-envelope mr-3 "></i>  <a href="mailto:#">helen@gmail.com</a></p>
                             <p class="footertext">
                                 <i class="fas fa-phone mr-3 "></i>(403) 808-3860</p>
 
@@ -193,13 +232,12 @@
 
                 <!-- Copyright -->
                 <div class="footer-copyright text-center py-3 footertext">
-                    Copyright © Helen's Delicious Cakes. All rights reserved
+                    Copyright © Helen's Delicious Cakes. All rights reserved.
                 </div>
                 <!-- Copyright -->
 
             </footer>
             <!-- Footer -->
         </div>
-
     </body>
-</html> 
+</html>
