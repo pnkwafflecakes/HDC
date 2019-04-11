@@ -21,6 +21,9 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/jquery.validate.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/additional-methods.js"></script>
+
         <style><%@include file="/WEB-INF/styles/navbar.css"%></style>
         <style><%@include file="/WEB-INF/styles/mainmenu.css"%></style>
 
@@ -99,7 +102,7 @@
                 <h1 class="text-center">Profile</h1>
                 <br>
                 <h3 class="text-center">${prompt}</h3>
-                <form action="manageaccount" method="post" >
+                <form action="manageaccount" name="registration" method="post" >
                     <div class="form-label row">
                         <label class="col-md-2 col-form-label" for="inputUser">Username</label>
                         <div class="col-md-10">
@@ -154,7 +157,7 @@
             </div>
             <div style="display: none;" id="cancelbtn">
                 <div class="d-flex justify-content-center" >
-                    <button type="button" class="btn btn-danger">Cancel</button>          
+                    <button src="manageacount" type="button" class="btn btn-danger">Cancel</button>          
                 </div>
             </div>
 
@@ -171,7 +174,6 @@
                         $("#inputName").attr("readonly", false);
                         $("#inputAddress").attr("readonly", false);
                         $("#inputPostal").attr("readonly", false);
-                        $("#inputEmail").attr("readonly", false);
                         $("#inputPhone").attr("readonly", false);
                     });
 
@@ -183,8 +185,37 @@
                         $("#inputName").attr("readonly", true);
                         $("#inputAddress").attr("readonly", true);
                         $("#inputPostal").attr("readonly", true);
-                        $("#inputEmail").attr("readonly", true);
                         $("#inputPhone").attr("readonly", true);
+                    });
+                });
+
+
+                $(function () {
+                    $("form[name='registration']").validate({
+                        rules: {
+                            address: "required",
+                            name: "required",
+                            phone: {
+                                required: true,
+                                phoneUS: true
+                            }, postal: {
+                                required: true,
+                                pattern: '^[a-zA-z]{1}[0-9]{1}[a-zA-z]{1}[-]{1}[0-9]{1}[a-zA-Z]{1}[0-9]{1}'
+                            }
+                        },
+                        messages: {
+                            name: "Please enter your name",
+                            address: "Please enter your address",
+                            phone: {
+                                required: "Please enter a phone number",
+                                phoneUS: "Please format as 111-222-3333"
+                            }, postal: {
+                                required: "Please a postal code",
+                                pattern: "Please format as A1B-2D3"
+                            }
+                        },
+                        errorElement: 'div',
+                        errorLabelContainer: '.errorTxt'
                     });
                 });
             </script>
