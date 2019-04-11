@@ -145,12 +145,10 @@
 
                             <script type="text/javascript">
 
-                                $("#inputDueDate").val(getFormattedDate(tomorrow()));
-
-                                function tomorrow()
-                                {
-                                    return today().getTime() + 24 * 60 * 60 * 1000;
-                                }
+                               var today = new Date().toISOString().split('T')[0];
+                               var tomorrow = new Date();
+                               tomorrow.setDate(tomorrow.getDate() + 2);
+                               document.getElementsByName("dueDate")[0].setAttribute('min', tomorrow.toISOString().split('T')[0]); 
 
                             </script>
                         </div>
