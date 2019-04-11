@@ -79,14 +79,11 @@ public class CakeInfoServlet extends HttpServlet {
 
         int cakeId = Integer.valueOf(request.getParameter("cakeId"));
 
-        System.out.println("Cake contents: " + cakes.toString());
 
         CakeService cs = new CakeService();
         Cake currCake = cs.get(cakeId);
         int quantity = Integer.valueOf(request.getParameter("quantity"));
-        System.out.println("Quantity: " + quantity);
         for (int i = 0; i < quantity; i++) {
-            System.out.println("adding at instance: " + i);
             cakes.add(cakeId);
         }
 

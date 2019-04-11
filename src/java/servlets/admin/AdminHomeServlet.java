@@ -53,7 +53,21 @@ public class AdminHomeServlet extends HttpServlet
         int totalCustomers = 0;
         int totalStaff = 0;
         int totalUsers = 0;
-        int totalOrders = 0;
+        int notDelivered= 0;
+        
+        int currOrders = 0;
+        int allOrders = 0;
+        
+        allOrders = orders.size();
+        for (int i = 0; i < orders.size(); i++) {
+            Orders order = orders.get(i);
+            if (order.getConfirmed()==false) {
+                currOrders++;
+            }
+            else if (order.getDelivered()==false) {
+                notDelivered++;
+            } 
+        }
 
         // Populate variables for cake stats
         totalCakes = cakes.size();
@@ -74,15 +88,16 @@ public class AdminHomeServlet extends HttpServlet
         totalUsers = users.size();
 
         // Populate variables for order stats
-        totalOrders = orders.size();
 
         // Set variables to session to display in table
-        session.setAttribute("cakeNumber", totalCakes);
-        session.setAttribute("lastCake", lastAdded);
-        session.setAttribute("custNumber", totalCustomers);
-        session.setAttribute("staffNumber", totalStaff);
-        session.setAttribute("totalNumber", totalUsers);
-        session.setAttribute("totalorders", totalOrders);
+        request.setAttribute("cakeNumber", totalCakes);
+        request.setAttribute("lastAdded", lastAdded);
+        request.setAttribute("custNumber", totalCustomers);
+        request.setAttribute("staffNumber", totalStaff);
+        request.setAttribute("totalNumber", totalUsers);
+        request.setAttribute("allOrders", allOrders);
+        request.setAttribute("currOrders", currOrders);
+        request.setAttribute("notDelivered", notDelivered);
 
         getServletContext().getRequestDispatcher("/WEB-INF/adminportal/adminhome.jsp").forward(request, response);
     }

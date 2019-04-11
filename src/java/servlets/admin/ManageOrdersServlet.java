@@ -35,7 +35,6 @@ public class ManageOrdersServlet extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        System.out.println("manageorders");
 //        getServletContext().getRequestDispatcher("/WEB-INF/adminportal/manageorders.jsp").forward(request, response);
      OrderService os = new OrderService();
      DeliveryService ds = new DeliveryService();
@@ -81,9 +80,6 @@ public class ManageOrdersServlet extends HttpServlet
      List<Orders> orders;
      try{
          orders = os.getAll();
-         for(Orders order:orders){
-//             System.out.println(order.getOrderNo());
-         }
              
          request.setAttribute("orders", orders);
      }catch (Exception ex) {
@@ -110,8 +106,7 @@ public class ManageOrdersServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        
-//      System.out.println("manageorders");
+
         String url = "/WEB-INF/adminportal/manageorders.jsp";
         OrderService os = new OrderService();
 
@@ -145,8 +140,6 @@ public class ManageOrdersServlet extends HttpServlet
             else if(action != null && action.equals("edit")){
                 //save edit order
                 int selectedOrderId = Integer.parseInt(request.getParameter("selectedOrderId"));//not change
-//                System.out.println("manageorder servlet post edit");
-//                System.out.println(selectedOrderId);
                 Orders orderOld = ojc.findOrders(selectedOrderId);
                 Date order_date    = orderOld.getOrderDatetime();//not change
                 Date due_date      = orderOld.getDueDatetime();//not change
@@ -157,19 +150,16 @@ public class ManageOrdersServlet extends HttpServlet
                 String[] activeCheck = request.getParameterValues("active");
                 if (activeCheck==null) active = false;
                 else if (activeCheck[0].equals("on")) active = true;
-                else System.out.println("Special Check value " + activeCheck[0]);
     
 //                get confirmed checkbox
                 String[] confirmedCheck = request.getParameterValues("confirmed");
                 if (confirmedCheck==null) confirmed = false;
                 else if (confirmedCheck[0].equals("on")) confirmed = true;
-                else System.out.println("Special Check value " + confirmedCheck[0]);
                
 //                get paid checkbox
                 String[] paidCheck = request.getParameterValues("paid");
                 if (paidCheck==null) paid = false;
                 else if (paidCheck[0].equals("on")) paid = true;
-                else System.out.println("Special Check value " + paidCheck[0]);
                 
                 orderOld.setTotalPrice(total_price);
                 orderOld.setActive(active);
@@ -193,11 +183,8 @@ public class ManageOrdersServlet extends HttpServlet
                 djc.edit(deliveryOld);
                 
             }else if(action != null && action.equals("changeQuantity")){
-                System.out.println("changeqty");
                 int selectedCakeOrder = Integer.parseInt(request.getParameter("selectedCakeOrder"));
                 int quantity = Integer.parseInt(request.getParameter("quantity"));
-                System.out.println("selectedCakeOrder "+selectedCakeOrder);
-                System.out.println("quantity "+quantity);
                 List<Cakeorder> cakeOrdersOld = (List<Cakeorder>)session.getAttribute("cakeOrdersSession");
                 List<Cakeorder> cakeOrdersNew = cojc.findCakeorderByOrderNo(cakeOrdersOld.get(0).getOrders().getOrderNo());
                 
@@ -250,9 +237,6 @@ public class ManageOrdersServlet extends HttpServlet
      List<Orders> orders;
      try{
          orders = os.getAll();
-         for(Orders order:orders){
-//             System.out.println(order.getOrderNo());
-         }
              
          request.setAttribute("orders", orders);
 //         sent selectedOrder back to jsp, so edit part can show
