@@ -299,7 +299,11 @@
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                         <div class="card-body">
-                            如需更改或取消蛋糕订单，请最少在交货时间前48小时与我们联系。
+                            <ul>
+                                <li>
+                                    如需更改或取消蛋糕订单，请最少在交货时间前48小时与我们联系。
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -313,7 +317,12 @@
                     </div>
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                         <div class="card-body">
-                            我们非常高兴能为您提供美味的蛋糕。为了保证蛋糕的新鲜，请至少在需要蛋糕的日期前48小时下单。（周末是需求高峰期，需要更多的时间准备。特殊要求请直接和我们联系）
+                            <ul>
+                                <li>
+                                    我们非常高兴能为您提供美味的蛋糕。为了保证蛋糕的新鲜，请至少在需要蛋糕的日期前48小时下单。（周末是需求高峰期，需要更多的时间准备。特殊要求请直接和我们联系）
+                                </li>
+                            </ul>
+                        
                         </div>
                     </div>
                 </div>
