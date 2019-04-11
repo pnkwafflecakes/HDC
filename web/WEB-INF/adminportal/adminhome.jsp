@@ -28,7 +28,7 @@
 
         <nav class="navbar navbar-expand-lg navbar-custom">
             <div class="container">
-                <a class="navbar-brand mb-0 h1">Helen's Delicious Cakes</a>
+                <a class="navbar-brand mb-0 h1" href="adminhome">Helen's Delicious Cakes</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
