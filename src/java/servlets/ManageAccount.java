@@ -91,12 +91,6 @@ public class ManageAccount extends HttpServlet {
                 user.setPostalCode(postalCode);
                 user.setUsername(username);
 
-                System.out.println("Address" + address);
-                System.out.println("Email: " + email);
-                System.out.println("Name: " + name);
-                System.out.println("PhoneNo" + phoneNo);
-                System.out.println("Postal Code: " + postalCode);
-                System.out.println("Username" + username);
 
                 us.edit(user);
                 prompt = "Data changed successfully!";
@@ -107,7 +101,6 @@ public class ManageAccount extends HttpServlet {
             doGet(request, response);
         } catch (Exception e) {
             request.setAttribute("prompt", "Something went wrong");
-            System.out.println("Error in Manage Account: " + e.getMessage());
             doGet(request, response);
         }
     }

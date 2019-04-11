@@ -54,23 +54,19 @@ public class EditCakeServlet extends HttpServlet
         String inputType = request.getParameter("input");
         name = request.getParameter("imagename");
         changed = request.getParameter("changed");
-        System.out.println("Image name: " + name);
 
         HttpSession session = request.getSession(true);
         //request.setAttribute("input", inputType);
         session.setAttribute("input", inputType);
         
-        System.out.println("Input: " + inputType);
         
         if (changed != null) {
-                System.out.println("Path: " + path+name);
                 String newPath = path+name;
                 request.setAttribute("imagePath", newPath);
                 request.setAttribute("changed", "1");
         }
         
         if (inputType.equals("edit")) {
-            System.out.println("In edits");
             CakeService cs = new CakeService();
             int cakeId = Integer.valueOf(session.getAttribute("cakeId")+"");
             Cake cake = cs.get(cakeId);
@@ -103,7 +99,6 @@ public class EditCakeServlet extends HttpServlet
         String[] featuredCheck = request.getParameterValues("featured");
         if (featuredCheck==null) featured = false;
         else if (featuredCheck[0].equals("on")) featured = true;
-        else System.out.println("Featured Check value " + featuredCheck[0]);
         //Price
         double price = Double.valueOf(request.getParameter("price"));
         //Size
@@ -112,7 +107,6 @@ public class EditCakeServlet extends HttpServlet
         String[] specialCheck = request.getParameterValues("special");
         if (specialCheck==null) featured = false;
         else if (specialCheck[0].equals("on")) special = true;
-        else System.out.println("Special Check value " + specialCheck[0]);
         
         int categoryId = Integer.valueOf(request.getParameter("categorySelect"));      
         
@@ -121,8 +115,6 @@ public class EditCakeServlet extends HttpServlet
         String namecn = new String(request.getParameter("namecn").getBytes("ISO-8859-1"),"utf-8");
         
         
-        System.out.println("可可脂蛋糕");
-        System.out.println("CN Name: " + namecn + ", CN Desc: " + descriptioncn);
         
 
         cake.setName(name);
@@ -137,11 +129,9 @@ public class EditCakeServlet extends HttpServlet
         CakeJpaController cjc = new CakeJpaController();
         
         try {
-            System.out.println("EditCake: 1: " + action);
             if (action.equals("edit")) 
             {
                 int cakeId = Integer.valueOf(request.getParameter("selectedCakeId"));
-                System.out.println("CakeId "+cakeId);
                 cake.setCakeId(cakeId);
                 
                 String imagePath = path+this.name;
@@ -158,27 +148,15 @@ public class EditCakeServlet extends HttpServlet
                 }
                 
 
-                System.out.println("EditCake: 2-4");
                 
             }
             else if (action.equals("add")) 
             {
-
-                System.out.println("EditCake: 2-5");
                 String imagePath = path+this.name;
                 if (imagePath == null) {
                     imagePath = cs.get(1).getImage();
                 }
                 cake.setImage(imagePath);
-                System.out.println("cake values: ");
-                System.out.println("id: "+cake.getCakeId());
-                System.out.println("Desc: "+cake.getDescription());
-                System.out.println("cn desc: " + cake.getDescriptioncn());
-                System.out.println("image: "+ cake.getImage());
-                System.out.println("Name: "+cake.getName());
-                System.out.println("Name cn: "+cake.getNamecn());
-                System.out.println("Size: " + cake.getSize());
-                System.out.println("Price: " + cake.getPrice());
                 cs.insert(cake);
                 
             }
@@ -186,9 +164,6 @@ public class EditCakeServlet extends HttpServlet
         } catch(Exception e) {
             HttpSession session = request.getSession(true);
             String inputType = session.getAttribute("input")+"";
-            System.out.println("Error!!!: " + e.getMessage());
-            System.out.println(e.getCause());
-            e.printStackTrace();
             response.sendRedirect("editcake?input=" + inputType);
         }
     }

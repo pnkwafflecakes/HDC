@@ -51,7 +51,7 @@ public class ManageCakesServlet extends HttpServlet
         
         for (int i = 0; i < cakes.size(); i++) {
             cakeArray[i] = cakes.get(i);
-            System.out.println(cakeArray[i]);
+            
         }
 
         request.setAttribute("cakes", cakeArray);
@@ -66,7 +66,6 @@ public class ManageCakesServlet extends HttpServlet
         try {
         CakeService cs = new CakeService();
         String action = request.getParameter("action");
-        System.out.println("Act: "+action);
         if (action != null) {
             
             if (action.equals("undo")) {
@@ -97,7 +96,6 @@ public class ManageCakesServlet extends HttpServlet
                     Cake undoCake = cs.get(cakeId);
                     session.setAttribute("undoCake", undoCake);
                     cs.delete(cakeId);
-                    System.out.println("Redir from delete");
                 }
                     doGet(request, response);
             }
@@ -111,7 +109,6 @@ public class ManageCakesServlet extends HttpServlet
             }
         }
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
             response.sendRedirect("login");
         }
     }

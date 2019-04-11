@@ -84,20 +84,13 @@ public class LoginServlet extends HttpServlet {
 
             username = userList.get(i).getUsername();
             password = userList.get(i).getPassword();
-            System.out.println("User details:");
-            System.out.println(username);
-            System.out.println(password);
 
             if (username.equals(userIn) && password.equals(passIn)) {
-                System.out.println("Accepted user: " + userIn);
                 User user = userList.get(i);
-                System.out.println("Assoc user: " + user.getUsername() + " , status: " + user.getAccountStatus());
                 if (user.getAccountStatus() == true) {
-                    System.out.println("User status true");
                     valid = true;
                     String redir = "login";
                     user.getAccountType();
-                    System.out.println("Acount type: " + user.getAccountType().getAccountType());
                     if (user.getAccountType().getAccountType() == 2) {
                         session.setAttribute("admin", user);
                         redir = "manageorders";
