@@ -133,36 +133,111 @@
             </form>
 
             <hr>
-            
+
             <form action="manageaccount" method="post" >
                 <table>
                     <tr>
-                        <h1>Change Password</h1>
-                        <div class="form-label-group">
-                            <td><label for="inputPhone">Current Password: </label></td>
-                            <td><input text="password" name="currentPassword"></td>
-                        </div>
+                    <h1>Change Password</h1>
+                    <div class="form-label-group">
+                        <td><label for="inputPhone">Current Password: </label></td>
+                        <td><input text="password" name="currentPassword"></td>
+                    </div>
                     </tr>
                     <tr>
-                        <div class="form-label-group">
-                            <td><label for="inputPhone">New Password: </label></td>
-                            <td><input text="password" name="newPassword"></td>
-                        </div>
+                    <div class="form-label-group">
+                        <td><label for="inputPhone">New Password: </label></td>
+                        <td><input text="password" name="newPassword"></td>
+                    </div>
                     </tr>
                     <tr>
-                        <div class="form-label-group">
-                            <td><label for="inputPhone">New Password Confirm: </label></td>
-                            <td><input text="password" name="newPasswordConfirm"></td>
-                        </div>
+                    <div class="form-label-group">
+                        <td><label for="inputPhone">New Password Confirm: </label></td>
+                        <td><input text="password" name="newPasswordConfirm"></td>
+                    </div>
                     </tr>
                 </table>
                 <input type="submit" value="Change Password">
                 <input type="hidden" name="action" value="changePassword">
             </form>
-        
+            <br>
+
 
 
         </div>
 
+        <div class="containter" id="bottomfooter">
+            <!-- Footer -->
+            <br>
+            <footer class="page-footer font-small unique-color-dark">
+
+
+                <!-- Footer Links -->
+                <div class="container text-center text-md-left mt-5">
+
+                    <!-- Grid row -->
+                    <div class="row mt-3">
+
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+                            <!-- Content -->
+                            <h6 class="text-uppercase font-weight-bold footertext">Helen's Delicious Cakes, Inc.</h6>
+                            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                            <p class="footertext">Helen's Delicious Cakes is a locally owned small business that prides itself on making fresh cakes daily. Our cakes are scratch-baked, and customised to suit your needs. Please don't hesitate to contact us with any questions.</p>
+
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                            <!-- Links -->
+                            <h6 class="text-uppercase font-weight-bold footertext">Follow Us</h6>
+                            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                            <p>
+                                <a href="#" class="fab fa-facebook footertext"> facebook</a>  
+                            </p>
+                            <p>
+                                <a href="#" class="fab fa-instagram footertext"> instagram</a> 
+                            </p>
+                            <p>
+                                <a href="#" class="fab fa-weixin footertext"> wechat</a>                            </p>
+                            </p>
+
+
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+                            <!-- Links -->
+                            <h6 class="text-uppercase font-weight-bold footertext">Contact</h6>
+                            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                            <p class="footertext">
+                                <i class="fas fa-home mr-3 "></i>188 Springbluff Blvd SW <br>Calgary, AB</p>
+                            <p class="footertext">
+                                <i class="fas fa-envelope mr-3 "></i>  <a href="mailto:#">helen@gmail.com</a></p>
+                            <p class="footertext">
+                                <i class="fas fa-phone mr-3 "></i>(403) 808-3860</p>
+
+                        </div>
+                        <!-- Grid column -->
+
+                    </div>
+                    <!-- Grid row -->
+
+                </div>
+                <!-- Footer Links -->
+
+                <!-- Copyright -->
+                <div class="footer-copyright text-center py-3 footertext">
+                    Copyright © Helen's Delicious Cakes. All rights reserved.
+                </div>
+                <!-- Copyright -->
+
+            </footer>
+            <!-- Footer -->
+        </div>
     </body>
 </html>
