@@ -47,7 +47,7 @@ Create table `Delivery`
     `method` VARCHAR(100) NOT NULL,
     `address` VARCHAR(100) NOT NULL,
     `phone_no` VARCHAR(12) NOT NULL,
-    `notes` VARCHAR(99) NOT NULL,
+    `notes` VARCHAR(99) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     PRIMARY KEY (`delivery_no`)
 );
 

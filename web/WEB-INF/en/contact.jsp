@@ -299,7 +299,11 @@
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                         <div class="card-body">
-                            48-hours is required to modify or cancel any cake, specialty cupcake or custom order. Modifications or cancellations to an order within 48 hours will be charged for the full amount of the order to the credit card provided at the time the order was taken.
+                            <ul>
+                                <li>
+                                    48-hours is required to modify or cancel any cake, specialty cupcake or custom order. Modifications or cancellations to an order within 48 hours will be charged for the full amount of the order to the credit card provided at the time the order was taken.
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -313,7 +317,11 @@
                     </div>
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                         <div class="card-body">
-                            We are happy to say that we can now take same-day cupcake orders! For cookies, cakes and specialty cupcakes we require at least 48 hours notice (more notice is required for weekends, we book up quickly!).
+                            <ul>
+                                <li>
+                                    We are happy to say that we can now take same-day cupcake orders! For cookies, cakes and specialty cupcakes we require at least 48 hours notice (more notice is required for weekends, we book up quickly!).
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>

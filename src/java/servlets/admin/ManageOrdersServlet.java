@@ -276,6 +276,8 @@ public class ManageOrdersServlet extends HttpServlet
                 }
      
      // forward to the view
+        request.setAttribute("selectedOrder", null);
+        
         getServletContext()
             .getRequestDispatcher(url)
                 .forward(request, response);

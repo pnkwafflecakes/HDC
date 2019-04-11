@@ -92,7 +92,7 @@ public class SummaryServlet extends HttpServlet {
         if (language.equals("cn")) {
             getServletContext().getRequestDispatcher("/WEB-INF/cn/summary.jsp").forward(request, response);
         } else {
-            getServletContext().getRequestDispatcher("/WEB-INF/summary.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/en/summary.jsp").forward(request, response);
         }
         
     }

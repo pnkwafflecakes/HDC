@@ -1,12 +1,5 @@
-<%-- 
-    Document   : orders
-    Created on : 1-Mar-2019, 1:52:41 PM
-    Author     : Knyfe
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -29,19 +22,20 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
         <style><%@include file="/WEB-INF/styles/navbar.css"%></style>
-        <style><%@include file="/WEB-INF/styles/orders.css"%></style>
+        <style><%@include file="/WEB-INF/styles/mainmenu.css"%></style>
+
 
     </head>
     <body>
-        <nav class="navbar sticky-top navbar-expand-lg navbar-custom">
+        <nav class="navbar navbar-expand-lg navbar-custom">
             <div class="container">
-                <a class="navbar-brand" href="mainmenu"> H D C </a>
+                <a class="navbar-brand" href="#"> H D C </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="mainmenu">Home</a>
                         </li>
                         <li class="nav-item">
@@ -97,53 +91,143 @@
                 </div>
             </div>
         </nav>
-        <br>
-        <h1 align="center">Orders</h1>
-        <p align="center">${error}</p>
 
-        <div class="container-fluid" id="ordercontainer">
-            <c:if test="${orderList != null}">
-                <p align="center">To Cancel an Order Please Contact Us!</p>
+
+        <div class="container">
+            <div class="col-md-9" style="margin: auto">
                 <br>
-                <c:forEach items="${orderList}" var="order">
-                    <table class="table border">
-                        <thead class="table-active">
-                            <tr>
-                                <th class="col-md-3 align-middle">
-                                    Order No. 
-                                    <fmt:formatNumber pattern="0000" value="${order.orderNo}" />
-                                </th>
-                                <th class="col-md-6 align-middle">
-                                    Placed on: 
-                                    <fmt:formatDate value="${order.orderDatetime}" pattern="MMMM dd, yyyy"/>
-                                    <br>
-                                    Expected: 
-                                    <fmt:formatDate value="${order.dueDatetime}" pattern="MMMM dd, yyyy"/>
-                                </th>
-                                <th class="col-md-3 align-middle">
-                                    Total: 
-                                    <c:out value="$${order.totalPrice}"/>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach items="${order.cakeCollection}" var="ite">
-                                <tr>
-                                    <td class="align-middle"><img height="100em" src="<c:url value='${ite.image}'/>" /></td>
-                                    <td class="align-middle"><c:out value="${ite.name}"/></td>
-                                    <td class="align-middle">$<c:out value="${ite.price}"/></td>
-                                </tr>
-                            </c:forEach>
-                                <tr>
-                                    <td>${order.deliveryNo.notes}</td>
-                                </tr>
-                        </tbody>
-                    </table>
-                </c:forEach>
-            </c:if>
+                <h1 class="text-center">Profile</h1>
+                <br>
+                <h3 class="text-center">${prompt}</h3>
+                <form action="manageaccount" method="post" >
+                    <div class="form-label row">
+                        <label class="col-md-2 col-form-label" for="inputUser">Username</label>
+                        <div class="col-md-10">
+                            <input type="text" id="inputUser" name="username" class="form-control" value="${sessionScope.userObj.username}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-label row">
+                        <label class="col-md-2 col-form-label" for="inputName">Name</label>
+                        <div class="col-md-10">
+                            <input type="text" id="inputName" name="name" class="form-control" value="${sessionScope.userObj.name}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-label row">
+                        <label class="col-md-2 col-form-label" for="inputAddress">Address</label>
+                        <div class="col-md-10">
+
+                            <input type="text" id="inputAddress" name="address" class="form-control" value="${sessionScope.userObj.address}" readonly>
+                        </div>
+                    </div>
+                    <div class="form-label row">
+                        <label class="col-md-2 col-form-label" for="inputPostal">Postal Code</label>
+                        <div class="col-md-10">
+                            <input type="text" id="inputPostal" name="postal" class="form-control" value="${sessionScope.userObj.postalCode}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-label row">
+                        <label class="col-md-2 col-form-label" for="inputEmail">Email Address</label>
+                        <div class="col-md-10">
+                            <input type="text" id="inputEmail" name="email" class="form-control" value="${sessionScope.userObj.email}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-label row">
+                        <label class="col-md-2 col-form-label" for="inputPhone">Phone Number</label>
+                        <div class="col-md-10">
+                            <input type="text" id="inputPhone" name="phone" class="form-control" value="${sessionScope.userObj.phoneNo}" readonly>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div style="display: none;" id="confirmbtn">
+                        <div class="d-flex justify-content-center" style="display: none;">
+                            <button type="submit" class="btn btn-primary" id="submitbtn">Confirm</button>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="hidden" name="action" value="change">
+                </form>
+            </div>
+            <div style="display: none;" id="cancelbtn">
+                <div class="d-flex justify-content-center" >
+                    <button type="button" class="btn btn-danger">Cancel</button>          
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <button type="button" class="btn btn-info" id="editbtn">Edit My Profile</button>
+            </div>
+            <script>
+                $(document).ready(function () {
+                    $('#editbtn').click(function () {
+                        $('#editbtn').hide();
+                        $('#cancelbtn').show();
+                        $('#confirmbtn').show();
+
+                        $("#inputName").attr("readonly", false);
+                        $("#inputAddress").attr("readonly", false);
+                        $("#inputPostal").attr("readonly", false);
+                        $("#inputEmail").attr("readonly", false);
+                        $("#inputPhone").attr("readonly", false);
+                    });
+
+                    $('#cancelbtn').click(function () {
+                        $('#editbtn').show();
+                        $('#cancelbtn').hide();
+                        $('#confirmbtn').hide();
+
+                        $("#inputName").attr("readonly", true);
+                        $("#inputAddress").attr("readonly", true);
+                        $("#inputPostal").attr("readonly", true);
+                        $("#inputEmail").attr("readonly", true);
+                        $("#inputPhone").attr("readonly", true);
+                    });
+                });
+            </script>
+            <br>
+            <br>
+
+            <hr>
+            <div class="col-md-7" style="margin: auto">
+                <h2 class="text-center">Change Password</h2>
+                <form action="manageaccount" method="post" >
+
+                    <div class="form-label row">
+                        <label class="col-md-4 col-form-label" for="currentPassword">Current Password</label>
+                        <div class="col-md-8">
+                            <input type="password" name="currentPassword" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-label row">
+                        <label class="col-md-4 col-form-label" for="newPassword">New Password:</label>
+                        <div class="col-md-8">
+                            <input type="password" name="newPassword" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-label row">
+                        <label class="col-md-4 col-form-label" for="newPasswordConfirm">New Password Confirm:</label>
+                        <div class="col-md-8">
+                            <input type="password" name="newPasswordConfirm" class="form-control">
+                        </div>
+                    </div>
+                    <br>
+
+                    <input type="hidden" name="action" value="changePassword">
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-info">Okay</button>
+                    </div>
+
+                </form>
+            </div>
+            <br>
+
+
 
         </div>
-
 
         <div class="containter" id="bottomfooter">
             <!-- Footer -->
@@ -220,4 +304,4 @@
             <!-- Footer -->
         </div>
     </body>
-</html> 
+</html>

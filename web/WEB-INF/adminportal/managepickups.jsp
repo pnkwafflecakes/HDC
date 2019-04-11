@@ -4,13 +4,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
     <head>
-    
+
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <style><%@include file="/WEB-INF/styles/adminhome.css"%></style>
         <style><%@include file="/WEB-INF/styles/navbar.css"%></style>
-        <style><%@include file="/WEB-INF/styles/manageorders.css"%></style>
+        <!--<style><%@include file="/WEB-INF/styles/manageorders.css"%></style>-->
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clH="TMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -54,83 +54,123 @@
             </div>
         </nav>
 
+        <br>
+        <div class="card">
+
+            <div class="card-body"> 
+                <div class="row">
+                    <div class="col-md-4">
+                        <p id="headertitle"><strong>Manage Pickups</strong></p>
+                    </div>
+                    <div class="col-md-4 text-md-center">${notification}</div>
+
+                    <div class="col-md-4 text-md-right">
+                        <form action="managepickups" method="post" >
+                            <input type="submit" value="Undo Delete">
+                            <input type="hidden" name="action" value="undo">
+                        </form>
+                    </div>
+                </div>
+
+                <hr>
 
 
-        <h2>${notification}</h2>
 
-        <div class = "col-sm-3">
-            <!--can admin add cake--> 
-            <c:if test="${selectedPickup == null}">
-                <h3>New Pickup</h3>
-                <form action="managepickups" method="POST">
-                    <table>
-                        <tr><td>Pickup Description</td><td><input type="text" name="selectedPickupName" value=""></td></tr>
-                        <tr><td>Pickup Address</td><td><input type="text" name="selectedPickupAddress" value=""></td></tr>   
-                        <input type="hidden" name="action" value="add">
-                    </table>
-                    <input type="submit" value="Save">
-                </form>
-            </c:if>
-            <c:if test="${selectedPickup != null}">
-                <h3>Edit Pickup</h3>
-                <form action="managepickups" method="POST">
+                <div class="row">
+                        <div class = "col-md-4">
 
-                    <table>
+                            <c:if test="${selectedPickup == null}">
+                                <h3>New Pickup</h3>
+                                <form action="managepickups" method="POST">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <div id="inputHeader">Pickup Description</div>
+                                            <textarea type="text" row="3" class="form-control" name="selectedPickupName"></textarea>
+                                        </div>
+                                    </div>
 
-                        <tr><td>Pickup Description</td><td><input type="text" name="pickupName" value="${selectedPickup.pickupName}"></td></tr>
-                        <tr><td>Pickup Address</td><td><input type="text" name="pickupAddress" value="${selectedPickup.pickupAddress}"></td></tr>  
-                        <input type="hidden" name="selectedPickupId" value="${selectedPickup.pickupId}">
-                        <input type="hidden" name="action" value="edit">
-                        <!--table to show cakes info in this order-->
-                    </table>
-                    <input type="submit" value="Save">
-                </form>  
-            </c:if> 
-        </div>
-
-        <div class="col-sm-9">
-            <h3>Pickup Locations</h3>
-
-            <form action="managepickups" method="post" >
-                <input type="submit" value="Undo">
-                <input type="hidden" name="action" value="undo">
-            </form>
-            <table>
-
-                <th>Pickup Id</th>
-                <th>Pickup Notes</th>
-                <th>Pickup Address</th>
-                <th>Delete</th>
-                <th>Edit</th>
-
-                <c:forEach var="pickups" items="${pickups}">               
-                    <tr>
-                        <td>${pickups.pickupId}</td>
-                        <td>${pickups.pickupName}</td>
-                        <td>${pickups.pickupAddress}</td>
-                        <td>
-                            <form action="managepickups" method="post" >
-                                <input type="submit" value="Delete">
-                                <input type="hidden" name="action" value="delete">
-                                <input type="hidden" name="selectedPickupId" value="${pickups.pickupId}">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <div id="inputHeader">Pickup Address</div>
+                                            <input type="text" class="form-control" name="selectedPickupAddress">
+                                        </div>
+                                    </div>
+                                    <div class="form-row text-md-right">
+                                        <div class="form-group col-md-12">
+                                            <input type="hidden" name="action" value="add">
+                                            <input type="submit" value="Save">
+                                        </div>
+                                    </div>
+                                </c:if>
                             </form>
-                        </td>
-                        <td>
-                            <form action="managepickups" method="post">
-                                <input type="submit" value="Edit">
-                                <input type="hidden" name="action" value="view">
-                                <input type="hidden" name="selectedPickupId" value="${pickups.pickupId}">
+
+                            <c:if test="${selectedPickup != null}">
+                                <h3>New Pickup</h3>
+                                <form action="managepickups" method="POST">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <div id="inputHeader">Pickup Description</div>
+                                            <textarea type="text" row="3" class="form-control" name="pickupName">${selectedPickup.pickupName}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <div id="inputHeader">Pickup Address</div>
+                                            <input type="text" class="form-control" name="pickupAddress" value="${selectedPickup.pickupAddress}">
+                                        </div>
+                                    </div>
+                                    <div class="form-row text-md-right">
+                                        <div class="form-group col-md-12">
+                                            <input type="hidden" name="selectedPickupId" value="${selectedPickup.pickupId}">
+                                            <input type="hidden" name="action" value="edit">
+                                            <input type="submit" value="Save">
+                                        </div>
+                                    </div>
+                                </c:if>
                             </form>
-                        </td>
-                    </tr>
+                        </div>
 
-                </c:forEach>
-            </table>
-
-        </div>
+                        <div class="col-md-8">
+                            <h3>Pickup Locations</h3>
 
 
+                            <table class="table table-bordered">
+
+                                <th>Pickup Id</th>
+                                <th>Pickup Notes</th>
+                                <th>Pickup Address</th>
+                                <th>Delete</th>
+                                <th>Edit</th>
+
+                                <c:forEach var="pickups" items="${pickups}">               
+                                    <tr>
+                                        <td>${pickups.pickupId}</td>
+                                        <td>${pickups.pickupName}</td>
+                                        <td>${pickups.pickupAddress}</td>
+                                        <td>
+                                            <form action="managepickups" method="post" >
+                                                <input type="submit" value="Delete">
+                                                <input type="hidden" name="action" value="delete">
+                                                <input type="hidden" name="selectedPickupId" value="${pickups.pickupId}">
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form action="managepickups" method="post">
+                                                <input type="submit" value="Edit">
+                                                <input type="hidden" name="action" value="view">
+                                                <input type="hidden" name="selectedPickupId" value="${pickups.pickupId}">
+                                            </form>
+                                        </td>
+                                    </tr>
+
+                                </c:forEach>
+                            </table>
+
+                        </div>
+
+                </div>
 
 
-    </body>
-</html>
+                </body>
+                </html>

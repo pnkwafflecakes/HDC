@@ -28,55 +28,57 @@ import javax.servlet.http.HttpSession;
  *
  * @author Knyfe
  */
-public class ViewOrders extends HttpServlet
-{
+public class ViewOrders extends HttpServlet {
+
     //Do Get
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         //Get session variable
         //Create user variable to put into session
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("userObj");
-        
+
         try {
             OrderService os = new OrderService();
             List<Orders> orders = os.getAll();
             ArrayList<Orders> userOrders = new ArrayList<>();
 
-            for (int i = 0; i < orders.size(); i++)
-            {
-                if (orders.get(i).getUserId().getUserId() == user.getUserId())
-                {
+            for (int i = 0; i < orders.size(); i++) {
+                if (orders.get(i).getUserId().getUserId() == user.getUserId()) {
                     userOrders.add(orders.get(i));
                 }
             }
 
             //Push a message to the page if there are no orders
-            if (userOrders.isEmpty())
-            {
+            if (userOrders.isEmpty()) {
                 request.setAttribute("error", "No orders have been placed yet.");
-                getServletContext().getRequestDispatcher("/WEB-INF/orders.jsp").forward(request, response);
             }
-            
+
             //Push orderList to page
             session.setAttribute("orderList", userOrders);
-            getServletContext().getRequestDispatcher("/WEB-INF/orders.jsp").forward(request, response);
-            }
-        //Mkae sure that a user who is not logged in cannot view orders.
-        catch(NullPointerException ex)
-        {
+        } //Mkae sure that a user who is not logged in cannot view orders.
+        catch (NullPointerException ex) {
             request.setAttribute("error", "Please Log In to View Orders");
-            getServletContext().getRequestDispatcher("/WEB-INF/orders.jsp").forward(request, response);
+        } finally {
+            String language = (String) session.getAttribute("language");
+
+            if (language == null) {
+                language = "en";
+            }
+            if (language.equals("cn")) {
+                getServletContext().getRequestDispatcher("/WEB-INF/cn/orders.jsp").forward(request, response);
+            } else {
+                getServletContext().getRequestDispatcher("/WEB-INF/en/orders.jsp").forward(request, response);
+            }
+
         }
     }
 
     //Do Post
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         //get the order number from request.
         HttpSession session = request.getSession();
         String order_no = request.getParameter("deleteOrder");
@@ -88,8 +90,7 @@ public class ViewOrders extends HttpServlet
         int paid = 0;
 
         //check if the order can still be cancelled
-        try
-        {
+        try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/capstonedb", "root", "password");
             String prepStatement = "Select active,confirmed,paid from Orders Where user_id = ? And order_no = ?;";
@@ -103,17 +104,14 @@ public class ViewOrders extends HttpServlet
             confirmed = rs.getInt("confirmed");
             paid = rs.getInt("paid");
 
-        }
-        catch(ClassNotFoundException | SQLException ex)
-        {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ViewOrders.class.getName()).log(Level.SEVERE, null, ex);
         }
         //if active and not confirmed or paid yet delete
         //update page and inform user
         ArrayList orderList = (ArrayList) session.getAttribute("orderList");
 
-        try
-        {
+        try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/capstonedb", "root", "password");
             String prepUpdateStatement = "UPDATE orders SET active = false WHERE user_id = ? AND order_no = ?;";
@@ -121,9 +119,7 @@ public class ViewOrders extends HttpServlet
             ps2.setInt(1, user_id);
             ps2.setInt(2, orderNo);
             ps2.executeUpdate(prepUpdateStatement);
-        }
-        catch (ClassNotFoundException | SQLException ex)
-        {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ViewOrders.class.getName()).log(Level.SEVERE, null, ex);
         }
         request.setAttribute("orderList", session.getAttribute("orderList"));
