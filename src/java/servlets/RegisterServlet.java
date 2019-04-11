@@ -212,12 +212,11 @@ public class RegisterServlet extends HttpServlet {
                     request.setAttribute("email", "");
                     request.setAttribute("phone", "");
                     request.setAttribute("username", "");
-                    request.setAttribute("status", "Registration Complete! Please login to begin");
 
                     if (language.equals("cn")) {
-                        getServletContext().getRequestDispatcher("/WEB-INF/cn/register.jsp").forward(request, response);
+                        getServletContext().getRequestDispatcher("/WEB-INF/cn/login.jsp").forward(request, response);
                     } else {
-                        getServletContext().getRequestDispatcher("/WEB-INF/en/register.jsp").forward(request, response);
+                        getServletContext().getRequestDispatcher("/WEB-INF/en/login.jsp").forward(request, response);
                     }
                 }
             } catch (IOException | ClassNotFoundException | SQLException | ServletException ex) {
