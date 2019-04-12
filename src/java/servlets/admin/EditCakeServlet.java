@@ -108,7 +108,7 @@ public class EditCakeServlet extends HttpServlet
         if (specialCheck==null) featured = false;
         else if (specialCheck[0].equals("on")) special = true;
         
-        int categoryId = Integer.valueOf(request.getParameter("categorySelect"));      
+//        int categoryId = Integer.valueOf(request.getParameter("categorySelect"));      
         
         //String namecn = request.getParameter("namecn");
         String descriptioncn = new String(request.getParameter("descriptioncn").getBytes("ISO-8859-1"),"utf-8");
