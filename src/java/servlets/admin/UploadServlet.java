@@ -48,7 +48,6 @@ public class UploadServlet extends HttpServlet {
             item.write(new File(path));
         }
         } catch (Exception ex) {
-                System.out.println(ex);
         }
         response.sendRedirect("editcake?input=" + inputType+"&imagename=" + name+"&changed=1");
     }

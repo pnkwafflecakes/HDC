@@ -51,7 +51,6 @@ public class DBEntry {
         //Create Delivery then order
         Orders order = new Orders();
         order.setDeliveryNo(delivery);
-        System.out.println("Delivery number assoc: " + order.getDeliveryNo().getDeliveryNo());
         double price = 0;
         String items = "";
         CakeService cs = new CakeService();
@@ -109,18 +108,12 @@ public class DBEntry {
         order.setOrderDatetime(currDate);
 //        order.setDueDatetime(calculateDueDate(currDate));
         order.setUserId(user);
-        System.out.println("User added: " + user);
-        System.out.println("User is: " + user.getUserId());
         order.setCakeCollection(toList(cakes));
         order.setOrderItems(items);
         order.setOrderNo(getOrderNo());
-        System.out.println(order.getOrderNo());
         try {
             CakeorderJpaController cojc = new CakeorderJpaController();
-            System.out.println("Order to put in: " + order);
             ojc.create(order);
-            System.out.println("Order successful: " + order.getOrderNo());
-            System.out.println("Order get cake collection size: " + order.getCakeCollection().size());
             Collection<Cake> col = order.getCakeCollection();
             Cake[] cakeArray = order.getCakeCollection().toArray(new Cake[col.size()]);
             
@@ -145,11 +138,9 @@ public class DBEntry {
     public void updateQuantity(int orderNo, Cake[] cakes, int[] counter) {
         try {
         ArrayList<Cake> cakeList = new ArrayList();
-        System.out.println("Cake Length: " + cakes.length);
         for (int i = 0; i < cakes.length; i++) {
             Cake cake = cakes[i];
             counter[cake.getCakeId()]++;
-            System.out.println("Counter for " + cake.getCakeId() + ": " + counter[cake.getCakeId()]);
             if (counter[cake.getCakeId()]==1) {
                 cakeList.add(cake);
             }
@@ -168,7 +159,6 @@ public class DBEntry {
             ps.setInt(2, orderNo);
             ps.setInt(3, cakeList.get(i).getCakeId());
             int rows = ps.executeUpdate();
-            System.out.println("Rows effected: "+rows);
         }
         
         ps.close();
@@ -204,7 +194,6 @@ public class DBEntry {
     public int getOrderNo() {
         OrderService os = new OrderService();
         int orderNo = 1;
-        System.out.println("--*-- Finding good ID");
         boolean notFound = true;
         while (notFound) {
             if (os.get(orderNo) != null) orderNo++;

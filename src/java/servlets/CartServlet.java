@@ -47,12 +47,9 @@ public class CartServlet extends HttpServlet
 
         if (cakes != null && cakes.size() != 0)
         {
-            
-            System.out.println("Cake was valid: " + cakes + " size: " + cakes.size());
             double totalPrice = 0;
             CakeService cs = new CakeService();
             List<Cake> allCakes = cs.getAll();
-            System.out.println("Size: " + allCakes.size());
             int cakeArraySize = allCakes.get(allCakes.size()-1).getCakeId() + 1;
             
             int[] counter = new int[cakeArraySize];
@@ -64,8 +61,6 @@ public class CartServlet extends HttpServlet
                 totalPrice = totalPrice + cs.get(cakes.get(i)).getPrice();
             }
             emptyCart = false;
-
-            System.out.println("Size: " + cakes.size());
             
             
 //            use cakeArray[a] to store the unique cake of cakeId a
@@ -96,7 +91,6 @@ public class CartServlet extends HttpServlet
             //put totalPrice in session, paypal will pay this number
             session.setAttribute("totalPrice", totalPrice);
             ArrayList<Cake> cakes2 = (ArrayList<Cake>) session.getAttribute("cakes");
-            System.out.println("Cakes after processing: " + cakes2);
         }
         else
         {
@@ -161,7 +155,6 @@ public class CartServlet extends HttpServlet
             }else if(action.equals("change")){
                 HttpSession session = request.getSession(true);
                 int selectedCakeId = Integer.valueOf(request.getParameter("selectedCake"));
-                System.out.println("newQuantity:"+request.getParameter("quantity"));
                 int newQuantity = Integer.parseInt(request.getParameter("quantity"));
                 ArrayList<Integer> cakes = (ArrayList<Integer>) session.getAttribute("cakes");
 

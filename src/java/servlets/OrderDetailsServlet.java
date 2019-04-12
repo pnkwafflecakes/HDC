@@ -48,22 +48,7 @@ public class OrderDetailsServlet extends HttpServlet
         HttpSession session = request.getSession();
         String language = (String) session.getAttribute("language");
 
-        //--*-- Simualted part
-//        System.out.println("YES");
-//        HttpSession session = request.getSession();
-//        //User user = (User) session.getAttribute("userObj");
-//        
-//       
-//        UserService us = new UserService();
-//        User user = us.get(1);
-//        System.out.println("User in OrderDetails: " + user);
-//        
-//        
-//        request.setAttribute("address", user.getAddress());
-//        System.out.println(user.getAddress());
-//        request.setAttribute("phoneNo", user.getPhoneNo());
-        //--*--
-//        getServletContext().getRequestDispatcher("/WEB-INF/orderdetails.jsp").forward(request, response);
+
         if (language == null)
         {
             language = "en";
@@ -96,12 +81,10 @@ public class OrderDetailsServlet extends HttpServlet
 
         HttpSession session = request.getSession(true);
 
-        System.out.println("duedate:" + dueDate);
         int deliveryNo = 1;
 
         DeliveryService ds = new DeliveryService();
 
-        System.out.println("--*-- Finding good ID");
         boolean notFound = true;
         while (notFound)
         {
@@ -114,7 +97,6 @@ public class OrderDetailsServlet extends HttpServlet
                 notFound = false;
             }
         }
-        System.out.println("--*-- ID found: " + deliveryNo);
 
         User user = (User) session.getAttribute("userObj");
 
@@ -137,7 +119,6 @@ public class OrderDetailsServlet extends HttpServlet
         try
         {
             djc.create(delivery);
-            System.out.println("Delivery creation successful");
         }
         catch (Exception ex)
         {
@@ -148,7 +129,6 @@ public class OrderDetailsServlet extends HttpServlet
 
         CakeService cs = new CakeService();
         ArrayList<Integer> cakes = (ArrayList<Integer>) session.getAttribute("cakes");
-        System.out.println(cakes);
         Cake[] cakeArray = new Cake[cakes.size()];
         for (int i = 0; i < cakes.size(); i++)
         {

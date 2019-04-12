@@ -28,7 +28,7 @@
 
         <nav class="navbar navbar-expand-lg navbar-custom">
             <div class="container">
-                <a class="navbar-brand mb-0 h1">Helen's Delicious Cakes</a>
+                <a class="navbar-brand mb-0 h1" href="adminhome">Helen's Delicious Cakes</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -69,7 +69,7 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr class="thead-light">
-                                        <th colspan="2">Manage Cakes</th> 
+                                        <th colspan="2"><a href="managecakes">Manage Cakes</a></th> 
                                     </tr>
                                     <tr>
                                         <th scope="col">Cakes</th>
@@ -89,17 +89,19 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr class="thead-light">
-                                        <th colspan="2">Manage Orders</th> 
+                                        <th colspan="3"><a href="manageorders">Manage Orders</a></th> 
                                     </tr>
                                     <tr>
-                                        <th scope="col">Current Orders</th>
                                         <th scope="col">Total Orders</th>
+                                        <th scope="col">Unconfirmed Orders</th>
+                                        <th scope="col">Orders to be delivered</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>${currOrders}</td>
                                         <td>${allOrders}</td>
+                                        <td>${currOrders}</td>
+                                        <td>${notDelivered}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -111,7 +113,7 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr class="thead-light">
-                                        <th colspan="3">Manage Customers</th> 
+                                        <th colspan="3"><a href="managecustomers">Manage Customers</a></th> 
                                     </tr>
                                     <tr>
                                         <th scope="col">Customers</th>

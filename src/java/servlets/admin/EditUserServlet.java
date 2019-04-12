@@ -53,7 +53,7 @@ public class EditUserServlet extends HttpServlet
 
         String name = request.getParameter("name");
         String address = request.getParameter("address");
-        String postalCode = request.getParameter("postalCode");
+        String postalCode = request.getParameter("postalcode");
         String email = request.getParameter("email");
         String phoneNo = request.getParameter("phoneNumber");
         String accountType = request.getParameter("accountType");
@@ -83,7 +83,7 @@ public class EditUserServlet extends HttpServlet
         catch (Exception ex)
         {
             request.setAttribute("notification", "User not saved.");
-            getServletContext().getRequestDispatcher("/WEB-INF/adminportal/managecustomers.jsp").forward(request, response);
+            response.sendRedirect("managecustomers?action=view");
         }
 
         HttpSession session = request.getSession(true);
@@ -92,6 +92,6 @@ public class EditUserServlet extends HttpServlet
 
         session.setAttribute("customers", users);
         request.setAttribute("notification", "User saved.");
-        getServletContext().getRequestDispatcher("/WEB-INF/adminportal/managecustomers.jsp").forward(request, response);
+        response.sendRedirect("managecustomers?action=view");
     }
 }
