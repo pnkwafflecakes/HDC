@@ -68,13 +68,17 @@
 
 
                     <div class="col-md-4 text-md-right">
+                        <div class="row">
 
-                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <div class="form-row float-right">
+                                    <form action="managepickups" method="post" class="mr-3">
+                                        <button type="button submit" class="btn btn-danger btn-sm" aria-pressed="true">Undo Delete</button>
+                                        <input type="hidden" name="action" value="undo">
+                                    </form>
 
-                            <form action="managepickups" method="post" >
-                                <input type="submit" value="Undo Delete">
-                                <input type="hidden" name="action" value="undo">
-                            </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -147,8 +151,8 @@
                             <th>Pickup Id</th>
                             <th>Pickup Notes</th>
                             <th>Pickup Address</th>
-                            <th>Delete</th>
-                            <th>Edit</th>
+                            <th></th>
+                            <th></th>
 
                             <c:forEach var="pickups" items="${pickups}">               
                                 <tr>
@@ -157,15 +161,15 @@
                                     <td>${pickups.pickupAddress}</td>
                                     <td>
                                         <form action="managepickups" method="post" >
-                                            <input type="submit" value="Delete">
-                                            <input type="hidden" name="action" value="delete">
+                                            <button type="button submit" class="btn btn-outline-secondary btn-sm">Edit</button>
+                                            <input type="hidden" name="action" value="view">
                                             <input type="hidden" name="selectedPickupId" value="${pickups.pickupId}">
                                         </form>
                                     </td>
                                     <td>
                                         <form action="managepickups" method="post">
-                                            <input type="submit" value="Edit">
-                                            <input type="hidden" name="action" value="view">
+                                            <button type="button submit" class="btn btn-outline-danger btn-sm">Delete</button>
+                                            <input type="hidden" name="action" value="delete">
                                             <input type="hidden" name="selectedPickupId" value="${pickups.pickupId}">
                                         </form>
                                     </td>

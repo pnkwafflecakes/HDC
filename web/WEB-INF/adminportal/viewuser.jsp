@@ -55,36 +55,31 @@
 
         <br>
         <div class="card">
-
             <div class="card-body"> 
                 <div class="row">
                     <div class="col-md-4">
-                        <p id="headertitle"><strong>View Profile: ${editUser.username}</strong></p>
+                        <p id="headertitle"><strong>View Profile: ${viewUser.username}</strong></p>
                     </div>
                     <div class="col-md-4 text-md-center">${errorMessage}${notification}</div>
 
                     <div class="col-md-4 text-md-right">
-                        <div class="col-md-12">
 
-
-                        </div>
                     </div>
                 </div>
 
                 <hr>
 
-                <form action="edituser" method="POST">
-                    <div class="row">
-                        <div class="col-md-4">
-                        </div>
-                        <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
+                        <form action="edituser" method="POST">
 
-                            <table class="table table-border">
-
+                            <div class="container">
                                 <div class="form-row">
                                     <div class="form-group col-md-9">
                                         <div id="inputHeader">Name</div>
-                                        <input type="text" class="form-control" name="name" value="${editUser.name}" readonly>
+                                        <input type="text" class="form-control" name="name" value="${viewUser.name}" readonly>
                                     </div>
                                     <div class="form-group col-md-3">
                                         <div id="inputHeader">User ID</div>
@@ -94,38 +89,38 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <div id="inputHeader">Address</div>
-                                        <input type="text" class="form-control" name="address" value="${editUser.address}" readonly>
+                                        <input type="text" class="form-control" name="address" value="${viewUser.address}" readonly>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <div id="inputHeader">Postal Code</div>
-                                        <input type="text" class="form-control" name="postalcode" value="${editUser.postalCode}" readonly>
+                                        <input type="text" class="form-control" name="postalcode" value="${viewUser.postalCode}" readonly>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <div id="inputHeader">Email</div>
-                                        <input type="text" class="form-control" name="email" value="${editUser.email}" readonly>
+                                        <input type="text" class="form-control" name="email" value="${viewUser.email}" readonly>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <div id="inputHeader">Phone Number</div>
-                                        <input type="text" class="form-control" name="phoneNumber" value="${editUser.phoneNo}" readonly>
+                                        <input type="text" class="form-control" name="phoneNumber" value="${viewUser.phoneNo}" readonly>
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <div id="inputHeader">Username</div>
-                                        <input type="text" class="form-control" name="username" value="${editUser.username}" readonly>
+                                        <input type="text" class="form-control" name="username" value="${viewUser.username}" readonly>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <div id="inputHeader">Password</div>
-                                        <input type="password" class="form-control" name="password" value="${editUser.password}" readonly>
+                                        <input type="password" class="form-control" name="password" value="${viewUser.password}" readonly>
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -139,33 +134,39 @@
 
                                         </div>
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <form action="managecustomers" method="GET">
-                                                <input type="submit" value="Cancel">
-                                            </form>
-                                        </div>
-                                        <div class="form-group col-md-6 text-md-right">
-                                            <form action="managecustomers" method="POST">
-                                                <input type="submit" value="Edit Profile">
-                                                <input type="hidden" name="action" value="edit">
-                                                    <input type="hidden" name="selectedCustomer" value="${viewUser.userId}">
-                                        </form>
-
-                                    </div>
                                 </div>
+                            </form>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <form action="managecustomers" method="get">
+                                            <input type="submit" value="Cancel">
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6 text-md-right">
+                                        <form action="managecustomers" method="POST">
+                                            <input type="submit" value="Edit Profile">
+                                            <input type="hidden" name="action" value="edit">
+                                                <input type="hidden" name="selectedCustomer" value="${viewUser.userId}">
+                                    </form>
 
-                            </table>
+                                </div>
+                            </div>
                         </div>
-
-
+                    </div>
+                </div>
                 </form>
+
                 <div class="col-md-4">
 
                 </div>
             </div>
-        </div>
+
+
+        </form>
+
     </div>
-    <br><br>
+</div>
+<br><br>
 </body>
 </html>

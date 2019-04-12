@@ -15,13 +15,8 @@
             #filter { 
                 text-align: center;
             }
-            
-            #addButton{
-                padding-right: 0px;
-            }
-            #undoButton{
-                padding-right: 30px;
-            }
+
+
 
         </style>
 
@@ -37,6 +32,9 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/jquery.validate.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/additional-methods.js"></script>
 
         <script>
             function unhideUserList() {
@@ -90,156 +88,187 @@
                     <div class="col-md-4">
                         <p id="headertitle"><strong>Manage Users</strong></p>
                     </div>
-                    <div class="col-md-4 text-md-center">${notification}</div>
+                    <div class="col-md-3 text-md-center">${notification}</div>
 
-                    <div class="col-md-4 text-md-right">
+                    <div class="col-md-5">
                         <div class="row">
 
-                            <div class="col-md-3"></div>
-                            <div class="col-md-2">
-                                <form method="post">
-                                    <input type="button" onClick='unhideUserList()' value="User List">
-                                </form>
-                            </div>
-                            <div class="col-md-3" id="addButton">
-                                <form method="post">
-                                    <input type="button" onClick='unhideAddUser()' value="Add User">
-                                </form>
-                            </div>
-                            <div class="col-md-4" id="undoButton">
-                                <form action="managecustomers" method="post">
-                                    <input type="submit" value="Undo Delete">
-                                    <input type="hidden" name="action" value="undo">
-                                </form>
+                            <div class="col-md-12">
+                                <div class="form-row float-right">
+                                    <form method="post" class="">
+                                        <button type="button" onClick='unhideUserList()' class="btn btn-secondary btn-sm" aria-pressed="true">User List</button>
+                                    </form>
+                                    <form method="post" class="ml-2 mr-5">
+                                        <button type="button" onClick='unhideAddUser()' class="btn btn-secondary btn-sm" aria-pressed="true">Add User</button>
+                                    </form>
+                                    <form action="managecustomers" method="post" class="mr-3">
+                                        <button type="button submit" class="btn btn-danger btn-sm" aria-pressed="true">Undo Delete</button>
+                                        <input type="hidden" name="action" value="undo">
+                                    </form>
+
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-            <hr>
+                <hr>
 
-            <div class="container" id="userList" style="display: block">
-                <div class="row">
-                     <div class="col-md-12">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col" style="width: 25%">Name</th>
-                                    <th scope="col" style="width: 25%">Email</th>
-                                    <th scope="col" style="width: 25%">Phone Number</th>
-                                    <th colspan="3" style="width: 25%" id="filter">
-                                        <form action="managecustomers" method="POST">
-                                            <select name="action" onchange="this.form.submit()">
-                                                <option value="default">Filter User List</option>
-                                                <option value="allusers">All Users</option>
-                                                <option value="client">Customers</option>
-                                                <option value="staff">Staff</option>
-                                            </select>
-                                        </form>
-                                    </th>
-                                </tr>
-                            </thead>
-
-                            <c:forEach var="customer" items="${customers}">
-                                <tbody>
+                <div class="container-fluid" id="userList" style="display: block">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-bordered">
+                                <thead>
                                     <tr>
-                                        <td>${customer.name}</td>
-                                        <td>${customer.email}</td>
-                                        <td>${customer.phoneNo}</td>
-                                        <td>
-                                            <form action="managecustomers" method="POST" >
-                                                <input type="submit" value="Details">
-                                                <input type="hidden" name="action" value="view">
-                                                <input type="hidden" name="selectedCustomer" value="${customer.userId}">
+                                        <th scope="col" style="width: 25%">Name</th>
+                                        <th scope="col" style="width: 25%">Email</th>
+                                        <th scope="col" style="width: 25%">Phone Number</th>
+                                        <th colspan="3" style="width: 25%" id="filter">
+                                            <form action="managecustomers" method="POST">
+                                                <select name="action" onchange="this.form.submit()">
+                                                    <option value="default">Filter User List</option>
+                                                    <option value="allusers">All Users</option>
+                                                    <option value="client">Customers</option>
+                                                    <option value="staff">Staff</option>
+                                                </select>
+
                                             </form>
-                                        </td>
-                                        <td>
-                                            <form action="managecustomers" method="POST" >
-                                                <input type="submit" value="Edit">
-                                                <input type="hidden" name="action" value="edit">
-                                                <input type="hidden" name="selectedCustomer" value="${customer.userId}">
-                                            </form>
-                                        </td>
-                                        <td>
-                                            <form action="managecustomers" method="POST" >
-                                                <input type="submit" value="Delete">
-                                                <input type="hidden" name="action" value="delete">
-                                                <input type="hidden" name="selectedCustomer" value="${customer.userId}">
-                                            </form>
-                                        </td>
+                                        </th>
                                     </tr>
-                                </tbody>
-                            </c:forEach>
-                        </table>
+                                </thead>
+
+                                <c:forEach var="customer" items="${customers}">
+                                    <tbody>
+                                        <tr>
+                                            <td>${customer.name}</td>
+                                            <td>${customer.email}</td>
+                                            <td>${customer.phoneNo}</td>
+                                            <td style="text-align:center">
+                                                <form action="managecustomers" method="POST" >
+                                                    <button type="button submit" class="btn btn-outline-secondary btn-sm">Details</button>
+                                                    <input type="hidden" name="action" value="view">
+                                                    <input type="hidden" name="selectedCustomer" value="${customer.userId}">
+                                                </form>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <form action="managecustomers" method="POST" >
+                                                    <button type="button submit" class="btn btn-outline-secondary btn-sm">Edit</button>
+                                                    <input type="hidden" name="action" value="edit">
+                                                    <input type="hidden" name="selectedCustomer" value="${customer.userId}">
+                                                </form>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <form action="managecustomers" method="POST" >
+                                                    <button type="button submit" class="btn btn-outline-danger btn-sm">Delete</button>
+                                                    <input type="hidden" name="action" value="delete">
+                                                    <input type="hidden" name="selectedCustomer" value="${customer.userId}">
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </c:forEach>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="container" id="addUser" style="display: none">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3>Add User</h3>
-                        <form action="managecustomers" method="POST">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <div id="inputHeader">Name</div>
-                                    <input type="text" class="form-control" name="name">
+                <div class="container" id="addUser" style="display: none">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Add User</h3>
+                            <form action="managecustomers" name="registration" method="POST">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <div id="inputHeader">Name</div>
+                                        <input type="text" class="form-control" name="name" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <div id="inputHeader">Address</div>
+                                        <input type="text" class="form-control" name="address" required>
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <div id="inputHeader">Address</div>
-                                    <input type="text" class="form-control" name="address">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-3">
-                                    <div id="inputHeader">Postal Code</div>
-                                    <input type="text" class="form-control" name="postal">
-                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <div id="inputHeader">Postal Code</div>
+                                        <input type="text" class="form-control" name="postal" required>
+                                    </div>
 
-                                <div class="form-group col-md-3">
-                                    <div id="inputHeader">Account Type</div>
-                                    <select class="form-control" name="account" name="accounttype">
-                                        <option value="1">Regular User</option>
-                                        <option value="2">Admin User</option>                                                  
-                                    </select>
-                                </div>
+                                    <div class="form-group col-md-3">
+                                        <div id="inputHeader">Account Type</div>
+                                        <select class="form-control" name="account" name="accounttype">
+                                            <option value="1">Regular User</option>
+                                            <option value="2">Admin User</option>                                                  
+                                        </select>
+                                    </div>
 
-                                <div class="form-group col-md-6">
-                                    <div id="inputHeader">Email Address</div>
-                                    <input type="email" class="form-control" name="email">
+                                    <div class="form-group col-md-6">
+                                        <div id="inputHeader">Email Address</div>
+                                        <input type="email" class="form-control" name="email" required>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-4">
-                                    <label for="inputCity">Phone Number</label>
-                                    <input type="text" class="form-control" name="phone">
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputCity">Phone Number</label>
+                                        <input type="text" class="form-control" name="phone" required>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputState">Username</label>
+                                        <input type="text" class="form-control" name="username" required>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputZip">Password</label>
+                                        <input type="password" class="form-control" name="password" required>
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-4">
-                                    <label for="inputState">Username</label>
-                                    <input type="text" class="form-control" name="username">
+                                <br>
+                                <div class="col-md-12 text-md-right">
+                                    <button type="button submit" class="btn btn-success">Register User</button>
+                                    <input type="hidden" name="action" value="add">
                                 </div>
-                                <div class="form-group col-md-4">
-                                    <label for="inputZip">Password</label>
-                                    <input type="password" class="form-control" name="password">
-                                </div>
-                            </div>
+                            </form>    
                             <br>
-                            <div class="col-md-12 text-md-right">
-                                <input type="hidden" name="action" value="add">
-                                <input type="submit" value="Register User" name="register">
-                            </div>
-                        </form>    
-                        <br>
 
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
 
 
         </div>
-    </div>
-</div>
-</body>
+        <script>
+
+            $(function () {
+                $("form[name='registration']").validate({
+                    rules: {
+                        password: {
+                            required: true,
+                            minlength: 8
+                        }, phone: {
+                            required: true,
+                            phoneUS: true
+                        }, postal: {
+                            required: true,
+                            pattern: '^[a-zA-z]{1}[0-9]{1}[a-zA-z]{1}[0-9]{1}[a-zA-Z]{1}[0-9]{1}'
+                        }
+                    },
+                    messages: {
+                        password: {
+                            required: "Please provide a password",
+                            minlength: "Your password must be at least 8 characters long"
+                        },
+                        phone: {
+                            required: "Please enter a phone number",
+                            phoneUS: "Please format as 111-222-3333"
+                        }, postal: {
+                            required: "Please enter your postal code",
+                            pattern: "Please format as A1B2D3"
+                        }
+                    },
+                    errorElement: 'div',
+                    errorLabelContainer: '.errorTxt'
+                });
+            });
+        </script>
+    </body>
 </html>
 
