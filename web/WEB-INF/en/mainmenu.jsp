@@ -185,7 +185,7 @@
                         <div class="card-body">
                             <a href="cakeinfo?cakeid=${cake1.cakeId}">
                                 <h5 class="card-title">
-                                    ${cake1.name}
+                                    <button type="button" class="btn btn-outline-dark">${cake1.name}</button>
                                 </h5>
                             </a>
 
@@ -200,7 +200,7 @@
                         <div class="card-body">
                             <a href="cakeinfo?cakeid=${cake2.cakeId}">
                                 <h5 class="card-title">
-                                    ${cake2.name}
+                                    <button type="button" class="btn btn-outline-dark">${cake2.name}</button>
                                 </h5>
                             </a>
 
@@ -215,7 +215,7 @@
                         <div class="card-body">
                             <a href="cakeinfo?cakeid=${cake3.cakeId}">
                                 <h5 class="card-title">
-                                    ${cake3.name}
+                                    <button type="button" class="btn btn-outline-dark">${cake3.name}</button>
                                 </h5>
                             </a>
 
@@ -232,7 +232,7 @@
                         <div class="card-body">
                             <a href="cakeinfo?cakeid=${cake4.cakeId}">
                                 <h5 class="card-title">
-                                    ${cake4.name}
+                                    <button type="button" class="btn btn-outline-dark">${cake4.name}</button>
                                 </h5>
                             </a>
 
@@ -247,7 +247,7 @@
                         <div class="card-body">
                             <a href="cakeinfo?cakeid=${cake5.cakeId}">
                                 <h5 class="card-title">
-                                    ${cake5.name}
+                                    <button type="button" class="btn btn-outline-dark">${cake5.name}</button>
                                 </h5>
                             </a>
 
@@ -262,7 +262,7 @@
                         <div class="card-body">
                             <a href="cakeinfo?cakeid=${cake6.cakeId}">
                                 <h5 class="card-title">
-                                    ${cake6.name}
+                                    <button type="button" class="btn btn-outline-dark">${cake6.name}</button>
                                 </h5>
                             </a>
 
