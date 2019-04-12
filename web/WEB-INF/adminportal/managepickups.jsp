@@ -7,6 +7,7 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="<c:url value='/images/hdclogo.png'/>">
 
         <style><%@include file="/WEB-INF/styles/adminhome.css"%></style>
         <style><%@include file="/WEB-INF/styles/navbar.css"%></style>
@@ -18,7 +19,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
-       
+
 
         <title>HDC - Manage Orders</title> 
     </head>
@@ -65,9 +66,9 @@
                     </div>
                     <div class="col-md-4 text-md-center">${notification}</div>
 
-                    
+
                     <div class="col-md-4 text-md-right">
-                        
+
                         <div class="col-md-12">
 
                             <form action="managepickups" method="post" >
@@ -77,7 +78,7 @@
                         </div>
                     </div>
                 </div>
-            
+
                 <hr>
 
 
@@ -175,8 +176,8 @@
 
                     </div>
                 </div>
-                </div>
+            </div>
 
 
-                </body>
-                </html>
+    </body>
+</html>

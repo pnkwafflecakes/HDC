@@ -25,6 +25,7 @@
 
         </style>
 
+        <link rel="shortcut icon" href="<c:url value='/images/hdclogo.png'/>">
 
 
 
