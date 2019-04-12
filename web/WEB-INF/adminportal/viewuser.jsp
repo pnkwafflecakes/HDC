@@ -25,7 +25,7 @@
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand mb-0 h1" href="adminhome">Helen's Delicious Cakes</a>
+                    <a class="navbar-brand mb-0 h1" href="adminhome"><img class="icon" src="<c:url value='/images/hdclogo.png'/>" /></a>
                 </div>
                 <ul class="nav navbar-nav">
                     <li><a href="manageorders">Orders</a></li>
