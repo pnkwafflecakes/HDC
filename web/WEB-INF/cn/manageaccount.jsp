@@ -29,7 +29,7 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-custom">
             <div class="container">
-                <a class="navbar-brand" href="#"> H D C </a>
+                <a class="navbar-brand" href="mainmenu"><img class="icon" src="<c:url value='/images/hdclogo.png'/>" /> </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -53,10 +53,10 @@
 
                     <ul class="nav navbar-nav navbar-right">
 
-<!--                        <form class="form-inline my-2 my-lg-0" action="search" method="post">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchWord">
-                            <input type="hidden" name="action" value="Search">
-                        </form>-->
+                        <!--                        <form class="form-inline my-2 my-lg-0" action="search" method="post">
+                                                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchWord">
+                                                    <input type="hidden" name="action" value="Search">
+                                                </form>-->
 
 
                         <c:if test="${userObj != null}">
@@ -95,149 +95,212 @@
 
         <div class="container">
             <h1>${prompt}</h1>
-            <form action="manageaccount" method="post" >
-                <div class="form-label-group">
-                    <label for="inputUser">用户名</label>
-                    <input type="text" id="inputUser" name="username" class="form-control" value="${sessionScope.userObj.username}" contenteditable="false">
+           
+
+
+        <div class="container">
+            <div class="col-md-9" style="margin: auto">
+                <br>
+                <!--<h1 class="text-center">Profile</h1>-->
+                <br>
+                <h3 class="text-center">${prompt}</h3>
+                <form action="manageaccount" name="registration" method="post" >
+                    <div class="form-label row">
+                        <label class="col-md-2 col-form-label" for="inputUser">用户名</label>
+                        <div class="col-md-10">
+                            <input type="text" id="inputUser" name="username" class="form-control" value="${sessionScope.userObj.username}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-label row">
+                        <label class="col-md-2 col-form-label" for="inputName">姓名</label>
+                        <div class="col-md-10">
+                            <input type="text" id="inputName" name="name" class="form-control" value="${sessionScope.userObj.name}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-label row">
+                        <label class="col-md-2 col-form-label" for="inputAddress">地址</label>
+                        <div class="col-md-10">
+
+                            <input type="text" id="inputAddress" name="address" class="form-control" value="${sessionScope.userObj.address}" readonly>
+                        </div>
+                    </div>
+                    <div class="form-label row">
+                        <label class="col-md-2 col-form-label" for="inputPostal">邮编</label>
+                        <div class="col-md-10">
+                            <input type="text" id="inputPostal" name="postal" class="form-control" value="${sessionScope.userObj.postalCode}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-label row">
+                        <label class="col-md-2 col-form-label" for="inputEmail">电子信箱</label>
+                        <div class="col-md-10">
+                            <input type="text" id="inputEmail" name="email" class="form-control" value="${sessionScope.userObj.email}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-label row">
+                        <label class="col-md-2 col-form-label" for="inputPhone">电话</label>
+                        <div class="col-md-10">
+                            <input type="text" id="inputPhone" name="phone" class="form-control" value="${sessionScope.userObj.phoneNo}" readonly>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div style="display: none;" id="confirmbtn">
+                        <div class="d-flex justify-content-center" style="display: none;">
+                            <button type="submit" class="btn btn-primary" id="submitbtn">修改</button>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="hidden" name="action" value="change">
+                </form>
+            </div>
+            <div style="display: none;" id="cancelbtn">
+                <div class="d-flex justify-content-center" >
+                    <button src="manageacount" type="button" class="btn btn-danger">取消</button>          
                 </div>
+            </div>
 
-                <div class="form-label-group">
-                    <label for="inputName">姓名</label>
-                    <input type="text" id="inputName" name="name" class="form-control" value="${sessionScope.userObj.name}">
+            <div class="d-flex justify-content-center">
+                <button type="button" class="btn btn-info" id="editbtn">更改</button>
+            </div>
+            <script>
+                $(document).ready(function () {
+                    $('#editbtn').click(function () {
+                        $('#editbtn').hide();
+                        $('#cancelbtn').show();
+                        $('#confirmbtn').show();
 
-                </div>
+                        $("#inputName").attr("readonly", false);
+                        $("#inputAddress").attr("readonly", false);
+                        $("#inputPostal").attr("readonly", false);
+                        $("#inputPhone").attr("readonly", false);
+                    });
 
-                <div class="form-label-group">
-                    <label for="inputAddress">地址</label>
-                    <input type="text" id="inputAddress" name="address" class="form-control" value="${sessionScope.userObj.address}">
-                </div>
-                <div class="form-label-group">
-                    <label for="inputPostal">邮编</label>
-                    <input type="text" id="inputPostal" name="postal" class="form-control" value="${sessionScope.userObj.postalCode}">
+                    $('#cancelbtn').click(function () {
+                        $('#editbtn').show();
+                        $('#cancelbtn').hide();
+                        $('#confirmbtn').hide();
 
-                </div>
+                        $("#inputName").attr("readonly", true);
+                        $("#inputAddress").attr("readonly", true);
+                        $("#inputPostal").attr("readonly", true);
+                        $("#inputPhone").attr("readonly", true);
+                    });
+                });
 
-                <div class="form-label-group">
-                    <label for="inputEmail">电子信箱</label>
-                    <input type="text" id="inputEmail" name="email" class="form-control" value="${sessionScope.userObj.email}">
 
-                </div>
-
-                <div class="form-label-group">
-                    <label for="inputPhone">电话</label>
-                    <input type="text" id="inputPhone" name="phone" class="form-control" value="${sessionScope.userObj.phoneNo}">
-                </div>
-
-                <input type="submit" value="修改">
-                <input type="hidden" name="action" value="change">
-            </form>
+                $(function () {
+                    $("form[name='registration']").validate({
+                        rules: {
+                            address: "required",
+                            name: "required",
+                            phone: {
+                                required: true,
+                                phoneUS: true
+                            }, postal: {
+                                required: true,
+                                pattern: '^[a-zA-z]{1}[0-9]{1}[a-zA-z]{1}[0-9]{1}[a-zA-Z]{1}[0-9]{1}'
+                            }
+                        },
+                        messages: {
+                            name: "Please enter your name",
+                            address: "Please enter your address",
+                            phone: {
+                                required: "Please enter a phone number",
+                                phoneUS: "Please format as 111-222-3333"
+                            }, postal: {
+                                required: "Please a postal code",
+                                pattern: "Please format as A1B2D3"
+                            }
+                        },
+                        errorElement: 'div',
+                        errorLabelContainer: '.errorTxt'
+                    });
+                });
+            </script>
+            <br>
+            <br>
 
             <hr>
+            <div class="col-md-7" style="margin: auto">
+                <h2 class="text-center">改变密码</h2>
+                <form action="manageaccount" method="post" >
 
-            <form action="manageaccount" method="post" >
-                <table>
-                    <tr>
-                    <h1>改变密码</h1>
-                    <div class="form-label-group">
-                        <td><label for="inputPhone">当前密码: </label></td>
-                        <td><input text="password" name="currentPassword"></td>
+                    <div class="form-label row">
+                        <label class="col-md-4 col-form-label" for="currentPassword">当前密码:</label>
+                        <div class="col-md-8">
+                            <input type="password" name="currentPassword" class="form-control">
+                        </div>
                     </div>
-                    </tr>
-                    <tr>
-                    <div class="form-label-group">
-                        <td><label for="inputPhone">新密码: </label></td>
-                        <td><input text="password" name="newPassword"></td>
+                    <div class="form-label row">
+                        <label class="col-md-4 col-form-label" for="newPassword">新密码:</label>
+                        <div class="col-md-8">
+                            <input type="password" name="newPassword" class="form-control">
+                        </div>
                     </div>
-                    </tr>
-                    <tr>
-                    <div class="form-label-group">
-                        <td><label for="inputPhone">再次输入新密码: </label></td>
-                        <td><input text="password" name="newPasswordConfirm"></td>
+                    <div class="form-label row">
+                        <label class="col-md-4 col-form-label" for="newPasswordConfirm">再次输入新密码:</label>
+                        <div class="col-md-8">
+                            <input type="password" name="newPasswordConfirm" class="form-control">
+                        </div>
                     </div>
-                    </tr>
-                </table>
-                <input type="submit" value="修改密码">
-                <input type="hidden" name="action" value="changePassword">
-            </form>
+                    <br>
+
+                    <input type="hidden" name="action" value="changePassword">
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-info">修改密码</button>
+                    </div>
+
+                </form>
+            </div>
             <br>
 
 
 
         </div>
 
-        <div class="containter" id="bottomfooter">
-            <!-- Footer -->
+        <footer class="page-footer font-small" id="bottomfooter">
             <br>
-            <footer class="page-footer font-small unique-color-dark">
-
-
-                <!-- Footer Links -->
-                <div class="container text-center text-md-left mt-5">
-
-                    <!-- Grid row -->
-                    <div class="row mt-3">
-
-                        <!-- Grid column -->
-                        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-
-                            <!-- Content -->
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-5 text-center">
+                        <div style="margin: auto; width: 70%;">
                             <h6 class="text-uppercase font-weight-bold footertext">海燕美味蛋糕</h6>
-                            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                            <hr class="col-md-8">
                             <p class="footertext">由海燕精心制作的蛋糕松软可口、细腻绵软、甜度适中，适合所有人的口味</p>
-
                         </div>
-                        <!-- Grid column -->
-
-                        <!-- Grid column -->
-                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-
-                            <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">关注我们</h6>
-                            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                            <p>
-                                <a href="#" class="fab fa-facebook footertext"> facebook</a>  
-                            </p>
-                            <p>
-                                <a href="#" class="fab fa-instagram footertext"> instagram</a> 
-                            </p>
-                            <p>
-                                <a href="#" class="fab fa-weixin footertext"> wechat</a>                            </p>
-                            </p>
-
-
-                        </div>
-                        <!-- Grid column -->
-
-                        <!-- Grid column -->
-                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-
-                            <!-- Links -->
-                            <h6 class="text-uppercase font-weight-bold footertext">联系方式</h6>
-                            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                            <p class="footertext">
-                                <i class="fas fa-home mr-3 "></i>188 Springbluff Blvd SW <br>Calgary, AB</p>
-                            <p class="footertext">
-                                <i class="fas fa-envelope mr-3 "></i>  <a href="mailto:#">helen@gmail.com</a></p>
-                            <p class="footertext">
-                                <i class="fas fa-phone mr-3 "></i>(403) 808-3860</p>
-
-                        </div>
-                        <!-- Grid column -->
 
                     </div>
-                    <!-- Grid row -->
+                    <div class="col-md-2 text-center" style="margin: auto;">
+                        <h6 class="text-uppercase font-weight-bold footertext">关注我们</h6>
+                        <hr class="col-md-8">
 
+                        <p>
+                            <a href="#" class="fab fa-instagram footertext"> instagram</a> 
+                        </p>
+                        <p>
+                            <a href="#" class="fab fa-weixin footertext"> wechat</a>
+                        </p>
+
+                    </div>
+                    <div class="col-md-5 text-center" style="margin: auto;">
+                        <h6 class="text-uppercase font-weight-bold footertext">联系方式</h6>
+                        <hr class="col-md-5">
+                        <p class="footertext">
+                            <i class="fas fa-envelope mr-3 "></i>  <a href="mailto:helenbkf@gmail.com?Subject=Customer%20Contact" target="_top">helenbkf@gmail.com</a>
+                        </p>
+                        <p class="footertext">
+                            <i class="fas fa-phone mr-3 "></i>(403) 603-0087
+                        </p>
+                    </div>
                 </div>
-                <!-- Footer Links -->
-
-                <!-- Copyright -->
-                <div class="footer-copyright text-center py-3 footertext">
-                    版权所有 © 海燕美味蛋糕
-                </div>
-                <!-- Copyright -->
-
-            </footer>
-            <!-- Footer -->
-        </div>
+            </div>
+            <div class="footer-copyright text-center py-3 footertext">
+                版权所有 © 海燕美味蛋糕 
+            </div>
+        </footer>
     </body>
 </html>
