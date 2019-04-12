@@ -165,6 +165,12 @@
                                                 <input class="form-check-input" type="checkbox" <c:if test="${selectedOrder.paid==true}">checked</c:if> name="paid">
                                             </div>
                                         </div>
+                                        <div class="form-check col-md-3">
+                                            <div class="row">
+                                                <div id="inputHeader">Delivered</div>
+                                                <input class="form-check-input" type="checkbox" <c:if test="${selectedOrder.delivered==true}">checked</c:if> name="delivered">
+                                            </div>
+                                        </div>
                                         <div class="form-group col-md-3 text-md-right">
                                             <input type="hidden" name="selectedOrderId" value="${selectedOrder.orderNo}">
                                         <input type="hidden" name="action" value="edit">
@@ -246,7 +252,7 @@
                                 <td><input type="checkbox" <c:if test="${order.active==true}">checked</c:if> name="active"></td>
                                 <td><input type="checkbox" <c:if test="${order.confirmed==true}">checked</c:if> name="active"></td>
                                 <td><input type="checkbox" <c:if test="${order.paid==true}">checked</c:if> name="active"></td>
-                                <td><input type="checkbox" <c:if test="${order.delivered==true}">checked=</c:if> name="active"></td>
+                                <td><input type="checkbox" <c:if test="${order.delivered==true}">checked</c:if> name="active"></td>
                                     <td>
                                         <form action="manageorders" method="post">
                                             <input type="submit" value="Delete">
