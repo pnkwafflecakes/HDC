@@ -44,7 +44,7 @@ public class UploadServlet extends HttpServlet {
         for (FileItem item: files)
         {
             name = item.getName();
-            String path = "C:\\Users\\775224\\Documents\\NetBeansProjects\\new\\HDC\\web\\images\\" + item.getName();
+            String path = "C:\\Program Files\\Apache Software Foundation\\Tomcat 8.5\\webapps\\HDCProject\\images" + item.getName();
             item.write(new File(path));
         }
         } catch (Exception ex) {
