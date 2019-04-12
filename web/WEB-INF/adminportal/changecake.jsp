@@ -70,40 +70,19 @@
         <br>
         <div class="card">
             <div class="card-body">  
-                <p id="headertitle">Add Cake</p>
+                <p id="headertitle">Edit Cake</p>
                 <hr>
 
-                <div class="container-fluid">
+                <div class="container">
                     <div class ="row">
                         <div class="col-md-6">
                             <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Select Image</th> 
-                                    </tr>
-                                </thead>
                                 <tbody>
-                                    <tr>
-                                        <td scope="row">
-                                            <form action="upload?input=${input}" method="post" enctype="multipart/form-data">
-                                                <input type="file" name="file">
-                                                <input type="submit" value="Upload Image">
-                                            </form>
-                                        </td>
-                                    </tr>
 
                                     <tr id="picture">
-                                        <c:if test="${input == 'edit' && changed==null}">
-                                            <td scope="row">
-                                                <br><img src="<c:url value='${cake.image}'/>" alt="Cake Picture" width="200" height="200"/>
-                                            </td>
-                                        </c:if>
-                                        <c:if test="${changed == '1'}">
-                                            <td scope="row">
-                                                <img src="<c:url value='${imagePath}'/>" alt="${imagePath}" name="newImage" width="200" height="200"/>
-                                            </td>
-                                        </c:if>
-
+                                        <td scope="row">
+                                            <br><img src="<c:url value='${cake.image}'/>" alt="Cake Picture" width="200" height="200"/>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -113,7 +92,7 @@
                             <div class="row">
                                 <div class="col-md-12">
 
-                                    <form action="editcake" method="post" enctype="multipart/form-data">
+                                    <form action="changecake" method="post">
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <div id="inputHeader">Cake Name</div>
@@ -166,15 +145,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-5 text-md-right">
-                                                <c:if test="${input == 'edit'}">
+
                                                     <input type="submit" value="Edit">
                                                     <input type="hidden" name="selectedCakeId" value=${cake.cakeId}>
-                                                    <input type="hidden" name="action" value="edit">
-                                                </c:if>
-                                                <c:if test="${input == 'add'}">
-                                                    <input type="submit" value="Add">
-                                                    <input type="hidden" name="action" value="add">
-                                                </c:if>
+
                                             </div>
                                         </div>
                                     </form>
@@ -182,11 +156,6 @@
                             </div>            
                         </div>
                     </div>
-
-
-
-
-
 
                 </div>
             </div>

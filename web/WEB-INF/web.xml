@@ -101,6 +101,10 @@
         <servlet-name>EditUserServlet</servlet-name>
         <servlet-class>servlets.admin.EditUserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChangeCake</servlet-name>
+        <servlet-class>servlets.admin.ChangeCake</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchServlet</servlet-name>
         <url-pattern>/search</url-pattern>
@@ -200,6 +204,10 @@
     <servlet-mapping>
         <servlet-name>EditUserServlet</servlet-name>
         <url-pattern>/edituser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeCake</servlet-name>
+        <url-pattern>/changecake</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

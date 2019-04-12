@@ -12,6 +12,17 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">        
+        <style>
+
+
+            #headerButton{
+                margin-right: 5em;
+            }
+
+            #buttons{
+                padding: 0 5px;
+            }
+        </style>
 
         <style><%@include file="/WEB-INF/styles/adminhome.css"%></style>
         <style><%@include file="/WEB-INF/styles/navbar.css"%></style>
@@ -68,25 +79,20 @@
 
                     <div class="col-md-4">
                         <div class="row">
+                            <div class="col-md-8 text-md-right" id="buttons">
+                                <form action="managecakes" method="post">
+                                    <input type="submit" value="Add New Cake">
+                                    <input type="hidden" name="action" value="add">
+                                </form>
+                            </div>
+                            <div class="col-md-4">
 
-                            <div class="col-md-12">
-                                <div class="form-row float-right">
-
-                                    <form action="managecakes" method="post" class="ml-2 mr-5">
-                                        <button type="button submit" class="btn btn-secondary btn-sm" aria-pressed="true">Add New Cake</button>
-                                        <input type="hidden" name="action" value="add">
-
-                                    </form>
-                                    <form action="managecakes" method="post" class="mr-3">
-                                        <button type="button submit" class="btn btn-danger btn-sm" aria-pressed="true">Undo Delete</button>
-                                        <input type="hidden" name="action" value="undo">
-                                    </form>
-
-                                </div>
+                                <form action="managecakes" method="post">
+                                    <input type="submit" value="Undo Delete">
+                                    <input type="hidden" name="action" value="undo">
+                                </form>
                             </div>
                         </div>
-
-
                     </div>
 
 
@@ -122,16 +128,14 @@
 
                                     <td>
                                         <form action="managecakes" method="post" >
-                                            <button type="button submit" class="btn btn-outline-secondary btn-sm">Edit</button>
-
+                                            <input type="submit" value="Edit">
                                             <input type="hidden" name="action" value="edit">
                                             <input type="hidden" name="selectedCakeId" value="${cake.cakeId}">
                                         </form>
                                     </td>
                                     <td>
                                         <form action="managecakes" method="post" >
-                                            <button type="button submit" class="btn btn-outline-danger btn-sm">Delete</button>
-
+                                            <input type="submit" value="Delete">
                                             <input type="hidden" name="action" value="delete">
                                             <input type="hidden" name="selectedCakeId" value="${cake.cakeId}">
                                         </form>
