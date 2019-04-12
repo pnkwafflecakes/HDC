@@ -174,7 +174,7 @@
                                         <div class="form-check col-md-2">
                                             <div class="row">
                                                 <div id="inputHeader">Delivered</div>
-                                                <input class="form-check-input" type="checkbox" <c:if test="${selectedOrder.delivered==true}">checked</c:if> name="paid">
+                                                <input class="form-check-input" type="checkbox" <c:if test="${selectedOrder.delivered==true}">checked</c:if> name="delivered">
                                             </div>
                                         </div>
                                         <div class="form-group col-md-3 text-md-right">
