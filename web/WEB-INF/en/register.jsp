@@ -163,7 +163,7 @@
                             phoneUS: true
                         }, postal: {
                             required: true,
-                            pattern: '^[a-zA-z]{1}[0-9]{1}[a-zA-z]{1}[-]{1}[0-9]{1}[a-zA-Z]{1}[0-9]{1}'
+                            pattern: '^[a-zA-z]{1}[0-9]{1}[a-zA-z]{1}[0-9]{1}[a-zA-Z]{1}[0-9]{1}'
                         }
                     },
                     messages: {
@@ -183,7 +183,7 @@
                             phoneUS: "Please format as 111-222-3333"
                         }, postal: {
                             required: "Please a postal code",
-                            pattern: "Please format as A1B-2D3"
+                            pattern: "Please format as A1B2D3"
                         }
                     },
                     errorElement: 'div',

@@ -110,7 +110,16 @@ public class LoginServlet extends HttpServlet {
         }
         if (valid == false) {
             request.setAttribute("errorMessage", "Invalid Username/Password");
-            getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+            String language = (String) session.getAttribute("language");
+
+            if (language == null) {
+                language = "en";
+            }
+            if (language.equals("cn")) {
+                getServletContext().getRequestDispatcher("/WEB-INF/cn/login.jsp").forward(request, response);
+            } else {
+                getServletContext().getRequestDispatcher("/WEB-INF/en/login.jsp").forward(request, response);
+            }
         }
     }
 }
