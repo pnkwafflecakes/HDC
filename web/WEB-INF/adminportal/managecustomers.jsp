@@ -126,7 +126,7 @@
                                     <th scope="col" style="width: 25%">Name</th>
                                     <th scope="col" style="width: 25%">Email</th>
                                     <th scope="col" style="width: 25%">Phone Number</th>
-                                    <th colspan="3"  style="width: 25%" id="filter">
+                                    <th colspan="3" style="width: 25%" id="filter">
                                         <form action="managecustomers" method="POST">
                                             <select name="action" onchange="this.form.submit()">
                                                 <option value="default">Filter User List</option>

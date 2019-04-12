@@ -6,7 +6,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        
+        <style>
+            #paidBox{
+                padding-left: 20px;
+            }
+        </style>
+        
         <style><%@include file="/WEB-INF/styles/adminhome.css"%></style>
         <style><%@include file="/WEB-INF/styles/navbar.css"%></style>
         <!--<style><%@include file="/WEB-INF/styles/manageorders.css"%></style>-->
@@ -17,7 +23,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
-
+        
 
         <title>HDC - Manage Orders</title> 
     </head>
@@ -153,19 +159,26 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-check col-md-3">
+                                        <div class="form-check col-md-2">
                                             <div class="row">
                                                 <div id="inputHeader">Confirmed</div>
                                                 <input class="form-check-input" type="checkbox" class="form-control" <c:if test="${selectedOrder.confirmed==true}">checked</c:if> name="confirmed">
                                             </div>
                                         </div>
-                                        <div class="form-check col-md-3">
+                                        <div class="form-check col-md-2" id="paidBox">
                                             <div class="row">
                                                 <div id="inputHeader">Paid</div>
                                                 <input class="form-check-input" type="checkbox" <c:if test="${selectedOrder.paid==true}">checked</c:if> name="paid">
                                             </div>
                                         </div>
+                                        <div class="form-check col-md-2">
+                                            <div class="row">
+                                                <div id="inputHeader">Delivered</div>
+                                                <input class="form-check-input" type="checkbox" <c:if test="${selectedOrder.delivered==true}">checked</c:if> name="delivered">
+                                            </div>
+                                        </div>
                                         <div class="form-group col-md-3 text-md-right">
+
                                             <input type="hidden" name="selectedOrderId" value="${selectedOrder.orderNo}">
                                         <input type="hidden" name="action" value="edit">
                                         <input type="submit" value="Save">
@@ -243,10 +256,10 @@
                                 <td>${order.totalPrice}</td>
                                 <td>${order.deliveryNo.deliveryNo}</td>
                                 <td>${order.userId.username}</td>
-                                <td><input type="checkbox" <c:if test="${order.active==true}">checked</c:if> name="active"></td>
-                                <td><input type="checkbox" <c:if test="${order.confirmed==true}">checked</c:if> name="active"></td>
-                                <td><input type="checkbox" <c:if test="${order.paid==true}">checked</c:if> name="active"></td>
-                                <td><input type="checkbox" <c:if test="${order.delivered==true}">checked=</c:if> name="active"></td>
+                                <td><input type="checkbox" <c:if test="${order.active==true}">checked</c:if> name="active" disabled></td>
+                                <td><input type="checkbox" <c:if test="${order.confirmed==true}">checked</c:if> name="active" disabled></td>
+                                <td><input type="checkbox" <c:if test="${order.paid==true}">checked</c:if> name="active" disabled></td>
+                                <td><input type="checkbox" <c:if test="${order.delivered==true}">checked=</c:if> name="active" disabled></td>
                                     <td>
                                         <form action="manageorders" method="post">
                                             <input type="submit" value="Delete">

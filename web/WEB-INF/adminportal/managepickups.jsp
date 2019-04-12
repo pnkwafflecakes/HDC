@@ -65,7 +65,9 @@
                     </div>
                     <div class="col-md-4 text-md-center">${notification}</div>
 
+                    
                     <div class="col-md-4 text-md-right">
+                        
                         <div class="col-md-12">
 
                             <form action="managepickups" method="post" >
