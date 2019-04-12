@@ -14,15 +14,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">        
         <style>
 
-            div.c
-            {
-                text-align: center;
-            } 
-            h1
 
-            #buttons
-            {
-                padding:0 25px;
+            #headerButton{
+                margin-right: 5em;
+            }
+
+            #buttons{
+                padding: 0 5px;
             }
         </style>
 
@@ -51,7 +49,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="manageorders">Orders</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="managecakes">Cakes</a>
                         </li>
                         <li class="nav-item">
@@ -71,38 +69,37 @@
 
         <br>
         <div class="card">
-
             <div class="card-body"> 
                 <div class="row">
                     <div class="col-md-4">
                         <p id="headertitle"><strong>Manage Cakes</strong></p>
                     </div>
                     <div class="col-md-4 text-md-center">${notification}</div>
-                    
-                    <div class="col-md-2 text-md-right">
 
-                        <form action="managecakes" method="post" id="buttons">
-                            <input type="submit" value="Undo Delete">
-                            <input type="hidden" name="action" value="undo">
-                        </form>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-md-8 text-md-right" id="buttons">
+                                <form action="managecakes" method="post">
+                                    <input type="submit" value="Add New Cake">
+                                    <input type="hidden" name="action" value="add">
+                                </form>
+                            </div>
+                            <div class="col-md-4">
+
+                                <form action="managecakes" method="post">
+                                    <input type="submit" value="Undo Delete">
+                                    <input type="hidden" name="action" value="undo">
+                                </form>
+                            </div>
                         </div>
-                        <div class="col-md-2 text-md-right">
+                    </div>
 
-                            <form action="managecakes" method="post" id="buttons">
-                                <input type="submit" value="Add New Cake">
-                                <input type="hidden" name="action" value="add">
-                            </form>
-                        </div>                        
-                    
 
 
 
                 </div>
                 <hr>
-                <!--                <div class="c">
-                
-                                    <h3>${notification}</h3>
-                                </div>-->
+
 
                 <div class="container-fluid">
 

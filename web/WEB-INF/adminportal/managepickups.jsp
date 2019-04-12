@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
+       
 
         <title>HDC - Manage Orders</title> 
     </head>
@@ -42,7 +43,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="managecustomers">Users</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="managepickups">Pickups</a>
                         </li>
                     </ul>
@@ -65,110 +66,113 @@
                     <div class="col-md-4 text-md-center">${notification}</div>
 
                     <div class="col-md-4 text-md-right">
-                        <form action="managepickups" method="post" >
-                            <input type="submit" value="Undo Delete">
-                            <input type="hidden" name="action" value="undo">
-                        </form>
+                        <div class="col-md-12">
+
+                            <form action="managepickups" method="post" >
+                                <input type="submit" value="Undo Delete">
+                                <input type="hidden" name="action" value="undo">
+                            </form>
+                        </div>
                     </div>
                 </div>
-
+            
                 <hr>
 
 
 
                 <div class="row">
-                        <div class = "col-md-4">
+                    <div class = "col-md-4">
 
-                            <c:if test="${selectedPickup == null}">
-                                <h3>New Pickup</h3>
-                                <form action="managepickups" method="POST">
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12">
-                                            <div id="inputHeader">Pickup Description</div>
-                                            <textarea type="text" row="3" class="form-control" name="selectedPickupName"></textarea>
-                                        </div>
+                        <c:if test="${selectedPickup == null}">
+                            <h3>New Pickup</h3>
+                            <form action="managepickups" method="POST">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <div id="inputHeader">Pickup Description</div>
+                                        <textarea type="text" row="3" class="form-control" name="selectedPickupName"></textarea>
                                     </div>
+                                </div>
 
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12">
-                                            <div id="inputHeader">Pickup Address</div>
-                                            <input type="text" class="form-control" name="selectedPickupAddress">
-                                        </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <div id="inputHeader">Pickup Address</div>
+                                        <input type="text" class="form-control" name="selectedPickupAddress">
                                     </div>
-                                    <div class="form-row text-md-right">
-                                        <div class="form-group col-md-12">
-                                            <input type="hidden" name="action" value="add">
-                                            <input type="submit" value="Save">
-                                        </div>
+                                </div>
+                                <div class="form-row text-md-right">
+                                    <div class="form-group col-md-12">
+                                        <input type="hidden" name="action" value="add">
+                                        <input type="submit" value="Save">
                                     </div>
-                                </c:if>
-                            </form>
+                                </div>
+                            </c:if>
+                        </form>
 
-                            <c:if test="${selectedPickup != null}">
-                                <h3>New Pickup</h3>
-                                <form action="managepickups" method="POST">
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12">
-                                            <div id="inputHeader">Pickup Description</div>
-                                            <textarea type="text" row="3" class="form-control" name="pickupName">${selectedPickup.pickupName}</textarea>
-                                        </div>
+                        <c:if test="${selectedPickup != null}">
+                            <h3>New Pickup</h3>
+                            <form action="managepickups" method="POST">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <div id="inputHeader">Pickup Description</div>
+                                        <textarea type="text" row="3" class="form-control" name="pickupName">${selectedPickup.pickupName}</textarea>
                                     </div>
+                                </div>
 
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12">
-                                            <div id="inputHeader">Pickup Address</div>
-                                            <input type="text" class="form-control" name="pickupAddress" value="${selectedPickup.pickupAddress}">
-                                        </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <div id="inputHeader">Pickup Address</div>
+                                        <input type="text" class="form-control" name="pickupAddress" value="${selectedPickup.pickupAddress}">
                                     </div>
-                                    <div class="form-row text-md-right">
-                                        <div class="form-group col-md-12">
-                                            <input type="hidden" name="selectedPickupId" value="${selectedPickup.pickupId}">
-                                            <input type="hidden" name="action" value="edit">
-                                            <input type="submit" value="Save">
-                                        </div>
+                                </div>
+                                <div class="form-row text-md-right">
+                                    <div class="form-group col-md-12">
+                                        <input type="hidden" name="selectedPickupId" value="${selectedPickup.pickupId}">
+                                        <input type="hidden" name="action" value="edit">
+                                        <input type="submit" value="Save">
                                     </div>
-                                </c:if>
-                            </form>
-                        </div>
+                                </div>
+                            </c:if>
+                        </form>
+                    </div>
 
-                        <div class="col-md-8">
-                            <h3>Pickup Locations</h3>
+                    <div class="col-md-8">
+                        <h3>Pickup Locations</h3>
 
 
-                            <table class="table table-bordered">
+                        <table class="table table-bordered">
 
-                                <th>Pickup Id</th>
-                                <th>Pickup Notes</th>
-                                <th>Pickup Address</th>
-                                <th>Delete</th>
-                                <th>Edit</th>
+                            <th>Pickup Id</th>
+                            <th>Pickup Notes</th>
+                            <th>Pickup Address</th>
+                            <th>Delete</th>
+                            <th>Edit</th>
 
-                                <c:forEach var="pickups" items="${pickups}">               
-                                    <tr>
-                                        <td>${pickups.pickupId}</td>
-                                        <td>${pickups.pickupName}</td>
-                                        <td>${pickups.pickupAddress}</td>
-                                        <td>
-                                            <form action="managepickups" method="post" >
-                                                <input type="submit" value="Delete">
-                                                <input type="hidden" name="action" value="delete">
-                                                <input type="hidden" name="selectedPickupId" value="${pickups.pickupId}">
-                                            </form>
-                                        </td>
-                                        <td>
-                                            <form action="managepickups" method="post">
-                                                <input type="submit" value="Edit">
-                                                <input type="hidden" name="action" value="view">
-                                                <input type="hidden" name="selectedPickupId" value="${pickups.pickupId}">
-                                            </form>
-                                        </td>
-                                    </tr>
+                            <c:forEach var="pickups" items="${pickups}">               
+                                <tr>
+                                    <td>${pickups.pickupId}</td>
+                                    <td>${pickups.pickupName}</td>
+                                    <td>${pickups.pickupAddress}</td>
+                                    <td>
+                                        <form action="managepickups" method="post" >
+                                            <input type="submit" value="Delete">
+                                            <input type="hidden" name="action" value="delete">
+                                            <input type="hidden" name="selectedPickupId" value="${pickups.pickupId}">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="managepickups" method="post">
+                                            <input type="submit" value="Edit">
+                                            <input type="hidden" name="action" value="view">
+                                            <input type="hidden" name="selectedPickupId" value="${pickups.pickupId}">
+                                        </form>
+                                    </td>
+                                </tr>
 
-                                </c:forEach>
-                            </table>
+                            </c:forEach>
+                        </table>
 
-                        </div>
-
+                    </div>
+                </div>
                 </div>
 
 
