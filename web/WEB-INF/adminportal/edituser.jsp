@@ -144,15 +144,16 @@
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group col-md-10">
+                                    <div class="form-group col-md-6">
+
                                         <form action="managecustomers" method="GET">
-                                            <input type="submit" value="Cancel" align="center">
+                                            <button type="button submit" class="btn btn-outline-secondary btn-sm">Cancel</button>
                                         </form>
                                     </div>
-                                    <div class="form-group col-md-2 text-md-right">
+                                    <div class="form-group col-md-6 text-md-right">
+                                        <button type="button submit" class="btn btn-success btn-sm">Save Profile</button>
                                         <input type="hidden" name="action" value="save">
                                         <input type="hidden" name="selectedCustomer" value="${editUser.userId}">
-                                        <input type="submit" value="Save">  
 
                                     </div>
 

@@ -21,7 +21,7 @@
 
 
 
-        <title>HDC - Manage Orders</title> 
+        <title>Manage Pickups</title> 
     </head>
     <body>
 

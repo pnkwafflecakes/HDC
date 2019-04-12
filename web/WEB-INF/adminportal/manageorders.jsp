@@ -30,7 +30,7 @@
 
 
 
-        <title>HDC - Manage Orders</title> 
+        <title>Manage Orders</title> 
     </head>
     <body>
 

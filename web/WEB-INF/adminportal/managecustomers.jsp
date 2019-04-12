@@ -49,7 +49,7 @@
 
 
 
-        <title>HDC - Manage Users</title>
+        <title>Manage Users</title>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-custom">

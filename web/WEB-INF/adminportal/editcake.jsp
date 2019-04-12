@@ -33,7 +33,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 
-        <title>HDC - Add/Edit Cake</title>
+        <title>Add Cake</title>
     </head>
 
     <body>
@@ -50,7 +50,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="manageorders">Orders</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="managecakes">Cakes</a>
                         </li>
                         <li class="nav-item">
@@ -115,23 +115,25 @@
 
                                     <form action="editcake" method="post" enctype="multipart/form-data">
                                         <div class="form-row">
-                                            <div class="form-group col-md-6">
+                                            <div class="form-group col-md-8">
                                                 <div id="inputHeader">Cake Name</div>
                                                 <input type="text" class="form-control" name="name" value="${cake.name}">
                                             </div>
-                                            <div class="form-group col-md-6">
+                                            <div class="form-group col-md-4">
+                                                <div id="inputHeader">Price ($)</div>
+                                                <input type="text" class="form-control" name="price" value="${cake.price}">
+                                            </div>
+
+                                        </div>
+                                        <div class="form-row">
+
+                                            <div class="form-group col-md-8">
                                                 <div id="inputHeader">Chinese Name</div>
                                                 <input type="text" class="form-control" name="namecn" value="${cake.namecn}">
                                             </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-3">
-                                                <div id="inputHeader">Price ($)</div>
-                                                <input type="number" class="form-control" name="price" value="${cake.price}">
-                                            </div>
 
 
-                                            <div class="form-group col-md-3">
+                                            <div class="form-group col-md-4">
                                                 <div id="inputHeader">Size</div>
                                                 <input type="number" class="form-control" name="size" value="${cake.size}">
                                             </div>
@@ -167,12 +169,12 @@
                                                 </div>
                                                 <div class="form-group col-md-5 text-md-right">
                                                 <c:if test="${input == 'edit'}">
-                                                    <input type="submit" value="Edit">
+                                                    <button type="button submit" class="btn btn-success">Edit Cake</button>
                                                     <input type="hidden" name="selectedCakeId" value=${cake.cakeId}>
                                                     <input type="hidden" name="action" value="edit">
                                                 </c:if>
                                                 <c:if test="${input == 'add'}">
-                                                    <input type="submit" value="Add">
+                                                    <button type="button submit" class="btn btn-success">Add Cake</button>
                                                     <input type="hidden" name="action" value="add">
                                                 </c:if>
                                             </div>

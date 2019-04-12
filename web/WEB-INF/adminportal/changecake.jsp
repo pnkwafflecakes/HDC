@@ -14,14 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" href="<c:url value='/images/hdclogo.png'/>">
 
-<!--        <style>
-            #picture{
-                text-align: center;
-                border-spacing: 20px;
 
-            }
-
-        </style>-->
         <style><%@include file="/WEB-INF/styles/adminhome.css"%></style>
         <style><%@include file="/WEB-INF/styles/navbar.css"%></style>
 
@@ -33,7 +26,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 
-        <title>HDC - Add/Edit Cake</title>
+        <title>Edit Cake</title>
     </head>
 
     <body>
@@ -50,7 +43,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="manageorders">Orders</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="managecakes">Cakes</a>
                         </li>
                         <li class="nav-item">
@@ -81,7 +74,7 @@
 
                                     <tr>
                                         <td scope="row">
-                                           <img src="<c:url value='${cake.image}'/>" alt="Cake Picture" width="200" height="200"/>
+                                            <img src="<c:url value='${cake.image}'/>" alt="Cake Picture" width="200" height="200"/>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -94,23 +87,25 @@
 
                                     <form action="changecake" method="post">
                                         <div class="form-row">
-                                            <div class="form-group col-md-6">
+                                            <div class="form-group col-md-8">
                                                 <div id="inputHeader">Cake Name</div>
                                                 <input type="text" class="form-control" name="name" value="${cake.name}">
                                             </div>
-                                            <div class="form-group col-md-6">
-                                                <div id="inputHeader">Chinese Name</div>
-                                                <input type="text" class="form-control" name="namecn" value="${cake.namecn}">
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-3">
+                                            <div class="form-group col-md-4">
                                                 <div id="inputHeader">Price ($)</div>
                                                 <input type="number" class="form-control" name="price" value="${cake.price}">
                                             </div>
 
+                                        </div>
+                                        <div class="form-row">
 
-                                            <div class="form-group col-md-3">
+                                            <div class="form-group col-md-8">
+                                                <div id="inputHeader">Chinese Name</div>
+                                                <input type="text" class="form-control" name="namecn" value="${cake.namecn}">
+                                            </div>
+
+
+                                            <div class="form-group col-md-4">
                                                 <div id="inputHeader">Size</div>
                                                 <input type="number" class="form-control" name="size" value="${cake.size}">
                                             </div>
@@ -145,8 +140,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-5 text-md-right">
+                                                    <button type="button submit" class="btn btn-success">Edit Cake</button>
 
-                                                    <input type="submit" value="Edit">
                                                     <input type="hidden" name="selectedCakeId" value=${cake.cakeId}>
 
                                             </div>

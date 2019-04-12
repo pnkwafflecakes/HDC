@@ -23,7 +23,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 
-        <title>Admin Portal</title>
+        <title>Statistics</title>
     </head>
     <body>
 
@@ -62,7 +62,7 @@
 
         <div class="card">
             <div class="card-body">  
-                <p id="headertitle">Dashboard</p>
+                <p id="headertitle">Statistics</p>
                 <hr>
                 <div class="container">
                     <div class ="row">
@@ -70,7 +70,7 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr class="thead-light">
-                                        <th colspan="2"><a href="managecakes">Manage Cakes</a></th> 
+                                        <th colspan="2">Manage Cakes</th> 
                                     </tr>
                                     <tr>
                                         <th scope="col">Cakes</th>

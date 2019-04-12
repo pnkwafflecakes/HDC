@@ -77,19 +77,23 @@
                     <div class="col-md-4 text-md-center">${notification}</div>
 
                     <div class="col-md-4">
-                        <div class="row">
-                            <div class="col-md-8 text-md-right" id="buttons">
-                                <form action="managecakes" method="post">
-                                    <input type="submit" value="Add New Cake">
-                                    <input type="hidden" name="action" value="add">
-                                </form>
-                            </div>
-                            <div class="col-md-4">
 
-                                <form action="managecakes" method="post">
-                                    <input type="submit" value="Undo Delete">
-                                    <input type="hidden" name="action" value="undo">
-                                </form>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-row float-right">
+
+                                    <form action="managecakes" method="post" class="ml-2 mr-5">
+                                        <button type="button submit" class="btn btn-secondary btn-sm" aria-pressed="true">Add New Cake</button>
+                                        <input type="hidden" name="action" value="add">
+
+                                    </form>
+                                    <form action="managecakes" method="post" class="mr-3">
+                                        <button type="button submit" class="btn btn-danger btn-sm" aria-pressed="true">Undo Delete</button>
+                                        <input type="hidden" name="action" value="undo">
+                                    </form>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -125,14 +129,14 @@
                                     <td>${cake.description}</td>
 
                                     <td>
-                                        <form action="changecake" method="get" >
-                                            <input type="submit" value="Edit">
+                                        <form action="changecake" method="get">
+                                            <button type="button submit" class="btn btn-outline-secondary btn-sm" aria-pressed="true">Edit</button>
                                             <input type="hidden" name="selectedCakeId" value="${cake.cakeId}">
                                         </form>
                                     </td>
                                     <td>
                                         <form action="managecakes" method="post" >
-                                            <input type="submit" value="Delete">
+                                            <button type="button submit" class="btn btn-outline-danger btn-sm" aria-pressed="true">Delete</button>
                                             <input type="hidden" name="action" value="delete">
                                             <input type="hidden" name="selectedCakeId" value="${cake.cakeId}">
                                         </form>

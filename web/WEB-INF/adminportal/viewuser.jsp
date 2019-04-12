@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>HDC - View Profile</title>
+        <title>View Profile</title>
 
         <style><%@include file="/WEB-INF/styles/adminhome.css"%></style>
         <style><%@include file="/WEB-INF/styles/navbar.css"%></style>
@@ -140,12 +140,12 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <form action="managecustomers" method="get">
-                                            <input type="submit" value="Cancel">
+                                            <button type="button submit" class="btn btn-outline-secondary btn-sm">Cancel</button>
                                         </form>
                                     </div>
                                     <div class="col-md-6 text-md-right">
                                         <form action="managecustomers" method="POST">
-                                            <input type="submit" value="Edit Profile">
+                                            <button type="button submit" class="btn btn-success btn-sm">Edit Profile</button>
                                             <input type="hidden" name="action" value="edit">
                                                 <input type="hidden" name="selectedCustomer" value="${viewUser.userId}">
                                     </form>
