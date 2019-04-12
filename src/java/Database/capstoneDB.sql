@@ -124,10 +124,10 @@ insert into `AccountType` values(2, 'Administrator');
 
 --Possibly just get rid of Account_id and just use user_id
 insert into `User` values(0001, 'Helen Xie', '16 Brenner Place NW', 'T2L1Z2', 'adam.schlinker@gmail.com', '403-874-0935', 1, 'helen', 'password', 1);
-insert into `User` values(0002, 'Billy Joe', '1301 16 Ave NW', 'T2X2M2', 'billy.joe@google.com', '403-288-2888', 1, 'billyjoe', 'abc', 1);
+insert into `User` values(0002, 'Billy Joe', '1301 16 Ave NW', 'T2X2M2', 'billy.joe@google.com', '403-288-2888', 1, 'billyjoe', 'capstone2019', 1);
 insert into `User` values(0003, 'Argis Fargis', '1302 16 Ave NW', 'A1A2B2', 'Argis.Fargis@google.ca', '403-288-2887',2, 'admin', 'password', 1);
 insert into `User` values(0004, 'Arbichov Gopnik', '1303 16 Ave NW', 'T2X2M9', 'Arbichov.Gopnik@google.ru', '403-288-2886', 2, '1521', '1234', 1);
-insert into `User` values(0005, 'Ada Wong', '1304 16 Ave NW', 'T2X2M1', 'Ada.wong@google.ru', '403-288-2885', 1, 'ada', 'ada', 1);
+insert into `User` values(0005, 'Ada Wong', '1304 16 Ave NW', 'T2X2M1', 'Ada.wong@google.ru', '403-288-2885', 1, 'adaawong', 'capstone2019', 1);
 --Might need further work, to allow certain extra details based off of things like 'Drop Off'
 
 

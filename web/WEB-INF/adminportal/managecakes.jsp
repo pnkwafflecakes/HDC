@@ -3,7 +3,6 @@
     Created on : March 1st, 2019
     Author     : Adam Schlinker, Kim Nguyen
 --%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
@@ -105,7 +104,6 @@
                 <div class="container-fluid">
 
                     <table class="table table-bordered">
-                        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                         <thead>
                         <th style="width: 15%">Image</th>
                         <th>Name</th>
@@ -127,9 +125,8 @@
                                     <td>${cake.description}</td>
 
                                     <td>
-                                        <form action="managecakes" method="post" >
+                                        <form action="changecake" method="get" >
                                             <input type="submit" value="Edit">
-                                            <input type="hidden" name="action" value="edit">
                                             <input type="hidden" name="selectedCakeId" value="${cake.cakeId}">
                                         </form>
                                     </td>
