@@ -14,14 +14,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" href="<c:url value='/images/hdclogo.png'/>">
 
-        <style>
+<!--        <style>
             #picture{
                 text-align: center;
                 border-spacing: 20px;
 
             }
 
-        </style>
+        </style>-->
         <style><%@include file="/WEB-INF/styles/adminhome.css"%></style>
         <style><%@include file="/WEB-INF/styles/navbar.css"%></style>
 
@@ -76,12 +76,12 @@
                 <div class="container">
                     <div class ="row">
                         <div class="col-md-6">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered text-md-center mt-5">
                                 <tbody>
 
-                                    <tr id="picture">
+                                    <tr>
                                         <td scope="row">
-                                            <br><img src="<c:url value='${cake.image}'/>" alt="Cake Picture" width="200" height="200"/>
+                                           <img src="<c:url value='${cake.image}'/>" alt="Cake Picture" width="200" height="200"/>
                                         </td>
                                     </tr>
                                 </tbody>
