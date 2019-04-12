@@ -11,24 +11,17 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Edit Profile</title>
-        <style>
-            body
-            {
-                text-align: center;
-                align-content: center;
-            }
-            div.c
-            {
-                text-align: center;
-            }
-            h1
-            {
-                color: #ba7823;
-            }
-        </style>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+        <style><%@include file="/WEB-INF/styles/adminhome.css"%></style>
+        <style><%@include file="/WEB-INF/styles/navbar.css"%></style>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clH="TMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-custom">
@@ -46,7 +39,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="managecakes">Cakes</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="managecustomers">Users</a>
                         </li>
                         <li class="nav-item">
@@ -61,65 +54,123 @@
             </div>
         </nav> 
 
-        <h1>Edit Profile: ${editUser.username}</h1>
-        <h3>${notification}</h3>
-        <form action="edituser" method="POST">
-            <table align="center">
-                <tr>
-                    <th>Name:</th>
-                    <td><input type="text" name="name" value="${editUser.name}"></td>
-                </tr>
-                <tr>
-                    <th>Address:</th>
-                    <td><input type="text" name="address" value="${editUser.address}"></td>
-                </tr>
-                <tr>
-                    <th>Postal Code:</th>
-                    <td><input type="text" name="postalcode" value="${editUser.postalCode}"></td>
-                </tr>
-                <tr>
-                    <th>Email:</th>
-                    <td><input type="email" name="email" value="${editUser.email}"></td>
-                </tr>
-                <tr>
-                    <th>Phone Number:</th>
-                    <td><input type="text" name="phoneNumber" value="${editUser.phoneNo}"></td>
-                </tr>
-                <tr>
-                    <th>Account Type:</th>
-                    <td><select name="accountType" id="accounttype">
-                            <option value="1">Regular</option>
-                            <option value="2">Administrator</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Username:</th>
-                    <td><input type="text" name="username" value="${editUser.username}"></td>
-                </tr>
-                <tr>
-                    <th>Password:</th>
-                    <td><input type="password" name="password" placeholder="Enter new password" value="${editUser.password}"></td>
-                </tr>
-                <tr>
-                    <th>Account Status:</th>
-                    <td><select name="active" id="active">
-                            <option value="true">Active</option>
-                            <option value="false">Inactive</option>
-                        </select>
-                    </td>
-                </tr>
-            </table>
+        <br>
+        <div class="card">
 
-            <br>
-            <input type="hidden" name="action" value="save">
-            <input type="hidden" name="selectedCustomer" value="${editUser.userId}">
-            <input type="submit" value="Save">  
-        </form>
-        <div class="c">
-            <form action="managecustomers" method="GET">
-                <input type="submit" value="Cancel" align="center">
-            </form>
-        </div>
+            <div class="card-body"> 
+                <div class="row">
+                    <div class="col-md-4">
+                        <p id="headertitle"><strong>Edit Profile: ${editUser.username}</strong></p>
+                    </div>
+                    <div class="col-md-4 text-md-center">${errorMessage}${notification}</div>
+
+                    <div class="col-md-4 text-md-right">
+                        <div class="col-md-12">
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <form action="edituser" method="POST">
+                    <div class="row">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4">
+
+                            <table class="table table-border">
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <div id="inputHeader">Name</div>
+                                        <input type="text" class="form-control" name="name" value="${editUser.name}">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <div id="inputHeader">Address</div>
+                                        <input type="text" class="form-control" name="address" value="${editUser.address}">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <div id="inputHeader">Postal Code</div>
+                                        <input type="text" class="form-control" name="postalcode" value="${editUser.postalCode}">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <div id="inputHeader">Email</div>
+                                        <input type="text" class="form-control" name="email" value="${editUser.email}">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <div id="inputHeader">Phone Number</div>
+                                        <input type="text" class="form-control" name="phoneNumber" value="${editUser.phoneNo}">
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <div id="inputHeader">Username</div>
+                                        <input type="text" class="form-control" name="username" value="${editUser.username}">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <div id="inputHeader">Password</div>
+                                        <input type="password" class="form-control" name="password" value="${editUser.password}">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <div id="inputHeader">Account Type</div>
+
+                                        <select name="accountType" class="form-control" id="accounttype">
+                                            <option value="1">Regular</option>
+                                            <option value="2">Administrator</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <div id="inputHeader">Account Status</div>
+
+                                        <select name="active" id="active" class="form-control">
+                                            <option value="true">Active</option>
+                                            <option value="false">Inactive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-10">
+                                        <form action="managecustomers" method="GET">
+                                            <input type="submit" value="Cancel" align="center">
+                                        </form>
+                                    </div>
+                                    <div class="form-group col-md-2 text-md-right">
+                                        <input type="hidden" name="action" value="save">
+                                        <input type="hidden" name="selectedCustomer" value="${editUser.userId}">
+                                        <input type="submit" value="Save">  
+
+                                    </div>
+
+                                </div>
+                            </table>
+                        </div>
+
+
+                </form>
+                <div class="col-md-4">
+
+                </div>
+                <br>
+
+            </div>
+
+
+          
+
     </body>
 </html>

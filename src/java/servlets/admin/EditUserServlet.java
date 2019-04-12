@@ -92,6 +92,6 @@ public class EditUserServlet extends HttpServlet
 
         session.setAttribute("customers", users);
         request.setAttribute("notification", "User saved.");
-        response.sendRedirect("managecustomers?action=view");
+        getServletContext().getRequestDispatcher("/WEB-INF/adminportal/managecustomers.jsp").forward(request, response);
     }
 }
