@@ -118,6 +118,7 @@ public class ManageOrdersServlet extends HttpServlet
         boolean active = false;
         boolean confirmed = false;
         boolean paid = false;
+        boolean delivered = false;
         
         try{
             
@@ -161,10 +162,15 @@ public class ManageOrdersServlet extends HttpServlet
                 if (paidCheck==null) paid = false;
                 else if (paidCheck[0].equals("on")) paid = true;
                 
+                String[] deliveredCheck = request.getParameterValues("delivered");
+                if (deliveredCheck==null) paid = false;
+                else if (deliveredCheck[0].equals("on")) delivered = true;
+                
                 orderOld.setTotalPrice(total_price);
                 orderOld.setActive(active);
                 orderOld.setConfirmed(confirmed);
                 orderOld.setPaid(paid);
+                orderOld.setDelivered(delivered);
                 
                 ojc.edit(orderOld);
                 
