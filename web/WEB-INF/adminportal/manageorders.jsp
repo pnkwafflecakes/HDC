@@ -1,6 +1,7 @@
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
     <head>
@@ -235,11 +236,11 @@
                     <table class="table table-bordered">
 
                         <th>Order #</th>
+                        <th>Delivery #</th>
                         <th>Order Time</th>
                         <th>Due Time</th>
                         <th>Order Items</th>
                         <th>Total</th>
-                        <th>Delivery #</th>
                         <th>User Name</th>
                         <th>Active</th>
                         <th>Confirmed</th>
@@ -251,11 +252,15 @@
                         <c:forEach var="order" items="${orders}">               
                             <tr>
                                 <td>${order.orderNo}</td>
-                                <td>${order.orderDatetime}</td>
-                                <td>${order.dueDatetime}</td>
-                                <td>${order.orderItems}</td>
-                                <td>${order.totalPrice}</td>
                                 <td>${order.deliveryNo.deliveryNo}</td>
+                                <td>
+                                    <fmt:formatDate value="${order.orderDatetime}" pattern="hh:mm a  MMMM dd, yyyy"/>
+                                </td>
+                                <td>
+                                    <fmt:formatDate value="${order.dueDatetime}" pattern="hh:mm a  MMMM dd, yyyy"/>
+                                </td>
+                                <td>${order.orderItems}</td>
+                                <td>$${order.totalPrice}</td>
                                 <td>${order.userId.username}</td>
                                 <td><input type="checkbox" <c:if test="${order.active==true}">checked</c:if> name="active" disabled></td>
                                 <td><input type="checkbox" <c:if test="${order.confirmed==true}">checked</c:if> name="active" disabled></td>
