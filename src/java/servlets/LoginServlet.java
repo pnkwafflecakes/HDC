@@ -93,7 +93,7 @@ public class LoginServlet extends HttpServlet {
                     user.getAccountType();
                     if (user.getAccountType().getAccountType() == 2) {
                         session.setAttribute("admin", user);
-                        redir = "adminhome";
+                        redir = "manageorders";
                     } else if (user.getAccountType().getAccountType() == 1) {
                         session.setAttribute("userObj", user);
                         redir = "mainmenu";

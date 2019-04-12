@@ -109,7 +109,7 @@
                                 <div class="form-row text-md-right">
                                     <div class="form-group col-md-12">
                                         <input type="hidden" name="action" value="add">
-                                        <input type="submit" value="Save">
+                                      <button type="submit" class="btn btn-success btn-sm" >Save</button>
                                     </div>
                                 </div>
                             </c:if>
@@ -135,7 +135,7 @@
                                     <div class="form-group col-md-12">
                                         <input type="hidden" name="selectedPickupId" value="${selectedPickup.pickupId}">
                                         <input type="hidden" name="action" value="edit">
-                                        <input type="submit" value="Save">
+                                        <button type="submit" class="btn btn-success btn-sm" >Save</button>
                                     </div>
                                 </div>
                             </c:if>
