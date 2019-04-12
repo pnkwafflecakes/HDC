@@ -63,7 +63,7 @@
         <br>
         <div class="card">
             <div class="card-body">  
-                <p id="headertitle">Edit Cake</p>
+                <p id="headertitle"><strong>Edit Cake</strong></p>
                 <hr>
 
                 <div class="container">

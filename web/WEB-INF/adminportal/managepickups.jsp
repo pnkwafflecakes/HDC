@@ -91,7 +91,7 @@
                     <div class = "col-md-4">
 
                         <c:if test="${selectedPickup == null}">
-                            <h3>New Pickup</h3>
+                            <br>
                             <form action="managepickups" method="POST">
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
@@ -143,7 +143,7 @@
                     </div>
 
                     <div class="col-md-8">
-                        <h3>Pickup Locations</h3>
+                        <p id="headertitle">Pickup Locations</p>
 
 
                         <table class="table table-bordered">

@@ -62,7 +62,7 @@
 
         <div class="card">
             <div class="card-body">  
-                <p id="headertitle">Statistics</p>
+                <p id="headertitle"><strong>Statistics</strong></p>
                 <hr>
                 <div class="container">
                     <div class ="row">
@@ -90,7 +90,7 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr class="thead-light">
-                                        <th colspan="3"><a href="manageorders">Manage Orders</a></th> 
+                                        <th colspan="3">Manage Orders</th> 
                                     </tr>
                                     <tr>
                                         <th scope="col">Total Orders</th>
@@ -114,7 +114,7 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr class="thead-light">
-                                        <th colspan="3"><a href="managecustomers">Manage Customers</a></th> 
+                                        <th colspan="3">Manage Customers</th> 
                                     </tr>
                                     <tr>
                                         <th scope="col">Customers</th>

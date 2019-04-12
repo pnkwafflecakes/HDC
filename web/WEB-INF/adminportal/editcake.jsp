@@ -70,7 +70,7 @@
         <br>
         <div class="card">
             <div class="card-body">  
-                <p id="headertitle">Add Cake</p>
+                <p id="headertitle"><strong>Add Cake</strong></p>
                 <hr>
 
                 <div class="container-fluid">
