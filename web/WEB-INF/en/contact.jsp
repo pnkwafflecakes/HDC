@@ -103,7 +103,7 @@
         <hr>
 
         <div class="containter-fluid" id="maincontainter">
-            <h1 class="text-center">Hellen's Delicious Cakes</h1>
+            <h1 class="text-center">Helen's Delicious Cakes</h1>
             <br>
             <p class="centralize">Cakes made delicately by haiyan are soft and tasty. Moderate sweetness suit everyone's appetite. All ingredients like eggs,fruits are bought from Costco and T&T. Fresh, delicious and healthy.Striving for perfection.
             </p>
