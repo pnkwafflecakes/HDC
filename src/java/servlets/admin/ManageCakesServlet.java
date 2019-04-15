@@ -72,6 +72,7 @@ public class ManageCakesServlet extends HttpServlet
                 Cake undoCake = (Cake) session.getAttribute("undoCake");
                 if (undoCake != null) {
                     cs.insert(undoCake);
+                    session.setAttribute("undoCake", null);
                     request.setAttribute("notification", "Cake deletion was un-done");
                 }
                 else request.setAttribute("notification", "No recent cake deletions found");
