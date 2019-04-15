@@ -162,8 +162,11 @@ public class ManageCustomersServlet extends HttpServlet
                 try
                 {
                     User undoUser = (User) session.getAttribute("undoUser");
-                    us.create(undoUser);
-                    request.setAttribute("notification", "Delete successfully un-done");
+                    if (undoUser != null) {
+                        us.create(undoUser);
+                        session.setAttribute("undoUser", null);
+                        request.setAttribute("notification", "Delete successfully un-done");
+                    }
                     doGet(request, response);
                 }
                 catch (Exception e)

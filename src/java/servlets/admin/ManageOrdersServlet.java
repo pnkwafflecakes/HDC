@@ -134,6 +134,7 @@ public class ManageOrdersServlet extends HttpServlet
                 Orders undoOrder = (Orders) session.getAttribute("undoOrder");
                 if (undoOrder != null) {
                     ojc.create(undoOrder);
+                    session.setAttribute("unoOrder", null);
                     request.setAttribute("errorMessage", "Undo Delete was successful");
                 }
             }
