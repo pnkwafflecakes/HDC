@@ -1,22 +1,11 @@
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <style>
-            #paidBox{
-                padding-left: 20px;
-            }
-            th, td{
-                font-size: 80%;
-            }
-        </style>
-        <link rel="shortcut icon" href="<c:url value='/images/hdclogo.png'/>">
 
         <style><%@include file="/WEB-INF/styles/adminhome.css"%></style>
         <style><%@include file="/WEB-INF/styles/navbar.css"%></style>
@@ -30,14 +19,14 @@
 
 
 
-        <title>Manage Orders</title> 
+        <title>HDC - Manage Orders</title> 
     </head>
     <body>
 
 
         <nav class="navbar navbar-expand-lg navbar-custom">
             <div class="container">
-                <a class="navbar-brand mb-0 h1" href="adminhome"><img class="icon" src="<c:url value='/images/hdclogo.png'/>" /></a>
+                <a class="navbar-brand mb-0 h1" href="adminhome">Helen's Delicious Cakes</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -59,7 +48,7 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="nav-item"><a class="nav-link" href="login?act=logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+                        <li class="nav-item"><a class="nav-link" href="login"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
                     </ul>
                 </div>
             </div>
@@ -75,17 +64,12 @@
                     <div class="col-md-4 text-md-center">${errorMessage}</div>
 
                     <div class="col-md-4 text-md-right">
-                        <div class="row">
+                        <div class="col-md-12">
 
-                            <div class="col-md-12">
-                                <div class="form-row float-right">
-                                    <form action="manageorders" method="post" class="mr-3">
-                                        <button type="button submit" class="btn btn-danger btn-sm" aria-pressed="true">Undo Delete</button>
-                                        <input type="hidden" name="action" value="undo">
-                                    </form>
-
-                                </div>
-                            </div>
+                            <form action="manageorders" method="post">
+                                <input type="submit" value="Undo Delete">
+                                <input type="hidden" name="action" value="undo">
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -144,53 +128,54 @@
 
                                     <div class="form-group col-md 6">
                                         <div id="inputHeader">Delivery Method</div>
-                                        <input type="text" class="form-control" id="method" value="${delivery.method}" readonly>
+                                        <input type="text" class="form-control" id="method" name="method" value="${delivery.method}">
 
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md 6">
                                         <div id="inputHeader">Address</div>
-                                        <input type="text" class="form-control" id="address" value="${user.address}" readonly>
+                                        <input type="text" class="form-control" id="address" name="address" value="${delivery.address}">
                                     </div>
                                     <div class="form-group col-md 6">
                                         <div id="inputHeader">Delivery Phone #</div>
-                                        <input type="text" class="form-control" id="address" value="${delivery.phoneNo}" readonly>
+                                        <input type="text" class="form-control" id="phoneNo" name="phoneNo" value="${delivery.phoneNo}">
                                     </div>
                                 </div>
 
                                 <div class="form-row">
-                                    <div class="col-md-12 text-md-center">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" <c:if test="${selectedOrder.active==true}">checked</c:if> id="active" name="active">
-                                                <label class="form-check-label" for="active">Active</label>
-                                            </div>
-
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" <c:if test="${selectedOrder.confirmed==true}">checked</c:if> id="confirmed" name="confirmed">
-                                                <label class="form-check-label" for="confirmed">Confirmed</label>
-                                            </div>
-
-
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" <c:if test="${selectedOrder.paid==true}">checked</c:if> id="paid" name="paid">
-                                                <label class="form-check-label" for="paid">Paid</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" <c:if test="${selectedOrder.delivered==true}">checked</c:if> id="delivered" name="delivered">
-                                                <label class="form-check-label" for="delivered">Delivered</label>
+                                    <div class="form-check col-md-1">
+                                    </div>
+                                    <div class="form-check col-md-2">
+                                        <div class="row">
+                                            <div id="inputHeader">Active</div>
+                                            <input class="form-check-input" type="checkbox" class="form-control" <c:if test="${selectedOrder.active==true}">checked</c:if> name="active">
                                             </div>
                                         </div>
 
-                                        <div class="form-group col-md-12 text-md-right mt-3">
-
-                                            <form action="manageorders" method="POST">
-
-                                                <input type="hidden" name="selectedOrderId" value="${selectedOrder.orderNo}">
-                                            <input type="hidden" name="action" value="edit">
-                                            <button type="button submit" class="btn btn-success">Save</button>
-
-                                        </form>
+                                        <div class="form-check col-md-3">
+                                            <div class="row">
+                                                <div id="inputHeader">Confirmed</div>
+                                                <input class="form-check-input" type="checkbox" class="form-control" <c:if test="${selectedOrder.confirmed==true}">checked</c:if> name="confirmed">
+                                            </div>
+                                        </div>
+                                        <div class="form-check col-md-2">
+                                            <div class="row">
+                                                <div id="inputHeader">Paid</div>
+                                                <input class="form-check-input" type="checkbox" <c:if test="${selectedOrder.paid==true}">checked</c:if> name="paid">
+                                            </div>
+                                        </div>
+                                          <div class="form-check col-md-2">
+                                            <div class="row">
+                                                <div id="inputHeader">Delivered</div>
+                                                <input class="form-check-input" type="checkbox" <c:if test="${selectedOrder.delivered==true}">checked</c:if> name="delivered">
+                                            </div>
+                                        </div>  
+                                            
+                                        <div class="form-group col-md-2 text-md-right">
+                                            <input type="hidden" name="selectedOrderId" value="${selectedOrder.orderNo}">
+                                        <input type="hidden" name="action" value="edit">
+                                        <input type="submit" value="Save">
                                     </div>
 
 
@@ -216,7 +201,7 @@
                                             <td >${cakeOrder.cake.price}</td>
                                             <td><input type="number" name="quantity" value="${cakeOrder.quantity}" min="0" max="20" ></td>
                                             <td>
-                                                <button type="button submit" class="btn btn-outline-secondary btn-sm">Change</button>
+                                                <input type="submit" value="Chg.Qty">
                                                 <input type="hidden" name="action" value="changeQuantity">
                                                 <input type="hidden" name="selectedCakeOrder" value="${cakeOrderIndex.index}">
                                                 <input type="hidden" name="selectedOrderId" value="${cakeOrder.orders.orderNo}">
@@ -239,61 +224,51 @@
 
             <c:if test="${selectedOrder == null}">
 
-                <div class="col-md-12">
-                    <table class="table table-bordered d-inline-block">
-                        <thead>
-                            <tr>
-                                <th>Order #</th>
-                                <th>Delivery #</th>
-                                <th>Order Time</th>
-                                <th>Due Time</th>
-                                <th>Order Items</th>
-                                <th>Total</th>
-                                <th>User Name</th>
-                                <th>Active</th>
-                                <th>Confirmed</th>
-                                <th>Paid</th>
-                                <th>Delivered</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
+                <div class="col-sm-12">
+                    <table class="table table-bordered">
+
+                        <th>Order #</th>
+                        <th>Order Time</th>
+                        <th>Due Time</th>
+                        <th>Order Items</th>
+                        <th>Total</th>
+                        <th>Delivery #</th>
+                        <th>User Name</th>
+                        <th>Active</th>
+                        <th>Confirmed</th>
+                        <th>Paid</th>
+                        <th>Delivered</th>
+                        <th></th>
+                        <th></th>
 
                         <c:forEach var="order" items="${orders}">               
-                            <tbody>
-                                <tr>
-
-                                    <td>${order.orderNo}</td>
-                                    <td>${order.deliveryNo.deliveryNo}</td>
-                                    <td>
-                                        <fmt:formatDate value="${order.orderDatetime}" pattern="hh:mm a  MMMM dd, yyyy"/>
-                                    </td>
-                                    <td>
-                                        <fmt:formatDate value="${order.dueDatetime}" pattern="hh:mm a  MMMM dd, yyyy"/>
-                                    </td>
-                                    <td>${order.orderItems}</td>
-                                    <td>$${order.totalPrice}</td>
-                                    <td>${order.userId.username}</td>
-                                    <td><input type="checkbox" <c:if test="${order.active==true}">checked</c:if> name="active" disabled></td>
-                                    <td><input type="checkbox" <c:if test="${order.confirmed==true}">checked</c:if> name="confirmed" disabled></td>
-                                    <td><input type="checkbox" <c:if test="${order.paid==true}">checked</c:if> name="paid" disabled></td>
-                                    <td><input type="checkbox" <c:if test="${order.delivered==true}">checked=</c:if> name="delivered" disabled></td>
-                                        <td>
-                                            <form action="manageorders" method="get">
-                                                <button type="button submit" class="btn btn-outline-secondary btn-sm">Edit</button>
-                                                <input type="hidden" name="action" value="view">
-                                                <input type="hidden" name="selectedOrderId" value="${order.orderNo}">
-                                        </form>
-                                    </td>
+                            <tr>
+                                <td>${order.orderNo}</td>
+                                <td>${order.orderDatetime}</td>
+                                <td>${order.dueDatetime}</td>
+                                <td>${order.orderItems}</td>
+                                <td>${order.totalPrice}</td>
+                                <td>${order.deliveryNo.deliveryNo}</td>
+                                <td>${order.userId.username}</td>
+                                <td><input type="checkbox" <c:if test="${order.active==true}">checked</c:if> name="active"></td>
+                                <td><input type="checkbox" <c:if test="${order.confirmed==true}">checked</c:if> name="active"></td>
+                                <td><input type="checkbox" <c:if test="${order.paid==true}">checked</c:if> name="active"></td>
+                                <td><input type="checkbox" <c:if test="${order.delivered==true}">checked=</c:if> name="active"></td>
                                     <td>
                                         <form action="manageorders" method="post">
-                                            <button type="button submit" class="btn btn-outline-danger btn-sm">Delete</button>
+                                            <input type="submit" value="Delete">
                                             <input type="hidden" name="action" value="delete">
                                             <input type="hidden" name="selectedOrderId" value="${order.orderNo}">
-                                        </form>
-                                    </td>
-                                </tr>
-                            </tbody>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="manageorders" method="get">
+                                        <input type="submit" value="Edit">
+                                        <input type="hidden" name="action" value="view">
+                                        <input type="hidden" name="selectedOrderId" value="${order.orderNo}">
+                                    </form>
+                                </td>
+                            </tr>
                         </c:forEach>
                     </table>
                 </div>
