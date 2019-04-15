@@ -77,6 +77,7 @@ public class ManagePickupsServlet extends HttpServlet
             else if (action.equals("undo")) {
                 Pickup undoPickup = (Pickup) session.getAttribute("undoPickup");
                 if (undoPickup != null) {
+                    session.setAttribute("undoPickup", null);
                     request.setAttribute("notification", "Undo delete was successful");
                     ps.insert(undoPickup);
                 }

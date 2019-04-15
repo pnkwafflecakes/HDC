@@ -134,6 +134,7 @@ public class ManageOrdersServlet extends HttpServlet
                 Orders undoOrder = (Orders) session.getAttribute("undoOrder");
                 if (undoOrder != null) {
                     ojc.create(undoOrder);
+                    session.setAttribute("unoOrder", null);
                     request.setAttribute("errorMessage", "Undo Delete was successful");
                 }
             }
@@ -162,6 +163,7 @@ public class ManageOrdersServlet extends HttpServlet
                 if (paidCheck==null) paid = false;
                 else if (paidCheck[0].equals("on")) paid = true;
                 
+//                get delivered checkbox
                 String[] deliveredCheck = request.getParameterValues("delivered");
                 if (deliveredCheck==null) paid = false;
                 else if (deliveredCheck[0].equals("on")) delivered = true;
@@ -178,13 +180,13 @@ public class ManageOrdersServlet extends HttpServlet
                 String method  = request.getParameter("method");
                 String address = request.getParameter("address");
                 String phoneNo = request.getParameter("phoneNo");
-                String notes   = request.getParameter("notes");
+//                String notes   = request.getParameter("notes");
 
                 Delivery deliveryOld = djc.findDelivery(delivery_no);
                 deliveryOld.setMethod(method);
                 deliveryOld.setAddress(address);
                 deliveryOld.setPhoneNo(phoneNo);
-                deliveryOld.setNotes(notes);
+//                deliveryOld.setNotes(notes);
                    
                 djc.edit(deliveryOld);
                 
