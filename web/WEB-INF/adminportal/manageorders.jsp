@@ -144,18 +144,18 @@
 
                                     <div class="form-group col-md 6">
                                         <div id="inputHeader">Delivery Method</div>
-                                        <input type="text" class="form-control" id="method" value="${delivery.method}" readonly>
+                                        <input type="text" class="form-control" id="method" name="method" value="${delivery.method}">
 
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md 6">
                                         <div id="inputHeader">Address</div>
-                                        <input type="text" class="form-control" id="address" value="${user.address}" readonly>
+                                        <input type="text" class="form-control" id="address" name="address" value="${delivery.address}">
                                     </div>
                                     <div class="form-group col-md 6">
                                         <div id="inputHeader">Delivery Phone #</div>
-                                        <input type="text" class="form-control" id="address" value="${delivery.phoneNo}" readonly>
+                                        <input type="text" class="form-control" id="phoneNo" name="phoneNo" value="${delivery.phoneNo}">
                                     </div>
                                 </div>
 
