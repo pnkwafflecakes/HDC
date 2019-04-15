@@ -86,11 +86,7 @@ public class EditCakeServlet extends HttpServlet
     {
         CakeService cs = new CakeService();
         String action = request.getParameter("action");
-//      get cake by cakeId using CakeJpaController
-        int cakeId = Integer.valueOf(request.getParameter("selectedCakeId"));
-        CakeJpaController cjc = new CakeJpaController();
-        Cake cake = cjc.findCake(cakeId);
-        
+        Cake cake = new Cake();
         boolean featured = false;
         boolean special = false;
         
@@ -130,10 +126,12 @@ public class EditCakeServlet extends HttpServlet
         cake.setSize(size);
         cake.setSpecial(special);
         
+        CakeJpaController cjc = new CakeJpaController();
         
         try {
             if (action.equals("edit")) 
             {
+                int cakeId = Integer.valueOf(request.getParameter("selectedCakeId"));
                 cake.setCakeId(cakeId);
                 
                 String imagePath = path+this.name;
